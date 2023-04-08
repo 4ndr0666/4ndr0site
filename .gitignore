@@ -1,0 +1,22 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+
+# build output
+/public
+
+# local env files
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Netlify cache directory
+.netlify
+
+# Hugo cache and output directories
+/resources/
+/resources/_gen/
+/content/docs/resources/
