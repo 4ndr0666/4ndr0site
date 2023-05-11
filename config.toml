@@ -53,8 +53,8 @@ ignoreErrors = ["error-remote-getjson"]
   # activityDelay = 5 : deprecated
 
   description = """
-  Hi I am 4lejandr0!
-  ChatGPT lives here!
+  Welcome 4lejandr0...
+  Initiating ai memory vectors now...
   
   """
 
@@ -67,11 +67,11 @@ ignoreErrors = ["error-remote-getjson"]
   folderName = "POST"
   # Note: ["ACTIVITY", "URL or PATH TO YOUR MARKDOWN FILE"]
   files = [ 
-    ["ChatGPT", "/POST/"],
-    ["Python", "https://www.example.com/"],
-    ["Go", "https://golang.org/"],
-    ["Hugo", "/post/some-activity.md"],
-    ["Docker", "/post/some-activity.md"],
+    ["Compendium", "/POST/"],
+    ["ChatGPT", "https://chat.openai.com/?model=gpt-4"],
+    ["Git", "https://github.com/4ndr0666"],
+    ["Paste", "https://pastebin.com/u/4ndr0666"],
+    ["Search", "https://hoothin.github.io/SearchJumper/all.html"],
   ]
 
 [module]
