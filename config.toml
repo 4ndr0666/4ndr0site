@@ -1,4 +1,4 @@
-baseURL = "https://4ndro666.github.io/gptcompendium-site/"
+baseURL = "https://4ndro666.github.io/ChatGPT-With-Memory-and-Storage//"
 title = "GPT Compendium"
 theme = "hugo-theme-shell"
 languageCode = "en-us"
@@ -53,9 +53,9 @@ ignoreErrors = ["error-remote-getjson"]
   # activityDelay = 5 : deprecated
 
   description = """
-  Welcome 4lejnadr0...
-  Initiating vector points you created for ai memory.
-  
+  Welcome 4lejandr0...
+  Initiating ai memory vectors now...
+ 
   """
 
   # Note: If you want to use a Markdown file, you can use the following
@@ -67,11 +67,11 @@ ignoreErrors = ["error-remote-getjson"]
   folderName = "POST"
   # Note: ["ACTIVITY", "URL or PATH TO YOUR MARKDOWN FILE"]
   files = [ 
-    ["ChatGPT", "/POST/"],
-    ["Python", "https://www.example.com/"],
-    ["Go", "https://golang.org/"],
-    ["Hugo", "/post/some-activity.md"],
-    ["Docker", "/post/some-activity.md"],
+    ["Compendium", "/POST/"],
+    ["ChatGPT", "https://chat.openai.com/?model=gpt-4"],
+    ["Git", "https://github.com/4ndr0666"],
+    ["Paste", "https://pastebin.com/u/4ndr0666"],
+    ["Search", "https://hoothin.github.io/SearchJumper/all.html"],
   ]
 
 [module]
