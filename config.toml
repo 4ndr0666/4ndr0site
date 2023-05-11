@@ -1,4 +1,4 @@
-baseURL = "https://4ndro666.github.io/gptcompendium-site/"
+baseURL = "https://4ndro666.github.io/ChatGPT-With-Memory-and-Storage//"
 title = "GPT Compendium"
 theme = "hugo-theme-shell"
 languageCode = "en-us"
