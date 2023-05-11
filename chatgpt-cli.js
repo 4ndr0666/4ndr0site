@@ -1,9 +1,9 @@
 const dotenv = require('dotenv');
-const { intro, isCancel, outro, spinner, text } = require('@clack/prompts');
-const prompts = require('@clack/prompts');
+const { intro, isCancel, outro, spinner } = require('@clack/prompts');
 const { Configuration, OpenAIApi } = require('openai');
 const slugify = require('slugify');
 const fs = require('fs');
+const readline = require('readline');
 
 // Load environment variables from .env file
 dotenv.config();
@@ -33,40 +33,68 @@ const askChatGPT = async (question, messages) => {
   });
 
   const response = await openaiClient.createChatCompletion({
-    model: 'text-davinci-002',
+    model: 'gpt-3.5-turbo',
     messages: prompt.messages,
   });
 
   // Print the response from the OpenAI API
-  return response.data.choices[0].text.trim();
+  return response.data.choices[0].message.content.trim();
 };
 
 (async () => {
   const s = spinner();
   const messages = [];
-  intro("Let's talk to ChatGPT (Ctrl-C or enter to end the conversation)...");
-  while (true) {
-    const question = await text({
-      message: 'How can I help?',
-    });
-    if (isCancel(question) || !question || question.trim().length === 0) break;
-    s.start('Thinking...');
-    const answer = await askChatGPT(question, messages);
-    messages.push(question, answer);
-    s.stop(`Response: ${answer}`);
-  }
+  intro("AI online...");
 
-  const timestamp = new Date().toISOString();
-  const title = `Conversation ${timestamp}`;
-  const directory = slugify(title.toLowerCase());
+  const endDelimiter = 'EOF';
+  let question = '';
 
-  if (!fs.existsSync(directory)) {
-    fs.mkdirSync(directory);
-  }
+  console.log('Yes Master? (Type "EOF" on a new line and press Enter to submit)');
 
-  const transcript = messages.map((m) => `> ${m}`).join('\n\n');
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
 
-  fs.writeFileSync(`${directory}/transcript.md`, transcript);
+  const processQuestion = async () => {
+    if (isCancel(question) || !question || question.trim().length === 0) {
+      rl.close();
+    } else {
+      s.start('Thinking...');
+      const answer = await askChatGPT(question, messages);
+      messages.push(question, answer);
+      s.stop(`Response: ${answer}`);
+      console.log('Yes Master? (Type "EOF" on a new line and press Enter to submit)');
+      question = '';
+    }
+  };
 
-  outro(`Conversation saved to ${directory}/transcript.md. Tokens used: X ($0.0Y cost). See you next time!`);
+  rl.on('line', async (line) => {
+    if (line === endDelimiter) {
+      await processQuestion();
+    } else {
+      question += line + '\n';
+    }
+  });
+
+  rl.on('close', () => {
+    const timestamp = new Date().toISOString();
+    const title = `Conversation ${timestamp}`;
+    const directory = 'content/' + slugify(title.toLowerCase());
+
+    if (!fs.existsSync('content')) {
+      fs.mkdirSync('content');
+    }
+
+    if (!fs.existsSync(directory)) {
+      fs.mkdirSync(directory);
+    }
+
+    const transcript = messages.map((m) => `> ${m}`).join('\n\n');
+
+    fs.writeFileSync(`${directory}/transcript.md`, transcript);
+
+    outro(`Conversation saved to ${directory}/transcript.md. Tokens used: X ($0.0Y cost). See you next time!`);
+  });
+
 })();
