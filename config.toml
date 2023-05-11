@@ -1,32 +1,8 @@
-baseURL = "https://4ndro666.github.io/gptcompendium-site"
+baseURL = "https://4ndro666.github.io/gptcompendium-site/"
 title = "GPT Compendium"
+description = "A collection of transcripts of conversations with the OpenAI GPT language model."
+theme = "hugo-theme-shell"
 languageCode = "en-us"
-
-[outputFormats]
-  [outputFormats.HTML]
-    mediaType = "text/html"
-    baseName = "index"
-    isPlainText = false
-
-[params]
-  description = "A collection of transcripts of conversations with the OpenAI GPT language model."
-  theme = "hugo-theme-shell"
-
-[[menu.main]]
-  name = "Home"
-  url = "/"
-  weight = 1
-
-[[menu.main]]
-  name = "About"
-  url = "/about"
-  weight = 2
-
+publishDir = "public"
 [permalinks]
   post = "/:year/:month/:day/:slug/"
-
-[outputs]
-  home = ["HTML"]
-  page = ["HTML"]
-  section = ["HTML"]
-  taxonomyTerm = ["HTML"]
