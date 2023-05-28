@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # GPT Compendium
 
 This repository is a collection of transcripts of conversations with the OpenAI GPT language model. Each conversation is stored in a separate directory, with the directory name indicating the date of the conversation.
@@ -48,6 +49,11 @@ This will build the website and deploy it to the gh-pages branch of the reposito
 ## Contributing
 
 If you would like to contribute to the GPT Compendium, please see the [contributing guidelines](CONTRIBUTING.md).
+=======
+# Website
+
+My site for an online collection of transcripts , scripts, files and tools. 
+>>>>>>> origin/main
 
 ## License
 
