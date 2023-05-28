@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AtlasOS on 4ndr0 | Nas</title>
+    <link>http://localhost:1313/4ndr0site/tags/atlasos/</link>
+    <description>Recent content in AtlasOS on 4ndr0 | Nas</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/4ndr0site/tags/atlasos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AtlasOS Review</title>
+      <link>http://localhost:1313/4ndr0site/atlasos-review/</link>
+      <pubDate>Thu, 27 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/4ndr0site/atlasos-review/</guid>
+      <description>&lt;p&gt;I don&amp;rsquo;t review Custom ISO or Custom Windows. Anything that requires downloading ISO is an immediate red flag. AtlasOS takes a different approach using official Microsoft ISOs and modifying them using an open source tool.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

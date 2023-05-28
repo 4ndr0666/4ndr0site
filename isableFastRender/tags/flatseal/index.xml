@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Flatseal on 4ndr0 | Nas</title>
+    <link>http://localhost:1313/4ndr0site/tags/flatseal/</link>
+    <description>Recent content in Flatseal on 4ndr0 | Nas</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 10 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/4ndr0site/tags/flatseal/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Flatseal: The Best Flatpak Addon</title>
+      <link>http://localhost:1313/4ndr0site/flatseal-required-flatpak-addon/</link>
+      <pubDate>Fri, 10 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/4ndr0site/flatseal-required-flatpak-addon/</guid>
+      <description>&lt;p&gt;Managing Flatpak permissions and file storage outside of the flatpak can be difficult to manage. Flatseal fixes all that!&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

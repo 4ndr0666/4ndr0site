@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bootmgr on 4ndr0 | Nas</title>
+    <link>http://localhost:1313/4ndr0site/tags/bootmgr/</link>
+    <description>Recent content in bootmgr on 4ndr0 | Nas</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/4ndr0site/tags/bootmgr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Recovering Deleted Windows Boot Partition</title>
+      <link>http://localhost:1313/4ndr0site/recovering-deleted-windows-boot-partition/</link>
+      <pubDate>Mon, 24 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/4ndr0site/recovering-deleted-windows-boot-partition/</guid>
+      <description>&lt;p&gt;Is your Windows boot partition missing? This guide fixes it!&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

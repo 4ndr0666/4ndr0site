@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on 4ndr0 | Nas</title>
+    <link>http://localhost:1313/4ndr0site/categories/linux/</link>
+    <description>Recent content in Linux on 4ndr0 | Nas</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 24 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/4ndr0site/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Perfect System</title>
+      <link>http://localhost:1313/4ndr0site/the-perfect-system/</link>
+      <pubDate>Wed, 24 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/4ndr0site/the-perfect-system/</guid>
+      <description>&lt;p&gt;The perfect system is stable, reliable, and does everything you need it to, while it feels amazing to use.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>TitusPi 3.0</title>
+      <link>http://localhost:1313/4ndr0site/tituspi-2023/</link>
+      <pubDate>Tue, 25 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/4ndr0site/tituspi-2023/</guid>
+      <description>&lt;p&gt;TitusPi is a raspberrypi desktop that can play retro games and also substitute for a full desktop.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Replace Google Fonts With Bunny Fonts</title>
+      <link>http://localhost:1313/4ndr0site/replace-google-fonts-with-bunny-fonts/</link>
+      <pubDate>Wed, 15 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/4ndr0site/replace-google-fonts-with-bunny-fonts/</guid>
+      <description>&lt;p&gt;Did you know Google Fonts is bloated and can cause longer load times? Bunny fonts to the rescue!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Flatseal: The Best Flatpak Addon</title>
+      <link>http://localhost:1313/4ndr0site/flatseal-required-flatpak-addon/</link>
+      <pubDate>Fri, 10 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/4ndr0site/flatseal-required-flatpak-addon/</guid>
+      <description>&lt;p&gt;Managing Flatpak permissions and file storage outside of the flatpak can be difficult to manage. Flatseal fixes all that!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Script for Optimizing Images</title>
+      <link>http://localhost:1313/4ndr0site/script-for-optimizing-images/</link>
+      <pubDate>Mon, 30 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/4ndr0site/script-for-optimizing-images/</guid>
+      <description>&lt;p&gt;Optimizing images is easy with this script! Img-optimizer + ImageMagicK leverages multiple CLI tools to give the best results.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>My New Desktop Hyprland</title>
+      <link>http://localhost:1313/4ndr0site/my-new-desktop-hyprland/</link>
+      <pubDate>Mon, 23 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/4ndr0site/my-new-desktop-hyprland/</guid>
+      <description>&lt;p&gt;Hyprland is an amazing desktop that feels amazing. Here is my current setup that is being made.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How to Sync Local Files</title>
+      <link>http://localhost:1313/4ndr0site/sync-local-files/</link>
+      <pubDate>Fri, 20 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/4ndr0site/sync-local-files/</guid>
+      <description>&lt;p&gt;A guide over how to set up Syncthing for local sync only.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Fix Screen Tearing Linux</title>
+      <link>http://localhost:1313/4ndr0site/fix-screen-tearing-linux/</link>
+      <pubDate>Wed, 04 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/4ndr0site/fix-screen-tearing-linux/</guid>
+      <description>&lt;p&gt;The guide shows you ALL the methods to remove screen tearing. VSync, Monitor Composition, and Drivers that are problem childs.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Fix Screen Tearing Linux</title>
+      <link>http://localhost:1313/4ndr0site/fix-screen-tearing-linux/</link>
+      <pubDate>Wed, 04 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/4ndr0site/fix-screen-tearing-linux/</guid>
+      <description>&lt;p&gt;The guide shows you ALL the methods to remove screen tearing. VSync, Monitor Composition, and Drivers that are problem childs.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
