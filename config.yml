@@ -10,14 +10,13 @@ params:
   promptColor: green
 # promptSimbols: ":~$"
   promptSimbolsColor: grey
-  startxLocation: https://example.com
-# hideSocialName: true
+  startxLocation: "https://mega.nz/C!BU8RSA4A"
+  hideSocialName: true
 # exitLocation: 'about:blank'
 # hidesource: true
   greeting: | 
      Lasciate ogne speranza, voi ch'intrate.
 
-     Type 'help' for a list of available commands
 
   whois: 
       name: = "4ndr0666"
