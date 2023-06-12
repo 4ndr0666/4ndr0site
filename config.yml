@@ -1,8 +1,8 @@
 # Site Configuration
-BaseURL: = "https://4ndr0666.github.io/4ndr0site/"
-languageCode: = "en-us"
-title: = "4ndr0666 | Online Archive"
-theme: = "terminalcv"
+BaseURL: "https://4ndr0666.github.io/4ndr0site/"
+languageCode: "en-us"
+title: "4ndr0666 | Online Archive"
+theme: "terminalcv"
 
 # Enable/disable content sections
 params:
@@ -12,40 +12,40 @@ params:
   promptSimbolsColor: grey
   startxLocation: "https://mega.nz/C!BU8RSA4A"
   hideSocialName: true
-# exitLocation: 'about:blank'
-# hidesource: true
+  exitLocation: 'about:blank'
+  hidesource: true
   greeting: | 
      Lasciate ogne speranza, voi ch'intrate.
 
 
   whois: 
-      name: = "4ndr0666"
-      location: = "TheRealWorld,Matrix"
-      email: = "johndoe@example.com"
-      phone: = "+1 123-456-7890"      
+      name:  4ndr0
+      location:  TheRealWorld,Matrix
+      email:  johndoe@example.com
+      phone:  "+1 123-456-7890"      
       homelink: "https://www.github.com/4ndr0666"
       description: |
               4ndr0666 Online Archive 
   social:
     ## IF you want to keep them aligned just add spaces
     - name: "github"
-      url: "          https://github.com/4ndr0666"
+      url: "        https://github.com/4ndr0666"
     - name: "chat-gpt"
       url: "        https://chat.openai.com/u/0/"
     - name: "keep"
-      url: "         https://keep.google.com/u/0/"
+      url: "        https://keep.google.com/u/0/"
     - name: "RG"
-      url: "             https://www.redgifs.com/users/andr0666"
+      url: "        https://www.redgifs.com/users/andr0666"
     - name: "imgur"
-      url: "       https://imgur.com/user/4ndr0666/posts"
+      url: "        https://imgur.com/user/4ndr0666/posts"
     - name: "gfycat"
-      url: "  https://anothersocial.com"
+      url: "        https://www.gfycat.com/@andro666"
       
   workexp:
-    - jobTitle: Job With Red Title
-      color: red
+    - jobTitle: Vison
+      color: green
       company: '-' 
-      location: somewhere
+      location: mars
       date: August 2010 - Present
       description: Some description about this red title job
 
@@ -133,16 +133,18 @@ params:
     #description: Lorem Ipsum
   
   misc: 
-    #commandName: newcommand
-    title: "This Section can have a different command name"
-    titleColor: teal
+    commandName: scripts
+    title: "Usefull Scripts"
+    titleColor: blue
     content: |
-          Here the title and the content can have different colors
-          The content can be multi
+          The only windows script we need 
+          irm christitus.com/win | iex
           
-          line
-
-          And spaces       will be respected as well
+          -----
+         
+          That fckn vim command:
+          :w !sudo tee %
+          
           This section will have the default command: misc
           but you can name it something else with the property
           commandName: <String>
@@ -151,4 +153,4 @@ params:
           now instead of misc you can execute the newcommand for this section
           Auto completion will know it too! :D 
 
-    contentColor: orange
+    contentColor: green
