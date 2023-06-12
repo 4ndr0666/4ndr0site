@@ -1,16 +1,16 @@
 # Site Configuration
-BaseUR: = "https://4ndr0666.github.io/4ndr0site/"
+BaseURL: = "https://4ndr0666.github.io/4ndr0site/"
 languageCode: = "en-us"
 title: = "4ndr0666 | Online Archive"
 theme: = "terminalcv"
 
 # Enable/disable content sections
 params:
-  prompt: "4ndr0666@terminalcv"
-# promptColor: grey
+  prompt: "4ndr0?"
+  promptColor: green
 # promptSimbols: ":~$"
-# promptSimbolsColor: grey
-# startxLocation: https://example.com
+  promptSimbolsColor: grey
+  startxLocation: https://example.com
 # hideSocialName: true
 # exitLocation: 'about:blank'
 # hidesource: true
