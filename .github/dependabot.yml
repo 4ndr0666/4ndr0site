@@ -4,6 +4,10 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+    allow:
+      # Allow both direct and indirect updates for all packages
+      - dependency-type: "all"
+
 
   # Enable version updates for Docker
   - package-ecosystem: "hugo"
@@ -12,3 +16,6 @@ updates:
     # Check for updates once a week
     schedule:
       interval: "daily"
+    allow:
+      # Allow both direct and indirect updates for all packages
+      - dependency-type: "all"
