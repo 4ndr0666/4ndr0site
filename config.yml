@@ -8,9 +8,9 @@ theme: "terminalcv"
 params:
   prompt: "4ndr0?"
   promptColor: green
-# promptSimbols: ":~$"
-  promptSimbolsColor: grey
-  startxLocation: "https://mega.nz/C!BU8RSA4A"
+  promptSimbols: ":~$"
+  promptSimbolsColor: white
+  startxLocation: "https://mega.nz/folder/xJVWFAqS#LGVgEJFXUsQ0uJW0ojvTSQ"
   hideSocialName: true
   exitLocation: 'about:blank'
   hidesource: true
@@ -20,25 +20,23 @@ params:
 
   whois: 
       name:  4ndr0
-      location:  TheRealWorld,Matrix
-      email:  johndoe@example.com
-      phone:  "+1 123-456-7890"      
+      location:  TheRealWorld,Matrix      
       homelink: "https://www.github.com/4ndr0666"
       description: |
-              4ndr0666 Online Archive 
+              Online Archive 
   social:
     ## IF you want to keep them aligned just add spaces
-    - name: "github"
+    - name: "G"
       url: "        https://github.com/4ndr0666"
-    - name: "chat-gpt"
+    - name: "GPT"
       url: "        https://chat.openai.com/u/0/"
-    - name: "keep"
+    - name: "Keep"
       url: "        https://keep.google.com/u/0/"
     - name: "RG"
       url: "        https://www.redgifs.com/users/andr0666"
-    - name: "imgur"
+    - name: "Img"
       url: "        https://imgur.com/user/4ndr0666/posts"
-    - name: "gfycat"
+    - name: "G"
       url: "        https://www.gfycat.com/@andro666"
       
   workexp:
@@ -134,20 +132,21 @@ params:
   
   misc: 
     commandName: scripts
-    title: "Usefull Scripts"
-    titleColor: blue
+    title: "One Liners"
+    titleColor: teal
     content: |
-          The only windows script we need 
+          Windows: 
+          -----
           irm christitus.com/win | iex
           
-          -----
          
-          That fckn vim command:
+          Vim:
+          ----
           :w !sudo tee %
           
+          
           This section will have the default command: misc
-          but you can name it something else with the property
-          commandName: <String>
+          ----
           Give it a shot and try and uncomment the line 
           commandName: newcommand
           now instead of misc you can execute the newcommand for this section
