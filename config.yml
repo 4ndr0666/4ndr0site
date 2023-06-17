@@ -6,38 +6,38 @@ theme: "terminalcv"
 
 # Enable/disable content sections
 params:
-  prompt: "4ndr0?"
+  prompt: "4ndr0@terminal"
   promptColor: green
-  promptSimbols: ":~$"
-  promptSimbolsColor: white
+  #promptSimbols: ":~$"
+  #promptSimbolsColor: white
   startxLocation: "https://mega.nz/folder/xJVWFAqS#LGVgEJFXUsQ0uJW0ojvTSQ"
-  hideSocialName: true
-  exitLocation: 'about:blank'
-  hidesource: true
+  #hideSocialName: true
+  #exitLocation: 'about:blank'
+  #hidesource: true
   greeting: | 
      Lasciate ogne speranza, voi ch'intrate.
 
 
   whois: 
-      name:  4ndr0
-      location:  TheRealWorld,Matrix      
+      name:  "4ndr0"
+      location:  "TheRealWorld,Matrix"      
       homelink: "https://www.github.com/4ndr0666"
       description: |
               Online Archive 
   social:
     ## IF you want to keep them aligned just add spaces
     - name: "G"
-      url: "        https://github.com/4ndr0666"
+      url: "     https://github.com/4ndr0666"
     - name: "GPT"
-      url: "        https://chat.openai.com/u/0/"
+      url: "   https://chat.openai.com/u/0/"
     - name: "Keep"
-      url: "        https://keep.google.com/u/0/"
+      url: "     https://keep.google.com/u/0/"
     - name: "RG"
       url: "        https://www.redgifs.com/users/andr0666"
     - name: "Img"
-      url: "        https://imgur.com/user/4ndr0666/posts"
+      url: "   https://imgur.com/user/4ndr0666/posts"
     - name: "G"
-      url: "        https://www.gfycat.com/@andro666"
+      url: "   https://www.gfycat.com/@andro666"
       
   workexp:
     - jobTitle: Vison
@@ -138,8 +138,7 @@ params:
           Windows: 
           -----
           irm christitus.com/win | iex
-          
-         
+        
           Vim:
           ----
           :w !sudo tee %
@@ -147,6 +146,8 @@ params:
           
           This section will have the default command: misc
           ----
+        
+        
           Give it a shot and try and uncomment the line 
           commandName: newcommand
           now instead of misc you can execute the newcommand for this section
