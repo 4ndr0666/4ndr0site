@@ -44,9 +44,9 @@ jQuery(document).ready(function($) {
                     'skills', 'softskills', 'languages',
                     'projects',
 	             'certifications', 
-                    
-                    
-                    "misc",
+                     'startx', 
+                     'exit', 
+                    "more",
                      'source' 
                     ] 
 
@@ -59,8 +59,6 @@ jQuery(document).ready(function($) {
             term.echo ("[[b;grey;]Name:]\t\t\t= \u00224ndr0666\u0022");
             term.echo ("[[b;grey;]Profession:]\t\t");
             term.echo ("[[b;grey;]Location:]\t\t= \u0022TheRealWorld,Matrix\u0022");
-            
-                term.echo ("[[b;grey;]Email:]\t\t\t= \u0022johndoe@example.com\u0022");
             
             
                 term.echo ("[[b;grey;]Homepage:]\t\thttps:\/\/www.github.com\/4ndr0666");
@@ -78,17 +76,19 @@ jQuery(document).ready(function($) {
         
             
                 
-                    term.echo("github:" + "          https:\/\/github.com\/4ndr0666");
+                    term.echo("Github:" + "    https:\/\/github.com\/4ndro666");
                 
-                    term.echo("chat-gpt:" + "        https:\/\/chat.openai.com\/u\/0\/");
+                    term.echo("Chat-gpt:" + "   https:\/\/chat.openai.com\/u\/0\/");
                 
-                    term.echo("keep:" + "         https:\/\/keep.google.com\/u\/0\/");
+                    term.echo("Keep:" + "   https:\/\/keep.google.com\/u\/0\/");
                 
-                    term.echo("RG:" + "             https:\/\/www.redgifs.com\/users\/andr0666");
+                    term.echo("RG:" + " https:\/\/www.redgifs.com\/users\/andr0666");
                 
-                    term.echo("imgur:" + "       https:\/\/imgur.com\/user\/4ndr0666\/posts");
+                    term.echo("Imgur:" + "    https:\/\/imgur.com\/user\/4ndr0666\/posts");
                 
-                    term.echo("gfycat:" + "  https:\/\/anothersocial.com");
+                    term.echo("Flaru:" + "  https:\/\/www.flaru.com/en/");
+                
+                    term.echo("Coffee:" + "     https:\/\/www.buymeacoffee.com\/4s3ti");
                 
             
         
@@ -99,10 +99,15 @@ jQuery(document).ready(function($) {
         term.echo("");
         
             
-                term.echo("[[b;grey;]Example Cert]");
+                term.echo("[[b;grey;]AWS Certified Solutions Architect - Associate]");
 	    	term.echo("Date of Completion");
                 
-                    term.echo("Example Certifying Company");
+                
+                term.echo("-------------------- ");
+                term.echo("");
+            
+                term.echo("[[b;grey;]HashiCorp Certified: Terraform Associate]");
+	    	term.echo("2023");
                 
                 
                 term.echo("-------------------- ");
@@ -114,6 +119,53 @@ jQuery(document).ready(function($) {
     function work () {
         term.echo("");
         
+            
+                term.echo("[[b;grey;]Senior Operations Engineer]");
+                term.echo("Vidispine AB");
+                term.echo("Sweden");
+                term.echo("August 2019 - Present");
+                term.echo ("");
+                term.echo("Automate \u0026 Document all things! \nCloud infrastructure maintenance, Infrastructure as Code development, \nFoster DevOps enviroment and advocate of GitOps Practices!\n");
+                term.echo("-------------------- ");
+                term.echo("");
+            
+                term.echo("[[b;grey;]Lead Data Center Technician]");
+                term.echo("Amazon Web Services (AWS)");
+                term.echo("Sweden");
+                term.echo("July 2017 - July 2019");
+                term.echo ("");
+                term.echo("1st Data Center Technician being hired for AWS Stockholm region, \nBuild 3 Datacenters from the ground up,\nAutomated some initial bootstrap and configuration tasks,\nIncident first responder, Wi-Fi network subject matter expert,\nNew techs trainer and the go-to guy for all tech stuff! \n");
+                term.echo("-------------------- ");
+                term.echo("");
+            
+                term.echo("[[b;grey;]Freelancer \/ Contractor]");
+                term.echo("-");
+                term.echo("Portugal");
+                term.echo("July 2008 - 2017");
+                term.echo ("");
+                term.echo("Custom computer builds, Computer repairs, \nWordpress websites, SOHO networking and servers.  \n");
+                term.echo("-------------------- ");
+                term.echo("");
+            
+                term.echo("[[b;grey;]IT Systems Technician]");
+                term.echo("Portugues Air Force");
+                term.echo("Portugal");
+                term.echo("June 2010 - June 2016");
+                term.echo ("");
+                term.echo("The guy that gets your computer working just by looking at it!\nService\/Help desk, Workstation \u0026 printer repairs, \nWorkstations initial provisioning and imaging,\nWired and Wi-Fi Network maintenance.\n");
+                term.echo("-------------------- ");
+                term.echo("");
+            
+                term.echo("[[b;grey;]Level 2 Call Centre Support Technician]");
+                term.echo("Portugal Telecom");
+                term.echo("Portugal");
+                term.echo("July 2008 - July 2009");
+                term.echo ("");
+                term.echo("The guy that you yell at when your internet is not interneting!");
+                term.echo("-------------------- ");
+                term.echo("");
+            
+        
     }
 
     function education () {
@@ -123,12 +175,10 @@ jQuery(document).ready(function($) {
                 term.echo("[[b;red;]Red Color training]");
                 term.echo("June 2019 - July 2019");
                 
-                    term.echo("Descrption about red color trianing");
-                
                 term.echo("-------------------- ");
                 term.echo("");
             
-                term.echo("[[b;grey;]Default color training]");
+                term.echo("[[b;grey;]IT Technical Course]");
                 term.echo("Sept 2004 - Jun 2008");
                 
                 term.echo("-------------------- ");
@@ -144,29 +194,67 @@ jQuery(document).ready(function($) {
                 var bar_length = Math.round( 90  / 10);
                 var bar_filled = Array(bar_length + 1).join("&#9611;");
                 var bar_blank= Array(11 - bar_length).join("&#9617;");
-                term.echo("[[b;grey;]Skill 1:]\n" +
+                term.echo("[[b;grey;]Troubleshooting:]\n" +
                         bar_filled + bar_blank + 
                          90  +"%");
                 
                 term.echo ("")
             
-                var bar_length = Math.round( 30  / 10);
+                var bar_length = Math.round( 90  / 10);
                 var bar_filled = Array(bar_length + 1).join("&#9611;");
                 var bar_blank= Array(11 - bar_length).join("&#9617;");
-                term.echo("[[b;grey;]Skill 2:]\n" +
+                term.echo("[[b;grey;]Linux:]\n" +
                         bar_filled + bar_blank + 
-                         30  +"%");
+                         90  +"%");
                 
                 term.echo ("")
             
-                var bar_length = Math.round( 50  / 10);
+                var bar_length = Math.round( 70  / 10);
                 var bar_filled = Array(bar_length + 1).join("&#9611;");
                 var bar_blank= Array(11 - bar_length).join("&#9617;");
-                term.echo("[[b;blue;]Skill 3:]\n" +
+                term.echo("[[b;grey;]Windows:]\n" +
                         bar_filled + bar_blank + 
-                         50  +"%");
+                         70  +"%");
                 
-                    term.echo("Skill names can have colors too");
+                term.echo ("")
+            
+                var bar_length = Math.round( 90  / 10);
+                var bar_filled = Array(bar_length + 1).join("&#9611;");
+                var bar_blank= Array(11 - bar_length).join("&#9617;");
+                term.echo("[[b;grey;]Hardware:]\n" +
+                        bar_filled + bar_blank + 
+                         90  +"%");
+                
+                term.echo ("")
+            
+                var bar_length = Math.round( 85  / 10);
+                var bar_filled = Array(bar_length + 1).join("&#9611;");
+                var bar_blank= Array(11 - bar_length).join("&#9617;");
+                term.echo("[[b;grey;]Networking:]\n" +
+                        bar_filled + bar_blank + 
+                         85  +"%");
+                
+                term.echo ("")
+            
+                var bar_length = Math.round( 70  / 10);
+                var bar_filled = Array(bar_length + 1).join("&#9611;");
+                var bar_blank= Array(11 - bar_length).join("&#9617;");
+                term.echo("[[b;grey;]Development \u0026 Scripting:]\n" +
+                        bar_filled + bar_blank + 
+                         70  +"%");
+                
+                    term.echo("Terraform, Bash, expect, git, python");
+                
+                term.echo ("")
+            
+                var bar_length = Math.round( 40  / 10);
+                var bar_filled = Array(bar_length + 1).join("&#9611;");
+                var bar_blank= Array(11 - bar_length).join("&#9617;");
+                term.echo("[[b;grey;]webdevelopment \/ webdesign:]\n" +
+                        bar_filled + bar_blank + 
+                         40  +"%");
+                
+                    term.echo("HTML, CSS, Joomla, Wordpress");
                 
                 term.echo ("")
             
@@ -179,7 +267,7 @@ jQuery(document).ready(function($) {
                 var bar_length = Math.round( 80  / 10);
                 var bar_filled = Array(bar_length + 1).join("&#9611;");
                 var bar_blank= Array(11 - bar_length).join("&#9617;");
-                term.echo("[[b;red;]SoftSkill 1:]\n" +
+                term.echo("[[b;grey;]Self-Motivated:]\n" +
                        bar_filled + bar_blank +
                         80  +"%");
                 
@@ -188,11 +276,36 @@ jQuery(document).ready(function($) {
                 var bar_length = Math.round( 90  / 10);
                 var bar_filled = Array(bar_length + 1).join("&#9611;");
                 var bar_blank= Array(11 - bar_length).join("&#9617;");
-                term.echo("[[b;grey;]SoftSkill 2:]\n" +
+                term.echo("[[b;grey;]Team-Work:]\n" +
                        bar_filled + bar_blank +
                         90  +"%");
                 
-                    term.echo("Description");
+                term.echo ("")
+            
+                var bar_length = Math.round( 90  / 10);
+                var bar_filled = Array(bar_length + 1).join("&#9611;");
+                var bar_blank= Array(11 - bar_length).join("&#9617;");
+                term.echo("[[b;grey;]Communication:]\n" +
+                       bar_filled + bar_blank +
+                        90  +"%");
+                
+                term.echo ("")
+            
+                var bar_length = Math.round( 70  / 10);
+                var bar_filled = Array(bar_length + 1).join("&#9611;");
+                var bar_blank= Array(11 - bar_length).join("&#9617;");
+                term.echo("[[b;grey;]Resilience:]\n" +
+                       bar_filled + bar_blank +
+                        70  +"%");
+                
+                term.echo ("")
+            
+                var bar_length = Math.round( 60  / 10);
+                var bar_filled = Array(bar_length + 1).join("&#9611;");
+                var bar_blank= Array(11 - bar_length).join("&#9617;");
+                term.echo("[[b;grey;]Leadership:]\n" +
+                       bar_filled + bar_blank +
+                        60  +"%");
                 
                 term.echo ("")
             
@@ -203,15 +316,6 @@ jQuery(document).ready(function($) {
         term.echo("");
         
             
-                var bar_length = Math.round( 50  / 10);
-                var bar_filled = Array(bar_length + 1).join("&#9611;");
-                var bar_blank= Array(11 - bar_length).join("&#9617;");
-                term.echo("[[b;Blue;]English:]\n" +
-                        "" + bar_filled + bar_blank + 
-                        " " +  50  +"%");
-                
-                term.echo("")
-            
                 var bar_length = Math.round( 100  / 10);
                 var bar_filled = Array(bar_length + 1).join("&#9611;");
                 var bar_blank= Array(11 - bar_length).join("&#9617;");
@@ -219,7 +323,14 @@ jQuery(document).ready(function($) {
                         "" + bar_filled + bar_blank + 
                         " " +  100  +"%");
                 
-                    term.echo("pasghettipigglywiggly");
+                term.echo("")
+            
+                var bar_length = Math.round( 95  / 10);
+                var bar_filled = Array(bar_length + 1).join("&#9611;");
+                var bar_blank= Array(11 - bar_length).join("&#9617;");
+                term.echo("[[b;grey;]English:]\n" +
+                        "" + bar_filled + bar_blank + 
+                        " " +  95  +"%");
                 
                 term.echo("")
             
@@ -231,25 +342,47 @@ jQuery(document).ready(function($) {
         term.echo("");
         
             
-                term.echo("[[b;red;]Project Red]");
-                term.echo("since 2019")
-                term.echo("https:\/\/example.com")
+                term.echo("[[b;grey;]#Backtoboard]");
+                term.echo("since 2020")
+                term.echo("https:\/\/youtube.com\/cfcolaco")
                 
-                    term.echo("Describing red stuff");
-                
-                term.echo("-----------------------");
-                term.echo("");
-          
-                term.echo("[[b;blue;]Project Blue]");
-                term.echo("since 2016")
-                term.echo("https:\/\/example.com\/blue")
+                    term.echo("Yes I am a geek and I am not getting any younger but I can also Skate and snowboard!");
                 
                 term.echo("-----------------------");
                 term.echo("");
           
-                term.echo("[[b;grey;]Project Default]");
+                term.echo("[[b;grey;]4s3ti.net]");
+                term.echo("since 2007")
+                term.echo("https:\/\/4s3ti.net")
+                
+                    term.echo("My little piece of web! the place where I host, learn and express myself about geek things!");
+                
+                term.echo("-----------------------");
+                term.echo("");
+          
+                term.echo("[[b;grey;]TerminalCV]");
+                term.echo("since June 2016")
+                term.echo("https:\/\/github.com\/4s3ti\/terminalcv")
+                
+                    term.echo("HUGO theme, single page cv style template using jcubic\/jquery.terminal");
+                
+                term.echo("-----------------------");
+                term.echo("");
+          
+                term.echo("[[b;grey;]Hello-4s3ti]");
+                term.echo("since 2022")
+                term.echo("https:\/\/github.com\/4s3ti\/hugo-theme-hello-4s3ti")
+                
+                    term.echo("HUGO theme for blog style websites");
+                
+                term.echo("-----------------------");
+                term.echo("");
+          
+                term.echo("[[b;grey;]PiVPN]");
                 term.echo("Since 2017")
-                term.echo("https:\/\/example.com\/default")
+                term.echo("https:\/\/pivpn.io")
+                
+                    term.echo("Lead maintainer, PiVPN designed to setup a VPN on your raspberry pi or cloud instance!");
                 
                 term.echo("-----------------------");
                 term.echo("");
@@ -348,7 +481,7 @@ jQuery(document).ready(function($) {
 	    case 'certifications':
                 certifications();
                 break;
-            case 'misc':
+            case 'more':
                 misc();
                 break;
             case 'help':
@@ -372,9 +505,21 @@ jQuery(document).ready(function($) {
                 
                 break;
             
+            case 'startx':
+                term.echo("loading ...")
+                loading();
+                setTimeout(function(){window.location = "https:\/\/mega.nz\/folder\/xJVWFAqS#LGVgEJFXUsQ0uJW0ojvTSQ"}, 2000);
+                break;
+            
             case ':(){:|:&};:':
             case 'source':
                 source();
+                break;
+            
+            case 'exit':
+                term.echo("terminating ... ")
+                loading();
+                setTimeout(function(){window.location = 'about:blank'}, 2000);
                 break;
             
             default:
@@ -402,5 +547,6 @@ jQuery(document).ready(function($) {
 });
 </script>
 
-        </body>
+        <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v52afc6f149f6479b8c77fa569edb01181681764108816" integrity="sha512-jGCTpDpBAYDGNYR5ztKt4BQPGef1P0giN6ZGVUi835kFF88FOmmn8jBQWNgrNd8g/Yu421NdgWhwQoaOPFflDw==" data-cf-beacon='{"rayId":"7d9882b5d95f4778","version":"2023.4.0","r":1,"token":"0968d88be05f4760b9d8414d6f363fe4","si":100}' crossorigin="anonymous"></script>
+</body>
 </html>
