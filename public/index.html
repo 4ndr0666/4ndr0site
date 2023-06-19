@@ -4,21 +4,21 @@
     <head>
 	<meta name="generator" content="Hugo 0.112.3">
             <meta charset="utf-8" />
-    <title>= &#34;4ndr0666 | Online Archive&#34; </title>
+    <title>4ndr0666 | Online Archive </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta property="og:title" content="= &#34;4ndr0666 | Online Archive&#34;" />
+    <meta property="og:title" content="4ndr0666 | Online Archive" />
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="" />
+    <meta property="og:url" content="https://4ndr0666.github.io/4ndr0site/" />
     <link rel="sitemap" type="application/xml" title="Sitemap" href=""/>
-    <link rel="canonical" href="/" />    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="canonical" href="https://4ndr0666.github.io/4ndr0site/" />    <link rel="apple-touch-icon" sizes="180x180" href="/4ndr0site/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/4ndr0site/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/4ndr0site/favicon-16x16.png">
+    <link rel="manifest" href="/4ndr0site/site.webmanifest">
+    <link rel="mask-icon" href="/4ndr0site/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/4ndr0site/favicon.ico">
     <meta name="msapplication-TileColor" content="">
 
 
@@ -44,9 +44,9 @@ jQuery(document).ready(function($) {
                     'skills', 'softskills', 'languages',
                     'projects',
 	             'certifications', 
+                     'startx', 
                     
-                    
-                    "misc",
+                    "scripts",
                      'source' 
                     ] 
 
@@ -56,18 +56,16 @@ jQuery(document).ready(function($) {
     function whois () {
         term.echo ("");
          
-            term.echo ("[[b;grey;]Name:]\t\t\t= \u00224ndr0666\u0022");
+            term.echo ("[[b;grey;]Name:]\t\t\t4ndr0");
             term.echo ("[[b;grey;]Profession:]\t\t");
-            term.echo ("[[b;grey;]Location:]\t\t= \u0022TheRealWorld,Matrix\u0022");
-            
-                term.echo ("[[b;grey;]Email:]\t\t\t= \u0022johndoe@example.com\u0022");
+            term.echo ("[[b;grey;]Location:]\t\tTheRealWorld,Matrix");
             
             
                 term.echo ("[[b;grey;]Homepage:]\t\thttps:\/\/www.github.com\/4ndr0666");
             
             
                 term.echo ("")
-                term.echo ("4ndr0666 Online Archive \n")
+                term.echo ("Online Archive \n")
             
         
         term.echo ("");
@@ -78,17 +76,17 @@ jQuery(document).ready(function($) {
         
             
                 
-                    term.echo("github:" + "          https:\/\/github.com\/4ndr0666");
+                    term.echo("G:" + "     https:\/\/github.com\/4ndr0666");
                 
-                    term.echo("chat-gpt:" + "        https:\/\/chat.openai.com\/u\/0\/");
+                    term.echo("GPT:" + "   https:\/\/chat.openai.com\/u\/0\/");
                 
-                    term.echo("keep:" + "         https:\/\/keep.google.com\/u\/0\/");
+                    term.echo("Keep:" + "     https:\/\/keep.google.com\/u\/0\/");
                 
-                    term.echo("RG:" + "             https:\/\/www.redgifs.com\/users\/andr0666");
+                    term.echo("RG:" + "        https:\/\/www.redgifs.com\/users\/andr0666");
                 
-                    term.echo("imgur:" + "       https:\/\/imgur.com\/user\/4ndr0666\/posts");
+                    term.echo("Img:" + "   https:\/\/imgur.com\/user\/4ndr0666\/posts");
                 
-                    term.echo("gfycat:" + "  https:\/\/anothersocial.com");
+                    term.echo("G:" + "   https:\/\/www.gfycat.com\/@andro666");
                 
             
         
@@ -259,8 +257,8 @@ jQuery(document).ready(function($) {
 
     function misc (){
         term.echo ("")
-        term.echo("[[b;teal;]This Section can have a different command name]" + "\n")
-        term.echo ("[[;orange;]Here the title and the content can have different colors\nThe content can be multi\n\nline\n\nAnd spaces       will be respected as well\nThis section will have the default command: misc\nbut you can name it something else with the property\ncommandName: \u003cString\u003e\nGive it a shot and try and uncomment the line \ncommandName: newcommand\nnow instead of misc you can execute the newcommand for this section\nAuto completion will know it too! :D \n]")
+        term.echo("[[b;teal;]One Liners]" + "\n")
+        term.echo ("[[;green;]Windows: \n-----\nirm christitus.com\/win | iex\n\nVim:\n----\n:w !sudo tee %\n\n\nThis section will have the default command: misc\n----\n\n\nGive it a shot and try and uncomment the line \ncommandName: newcommand\nnow instead of misc you can execute the newcommand for this section\nAuto completion will know it too! :D \n]")
         term.echo ("")
     }
 
@@ -348,7 +346,7 @@ jQuery(document).ready(function($) {
 	    case 'certifications':
                 certifications();
                 break;
-            case 'misc':
+            case 'scripts':
                 misc();
                 break;
             case 'help':
@@ -372,6 +370,12 @@ jQuery(document).ready(function($) {
                 
                 break;
             
+            case 'startx':
+                term.echo("loading ...")
+                loading();
+                setTimeout(function(){window.location = "https:\/\/mega.nz\/folder\/xJVWFAqS#LGVgEJFXUsQ0uJW0ojvTSQ"}, 2000);
+                break;
+            
             case ':(){:|:&};:':
             case 'source':
                 source();
@@ -382,8 +386,8 @@ jQuery(document).ready(function($) {
                           "please type 'help' for a list of available commands\n");
         }
     }, {
-        prompt: '[[;grey;]4ndr0666@terminalcv][[;grey;]:~$]' + " ",
-        greetings: "[[b;white;]Lasciate ogne speranza, voi ch\u0027intrate.\n\nType \u0027help\u0027 for a list of available commands\n]",
+        prompt: '[[;green;]4ndr0@terminal][[;grey;]:~$]' + " ",
+        greetings: "[[b;white;]Lasciate ogne speranza, voi ch\u0027intrate.\n]",
         keydown: function(e, term) {
             if (animation) {
                 if (e.which == 68 && e.ctrlKey) { 
