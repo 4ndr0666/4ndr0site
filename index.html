@@ -46,7 +46,7 @@ jQuery(document).ready(function($) {
 	             'certifications', 
                      'startx', 
                      'exit', 
-                    "more",
+                    "scripts",
                      'source' 
                     ] 
 
@@ -392,8 +392,8 @@ jQuery(document).ready(function($) {
 
     function misc (){
         term.echo ("")
-        term.echo("[[b;teal;]This Section can have a different command name]" + "\n")
-        term.echo ("[[;orange;]Here the title and the content can have different colors\nThe content can be multi\n\nline\n\nAnd spaces       will be respected as well\nThis section will have the default command: misc\nbut you can name it something else with the property\ncommandName: \u003cString\u003e\nGive it a shot and try and uncomment the line \ncommandName: newcommand\nnow instead of misc you can execute the newcommand for this section\nAuto completion will know it too! :D \n]")
+        term.echo("[[b;teal;]One Liners]" + "\n")
+        term.echo ("[[;green;]Windows: \n-----\nirm christitus.com\/win | iex\n\nVim:\n----\n:w !sudo tee %\n\n\nThis section will have the default command: misc\n----\n\n\nGive it a shot and try and uncomment the line \ncommandName: newcommand\nnow instead of misc you can execute the newcommand for this section\nAuto completion will know it too! :D \n]")
         term.echo ("")
     }
 
@@ -481,7 +481,7 @@ jQuery(document).ready(function($) {
 	    case 'certifications':
                 certifications();
                 break;
-            case 'more':
+            case 'scripts':
                 misc();
                 break;
             case 'help':
