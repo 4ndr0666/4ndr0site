@@ -27,23 +27,23 @@ params:
   social:
     ## IF you want to keep them aligned just add spaces
     - name: "G"
-      url: "     https://github.com/4ndr0666"
+      url: "          https://github.com/4ndr0666"
     - name: "GPT"
-      url: "   https://chat.openai.com/u/0/"
+      url: "        https://chat.openai.com/u/0/"
     - name: "Keep"
-      url: "     https://keep.google.com/u/0/"
+      url: "         https://keep.google.com/u/0/"
     - name: "RG"
-      url: "        https://www.redgifs.com/users/andr0666"
+      url: "             https://www.redgifs.com/users/andr0666"
     - name: "Img"
-      url: "   https://imgur.com/user/4ndr0666/posts"
+      url: "       https://imgur.com/user/4ndr0666/posts"
     - name: "G"
-      url: "   https://www.gfycat.com/@andro666"
-      
+      url: "  https://www.gfycat.com/@andro666"
+
   workexp:
     - jobTitle: Vison
       color: green
       company: '-' 
-      location: mars
+      location: M16, Eagle Nebula, NGC 6611
       date: August 2010 - Present
       description: Some description about this red title job
 
