@@ -8,7 +8,7 @@ Step-by-Step Guide
 1. Initialize a Git Repository
 First, you need to initialize a new Git repository within the directory:
 
-bash
+csharp
 Copy code
 git init
 This will create a new .git directory, making it a Git repository.
@@ -16,24 +16,24 @@ This will create a new .git directory, making it a Git repository.
 2. Add the Remote Repository
 Next, add the original repository as a remote named "origin". Replace the URL with the URL of your original repository:
 
-bash
+csharp
 Copy code
 git remote add origin YOUR_REPOSITORY_URL
 For example:
 
-bash
+scss
 Copy code
 git remote add origin git@github.com:SkeletonMan03/medicat_installer.git
 3. Fetch the Latest Changes
 Fetch the latest changes from the remote repository to ensure you have all the updates:
 
-bash
+sql
 Copy code
 git fetch origin
 4. Reset to the Remote Branch
 Reset your local branch to match the state of the remote branch. This ensures your local copy is identical to the current state of the remote repository:
 
-bash
+css
 Copy code
 git reset --hard origin/main
 Warning: This command will discard any local changes in your directory. If you have local changes you want to keep, consider creating a backup or using a different approach.
@@ -41,8 +41,9 @@ Warning: This command will discard any local changes in your directory. If you h
 5. Set Up Tracking Relationship
 Finally, establish a tracking relationship between your local main branch and the remote main branch:
 
-bash
+css
 Copy code
 git branch --set-upstream-to=origin/main main
 Conclusion
 Your local directory is now reconnected to the original repository. You can pull, push, and interact with the repository as usual. This process is useful for situations where the .git directory might have been accidentally deleted or if you're working with an old backup of a repository.
+
