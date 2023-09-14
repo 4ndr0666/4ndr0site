@@ -13,7 +13,7 @@ If you have an old directory that was previously cloned from a Git repository, b
 
 First, you need to initialize a new Git repository within the directory:
 
-```bash
+```
 git init
 ```
 
