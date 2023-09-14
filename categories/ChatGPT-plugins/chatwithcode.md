@@ -2,7 +2,6 @@
 
 ## Fetching Repository File Structure
 
-```python
 # Using ChatWithCode to fetch the file structure of a GitHub repository
 repositoryUrl = "https://github.com/YourUsername/YourRepoName"
 file_structure = chatwithcode.FetchRepoFileStructure(repositoryUrl=repositoryUrl)
