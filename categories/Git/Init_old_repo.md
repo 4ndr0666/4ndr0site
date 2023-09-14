@@ -62,4 +62,4 @@ git branch --set-upstream-to=origin/main main
 ## Conclusion
 
 Your local directory is now reconnected to the original repository. You can pull, push, and interact with the repository as usual. This process is useful for situations where the `.git` directory might have been accidentally deleted or if you're working with an old backup of a repository.
-```
+
