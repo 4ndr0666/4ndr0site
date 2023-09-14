@@ -1,3 +1,4 @@
+```markdown
 # Reconnecting an Old Directory to Its Original Git Repository
 
 If you have an old directory that was previously cloned from a Git repository, but it no longer has the `.git` directory (meaning it's no longer recognized as a Git repository), you can reconnect it to the original repository by following these steps:
@@ -13,7 +14,7 @@ If you have an old directory that was previously cloned from a Git repository, b
 
 First, you need to initialize a new Git repository within the directory:
 
-```
+```bash
 git init
 ```
 
