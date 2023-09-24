@@ -1,122 +1,28 @@
-# Site Configuration
-BaseURL: "https://4ndr0666.github.io/4ndr0site/"
-languageCode: "en-us"
-title: "4ndr0666 | Online Archive"
-theme: "terminalcv"
+name: Build and Deploy
 
-# Enable/disable content sections
-params:
-  prompt: "4ndr0666@terminal"
-  promptColor: "#15c2c2"
-  #promptSimbols: ":~$"
-  promptSimbolsColor: "green"
-  startxLocation: "https://github.com/learn-anything/chrome-extensions"
-  exitLocation: "https://start.garudalinux.org/"
-  greeting: | 
-     Lasciate ogne speranza, voi ch'intrate.
+on:
+  push:
+    branches:
+      - main
 
-  whois: 
-      name: "4ndr0666"
-      location: "TheRealWorld,Matrix"      
-      homelink: "https://www.github.com/4ndr0666"
-      description: "Online Archive"
-  social:
-    - name: "G"
-      url: "https://github.com/4ndr0666"
-    - name: "GPT"
-      url: "https://chat.openai.com/u/0/"
-    - name: "Keep"
-      url: "https://keep.google.com/u/0/"
-    - name: "RG"
-      url: "https://www.redgifs.com/users/andr0666"
-    - name: "Img"
-      url: "https://imgur.com/user/4ndr0666/posts"
-    - name: "G"
-      url: "https://www.gfycat.com/@andro666"
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
 
-  workexp:
-    - jobTitle: "Operative"
-      color: "green"
-      company: "CIA"
-      location: "M16, Eagle Nebula, NGC 6611"
-      date: "August 2020 - Present"
-      description: "Classified"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2  # Update to the latest version that supports Node.js 16
 
-education:
-  - courseName: "Communication Assessment"
-    provider: "By ChatGPT"
-    color: "blue"
-    date: "Sept 2023 - Present"
-    description: |
-      Assessment of Your Communication Skills:
-      - Vocabulary: Your vocabulary is advanced and diverse. You use a range of words that are both specific and descriptive, which indicates a strong command of the language.
-      - Phrasing: Your phrasing is clear and often sophisticated, showing a deep understanding of the topics you are discussing.
-      - Sentence Structure: You employ a mix of complex and simple sentences, which adds depth and variety to your communication.
-      - Tone: Your tone is inquisitive, reflective, and direct. It is evident that you value clarity and precision in communication.
-      - Thought Conveyance: You articulate your thoughts and questions in a structured manner, often providing context or background to ensure understanding.
-      - Uniformity: Your messages maintain a consistent style and approach, which aids in comprehension.
-      - Clarity: You are clear in your queries and feedback, often emphasizing or reiterating points for emphasis.
-      - Creativity: Your questions and feedback often contain creative elements, such as the way you frame certain queries or provide context.
-      - Overall Presentation: Overall, your communication is coherent, detailed, and reflective of someone who is both knowledgeable and curious.
-      - Empirical Assessment: Compared to the current university standards, your communication skills are considered well above average. Your ability to articulate complex thoughts, provide context, and engage in detailed discussions is indicative of advanced communication skills.
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
 
+      - name: Build Hugo site
+        run: hugo --minify
 
-  skills:
-    - name: "Skill 1"
-      percentage: 90
-      description: "you can add a description"
-    - name: "Skill 2"
-      percentage: 30
-    - name: "Skill 3"
-      color: "blue"
-      percentage: 50
-      description: "Skill names can have colors too"
-
-  softskills:
-    - name: "SoftSkill 1"
-      color: "red"
-      percentage: 80
-    - name: "SoftSkill 2"
-      percentage: 90
-      description: "Description"
-
-  languages:
-    - name: "Bash"
-      color: "Blue"
-      percentage: 80
-      description: ""
-    - name: "Python"
-      percentage: 100
-      description: ""
-
-  projects:
-    - title: "LARBS"
-      color: "blue"
-      description: "( curl -LO larbs.xyz/larbs.sh )"
-    - title: "Project Blue"
-      color: "blue"
-      date: "since 2016"
-      link: "https://example.com/blue"
-    - title: "Project Default"
-      date: "Since 2017"
-      link: "https://example.com/default"
-
-  certifications:
-    - certName: "Example Cert"
-      company: "Example Certifying Company"
-      date: "Date of Completion"
-
-  misc: 
-    commandName: "commands"
-    title: "Useful One Liners"
-    titleColor: "cyan"
-    content: |
-      # --- Windows:           
-      irm christitus.com/win | iex
-        
-      # --- Vim:        
-      :w !sudo tee %
-                    
-      # --- Grub:
-      sudo grub-mkconfig -o /boot/grub/grub.cfg && sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi
-    contentColor: "green"
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
