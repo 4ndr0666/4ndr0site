@@ -59,7 +59,6 @@ params:
       location: anywhere
       date: July 2008 - 2010
       description: Description about this default color job
-
    education:
     - courseName: Communication Assesment by ChatGPT
       color: red
