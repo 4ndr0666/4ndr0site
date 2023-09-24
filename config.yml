@@ -26,17 +26,17 @@ params:
               Online Archive 
   social:
     ## IF you want to keep them aligned just add spaces
-    - name: "Git"
+    - name: "github"
       url: "          https://github.com/4ndr0666"
-    - name: "GPT"
-      url: "        https://chat.openai.com/u/0/"
-    - name: "Keep"
-      url: "         https://keep.google.com/u/0/"
-    - name: "RG"
+    - name: "chatgpt"
+      url: "        https://chat.openai.com"
+    - name: "gkeep"
+      url: "         https://keep.google.com"
+    - name: "redgifs"
       url: "             https://www.redgifs.com/users/andr0666"
-    - name: "Img"
+    - name: "imgur"
       url: "       https://imgur.com/user/4ndr0666/posts"
-    - name: "Gif"
+    - name: "gfycat"
       url: "  https://www.gfycat.com/@andro666"
 
   workexp:
