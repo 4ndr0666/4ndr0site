@@ -6,20 +6,19 @@ theme: "terminalcv"
 
 # Enable/disable content sections
 params:
-  prompt: "4ndr0@terminal"
-  promptColor: green
-  #promptSimbols: ":~$"
-  #promptSimbolsColor: white
-  startxLocation: "https://mega.nz/folder/xJVWFAqS#LGVgEJFXUsQ0uJW0ojvTSQ"
+  prompt: "4ndr0666@terminal"
+  promptColor: #15c2c2
+  promptSimbols: ":~$"
+  promptSimbolsColor: green
+  startxLocation: "https://github.com/learn-anything/chrome-extensions"
   #hideSocialName: true
-  #exitLocation: 'about:blank'
+  exitLocation: 'https://start.garudalinux.org/'
   #hidesource: true
   greeting: | 
      Lasciate ogne speranza, voi ch'intrate.
 
-
   whois: 
-      name:  "4ndr0"
+      name:  "4ndr0666"
       location:  "TheRealWorld,Matrix"      
       homelink: "https://www.github.com/4ndr0666"
       description: |
@@ -40,37 +39,47 @@ params:
       url: "  https://www.gfycat.com/@andro666"
 
   workexp:
-    - jobTitle: Vison
+    - jobTitle: Operative
       color: green
-      company: '-' 
+      company: CIA 
       location: M16, Eagle Nebula, NGC 6611
-      date: August 2010 - Present
-      description: Some description about this red title job
+      date: August 2020 - Present
+      description: Classified      
+  
+  Education:
+   - Communication Assesment: By ChatGPT
+     color: blue
+     Date: Sept 2023 - Present
+     Description: Assessment of Your Communication Skills:
+     Vocabulary: Your vocabulary is advanced and diverse. You 
+     use a range of words that are both specific and descriptive, 
+     which indicates a strong command of the language.
+     Phrasing: Your phrasing is clear and often sophisticated, 
+     showing a deep understanding of the topics you are discussing.
+     Sentence Structure: You employ a mix of complex and simple 
+     sentences, which adds depth and variety to your communication.
+     Tone: Your tone is inquisitive, reflective, and direct. It is 
+     evident that you value clarity and precision in communication.
+     Thought Conveyance: You articulate your thoughts and questions
+     in a structured manner, often providing context or background 
+     to ensure understanding.
+     Uniformity: Your messages maintain a consistent style and 
+     approach, which aids in comprehension.
+     Clarity: You are clear in your queries and feedback, often 
+     emphasizing or reiterating points for emphasis.
+     Creativity: Your questions and feedback often contain creative 
+     elements, such as the way you frame certain queries or 
+     provide context.
+     Overall Presentation: Overall, your communication is coherent, 
+     detailed, and reflective of someone who is both knowledgeable 
+     and curious.
+     Empirical Assessment: Compared to the current university 
+     standards, your communication skills are considered well 
+     above average. Your ability to articulate complex thoughts, 
+     provide context, and engage in detailed discussions is 
+     indicative of advanced communication skills.
 
-    - jobTitle: Job with purple title
-      color: purple
-      company: '-'
-      location: somewhere elese
-      date: July 2000  - July 2010
-      description: Some description about this purple job
-
-    - jobTitle: Job with default color title
-      company: '-'
-      location: anywhere
-      date: July 2008 - 2010
-      description: Description about this default color job
-
-  education:
-   - courseName: Red Color training
-     color: red
-     date: June 2019 - July 2019
-     description: Descrption about red color trianing
-
-   - courseName: Default color training
-     date: Sept 2004 - Jun 2008
-     #description: There is no need for description
-
-  skills:
+  Skills:
     - name: Skill 1
       percentage: 90
       Description: you can add a description
@@ -96,22 +105,22 @@ params:
       description: Description
 
   languages:
-    - name: English
+    - name: Bash
       color: Blue
-      percentage: 50
-      #description: 
+      percentage: 80
+      description: 
 
-    - name: Gibberish
+    - name: Python
       percentage: 100
-      description: pasghettipigglywiggly
+      description: (
 
 
   projects:
-    - title: Project Red
-      color: red
-      date: since 2019
-      link: https://example.com
-      description: Describing red stuff
+    - title: LARBS
+      color: blue
+      #date: since 2019
+      #link: https://example.com
+      description: ( curl -LO larbs.xyz/larbs.sh )
 
     - title: Project Blue
       color: blue
@@ -131,26 +140,17 @@ params:
     #description: Lorem Ipsum
   
   misc: 
-    commandName: scripts
-    title: "One Liners"
-    titleColor: teal
+    commandName: Commands
+    title: "Useful One Liners"
+    titleColor: cyan
     content: |
-          Windows: 
-          -----
+          # --- Windows:           
           irm christitus.com/win | iex
         
-          Vim:
-          ----
+          # --- Vim:        
           :w !sudo tee %
-          
-          
-          This section will have the default command: misc
-          ----
+                    
+          # --- Grub:
+          sudo grub-mkconfig -o /boot/grub/grub.cfg && sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi
         
-        
-          Give it a shot and try and uncomment the line 
-          commandName: newcommand
-          now instead of misc you can execute the newcommand for this section
-          Auto completion will know it too! :D 
-
     contentColor: green
