@@ -6,40 +6,40 @@ theme: "terminalcv"
 
 # Enable/disable content sections
 params:
-  prompt: "4ndr0666@terminal"
-  promptColor: #15c2c2
+  prompt: "4ndr0@terminal"
+  promptColor: cyan
   promptSimbols: ":~$"
   promptSimbolsColor: green
   startxLocation: "https://github.com/learn-anything/chrome-extensions"
-  exitLocation: 'https://start.garudalinux.org/'
+  #hideSocialName: true
+  #exitLocation: 'https://start.garudalinux.org/'
+  #hidesource: true
   greeting: | 
      Lasciate ogne speranza, voi ch'intrate.
 
 
-     Type 'help' for a list of available commands
-
-
-whois: 
-  name: "4ndr0666"
-  location: "TheRealWorld,Matrix"      
-  homelink: "https://www.github.com/4ndr0666"
-  description: Online Archive
-  
-social:
+  whois: 
+      name:  "4ndr0666"
+      location:  "TheRealWorld,Matrix"      
+      homelink: "https://www.github.com/4ndr0666"
+      description: |
+              Online Archive 
+  social:
+    ## IF you want to keep them aligned just add spaces
     - name: "Git"
-      url: "https://github.com/4ndr0666"
+      url: "          https://github.com/4ndr0666"
     - name: "GPT"
-      url: "https://chat.openai.com/u/0/"
+      url: "        https://chat.openai.com/u/0/"
     - name: "Keep"
-      url: "https://keep.google.com/u/0/"
+      url: "         https://keep.google.com/u/0/"
     - name: "RG"
-      url: "https://www.redgifs.com/users/andr0666"
+      url: "             https://www.redgifs.com/users/andr0666"
     - name: "Img"
-      url: "https://imgur.com/user/4ndr0666/posts"
+      url: "       https://imgur.com/user/4ndr0666/posts"
     - name: "Gif"
-      url: "https://www.gfycat.com/@andro666"
-      
-workexp:
+      url: "  https://www.gfycat.com/@andro666"
+
+  workexp:
     - jobTitle: Backend engineer
       color: green
       company: CIA
@@ -47,20 +47,38 @@ workexp:
       date: August 2020 - Present
       description: Classified
 
-education:
-    - courseName: Communication Assesment
-      color: blue
-      date: Sept 2023 - Present
-      #description: |
+    - jobTitle: Job with purple title
+      color: purple
+      company: '-'
+      location: somewhere elese
+      date: July 2000  - July 2010
+      description: Some description about this purple job
+
+    - jobTitle: Job with default color title
+      company: '-'
+      location: anywhere
+      date: July 2008 - 2010
+      description: Description about this default color job
+
+  education:
+   - courseName: Communication Assesment by ChatGPT
+     color: red
+     date: Sept 2023 
+     description: Descrption about red color trianing
+
+   - courseName: Default color training
+     date: Sept 2004 - Jun 2008
+     #description: There is no need for description
 
   skills:
     - name: Skill 1
       percentage: 90
-      description: you can add a description
-    
+      Description: you can add a description
+
     - name: Skill 2
       percentage: 30
-    
+      #description: or you can leave it comented   
+
     - name: Skill 3
       color: blue
       percentage: 50
@@ -70,58 +88,62 @@ education:
     - name: SoftSkill 1
       color: red
       percentage: 80
-    - name: SoftSkill 2
+      #description:
+
+    - name:  SoftSkill 2
+      #color: 
       percentage: 90
       description: Description
 
   languages:
     - name: Bash
       color: Blue
-      percentage: 80
-      description: 
-      
+      percentage: 50
+      #description: 
+
     - name: Python
       percentage: 100
       description: 
 
+
   projects:
     - title: LARBS
-      color: blue
-      date: since 1986
-      link: https://github.com/LukeSmithxyz/voidrice
-      description: ( curl -LO larbs.xyz/larbs.sh )
-      
+      color: red
+      date: since 2019
+      link: https://example.com
+      description:  curl -LO larbs.xyz/larbs.sh 
+
     - title: Awesome
       color: blue
       date: since 2020
       link: https://github.com/stars/4ndr0666/lists/awesome
       #description: nothing to describe
-      
+
     - title: Netboot.xyz
       date: Since 2023
       link: https://github.com/4ndr0666/netboot.xyz-custom
       #description: not there either
 
   certifications:
-    - certName: CPT, NCSF, TRX1,2,3, MCT1,2 
-      company: TriggerPoint
-      date: 2009
-
+  - certName: CPT, NCSF, TRX1,2,3, MCT1,2 
+    company: TriggerPoint
+    date: 2009
+    #description: severely disordered state of mind usually occurring as a specific disorder
+  
   misc: 
-    commandName: commands
-    title: "Useful One Liners"
+    commandName: scripts
+    title: "One Liners"
     titleColor: cyan
     content: |
-          # --- Windows:           
+          # --- Windows: 
           irm christitus.com/win | iex
         
-          # --- Vim:        
+          # --- Vim:
           :w !sudo tee %
-                    
+          
           # --- Grub:
           sudo grub-mkconfig -o /boot/grub/grub.cfg && sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi
 
+        
 
-
-      
-  contentColor: green
+    contentColor: green
