@@ -59,22 +59,12 @@ params:
       location: anywhere
       date: July 2008 - 2010
       description: Description about this default color job
-   education:
-    - courseName: Communication Assesment by ChatGPT
-      color: red
-      date: Sept 2023 
-      description: |
-      - Vocabulary: Your vocabulary is advanced and diverse. You use a range of words that are both specific and descriptive, which indicates a strong command of the language.
-      - Phrasing: Your phrasing is clear and often sophisticated, showing a deep understanding of the topics you are discussing.
-      - Sentence Structure: You employ a mix of complex and simple sentences, which adds depth and variety to your communication.
-      - Tone: Your tone is inquisitive, reflective, and direct. It is evident that you value clarity and precision in communication.
-      - Thought Conveyance: You articulate your thoughts and questions in a structured manner, often providing context or background to ensure understanding.
-      - Uniformity: Your messages maintain a consistent style and approach, which aids in comprehension.
-      - Clarity: You are clear in your queries and feedback, often emphasizing or reiterating points for emphasis.
-      - Creativity: Your questions and feedback often contain creative elements, such as the way you frame certain queries or provide context.
-      - Overall Presentation: Overall, your communication is coherent, detailed, and reflective of someone who is both knowledgeable and curious.
-      - Empirical Assessment: Compared to the current university standards, your communication skills are considered well above average. Your ability to articulate complex thoughts, provide context, and engage in detailed discussions is indicative of advanced communication skills.
 
+  education:
+   - courseName: Communication Assesment by ChatGPT
+     color: red
+     date: Sept 2023 
+     description: Descrption about red color trianing
 
    - courseName: Default color training
      date: Sept 2004 - Jun 2008
