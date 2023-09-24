@@ -1,8 +1,8 @@
 # Site Configuration
 BaseURL: "https://4ndr0666.github.io/4ndr0site/"
-languageCode: en-us
+languageCode: "en-us"
 title: "4ndr0666 | Online Archive"
-theme: terminalcv
+theme: "terminalcv"
 
 # Enable/disable content sections
 params:
@@ -10,7 +10,7 @@ params:
   promptColor: #15c2c2
   promptSimbols: ":~$"
   promptSimbolsColor: green
-  startxLocation: https://github.com/learn-anything/chrome-extensions
+  startxLocation: "https://github.com/learn-anything/chrome-extensions"
   exitLocation: 'https://start.garudalinux.org/'
   greeting: | 
      Lasciate ogne speranza, voi ch'intrate.
