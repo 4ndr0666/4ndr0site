@@ -1,3 +1,3 @@
 [submodule "themes/terminalcv"]
 	path = themes/terminalcv
-	url = git@github.com:4s3ti/terminalcv.git
+	url = https://github.com:4s3ti/terminalcv
