@@ -1,1 +1,180 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>4ndr0666 | Online Archive</title><link>https://4ndr0666.github.io/4ndr0site/</link><description>Recent content on 4ndr0666 | Online Archive</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://4ndr0666.github.io/4ndr0site/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>4ndr0666 | Online Archive</title>
+    <link>https://4ndr0666.github.io/4ndr0site/</link>
+    <description>Recent content on 4ndr0666 | Online Archive</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://4ndr0666.github.io/4ndr0site/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://4ndr0666.github.io/4ndr0site/chatgpt-plugins/chatwithcode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://4ndr0666.github.io/4ndr0site/chatgpt-plugins/chatwithcode/</guid>
+      <description>ChatWithCode Demonstration Using ChatWithCode in a Script Fetching Repository File Structure # Using ChatWithCode to fetch the file structure of a GitHub repository repositoryUrl = &amp;#34;https://github.com/4ndr0666/4ndr0site&amp;#34; file_structure = chatwithcode.FetchRepoFileStructure(repositoryUrl=repositoryUrl) print(file_structure) Retrieving File Contents # Using ChatWithCode to retrieve the contents of specific files in a GitHub repository filePaths = [&amp;#34;scripts/script.py&amp;#34;] file_contents = chatwithcode.FetchFileContentsFromRepo(repositoryUrl=repositoryUrl, filePaths=filePaths) print(file_contents) Extracting Functions from Repository Files # Using ChatWithCode to extract functions from specific files in a GitHub repository functions = chatwithcode.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://4ndr0666.github.io/4ndr0site/chatgpt-task/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://4ndr0666.github.io/4ndr0site/chatgpt-task/</guid>
+      <description>Overview of the Task: Objective: To optimally leverage the services provided by this platform for scripting, in alignment with your scripting philosophy, while ensuring accurate and comprehensive understanding and citation of code from various sources.
+Challenges: Understanding Code: Ensuring that the platform comprehensively understands the purpose, capabilities, and functionality of the code you input. Source Accuracy: Sometimes the platform cites the code incorrectly when reading from a URL. Integration with Plugins: Leveraging both official and unofficial plugins to enhance the platform&amp;rsquo;s capabilities.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://4ndr0666.github.io/4ndr0site/cheater/blackarch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://4ndr0666.github.io/4ndr0site/cheater/blackarch/</guid>
+      <description>To list all of the available tools, run $ sudo pacman -Sgg | grep blackarch | cut -d&amp;rsquo; &amp;rsquo; -f2 | sort -u
+To install a category of tools, run $ sudo pacman -S blackarch-
+To see the blackarch categories, run $ sudo pacman -Sg | grep blackarch
+To search for a specific package, run $ pacman -Ss &amp;lt;package_name&amp;gt;
+Note - it maybe be necessary to overwrite certain packages when installing blackarch tools.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://4ndr0666.github.io/4ndr0site/cheater/compilation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://4ndr0666.github.io/4ndr0site/cheater/compilation/</guid>
+      <description>Dependencies for picom $ yay -S libx11 libxcomposite libxdamage libxfixes libXext libxrender libXrandr libXinerama pkg-config make xproto x11proto sh xprop xwininfo x11-utils libpcre libconfig libdrm libGL libdbus asciidoc docbook-xml-dtd libxml-utils libxslt xsltproc xmlto &amp;ndash;needed
+Libraries After building libraries remember to run &amp;rsquo;libtool &amp;ndash;finish /usr/lib&#39;
+## Wayland If using GDM on wayland, run systemctl enable --now nvidia-resume.service </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://4ndr0666.github.io/4ndr0site/cheater/ffmpeg/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://4ndr0666.github.io/4ndr0site/cheater/ffmpeg/</guid>
+      <description>FFmpeg cheat sheet Quick convert: ffmpeg -i vid.mp4 vid.*(avi,mov,webm,mkv) Remux an MKV file into MP4: ffmpeg -i vid.mkv -c:v copy -c:a copy vid.mp4 High-quality encoding: ffmpeg -i vid.mp4 -preset slower -crf 18 vid.mp4 Cutting: Without re-encoding:
+ffmpeg -ss [start] -i vid.mp4 -t [duration] -c copy vid.mp4 With re-encoding:
+ffmpeg -ss [start] -i vid.mp4 -t [duration] -c:v libx264 -c:a aac -strict experimental -b:a 128k vid.mp4 Merging: Make a .txt file with all of the video files in order like this:</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://4ndr0666.github.io/4ndr0site/cheater/micro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://4ndr0666.github.io/4ndr0site/cheater/micro/</guid>
+      <description>Key”: “Action”
+&amp;ldquo;Up&amp;rdquo;: &amp;ldquo;CursorUp&amp;rdquo;, &amp;ldquo;Down&amp;rdquo;: &amp;ldquo;CursorDown&amp;rdquo;, &amp;ldquo;Right&amp;rdquo;: &amp;ldquo;CursorRight&amp;rdquo;, &amp;ldquo;Left&amp;rdquo;: &amp;ldquo;CursorLeft&amp;rdquo;, &amp;ldquo;ShiftUp&amp;rdquo;: &amp;ldquo;SelectUp&amp;rdquo;, &amp;ldquo;ShiftDown&amp;rdquo;: &amp;ldquo;SelectDown&amp;rdquo;, &amp;ldquo;ShiftLeft&amp;rdquo;: &amp;ldquo;SelectLeft&amp;rdquo;, &amp;ldquo;ShiftRight&amp;rdquo;: &amp;ldquo;SelectRight&amp;rdquo;, &amp;ldquo;AltUp&amp;rdquo;: &amp;ldquo;MoveLinesUp&amp;rdquo;, &amp;ldquo;AltDown&amp;rdquo;: &amp;ldquo;MoveLinesDown&amp;rdquo;, &amp;ldquo;CtrlShiftRight&amp;rdquo;: &amp;ldquo;SelectWordRight&amp;rdquo;, &amp;ldquo;CtrlShiftLeft&amp;rdquo;: &amp;ldquo;SelectWordLeft&amp;rdquo;, &amp;ldquo;AltLeft&amp;rdquo;: &amp;ldquo;StartOfTextToggle&amp;rdquo;, &amp;ldquo;AltRight&amp;rdquo;: &amp;ldquo;EndOfLine&amp;rdquo;, &amp;ldquo;AltShiftLeft&amp;rdquo;: &amp;ldquo;SelectToStartOfTextToggle&amp;rdquo;, &amp;ldquo;ShiftHome&amp;rdquo;: &amp;ldquo;SelectToStartOfTextToggle&amp;rdquo;, &amp;ldquo;AltShiftRight&amp;rdquo;: &amp;ldquo;SelectToEndOfLine&amp;rdquo;, &amp;ldquo;ShiftEnd&amp;rdquo;: &amp;ldquo;SelectToEndOfLine&amp;rdquo;, &amp;ldquo;CtrlUp&amp;rdquo;: &amp;ldquo;CursorStart&amp;rdquo;, &amp;ldquo;CtrlDown&amp;rdquo;: &amp;ldquo;CursorEnd&amp;rdquo;, &amp;ldquo;CtrlShiftUp&amp;rdquo;: &amp;ldquo;SelectToStart&amp;rdquo;, &amp;ldquo;CtrlShiftDown&amp;rdquo;: &amp;ldquo;SelectToEnd&amp;rdquo;, &amp;ldquo;Alt-{&amp;rdquo;: &amp;ldquo;ParagraphPrevious&amp;rdquo;, &amp;ldquo;Alt-}&amp;rdquo;: &amp;ldquo;ParagraphNext&amp;rdquo;, &amp;ldquo;Enter&amp;rdquo;: &amp;ldquo;InsertNewline&amp;rdquo;, &amp;ldquo;Ctrl-h&amp;rdquo;: &amp;ldquo;Backspace&amp;rdquo;, &amp;ldquo;Backspace&amp;rdquo;: &amp;ldquo;Backspace&amp;rdquo;, &amp;ldquo;Alt-CtrlH&amp;rdquo;: &amp;ldquo;DeleteWordLeft&amp;rdquo;, &amp;ldquo;Alt-Backspace&amp;rdquo;: &amp;ldquo;DeleteWordLeft&amp;rdquo;, &amp;ldquo;Tab&amp;rdquo;: &amp;ldquo;Autocomplete|IndentSelection|InsertTab&amp;rdquo;, &amp;ldquo;Backtab&amp;rdquo;: &amp;ldquo;OutdentSelection|OutdentLine&amp;rdquo;, &amp;ldquo;Ctrl-o&amp;rdquo;: &amp;ldquo;OpenFile&amp;rdquo;, &amp;ldquo;Ctrl-s&amp;rdquo;: &amp;ldquo;Save&amp;rdquo;, &amp;ldquo;Ctrl-f&amp;rdquo;: &amp;ldquo;Find&amp;rdquo;, &amp;ldquo;Ctrl-n&amp;rdquo;: &amp;ldquo;FindNext&amp;rdquo;, &amp;ldquo;Ctrl-p&amp;rdquo;: &amp;ldquo;FindPrevious&amp;rdquo;, &amp;ldquo;Ctrl-z&amp;rdquo;: &amp;ldquo;Undo&amp;rdquo;, &amp;ldquo;Ctrl-y&amp;rdquo;: &amp;ldquo;Redo&amp;rdquo;, &amp;ldquo;Ctrl-c&amp;rdquo;: &amp;ldquo;CopyLine|Copy&amp;rdquo;, &amp;ldquo;Ctrl-x&amp;rdquo;: &amp;ldquo;Cut&amp;rdquo;, &amp;ldquo;Ctrl-k&amp;rdquo;: &amp;ldquo;CutLine&amp;rdquo;, &amp;ldquo;Ctrl-d&amp;rdquo;: &amp;ldquo;DuplicateLine&amp;rdquo;, &amp;ldquo;Ctrl-v&amp;rdquo;: &amp;ldquo;Paste&amp;rdquo;, &amp;ldquo;Ctrl-a&amp;rdquo;: &amp;ldquo;SelectAll&amp;rdquo;, &amp;ldquo;Ctrl-t&amp;rdquo;: &amp;ldquo;AddTab&amp;rdquo;, &amp;ldquo;Alt-,&amp;rdquo;: &amp;ldquo;PreviousTab&amp;rdquo;, &amp;ldquo;Alt-.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://4ndr0666.github.io/4ndr0site/cheater/permissions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://4ndr0666.github.io/4ndr0site/cheater/permissions/</guid>
+      <description>####################### Chmod ################################
+Read by owner - 400 Write by owner - 200 Execute by owner - 100
+Read by group - 040 Write by group - 020 Execute by group - 010 Read by others - 004 Write by others - 002 Execute by others - 001
+## Some common examples: $ chmod 751 (allows you +rwx, your group +rx, and everyone else +x) $ chmod 700 (allows +rwx to only yourself)</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://4ndr0666.github.io/4ndr0site/cheater/python/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://4ndr0666.github.io/4ndr0site/cheater/python/</guid>
+      <description>One liner to update all outdated modules: #The safe way: python3 -m pip install -U $(python3 -m pip list outdated 2&amp;gt; /dev/null | grep -v &amp;lsquo;Version&amp;rsquo; | grep -v &amp;lsquo;------&amp;rsquo; | awk &amp;lsquo;{printf $1 &amp;quot; &amp;quot; }&amp;rsquo; &amp;amp;&amp;amp; echo)
+#The overwrite way: python3 -m pip install &amp;ndash;exists-action w &amp;ndash;force-reinstall -U $(python3 -m pip list outdated 2&amp;gt; /dev/null | grep -v &amp;lsquo;Version&amp;rsquo; | grep -v &amp;lsquo;------&amp;rsquo; | awk &amp;lsquo;{printf $1 &amp;quot; &amp;quot; }&amp;rsquo; &amp;amp;&amp;amp; echo)</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://4ndr0666.github.io/4ndr0site/cheater/scripts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://4ndr0666.github.io/4ndr0site/cheater/scripts/</guid>
+      <description>Use pip list &amp;ndash;outdated for install updates python3 -m pip install &amp;ndash;exists-action w &amp;ndash;break-system-packages-U $(python3 -m pip list outdated 2&amp;gt; /dev/null | grep -v &amp;lsquo;Version&amp;rsquo; | grep -v &amp;lsquo;------&amp;rsquo; | awk &amp;lsquo;{printf $1 &amp;quot; &amp;quot; }&amp;rsquo; &amp;amp;&amp;amp; echo)
+## That fckn nvim command: :w !sudo tee % Get all links of a website lynx -dump http://www.domain.com | awk &amp;lsquo;/http/{print $2}&amp;rsquo;
+## Reinstall pip python -m ensurepip --upgrade Reinstall Nvchad git clone https://github.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://4ndr0666.github.io/4ndr0site/cheater/utils/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://4ndr0666.github.io/4ndr0site/cheater/utils/</guid>
+      <description>Generate GPG Key gpg &amp;ndash;full-gen-key
+## List private gpg key gpg --list-secret-keys --keyid-format LONG [EMAIL] Identify the sec line, and copy the GPG key ID. It begins after the / character. In this example, the key ID is 30F2B65B9246B6CA: sec rsa4096/30F2B65B9246B6CA 2017-08-18 [SC] D5E4F29F3275DC0CDA8FFC8730F2B65B9246B6CA uid [ultimate] Mr. Robot &amp;lt;your_email&amp;gt; ssb rsa4096/B7ABC0813E4028C0 2017-08-18 [E] Show the associated pub key $gpg &amp;ndash;armor &amp;ndash;export ## Nvchad download link git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 &amp;amp;&amp;amp; nvim </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://4ndr0666.github.io/4ndr0site/cheater/xserver_fix/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://4ndr0666.github.io/4ndr0site/cheater/xserver_fix/</guid>
+      <description>################### Fix the fckn bitch ass Xserver #################
+$ strace xauth list
+$ cd /home/andro $ ls -l | grep .Xauth* $ rm -fr .Xauthority-*
+$ cd /home/andro $ ls -a -lh $ chown andro:andro .Xau* $ cd /home/machine $ mv .Xauthority .Xauthority.bak $ touch .Xauthority $ chown machine:machine .Xauthority
+$ chmod +x .Xauthority $ xauth -b
+#################### Invalid MIT-MAGIC-COOKIE-1 ####################### $ xhost +si:localuser:root #################### Kill the X server ########################</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://4ndr0666.github.io/4ndr0site/completion_engines/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://4ndr0666.github.io/4ndr0site/completion_engines/</guid>
+      <description>// A completion engine provides search suggestions for a custom search engine. A custom search // engine is identified by a &amp;ldquo;searchUrl&amp;rdquo;. An &amp;ldquo;engineUrl&amp;rdquo; is used for fetching suggestions, whereas a // &amp;ldquo;searchUrl&amp;rdquo; is used for the actual search itself. // // Each completion engine defines: // // 1. An &amp;ldquo;engineUrl&amp;rdquo;. This is the URL to use for search completions and is passed as the option // &amp;ldquo;engineUrl&amp;rdquo; to the &amp;ldquo;BaseEngine&amp;rdquo; constructor.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://4ndr0666.github.io/4ndr0site/gh-actions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://4ndr0666.github.io/4ndr0site/gh-actions/</guid>
+      <description>PERSONAL_GITHUB_TOKEN — read:org, read:packages, read:public_key, read:repo_hook, read:user, repo:status </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://4ndr0666.github.io/4ndr0site/git/init_old_repo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://4ndr0666.github.io/4ndr0site/git/init_old_repo/</guid>
+      <description>Reconnecting an Old Directory to Its Original Git Repository If you have an old directory that was previously cloned from a Git repository, but it no longer has the .git directory (meaning it&amp;rsquo;s no longer recognized as a Git repository), you can reconnect it to the original repository by following these steps:
+Prerequisites Ensure you have Git installed on your system. Navigate to the directory you want to reconnect. Step-by-Step Guide 1.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://4ndr0666.github.io/4ndr0site/nvim/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://4ndr0666.github.io/4ndr0site/nvim/</guid>
+      <description>Make vim copy and paste w xclip: &amp;#34; Check if xclip is installed before setting up clipboard mappings if executable(&amp;#39;xclip&amp;#39;) vnoremap &amp;lt;C-c&amp;gt; :w !xclip -selection clipboard&amp;lt;CR&amp;gt;&amp;lt;CR&amp;gt; nnoremap &amp;lt;C-v&amp;gt; :r !xclip -o -selection clipboard&amp;lt;CR&amp;gt;&amp;lt;CR&amp;gt; endif The mapping is a visual mode mapping, which means you need to first enter visual mode (by pressing v in normal mode), select some text, and then press Ctrl-c to copy.
+You&amp;rsquo;re not in normal mode when trying to paste: The mapping is a normal mode mapping, which means you need to be in normal mode (not insert mode or command-line mode) when you press Ctrl-v to paste.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://4ndr0666.github.io/4ndr0site/tbb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://4ndr0666.github.io/4ndr0site/tbb/</guid>
+      <description>First, remove the problematic files: sudo rm /usr/lib/libtbbmalloc.so.2 sudo rm /usr/lib/libtbbmalloc_proxy.so.2 sudo rm /usr/lib/libtbb.so.12 sudo rm /usr/lib/libtbbbind_2_5.so.3 sudo rm /usr/lib/libtbbbind_2_0.so.3 Then, reinstall the tbb package:
+sudo pacman -S tbb Finally, run ldconfig again:
+sudo ldconfig </description>
+    </item>
+    
+  </channel>
+</rss>
