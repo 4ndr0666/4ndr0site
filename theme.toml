@@ -18,4 +18,4 @@ min_version = "0.41.0"
 [original]
   name = "4s3ti"
   homepage = "https://cv.4s3t.net"
-  repo = "https://github.com/4s3ti/terminalcv.git"
+  repo = "https://github.com/4s3ti/terminalcv"
