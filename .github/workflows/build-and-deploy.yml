@@ -18,6 +18,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      # Backup index.html before Hugo build
+      - name: Backup index.html
+        run: cp public/index.html index.html.bak
+
       # Set up Hugo
       - name: Set up Hugo
         uses: peaceiris/actions-hugo@v2
@@ -27,6 +31,10 @@ jobs:
       # Build the Hugo site
       - name: Build Hugo site
         run: hugo --minify
+
+      # Restore index.html after Hugo build
+      - name: Restore index.html
+        run: cp index.html.bak public/index.html
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
