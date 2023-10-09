@@ -35,6 +35,12 @@ jobs:
       - name: Restore index.html
         run: cp index.html.bak public/index.html
 
+      # Check index.html hash
+      - name: Check index.html hash
+        run: |
+          echo "Calculating hash of generated index.html..."
+          sha256sum -c index.html.sha256
+
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
