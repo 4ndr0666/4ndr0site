@@ -1,5 +1,4 @@
 # This is a workflow to build and deploy a Hugo site to GitHub Pages
-
 name: Build and Deploy
 
 # Controls when the workflow will run
@@ -16,7 +15,7 @@ jobs:
     steps:
       # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
 
       # Backup index.html before Hugo build
       - name: Backup index.html
