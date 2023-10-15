@@ -15,7 +15,7 @@ jobs:
     steps:
       # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
 
       # Backup index.html before Hugo build
       - name: Backup index.html
@@ -23,7 +23,7 @@ jobs:
 
       # Set up Hugo
       - name: Set up Hugo
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@master
         with:
           hugo-version: 'latest'
 
@@ -43,7 +43,7 @@ jobs:
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
