@@ -9,37 +9,32 @@ params:
   prompt: "4ndr0@terminal"
   promptColor: cyan
   promptSimbols: ":~$"
-  promptSimbolsColor: green
-  startxLocation: "https://github.com/learn-anything/chrome-extensions"
+  promptSimbolsColor: cyan
+  startxLocation: "https://notepad-online.ru/login.html"
   #hideSocialName: true
-  #exitLocation: 'https://start.garudalinux.org/'
-  #hidesource: true
-  greeting: | 
+  exitLocation: 'https://start.garudalinux.org/'
+    #hidesource: true
+  greeting: |
      Lasciate ogne speranza, voi ch'intrate.
 
 
-  whois: 
+  whois:
       name:  "4ndr0666"
-      location:  "TheRealWorld,Matrix"      
+      location:  "TheRealWorld,Matrix"
       homelink: "https://www.github.com/4ndr0666"
       description: |
-              Online Archive 
+              Online Archive
   social:
     ## IF you want to keep them aligned just add spaces
-    - name: "github"
-      url: "        https://github.com/4ndr0666"
-    - name: "chatgpt"
-      url: "        https://chat.openai.com"
-    - name: "gkeep"
-      url: "        https://keep.google.com"
-    - name: "redgifs"
-      url: "         https://www.redgifs.com/users/andr0666"
-    - name: "imgur"
-      url: "       https://imgur.com/user/4ndr0666/posts"
-    - name: "search"
-      url: "       https://github.com/edoardottt/awesome-hacker-search-engines"
-
-  workexp:
+    - name: "links"
+      url: "        https://github.com/4ndr0666/Links/blob/main/README.md"
+    - name: "Osint"
+      url: "        https://github.com/cipher387/osint_stuff_tool_collection?tab=readme-ov-file"
+    - name: "dorksearch"
+      url: "        https://dorksearch.com/"
+    - name: "dorkgpt"
+      url: "        https://dorkgpt.com/"
+    workexp:
     - jobTitle: Backend engineer
       color: green
       company: CIA
@@ -63,7 +58,7 @@ params:
   education:
    - courseName: Communication Assesment by ChatGPT
      color: red
-     date: Sept 2023 
+     date: Sept 2023
      description: Descrption about red color trianing
 
    - courseName: Default color training
@@ -77,7 +72,7 @@ params:
 
     - name: Skill 2
       percentage: 30
-      #description: or you can leave it comented   
+      #description: or you can leave it comented
 
     - name: Skill 3
       color: blue
@@ -91,7 +86,7 @@ params:
       #description:
 
     - name:  SoftSkill 2
-      #color: 
+      #color:
       percentage: 90
       description: Description
 
@@ -99,11 +94,11 @@ params:
     - name: Bash
       color: Blue
       percentage: 50
-      #description: 
+      #description:
 
     - name: Python
       percentage: 100
-      description: 
+      description:
 
 
   projects:
@@ -111,7 +106,7 @@ params:
       color: red
       date: since 2019
       link: https://example.com
-      description:  curl -LO larbs.xyz/larbs.sh 
+      description:  curl -LO larbs.xyz/larbs.sh
 
     - title: Awesome
       color: blue
@@ -125,25 +120,25 @@ params:
       #description: not there either
 
   certifications:
-  - certName: CPT, NCSF, TRX1,2,3, MCT1,2 
+  - certName: CPT, NCSF, TRX1,2,3, MCT1,2
     company: TriggerPoint
     date: 2009
     #description: severely disordered state of mind usually occurring as a specific disorder
-  
-  misc: 
+
+  misc:
     commandName: scripts
     title: "One Liners"
     titleColor: cyan
     content: |
-          # --- Windows: 
+          # --- Windows:
           irm christitus.com/win | iex
-        
+
           # --- Vim:
           :w !sudo tee %
-          
+
           # --- Grub:
           sudo grub-mkconfig -o /boot/grub/grub.cfg && sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi
 
-        
+
 
     contentColor: green
