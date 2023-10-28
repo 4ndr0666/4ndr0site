@@ -26,15 +26,16 @@ params:
               Online Archive
   social:
     ## IF you want to keep them aligned just add spaces
-    - name: "links"
-      url: "        https://github.com/4ndr0666/Links/blob/main/README.md"
-    - name: "Osint"
-      url: "        https://github.com/cipher387/osint_stuff_tool_collection?tab=readme-ov-file"
-    - name: "dorksearch"
-      url: "        https://dorksearch.com/"
-    - name: "dorkgpt"
-      url: "        https://dorkgpt.com/"
-    workexp:
+    - name: "Links"
+      url: "     https://github.com/4ndr0666/Links/blob/main/README.md"
+    - name: "OSINT"
+      url: "     https://github.com/cipher387/osint_stuff_tool_collection?tab=readme-ov-file"
+    - name: "Dorksearch"
+      url: "     https://dorksearch.com/"
+    - name: "Dorkgpt"
+      url: "     https://dorkgpt.com/"
+
+  workexp:
     - jobTitle: Backend engineer
       color: green
       company: CIA
