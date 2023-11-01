@@ -10,7 +10,7 @@ params:
   promptColor: cyan
   promptSimbols: ":~$"
   promptSimbolsColor: cyan
-  startxLocation: "https://notepad-online.ru/login.html"
+  startxLocation: "https://cse.google.com/cse?cx=07382130c504b4ec9"
   #hideSocialName: true
   exitLocation: 'https://start.garudalinux.org/'
     #hidesource: true
@@ -34,6 +34,8 @@ params:
       url: "     https://dorksearch.com/"
     - name: "Dorkgpt"
       url: "     https://dorkgpt.com/"
+    - name: "Notepad"
+      url: "     https://notepad-online.ru/login.html"
 
         #workexp:
         #- jobTitle: Backend engineer
