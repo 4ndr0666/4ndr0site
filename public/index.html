@@ -2,7 +2,7 @@
 <html xmlns="http://www.w2.org/1999/xhtml">
 <html lang="en">
     <head>
-	<meta name="generator" content="Hugo 0.119.0">
+	<meta name="generator" content="Hugo 0.121.1">
             <meta charset="utf-8" />
     <title>4ndr0666 | Online Archive </title>
     <meta charset="utf-8">
@@ -33,227 +33,152 @@
             font-size: 18px;
         }
     </style>
-
+    
     </head>
         <body>
-
-<script>
+        
+<script> 
 jQuery(document).ready(function($) {
     var animation = false;
     var availableCommands = ["all", "whois", 'social', 'work', 'education',
                     'skills', 'softskills', 'languages',
                     'projects',
-	             'certifications',
-                     'startx',
-
+	            
+                     'startx', 
+                     'exit', 
                     "scripts",
-                     'source'
-                    ]
+                     'source' 
+                    ] 
 
     $('body').terminal(function(command, term) {
 
-
+     
     function whois () {
         term.echo ("");
-
+         
             term.echo ("[[b;grey;]Name:]\t\t\t4ndr0666");
             term.echo ("[[b;grey;]Profession:]\t\t");
             term.echo ("[[b;grey;]Location:]\t\tTheRealWorld,Matrix");
-
-
+            
+            
                 term.echo ("[[b;grey;]Homepage:]\t\thttps:\/\/www.github.com\/4ndr0666");
-
-
+            
+            
                 term.echo ("")
-                term.echo ("Online Archive \n")
-
-
+                term.echo ("Online Archive\n")
+            
+        
         term.echo ("");
       }
 
     function social () {
         term.echo("");
-
+        
+            
+                
+                    term.echo("Links:" + "     https:\/\/github.com\/4ndr0666\/Links\/blob\/main\/README.md");
+                
+                    term.echo("OSINT:" + "     https:\/\/github.com\/cipher387\/osint_stuff_tool_collection?tab=readme-ov-file");
+                
+                    term.echo("Dorksearch:" + "     https:\/\/dorksearch.com\/");
+                
+                    term.echo("Dorkgpt:" + "     https:\/\/dorkgpt.com\/");
+                
+                    term.echo("Notepad:" + "     https:\/\/notepad-online.ru\/login.html");
+                
+            
+        
         term.echo("")
     }
-
+	    
     function certifications () {
         term.echo("");
-
-
-                term.echo("[[b;grey;]CPT, NCSF, TRX1,2,3, MCT1,2]");
-	    	term.echo("2009");
-
-                    term.echo("TriggerPoint");
-
-
-                term.echo("-------------------- ");
-                term.echo("");
-
-
+        
     }
-
+	    
     function work () {
         term.echo("");
-
+        
     }
 
     function education () {
         term.echo("");
-
-
-                term.echo("[[b;red;]Communication Assesment by ChatGPT]");
-                term.echo("Sept 2023");
-
-                    term.echo("Descrption about red color trianing");
-
-                term.echo("-------------------- ");
-                term.echo("");
-
-                term.echo("[[b;grey;]Default color training]");
-                term.echo("Sept 2004 - Jun 2008");
-
-                term.echo("-------------------- ");
-                term.echo("");
-
-
+        
     }
 
     function skills () {
         term.echo(" ");
-
-
-                var bar_length = Math.round( 90  / 10);
-                var bar_filled = Array(bar_length + 1).join("&#9611;");
-                var bar_blank= Array(11 - bar_length).join("&#9617;");
-                term.echo("[[b;grey;]Skill 1:]\n" +
-                        bar_filled + bar_blank +
-                         90  +"%");
-
-                term.echo ("")
-
-                var bar_length = Math.round( 30  / 10);
-                var bar_filled = Array(bar_length + 1).join("&#9611;");
-                var bar_blank= Array(11 - bar_length).join("&#9617;");
-                term.echo("[[b;grey;]Skill 2:]\n" +
-                        bar_filled + bar_blank +
-                         30  +"%");
-
-                term.echo ("")
-
-                var bar_length = Math.round( 50  / 10);
-                var bar_filled = Array(bar_length + 1).join("&#9611;");
-                var bar_blank= Array(11 - bar_length).join("&#9617;");
-                term.echo("[[b;blue;]Skill 3:]\n" +
-                        bar_filled + bar_blank +
-                         50  +"%");
-
-                    term.echo("Skill names can have colors too");
-
-                term.echo ("")
-
-
+        
     }
     function softskills () {
         term.echo("");
-
-
-                var bar_length = Math.round( 80  / 10);
-                var bar_filled = Array(bar_length + 1).join("&#9611;");
-                var bar_blank= Array(11 - bar_length).join("&#9617;");
-                term.echo("[[b;red;]SoftSkill 1:]\n" +
-                       bar_filled + bar_blank +
-                        80  +"%");
-
-                term.echo ("")
-
-                var bar_length = Math.round( 90  / 10);
-                var bar_filled = Array(bar_length + 1).join("&#9611;");
-                var bar_blank= Array(11 - bar_length).join("&#9617;");
-                term.echo("[[b;grey;]SoftSkill 2:]\n" +
-                       bar_filled + bar_blank +
-                        90  +"%");
-
-                    term.echo("Description");
-
-                term.echo ("")
-
-
+        
     }
-
+      
     function languages () {
         term.echo("");
-
-
-                var bar_length = Math.round( 50  / 10);
-                var bar_filled = Array(bar_length + 1).join("&#9611;");
-                var bar_blank= Array(11 - bar_length).join("&#9617;");
-                term.echo("[[b;Blue;]Bash:]\n" +
-                        "" + bar_filled + bar_blank +
-                        " " +  50  +"%");
-
-                term.echo("")
-
-                var bar_length = Math.round( 100  / 10);
-                var bar_filled = Array(bar_length + 1).join("&#9611;");
-                var bar_blank= Array(11 - bar_length).join("&#9617;");
-                term.echo("[[b;grey;]Python:]\n" +
-                        "" + bar_filled + bar_blank +
-                        " " +  100  +"%");
-
-                term.echo("")
-
-
+        
     }
 
-
+    
     function projects () {
         term.echo("");
-
-
-                term.echo("[[b;red;]LARBS]");
-                term.echo("since 2019")
-                term.echo("https:\/\/example.com")
-
+        
+            
+                term.echo("[[b;yellow;]LARBS]");
+                term.echo("")
+                term.echo("")
+                
                     term.echo("curl -LO larbs.xyz\/larbs.sh");
-
+                
                 term.echo("-----------------------");
                 term.echo("");
-
-                term.echo("[[b;blue;]Awesome]");
-                term.echo("since 2020")
+          
+                term.echo("[[b;pink;]Awesome List]");
+                term.echo("")
                 term.echo("https:\/\/github.com\/stars\/4ndr0666\/lists\/awesome")
-
+                
                 term.echo("-----------------------");
                 term.echo("");
-
-                term.echo("[[b;grey;]Netboot.xyz]");
-                term.echo("Since 2023")
+          
+                term.echo("[[b;Cyan;]Netboot.xyz]");
+                term.echo("")
                 term.echo("https:\/\/github.com\/4ndr0666\/netboot.xyz-custom")
-
+                
                 term.echo("-----------------------");
                 term.echo("");
-
-
+          
+        
     }
 
     function misc (){
         term.echo ("")
         term.echo("[[b;cyan;]One Liners]" + "\n")
-        term.echo ("[[;green;]# --- Windows: \nirm christitus.com\/win | iex\n\n# --- Vim:\n:w !sudo tee %\n\n# --- Grub:\nsudo grub-mkconfig -o \/boot\/grub\/grub.cfg \u0026\u0026 sudo grub-install --target=x86_64-efi --efi-directory=\/boot\/efi\n]")
+        term.echo ("[[;green;]# --- Windows:\nirm christitus.com\/win | iex\n\n# --- Vim:\n:w !sudo tee %\n\n# --- Grub:\nsudo grub-mkconfig -o \/boot\/grub\/grub.cfg \u0026\u0026 sudo grub-install --target=x86_64-efi --efi-directory=\/boot\/efi\n]")
         term.echo ("")
     }
 
     function help () {
         term.echo("\n[[b;white;]Available commands:]\n" +
-                  "\n" + availableCommands.join(' ')+ '\n')
+                  "\n" + availableCommands.join(' ')+ '\n') 
     }
 
       function source() {
-          term.echo("")
+          term.echo("        _______            \n"+
+                    "       |       |           \n"+
+                    "       |       |           \n"+
+                    "       |_______|_______    \n"+
+	                "               |       |   \n"+
+                    "               |       |   \n"+
+                    " ______________|_______|   \n"+
+                    "|      |       |       |   \n"+
+                    "|      |       |       |   \n"+
+                    "|______|_______|_______|   \n"+
+                    "[[;red;]May the source be with you]\n"+
+                    "[[;grey;]https://github.com/4s3ti/terminalcv\n");
       }
 
-
+    
     function progress(percent, width) {
         var size = Math.round(width*percent/100);
         var left = '', taken = '', i;
@@ -287,7 +212,7 @@ jQuery(document).ready(function($) {
         })();
     }
 
-
+       
         commands = command.split(/[ ]+/);
         switch(commands[0]) {
             case 'whois':
@@ -333,35 +258,41 @@ jQuery(document).ready(function($) {
                 languages();
                 projects();
 		certifications();
-
+                
                     misc();
-
-
+                
+                
                     source();
-
+                
                 break;
-
+            
             case 'startx':
                 term.echo("loading ...")
                 loading();
-                setTimeout(function(){window.location = "https:\/\/raw.githubusercontent.com\/4ndr0666\/ChatGPT-Cloud\/main/Prompts\/Prompts.md"}, 2000);
+                setTimeout(function(){window.location = "https:\/\/search.hoothin.com\/6597cbd567d08"}, 2000);
                 break;
-
+            
             case ':(){:|:&};:':
             case 'source':
                 source();
                 break;
-
+            
+            case 'exit':
+                term.echo("terminating ... ")
+                loading();
+                setTimeout(function(){window.location = 'https:\/\/start.garudalinux.org\/'}, 2000);
+                break;
+            
             default:
                 term.echo("\nunknown command: " + command + "\n" +
                           "please type 'help' for a list of available commands\n");
         }
     }, {
-        prompt: '[[;cyan;]4ndr0@terminal][[;green;]:~$]' + " ",
+        prompt: '[[;cyan;]4ndr0@terminal][[;cyan;]:~$]' + " ",
         greetings: "[[b;white;]Lasciate ogne speranza, voi ch\u0027intrate.\n]",
         keydown: function(e, term) {
             if (animation) {
-                if (e.which == 68 && e.ctrlKey) {
+                if (e.which == 68 && e.ctrlKey) { 
                     clearTimeout(timer);
                     animation = false;
                     term.echo(string + ' [[b;red;]FAIL]')
@@ -372,7 +303,7 @@ jQuery(document).ready(function($) {
         },
         autocompleteMenu: true,
         completion: availableCommands
-
+        
     });
 });
 </script>
