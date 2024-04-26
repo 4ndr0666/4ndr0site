@@ -1,2 +1,1 @@
-# 4ndr0site
-Collection of transcripts, scripts and tools.
+Personal website of 4ndr0666.
