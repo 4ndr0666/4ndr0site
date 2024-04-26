@@ -6,9 +6,9 @@ theme: "terminalcv"
 
 # Enable/disable content sections
 params:
-  prompt: "4ndr6660"
+  prompt: "4ndr666"
   promptColor: cyan
-  promptSimbols: ":"
+  promptSimbols: ">"
   promptSimbolsColor: cyan
   startxLocation: "https://search.hoothin.com/set/ai_en.html"
   #https://search.hoothin.com/6597cbd567d08"
@@ -16,7 +16,7 @@ params:
   exitLocation: 'https://start.garudalinux.org/'
     #hidesource: true
   greeting: |
-    # -- // Lasciate ogne speranza, voi ch'intrate.
+    # -- // LASCIATE OGNE SPERANZA, VOI CH'INTRATE.
 
 
   whois:
@@ -106,17 +106,17 @@ params:
 
 
   projects:
-    - title: LARBS
-      color: yellow
-      description:  curl -LO larbs.xyz/larbs.sh
+    - title: Auto-ricing script
+      color: CYAN
+      description:  curl -LO 4ndr0666/4ndr0666v2.sh
 
     - title: Awesome List
-      color: pink
+      color: TEAL
       link: https://github.com/stars/4ndr0666/lists/awesome
       #description: nothing to describe
 
     - title: Netboot.xyz
-      color: Cyan
+      color: BLUE
       link: https://github.com/4ndr0666/netboot.xyz-custom
       #description: not there either
 
@@ -128,13 +128,13 @@ params:
 
   misc:
     commandName: scripts
-    title: "One Liners"
+    title: "Handy commands..."
     titleColor: cyan
     content: |
           # --- WINUTIL:
           irm christitus.com/win | iex
 
-          # --- // TEST_DIR: 
+          # --- // TEST_DIR:
           mkdir -p test_directory/{Pictures,Media,Documents,Archives} && \
           echo "Dummy image content" > test_directory/Pictures/test.jpg && \
           echo "Dummy audio content" > test_directory/Media/test.mp3 && \
