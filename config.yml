@@ -6,9 +6,9 @@ theme: "terminalcv"
 
 # Enable/disable content sections
 params:
-  prompt: "4ndr0@terminal"
+  prompt: "4ndr6660"
   promptColor: cyan
-  promptSimbols: ":~$"
+  promptSimbols: ":"
   promptSimbolsColor: cyan
   startxLocation: "https://search.hoothin.com/set/ai_en.html"
   #https://search.hoothin.com/6597cbd567d08"
@@ -16,7 +16,7 @@ params:
   exitLocation: 'https://start.garudalinux.org/'
     #hidesource: true
   greeting: |
-     Lasciate ogne speranza, voi ch'intrate.
+    # -- // Lasciate ogne speranza, voi ch'intrate.
 
 
   whois:
@@ -131,15 +131,30 @@ params:
     title: "One Liners"
     titleColor: cyan
     content: |
-          # --- Windows:
+          # --- WINUTIL:
           irm christitus.com/win | iex
 
-          # --- Vim:
-          :w !sudo tee %
+          # --- // TEST_DIR: 
+          mkdir -p test_directory/{Pictures,Media,Documents,Archives} && \
+          echo "Dummy image content" > test_directory/Pictures/test.jpg && \
+          echo "Dummy audio content" > test_directory/Media/test.mp3 && \
+          echo "Dummy document content" > test_directory/Documents/test.pdf && \
+          echo "Dummy text content" > test_directory/test.txt && \
+          echo "Dummy PNG content" > test_directory/test.png && \
+          zip test_directory/Archives/test.zip test_directory/Documents/test.pdf && \
+          tar -czf test_directory/Archives/test.tar.gz -C test_directory/Documents test.pdf && \
+          echo "Dummy archive content" > test_directory/Archives/dummy_content.txt && \
+          7z a test_directory/Archives/test.7z test_directory/Archives/dummy_content.txt && \
+          rar a test_directory/Archives/test.rar test_directory/Archives/dummy_content.txt && \
+          zip test_directory/Archives/test.zip test_directory/Archives/dummy_content.txt && \
+          tar -rf test_directory/Archives/test.tar test_directory/Archives/dummy_content.txt
 
-          # --- Grub:
-          sudo grub-mkconfig -o /boot/grub/grub.cfg && sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi
-
-
+          # --- // CHROOT:
+          sudo mount -t proc proc /proc
+          sudo mount -t sysfs sys /sys
+          sudo mount -t devtmpfs dev /dev
+          sudo mount -t devpts devpts /dev/pts
+          mount --rbind /dev dev/
+          mount --rbind /run run/
 
     contentColor: green
