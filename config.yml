@@ -6,10 +6,10 @@ theme: "terminalcv"
 
 # Enable/disable content sections
 params:
-  prompt: "4ndr666"
+  prompt: "4ndr666@192.168.1.1"
   promptColor: cyan
   promptSimbols: ">"
-  promptSimbolsColor: cyan
+  promptSimbolsColor: LIME
   startxLocation: "https://search.hoothin.com/set/ai_en.html"
   #https://search.hoothin.com/6597cbd567d08"
   #hideSocialName: true
@@ -107,16 +107,16 @@ params:
 
   projects:
     - title: Auto-ricing script
-      color: CYAN
+      color: LIME
       description:  curl -LO 4ndr0666/4ndr0666v2.sh
 
     - title: Awesome List
-      color: TEAL
+      color: LIME
       link: https://github.com/stars/4ndr0666/lists/awesome
       #description: nothing to describe
 
     - title: Netboot.xyz
-      color: BLUE
+      color: RED
       link: https://github.com/4ndr0666/netboot.xyz-custom
       #description: not there either
 
@@ -128,7 +128,7 @@ params:
 
   misc:
     commandName: scripts
-    title: "Handy commands..."
+    title: "Here are some handy commands..."
     titleColor: cyan
     content: |
           # --- WINUTIL:
