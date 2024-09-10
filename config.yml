@@ -10,8 +10,8 @@ params:
   promptColor: cyan
   promptSimbols: ">"
   promptSimbolsColor: LIME
-  startxLocation: "http://localhost:1313/ascii-index.html"
-  exitLocation: 'https://start.garudalinux.org/'
+  startxLocation: "/ascii-index.html"
+  exitLocation: 'https://search.hoothin.com/6597cbd567d08'
   greeting: |
     # -- // LASCIATE OGNE SPERANZA, VOI CH'INTRATE.
   whois:
