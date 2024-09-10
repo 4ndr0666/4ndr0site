@@ -18,9 +18,9 @@ jQuery(document).ready(function($) {
     function whois () {
         term.echo ("");
         {{ with .Site.Params.whois }} 
-            term.echo ("[[b;grey;]Name:]\t\t\t{{ .name }}");
-            term.echo ("[[b;grey;]Profession:]\t\t{{ .profession }}");
-            term.echo ("[[b;grey;]Location:]\t\t{{ .location }}");
+            term.echo ("[[b;grey;]Alias:]\t\t{{ .alias }}");
+            term.echo ("[[b;grey;]ID:]\t\t\t{{ .id }}");
+            term.echo ("[[b;grey;]ID2:]\t\t{{ .id2 }}");
             {{ if .email }}
                 term.echo ("[[b;grey;]Email:]\t\t\t{{ .email }}");
             {{ end }}
@@ -185,7 +185,7 @@ jQuery(document).ready(function($) {
     }
 
       function source() {
-          term.echo("[[;grey;]https://github.com/4ndro666\n");
+          term.echo("\n[[;grey;]https://github.com/4ndro666\n");
       }
 
     //Funciton used by StartX to draw the progressBar
@@ -261,18 +261,18 @@ jQuery(document).ready(function($) {
             case 'all':
                 whois();
                 social();
-                work();
-                education();
-                skills();
-                softskills();
-                languages();
+//                work();
+//                education();
+//                skills();
+//                softskills();
+//                languages();
                 projects();
 		certifications();
                 {{ if .Site.Params.misc }}
                     misc();
                 {{ end }}
                 {{ if not .Site.Params.hideSource }}
-                    source();
+//                    source();
                 {{ end }}
                 break;
             {{ if .Site.Params.startxLocation }}

@@ -8,18 +8,17 @@ theme: "4ndr0line"
 params:
   prompt: "4ndr666@192.168.1.1"
   promptColor: cyan
-  promptSimbols: ">"
+  promptSimbols: " >"
   promptSimbolsColor: LIME
   startxLocation: "/ascii-index.html"
   exitLocation: 'https://search.hoothin.com/6597cbd567d08'
   greeting: |
     # -- // LASCIATE OGNE SPERANZA, VOI CH'INTRATE.
   whois:
-    name:  "4ndr0666"
-    location:  "TheRealWorld,Matrix"
-    homelink: "https://www.github.com/4ndr0666"
-    description: |
-              Online Archive
+    alias: "01_dolor.loftier@icloud.com" 
+    id:    "cobbled_votary_03@icloud.com"
+    id2: "iodine-drawls.0g@icloud.com"
+    description: Online Archive
   social:
     - name: "Links"
       url: "     https://github.com/4ndr0666/Links/blob/main/README.md"
@@ -27,10 +26,10 @@ params:
       url: "     https://github.com/cipher387/osint_stuff_tool_collection?tab=readme-ov-file"
     - name: "Dorksearch"
       url: "     https://dorksearch.com/"
-    - name: "Dorkgpt"
-      url: "     https://dorkgpt.com/"
-    - name: "Notepad"
-      url: "     https://notepad-online.ru/login.html"
+    - name: "GSE"
+      url: "     https://cse.google.com/cse?cx=07382130c504b4ec9#gsc.tab=0"
+    - name: "MaxURL"
+      url: "     https://qsniyg.github.io/maxurl/"
 
         #workexp:
         #- jobTitle: Backend engineer
