@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASCII-Based Design</title>
-    <link rel="author" href="humans.txt" />
+    <link rel="4ndr0666" href="humans.txt" />
+    <link rel="apple-touch-icon" sizes="192x192" href="{{ "/images/icon-192x192.png" | relURL }}">
     <style type="text/css">
         @font-face {
             font-family: 'DejaVuSansMono';
@@ -13,17 +14,25 @@
         body {
             background-color: black;
             color: #00FF00;
-            font-size: 12px;
+            font-size: 14px;  /* Adjust this based on the appearance */
+            line-height: 1.2;  /* Tweak line height for proper spacing */
         }
+        
         pre {
-            font-family: DejaVuSansMono;
+            font-family: DejaVuSansMono, monospace;
+            text-align: center;
+            margin: 0 auto; /* Center the ASCII art */
+            margin-top: 50px; /* Optional: Adjust top margin for better spacing */
         }
-        a:link {
-            color: #00FF00;
+        
+        a {
+            color: #00FF00; /* Ensure links match the theme */
             text-decoration: none;
         }
+        
         a:hover {
-            color: #CCCCDD;
+            color: #CCCCDD; /* Hover effect for better visibility */
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -55,10 +64,10 @@
     <span class="g">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</span>    
     <span class="g">┃░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░┃</span>    
     <span class="g">┃░░░┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓░░░┃</span>    
-   X<span class="g">┃░░░┣━━━  <a href="/scripts/" title="Scripts">Scripts              </a>  ━━━┨░░░┃</span>.   
-  XX<span class="g">┃░░░┣━━━  <a href="/snippets/" title="Snippets">Snippets              </a>  ━━━┨░░░┃</span>X   
- XXX<span class="g">┃░░░┣━━━  <a href="/docs/" title="Docs">Docs           </a>  ━━━┨░░░┃</span>XX  
-.XX.<span class="g">┃░░░┣━━━  <a href="/howtos/" title="Howtos">Howtos            </a>  ━━━┨░░░┃</span>XXX 
+   X<span class="g">┃░░░┣━━━  <a href="{{ "/scripts/" | relURL }}" title="Scripts">Scripts </a>  ━━━┨░░░┃</span>.   
+  XX<span class="g">┃░░░┣━━━  <a href="{{ "/snippets/" | relURL }}" title="Snippets">Snippets </a>  ━━━┨░░░┃</span>X   
+ XXX<span class="g">┃░░░┣━━━  <a href="{{ "/docs/" | relURL }}" title="Docs">Docs</a>  ━━━┨░░░┃</span>XX  
+.XX.<span class="g">┃░░░┣━━━  <a href="{{ "/howtos/" | relURL }}" title="Howtos">Howtos</a>  ━━━┨░░░┃</span>XXX 
     </pre>
 </body>
 </html>

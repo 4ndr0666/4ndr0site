@@ -7,6 +7,7 @@
     <meta property="og:title" content="{{ $.Site.Title }}" />
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="{{ $.Site.BaseURL }}" />
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="sitemap" type="application/xml" title="Sitemap" href=""/>
     <link rel="canonical" href="{{ .Permalink }}" />
     {{- partial "favicons.html" . }}
@@ -14,6 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.33.2/js/jquery.terminal.min.js"></script>
     <script src="https://unpkg.com/jquery.terminal/js/autocomplete_menu.js"></script>
+    <script src="/js/custom.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.33.2/css/jquery.terminal.min.css" rel="stylesheet"/>
 
     <style>
