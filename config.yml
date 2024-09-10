@@ -11,7 +11,7 @@ params:
   promptSimbols: ">"
   promptSimbolsColor: LIME
   startxLocation: "https://search.hoothin.com/6597cbd567d08"
-  #https://search.hoothin.com/6597cbd567d08"
+  #https://search.hoothin.com/set/ai_en.html"
   #hideSocialName: true
   exitLocation: 'https://start.garudalinux.org/'
     #hidesource: true
