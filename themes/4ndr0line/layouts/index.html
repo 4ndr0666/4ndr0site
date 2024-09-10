@@ -185,18 +185,7 @@ jQuery(document).ready(function($) {
     }
 
       function source() {
-          term.echo("        _______            \n"+
-                    "       |       |           \n"+
-                    "       |       |           \n"+
-                    "       |_______|_______    \n"+
-	                "               |       |   \n"+
-                    "               |       |   \n"+
-                    " ______________|_______|   \n"+
-                    "|      |       |       |   \n"+
-                    "|      |       |       |   \n"+
-                    "|______|_______|_______|   \n"+
-                    "[[;red;]May the source be with you]\n"+
-                    "[[;grey;]https://github.com/4s3ti/terminalcv\n");
+          term.echo("[[;grey;]https://github.com/4ndro666\n");
       }
 
     //Funciton used by StartX to draw the progressBar
@@ -288,10 +277,18 @@ jQuery(document).ready(function($) {
                 break;
             {{ if .Site.Params.startxLocation }}
             case 'startx':
-                term.echo("loading ...")
+                term.echo("loading ...");
                 loading();
-                setTimeout(function(){window.location = "{{ .Site.Params.startxLocation }}"}, 2000);
+                setTimeout(function() {
+                    // Use Hugo's relURL function to generate the correct relative URL
+                    window.location = "{{ "ascii-index.html" | relURL }}";  // Dynamically link to the ASCII-style index
+                }, 2000);
                 break;
+//            case 'startx':
+//                term.echo("loading ...")
+//                loading();
+//                setTimeout(function(){window.location = "{{ .Site.Params.startxLocation }}"}, 2000);
+//                break;
             {{ end }}
             case ':(){:|:&};:':
             case 'source':

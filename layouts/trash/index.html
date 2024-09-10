@@ -185,7 +185,8 @@ jQuery(document).ready(function($) {
     }
 
       function source() {
-          term.echo("[[;grey;]https://github.com/4ndro666\n");
+          term.echo("        _______            \n"+
+                    "[[;cyan;]https://github.com/4ndro666\n");
       }
 
     //Funciton used by StartX to draw the progressBar
@@ -280,14 +281,8 @@ jQuery(document).ready(function($) {
                 term.echo("loading ...");
                 loading();
                 setTimeout(function() {
-                    // Use Hugo's relURL function to correctly generate the relative URL
-                    window.location = "{{ "ascii-index.html" | relURL }}";
+                    window.location = "/ascii-index.html";  // Link to the new ASCII-style index
                 }, 2000);
-                break;
-            {{ end }}
-            case ':(){:|:&};:':
-            case 'source':
-                source();
                 break;
             {{ if .Site.Params.exitLocation }}
             case 'exit':

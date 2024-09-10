@@ -1,15 +1,17 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
-
 date: {{ .Date }}
 url: /{{ .Name }}/
 image: images/2020-thumbs/{{ .Name }}.jpg
 categories:
-  - Scripts
-  - ChatGPT
-  - Mds
+  - Uncategorized
 tags:
-  - Ubuntu
+  - Default
 draft: true
 ---
+
+## {{ replace .Name "-" " " | title }}
+
+Content goes here.
+
 <!--more-->

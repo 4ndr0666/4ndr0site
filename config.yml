@@ -1,5 +1,5 @@
 # Site Configuration
-BaseURL: "https://4ndr0666.github.io/4ndr0site/"
+BaseURL: "http://localhost:1313/"
 languageCode: "en-us"
 title: "4ndr0666 | Online Archive"
 theme: "4ndr0line"
@@ -10,23 +10,17 @@ params:
   promptColor: cyan
   promptSimbols: ">"
   promptSimbolsColor: LIME
-  startxLocation: "https://search.hoothin.com/6597cbd567d08"
-  #https://search.hoothin.com/set/ai_en.html"
-  #hideSocialName: true
+  startxLocation: "http://localhost:1313/ascii-index.html"
   exitLocation: 'https://start.garudalinux.org/'
-    #hidesource: true
   greeting: |
     # -- // LASCIATE OGNE SPERANZA, VOI CH'INTRATE.
-
-
   whois:
-      name:  "4ndr0666"
-      location:  "TheRealWorld,Matrix"
-      homelink: "https://www.github.com/4ndr0666"
-      description: |
+    name:  "4ndr0666"
+    location:  "TheRealWorld,Matrix"
+    homelink: "https://www.github.com/4ndr0666"
+    description: |
               Online Archive
   social:
-    ## IF you want to keep them aligned just add spaces
     - name: "Links"
       url: "     https://github.com/4ndr0666/Links/blob/main/README.md"
     - name: "OSINT"
