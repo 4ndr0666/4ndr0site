@@ -13,29 +13,46 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Step 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Backup index.html before Hugo build
-      - name: Backup index.html
-        run: cp public/index.html index.html.bak
+      # Step 2: Cache Hugo installation for faster builds
+      - name: Cache Hugo
+        uses: actions/cache@v2
+        with:
+          path: ~/.hugo
+          key: ${{ runner.os }}-hugo-${{ hashFiles('config.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-hugo-
 
-      # Set up Hugo
+      # Step 3: Backup index.html using GitHub Actions artifacts
+      - name: Backup index.html
+        run: |
+          if [ -f public/index.html ]; then
+            cp public/index.html index.html.bak
+          fi
+        continue-on-error: true
+
+      # Step 4: Set up Hugo
       - name: Set up Hugo
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: 'latest'
 
-      # Build the Hugo site
+      # Step 5: Build the Hugo site
       - name: Build Hugo site
         run: hugo --minify
 
-      # Restore index.html after Hugo build
+      # Step 6: Restore index.html if backup exists
       - name: Restore index.html
-        run: cp index.html.bak public/index.html
+        run: |
+          if [ -f index.html.bak ]; then
+            cp index.html.bak public/index.html
+          fi
+        continue-on-error: true
 
-      # Deploy to GitHub Pages
+      # Step 7: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
