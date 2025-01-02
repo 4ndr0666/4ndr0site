@@ -1,10 +1,10 @@
 name = '4ndr0line'
 license = 'MIT'
-licenselink = 'https://github.com/4ndr0666/4ndr0site/LICENSE'
-description = 'Terminal and cmdline output'
+licenselink = 'https://raw.githubusercontent.com/4ndr0666/4ndr0line/refs/heads/master/LICENSE'
+description = 'Cmdline navigation'
 
 # The home page of the theme, where the source can be found
-homepage = 'https://github.com/4ndr0666/4ndr0site'
+homepage = 'https://github.com/4ndr0666/4ndr0line'
 
 # If the theme has a single author
 [author]

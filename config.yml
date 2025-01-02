@@ -6,30 +6,30 @@ theme: "4ndr0line"
 
 # Enable/disable content sections
 params:
-  prompt: "4ndr666@192.168.1.1"
+  prompt: "4ndr0666@192.168.1.1"
   promptColor: cyan
   promptSimbols: " >"
   promptSimbolsColor: LIME
   startxLocation: "/ascii-index.html"
-  exitLocation: 'https://search.hoothin.com/6597cbd567d08'
+  exitLocation: 'https://yandex.com/images/search?text=%s'
   greeting: |
     # -- // LASCIATE OGNE SPERANZA, VOI CH'INTRATE.
   whois:
-    alias: "01_dolor.loftier@icloud.com" 
+    alias: "01_dolor.loftier@icloud.com"
     id:    "cobbled_votary_03@icloud.com"
     id2: "iodine-drawls.0g@icloud.com"
     description: Online Archive
   social:
-    - name: "Links"
-      url: "     https://github.com/4ndr0666/Links/blob/main/README.md"
-    - name: "OSINT"
-      url: "     https://github.com/cipher387/osint_stuff_tool_collection?tab=readme-ov-file"
+    - name: "MaxUrl"
+      url: "     https://qsniyg.github.io/maxurl/"
+    - name: "icloud+"
+      url: "     https://www.icloud.com/icloudplus/"
     - name: "Dorksearch"
       url: "     https://dorksearch.com/"
     - name: "GSE"
       url: "     https://cse.google.com/cse?cx=07382130c504b4ec9#gsc.tab=0"
-    - name: "MaxURL"
-      url: "     https://qsniyg.github.io/maxurl/"
+    - name: "Upscale"
+      url: "     https://imageupscaler.com/upscale-image-4x/#start"
 
         #workexp:
         #- jobTitle: Backend engineer
@@ -99,9 +99,9 @@ params:
 
 
   projects:
-    - title: Auto-ricing script
+    - title: 4ndr0base.sh
       color: LIME
-      description:  curl -LO 4ndr0666/4ndr0666v2.sh
+      description:  curl -LO https://github.com/4ndr0666/scr/4ndr0base.sh
 
     - title: Awesome List
       color: LIME
@@ -121,33 +121,31 @@ params:
 
   misc:
     commandName: scripts
-    title: "Here are some handy commands..."
+    title: "Pick Your Poison:"
     titleColor: cyan
     content: |
-          # --- WINUTIL:
-          irm christitus.com/win | iex
 
-          # --- // TEST_DIR:
-          mkdir -p test_directory/{Pictures,Media,Documents,Archives} && \
-          echo "Dummy image content" > test_directory/Pictures/test.jpg && \
-          echo "Dummy audio content" > test_directory/Media/test.mp3 && \
-          echo "Dummy document content" > test_directory/Documents/test.pdf && \
-          echo "Dummy text content" > test_directory/test.txt && \
-          echo "Dummy PNG content" > test_directory/test.png && \
-          zip test_directory/Archives/test.zip test_directory/Documents/test.pdf && \
-          tar -czf test_directory/Archives/test.tar.gz -C test_directory/Documents test.pdf && \
-          echo "Dummy archive content" > test_directory/Archives/dummy_content.txt && \
-          7z a test_directory/Archives/test.7z test_directory/Archives/dummy_content.txt && \
-          rar a test_directory/Archives/test.rar test_directory/Archives/dummy_content.txt && \
-          zip test_directory/Archives/test.zip test_directory/Archives/dummy_content.txt && \
-          tar -rf test_directory/Archives/test.tar test_directory/Archives/dummy_content.txt
+          1. Winutil - Make Windows Not Suck (Do This Mike)
 
-          # --- // CHROOT:
-          sudo mount -t proc proc /proc
-          sudo mount -t sysfs sys /sys
-          sudo mount -t devtmpfs dev /dev
-          sudo mount -t devpts devpts /dev/pts
-          mount --rbind /dev dev/
-          mount --rbind /run run/
+              Press Windows Key + R
+              Type "powershell"
+              Press Ctrl + Shift + Enter
+              Type "irm christitus.com/win | iex"
 
-    contentColor: green
+          2. ChatGPT.sh - Terminal AI
+
+              wget https://gitlab.com/fenixdragao/shellchatgpt/-/raw/main/chatgpt.sh && chmod +x chatgpt.sh && ./chatgpt.sh
+
+          3. Micro - Modern Text Editor
+
+              curl https://getmic.ro | bash
+
+          4. Scrape Website Links
+
+              lynx -dump http:example.com | awk '/http/{print $2}'
+
+          5. 4ndr0update - My Update Suite
+
+              git clone https://github.com/4ndr0666/scr.git && cd scr/4ndr0tools/4ndr0update && chmod +x main.sh && ./main.sh
+
+    contentColor: cyan

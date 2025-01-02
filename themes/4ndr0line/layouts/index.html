@@ -1,5 +1,5 @@
 {{ define "body" }}
-<script> 
+<script>
 jQuery(document).ready(function($) {
     var animation = false;
     var availableCommands = ["all", "whois", 'social', 'work', 'education',
@@ -10,14 +10,14 @@ jQuery(document).ready(function($) {
                     {{ if .Site.Params.exitLocation }} 'exit', {{ end }}
                     {{ if .Site.Params.misc }}{{ .Site.Params.misc.commandName | default "misc"}},{{end}}
                     {{ if not .Site.Params.hideSource }} 'source' {{ end }}
-                    ] 
+                    ]
 
     $('body').terminal(function(command, term) {
 
     /* Functions to be called by commands */
     function whois () {
         term.echo ("");
-        {{ with .Site.Params.whois }} 
+        {{ with .Site.Params.whois }}
             term.echo ("[[b;grey;]Name:]\t\t\t{{ .name }}");
             term.echo ("[[b;grey;]Profession:]\t\t{{ .profession }}");
             term.echo ("[[b;grey;]Location:]\t\t{{ .location }}");
@@ -39,7 +39,7 @@ jQuery(document).ready(function($) {
         term.echo("");
         {{ if .Site.Params.hideSocialName }}
             {{ with .Site.Params.social }}
-                {{ range . }} 
+                {{ range . }}
                     term.echo("{{ .url }}");
                 {{ end }}
             {{ end }}
@@ -52,7 +52,7 @@ jQuery(document).ready(function($) {
         {{ end }}
         term.echo("")
     }
-	    
+
     function certifications () {
         term.echo("");
         {{ with .Site.Params.certifications }}
@@ -70,7 +70,7 @@ jQuery(document).ready(function($) {
             {{ end }}
         {{ end }}
     }
-	    
+
     function work () {
         term.echo("");
         {{ with .Site.Params.work }}
@@ -110,7 +110,7 @@ jQuery(document).ready(function($) {
                 var bar_filled = Array(bar_length + 1).join("&#9611;");
                 var bar_blank= Array(11 - bar_length).join("&#9617;");
                 term.echo("[[b;{{ .color | default "grey" }};]{{ .name }}:]\n" +
-                        bar_filled + bar_blank + 
+                        bar_filled + bar_blank +
                         {{ .percentage }} +"%");
                 {{ if .description }}
                     term.echo("{{ .description }}");
@@ -136,7 +136,7 @@ jQuery(document).ready(function($) {
             {{ end }}
         {{ end }}
     }
-      
+
     function languages () {
         term.echo("");
         {{ with .Site.Params.languages }}
@@ -145,7 +145,7 @@ jQuery(document).ready(function($) {
                 var bar_filled = Array(bar_length + 1).join("&#9611;");
                 var bar_blank= Array(11 - bar_length).join("&#9617;");
                 term.echo("[[b;{{ .color | default "grey" }};]{{ .name }}:]\n" +
-                        "" + bar_filled + bar_blank + 
+                        "" + bar_filled + bar_blank +
                         " " + {{ .percentage }} +"%");
                 {{ if .description }}
                     term.echo("{{ .description }}");
@@ -155,7 +155,7 @@ jQuery(document).ready(function($) {
         {{ end }}
     }
 
-    
+
     function projects () {
         term.echo("");
         {{ with .Site.Params.projects }}
@@ -181,11 +181,11 @@ jQuery(document).ready(function($) {
 
     function help () {
         term.echo("\n[[b;white;]Available commands:]\n" +
-                  "\n" + availableCommands.join(' ')+ '\n') 
+                  "\n" + availableCommands.join(' ')+ '\n')
     }
 
       function source() {
-          term.echo("[[;grey;]https://github.com/4ndro666\n");
+          term.echo("");
       }
 
     //Funciton used by StartX to draw the progressBar
@@ -303,7 +303,7 @@ jQuery(document).ready(function($) {
             {{ end }}
             default:
                 term.echo("\nunknown command: " + command + "\n" +
-                          "please type 'help' for a list of available commands\n");
+                          "type 'help' for a list of available commands\n");
         }
     }, {
         prompt: '[[;{{ .Site.Params.promptColor | default "grey" }};]{{ .Site.Params.prompt }}][[;{{ .Site.Params.promptSimbolsColor | default "grey" }};]{{.Site.Params.promptSimbols | default ":~$"}}]' + " ",
@@ -321,7 +321,7 @@ jQuery(document).ready(function($) {
         },
         autocompleteMenu: true,
         completion: availableCommands
-        
+
     });
 });
 </script>
