@@ -6,8 +6,64 @@
     <description>Recent content in Home on 4ndr0666 | Online Archive</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Mar 2023 11:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 09 Sep 2024 23:04:54 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setup Nginx</title>
+      <link>http://localhost:1313/howtos/setup-nginx/</link>
+      <pubDate>Mon, 09 Sep 2024 23:04:54 -0500</pubDate>
+      <guid>http://localhost:1313/howtos/setup-nginx/</guid>
+      <description>&lt;h1 id=&#34;setup-nginx&#34;&gt;Setup Nginx&lt;/h1&gt;&#xA;&lt;p&gt;Step-by-step guide for Setup Nginx.&lt;/p&gt;&#xA;&lt;h2 id=&#34;step-1&#34;&gt;Step 1&lt;/h2&gt;&#xA;&lt;p&gt;Describe the first step here.&lt;/p&gt;&#xA;&lt;h2 id=&#34;step-2&#34;&gt;Step 2&lt;/h2&gt;&#xA;&lt;p&gt;Describe the second step here.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Deployment Guide</title>
+      <link>http://localhost:1313/docs/deployment-guide/</link>
+      <pubDate>Mon, 09 Sep 2024 23:04:44 -0500</pubDate>
+      <guid>http://localhost:1313/docs/deployment-guide/</guid>
+      <description>&lt;h1 id=&#34;deployment-guide&#34;&gt;Deployment Guide&lt;/h1&gt;&#xA;&lt;p&gt;This is the documentation for Deployment Guide. Use this space to provide detailed guides and instructions.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Python Snippet</title>
+      <link>http://localhost:1313/snippets/python-snippet/</link>
+      <pubDate>Mon, 09 Sep 2024 23:04:36 -0500</pubDate>
+      <guid>http://localhost:1313/snippets/python-snippet/</guid>
+      <description>&lt;h2 id=&#34;python-snippet&#34;&gt;Python Snippet&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Python code snippet example&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;example_function&lt;/span&gt;():&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello, world!&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>Install Dependencies</title>
+      <link>http://localhost:1313/scripts/install-dependencies/</link>
+      <pubDate>Mon, 09 Sep 2024 23:04:23 -0500</pubDate>
+      <guid>http://localhost:1313/scripts/install-dependencies/</guid>
+      <description>&lt;h2 id=&#34;install-dependencies&#34;&gt;Install Dependencies&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/bin/bash&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Your script content goes here&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>Example Howto</title>
+      <link>http://localhost:1313/example-howto/</link>
+      <pubDate>Mon, 09 Sep 2024 22:53:03 -0500</pubDate>
+      <guid>http://localhost:1313/example-howto/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Example Doc</title>
+      <link>http://localhost:1313/example-doc/</link>
+      <pubDate>Mon, 09 Sep 2024 22:52:53 -0500</pubDate>
+      <guid>http://localhost:1313/example-doc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Example Snippet</title>
+      <link>http://localhost:1313/example-snippet/</link>
+      <pubDate>Mon, 09 Sep 2024 22:52:32 -0500</pubDate>
+      <guid>http://localhost:1313/example-snippet/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Example Script</title>
+      <link>http://localhost:1313/example-script/</link>
+      <pubDate>Mon, 09 Sep 2024 22:52:01 -0500</pubDate>
+      <guid>http://localhost:1313/example-script/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Post 3</title>
       <link>http://localhost:1313/posts/post-3/</link>
