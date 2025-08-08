@@ -10,7 +10,7 @@ params:
   promptColor: cyan
   promptSimbols: " >"
   promptSimbolsColor: LIME
-  startxLocation: 'https://4ndr0debugger-jzvedaka2-4ndr0tools.vercel.app/'
+  startxLocation: "https://4ndr0debugger-jzvedaka2-4ndr0tools.vercel.app/"
   exitLocation: "/ascii-index.html"
   greeting: |
     # -- // LASCIATE OGNE SPERANZA, VOI CH'INTRATE.

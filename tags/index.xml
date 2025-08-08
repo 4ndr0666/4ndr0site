@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-<<<<<<< HEAD
     <title>Tags on </title>
     <link>/tags/</link>
     <description>Recent content in Tags on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
-=======
-    <title>Tags on = &#34;4ndr0666 | Online Archive&#34;</title>
-    <link>/tags/</link>
-    <description>Recent content in Tags on = &#34;4ndr0666 | Online Archive&#34;</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>= &#34;en-us&#34;</language><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
->>>>>>> 1cdc1d2 (Deploy to GitHub Pages)
   </channel>
 </rss>

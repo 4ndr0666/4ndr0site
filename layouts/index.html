@@ -279,10 +279,7 @@ jQuery(document).ready(function($) {
             case 'startx':
                 term.echo("loading ...");
                 loading();
-                setTimeout(function() {
-                    // Use Hugo's relURL function to correctly generate the relative URL
-                    window.location = "{{ "ascii-index.html" | relURL }}";
-                }, 2000);
+                setTimeout(function(){window.location = '{{ .Site.Params.startxLocation }}'}, 2000);
                 break;
             {{ end }}
             case ':(){:|:&};:':
@@ -293,12 +290,12 @@ jQuery(document).ready(function($) {
             case 'exit':
                 term.echo("terminating ... ")
                 loading();
-                setTimeout(function(){window.location = '{{ .Site.Params.exitLocation }}'}, 2000);
+                setTimeout(function(){window.location = '{{ "ascii-index.html" | relURL }}'}, 2000);
                 break;
             {{ end }}
             default:
                 term.echo("\nunknown command: " + command + "\n" +
-                          "please type 'help' for a list of available commands\n");
+                          "type 'help' for a list of available commands\n");
         }
     }, {
         prompt: '[[;{{ .Site.Params.promptColor | default "grey" }};]{{ .Site.Params.prompt }}][[;{{ .Site.Params.promptSimbolsColor | default "grey" }};]{{.Site.Params.promptSimbols | default ":~$"}}]' + " ",

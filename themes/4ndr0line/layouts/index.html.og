@@ -279,7 +279,10 @@ jQuery(document).ready(function($) {
             case 'startx':
                 term.echo("loading ...");
                 loading();
-                setTimeout(function(){window.location = '{{ .Site.Params.startxLocation }}'}, 2000);
+                setTimeout(function() {
+                    // Use Hugo's relURL function to generate the correct relative URL
+                    window.location = "{{ "ascii-index.html" | relURL }}";  // Dynamically link to the ASCII-style index
+                }, 2000);
                 break;
 //            case 'startx':
 //                term.echo("loading ...")
@@ -295,7 +298,7 @@ jQuery(document).ready(function($) {
             case 'exit':
                 term.echo("terminating ... ")
                 loading();
-                setTimeout(function(){window.location = '{{ "ascii-index.html" | relURL }}'}, 2000);
+                setTimeout(function(){window.location = '{{ .Site.Params.exitLocation }}'}, 2000);
                 break;
             {{ end }}
             default:
