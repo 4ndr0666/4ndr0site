@@ -5,18 +5,17 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
-# Needed for Pages deployment
+# Must have these or deploy will 404
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Don’t overlap deployments
+# Prevent overlapping deployments
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
-# Pin Hugo (extended) version
 env:
   HUGO_VERSION: 0.108.0
 
@@ -24,10 +23,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Hugo CLI (extended)
+      - name: Install Hugo (extended)
         run: |
-          wget -O $RUNNER_TEMP/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
-          sudo dpkg -i $RUNNER_TEMP/hugo.deb
+          wget -O "$RUNNER_TEMP/hugo.deb" "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i "$RUNNER_TEMP/hugo.deb"
 
       - name: Install Dart Sass Embedded
         run: sudo snap install dart-sass-embedded
@@ -37,11 +36,10 @@ jobs:
         with:
           submodules: recursive
 
+      # Configures Pages and outputs base_url
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
-        # If your repo's Pages source isn't already set to "GitHub Actions",
-        # configure-pages will handle enablement.
 
       - name: Build with Hugo
         env:
@@ -53,9 +51,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./public
-          name: github-pages
-          retention-days: 1
+          path: ./public  # must be the Hugo output dir
 
   deploy:
     needs: build
