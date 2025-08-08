@@ -8,7 +8,7 @@ categories:
 tags:
   - Guide
   - Docs
-draft: true
+draft: false
 ---
 
 # Deployment Guide

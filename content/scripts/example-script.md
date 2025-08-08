@@ -10,6 +10,6 @@ categories:
   - Mds
 tags:
   - Ubuntu
-draft: true
+draft: false
 ---
 <!--more-->

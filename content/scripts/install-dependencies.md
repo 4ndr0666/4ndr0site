@@ -9,7 +9,7 @@ tags:
   - Bash
   - Shell
   - Linux
-draft: true
+draft: false
 ---
 
 ## Install Dependencies

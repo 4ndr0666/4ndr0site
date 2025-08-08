@@ -8,7 +8,7 @@ categories:
 tags:
   - Python
   - Code
-draft: true
+draft: false
 ---
 
 ## Python Snippet

@@ -8,7 +8,7 @@ categories:
 tags:
   - Tutorial
   - Howto
-draft: true
+draft: false
 ---
 
 # Setup Nginx
