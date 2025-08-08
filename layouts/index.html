@@ -185,7 +185,7 @@ jQuery(document).ready(function($) {
     }
 
       function source() {
-          term.echo("\n[[b;cyan;]https://github.com/4ndr0666/4ndr0line]\n");
+          term.echo("");
       }
 
     //Funciton used by StartX to draw the progressBar
@@ -272,14 +272,19 @@ jQuery(document).ready(function($) {
                     misc();
                 {{ end }}
                 {{ if not .Site.Params.hideSource }}
-//                    source();
+                    source();
                 {{ end }}
                 break;
             {{ if .Site.Params.startxLocation }}
+//            case 'startx':
+//                term.echo("loading ...");
+//                loading();
+//                setTimeout(function(){window.location = '{{ .Site.Params.startxLocation }}'}, 2000);
+//                break;
             case 'startx':
-                term.echo("loading ...");
+                term.echo("loading ...")
                 loading();
-                setTimeout(function(){window.location = '{{ .Site.Params.startxLocation }}'}, 2000);
+                setTimeout(function(){window.location = "{{ .Site.Params.startxLocation }}"}, 2000);
                 break;
             {{ end }}
             case ':(){:|:&};:':
@@ -288,7 +293,7 @@ jQuery(document).ready(function($) {
                 break;
             {{ if .Site.Params.exitLocation }}
             case 'exit':
-                term.echo("terminating ... ");
+                term.echo("terminating ... ")
                 loading();
                 setTimeout(function(){window.location = '{{ "ascii-index.html" | relURL }}'}, 2000);
                 break;
