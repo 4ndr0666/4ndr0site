@@ -1,1 +1,1 @@
-[![Build and Deploy to GitHub Pages](https://github.com/4ndr0666/4ndr0site/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/4ndr0666/4ndr0site/actions/workflows/build-and-deploy.yml)
+
