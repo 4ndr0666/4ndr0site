@@ -44,7 +44,7 @@ jobs:
 
       # Step 3: Checkout the repository
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
