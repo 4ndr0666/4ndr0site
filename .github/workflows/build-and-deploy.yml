@@ -19,7 +19,7 @@ jobs:
 
       # Step 2: Cache Hugo installation for faster builds
       - name: Cache Hugo
-        uses: actions/cache@v2
+        uses: actions/cache@v4.2.4
         with:
           path: ~/.hugo
           key: ${{ runner.os }}-hugo-${{ hashFiles('config.toml') }}
