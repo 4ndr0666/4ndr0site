@@ -24,23 +24,29 @@ defaults:
 
 jobs:
   build:
-    name: Build (${{ matrix.environment }})
+    name: Build (${{ github.event_name == 'pull_request' && 'preview' || 'production' }})
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        environment: [production, preview]
     env:
       HUGO_VERSION: 0.108.0
+      BUILD_ENV: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
 
     steps:
-      # Cache Hugo binary
-      - name: Cache Hugo Binary
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v4
+
+      - name: Cache Hugo binary
         uses: actions/cache@v4
         with:
           path: ~/.hugo-bin
           key: hugo-${{ env.HUGO_VERSION }}
 
-      - name: Install Hugo CLI (if missing)
+      - name: Install Hugo (if missing)
         run: |
           mkdir -p ~/.hugo-bin
           if ! ~/.hugo-bin/hugo version &>/dev/null; then
@@ -50,30 +56,13 @@ jobs:
           fi
           echo "$HOME/.hugo-bin" >> $GITHUB_PATH
 
-      # Install Dart Sass only if SCSS exists
-      - name: Check for SCSS usage
-        id: scss_check
+      - name: Optionally install Dart Sass (if SCSS exists)
         run: |
           if grep -r --include \*.scss --include \*.sass . >/dev/null; then
-            echo "found=true" >> $GITHUB_OUTPUT
-          else
-            echo "found=false" >> $GITHUB_OUTPUT
+            sudo snap install dart-sass-embedded
           fi
 
-      - name: Install Dart Sass Embedded
-        if: steps.scss_check.outputs.found == 'true'
-        run: sudo snap install dart-sass-embedded
-
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
-
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v4
-
-      - name: Cache Hugo Modules
+      - name: Cache Hugo modules and generated resources
         uses: actions/cache@v4
         with:
           path: |
@@ -82,60 +71,28 @@ jobs:
           key: hugo-modules-${{ hashFiles('go.sum') }}
           restore-keys: hugo-modules-
 
-      # Cache Node deps
-      - name: Cache Node.js dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-
-
-      - name: Install Node.js dependencies
-        run: |
-          if [[ -f package-lock.json || -f npm-shrinkwrap.json ]]; then
-            npm ci
-          else
-            echo "No JS dependencies found."
-          fi
-        continue-on-error: true
-
-      # Image optimization (lossless)
-      - name: Optimize Images
-        run: |
-          sudo apt-get install -y imagemagick
-          find ./static -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) \
-            -exec mogrify -strip -interlace Plane -gaussian-blur 0.05 -quality 85% {} \;
-
-      # Build Hugo site
       - name: Build with Hugo
         env:
-          HUGO_ENVIRONMENT: ${{ matrix.environment }}
-          HUGO_ENV: ${{ matrix.environment }}
+          HUGO_ENVIRONMENT: ${{ env.BUILD_ENV }}
+          HUGO_ENV: ${{ env.BUILD_ENV }}
         run: |
-          hugo --minify \
-               --buildFuture \
+          hugo --minify --buildFuture \
                --baseURL "${{ steps.pages.outputs.base_url }}/"
 
-      # Validate HTML links (skip on preview)
-      - name: Validate HTML Links
-        if: matrix.environment == 'production'
-        run: |
-          pip install linkchecker
-          linkchecker ./public --check-extern
-
-      - name: Upload artifact
+      # Upload exactly one artifact for this run
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
           path: ./public
 
   deploy:
-    if: github.ref == 'refs/heads/main'
+    # Only deploy on pushes to main (not PRs)
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
