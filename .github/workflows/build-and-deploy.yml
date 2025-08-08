@@ -1,93 +1,63 @@
-# Builds and deploys Hugo site to GitHub Pages
-# Author: 4ndr0666
-name: Deploy Hugo site to Pages
+name: Build and Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+    branches: [ main ]
   workflow_dispatch:
 
+# Needed for Pages deployment
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Don’t overlap deployments
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
-defaults:
-  run:
-    shell: bash
+# Pin Hugo (extended) version
+env:
+  HUGO_VERSION: 0.108.0
 
 jobs:
   build:
-    name: Build (${{ github.event_name == 'pull_request' && 'preview' || 'production' }})
     runs-on: ubuntu-latest
-    env:
-      HUGO_VERSION: 0.108.0
-      BUILD_ENV: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
-
     steps:
+      - name: Install Hugo CLI (extended)
+        run: |
+          wget -O $RUNNER_TEMP/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
+          sudo dpkg -i $RUNNER_TEMP/hugo.deb
+
+      - name: Install Dart Sass Embedded
+        run: sudo snap install dart-sass-embedded
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - name: Configure Pages
+      - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
-
-      - name: Cache Hugo binary
-        uses: actions/cache@v4
-        with:
-          path: ~/.hugo-bin
-          key: hugo-${{ env.HUGO_VERSION }}
-
-      - name: Install Hugo (if missing)
-        run: |
-          mkdir -p ~/.hugo-bin
-          if ! ~/.hugo-bin/hugo version &>/dev/null; then
-            wget -O /tmp/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
-            sudo dpkg -i /tmp/hugo.deb
-            cp "$(which hugo)" ~/.hugo-bin/hugo
-          fi
-          echo "$HOME/.hugo-bin" >> $GITHUB_PATH
-
-      - name: Optionally install Dart Sass (if SCSS exists)
-        run: |
-          if grep -r --include \*.scss --include \*.sass . >/dev/null; then
-            sudo snap install dart-sass-embedded
-          fi
-
-      - name: Cache Hugo modules and generated resources
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cache/hugo
-            resources/_gen
-          key: hugo-modules-${{ hashFiles('go.sum') }}
-          restore-keys: hugo-modules-
+        # If your repo's Pages source isn't already set to "GitHub Actions",
+        # configure-pages will handle enablement.
 
       - name: Build with Hugo
         env:
-          HUGO_ENVIRONMENT: ${{ env.BUILD_ENV }}
-          HUGO_ENV: ${{ env.BUILD_ENV }}
+          HUGO_ENVIRONMENT: production
+          HUGO_ENV: production
         run: |
-          hugo --minify --buildFuture \
-               --baseURL "${{ steps.pages.outputs.base_url }}/"
+          hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
 
-      # Upload exactly one artifact for this run
-      - name: Upload Pages artifact
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
           path: ./public
+          name: github-pages
+          retention-days: 1
 
   deploy:
-    # Only deploy on pushes to main (not PRs)
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     environment:
