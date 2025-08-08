@@ -55,7 +55,7 @@ jobs:
 
       # Step 5: Cache Node.js dependencies (if any)
       - name: Cache Node.js dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
