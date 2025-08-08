@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w2.org/1999/xhtml">
-<html lang="en">
+<script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><html lang="en">
     <head>
 	<meta name="generator" content="Hugo 0.148.2">
             <meta charset="utf-8" />
@@ -165,7 +165,7 @@ jQuery(document).ready(function($) {
     }
 
       function source() {
-          term.echo("\n[[b;cyan;]https://github.com/4ndr0666/4ndr0line]\n");
+          term.echo("");
       }
 
     
@@ -252,14 +252,19 @@ jQuery(document).ready(function($) {
                     misc();
                 
                 
-
+                    source();
                 
                 break;
             
+
+
+
+
+
             case 'startx':
                 term.echo("loading ...");
                 loading();
-                setTimeout(function(){window.location = 'https:\/\/4ndr0debugger-jzvedaka2-4ndr0tools.vercel.app'}, 2000);
+                setTimeout(function(){window.location = 'https:\/\/4ndr0debugger-jzvedaka2-4ndr0tools.vercel.app\/'}, 2000);
                 break;
             
             case ':(){:|:&};:':
@@ -270,7 +275,7 @@ jQuery(document).ready(function($) {
             case 'exit':
                 term.echo("terminating ... ");
                 loading();
-                setTimeout(function(){window.location = '\/ascii-index.html'}, 2000);
+                setTimeout(function(){window.location = 'ascii-index.html'}, 2000);
                 break;
             
             default:
