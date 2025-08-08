@@ -7,7 +7,7 @@ on:
 
 # Required for Pages deployment (otherwise 404/“cannot find run”)
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
