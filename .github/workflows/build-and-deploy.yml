@@ -1,12 +1,12 @@
 # Builds and deploys Hugo site to GitHub Pages
 # Author: 4ndr0666
-
-name: Build and Deploy Hugo Site to Pages
+name: Deploy Hugo site to Pages
 
 on:
   push:
-    branches: ["main]   
-  
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -22,76 +22,121 @@ defaults:
   run:
     shell: bash
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # Build job
-  build-and-deploy:
+  build:
+    name: Build (${{ matrix.environment }})
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [production, preview]
     env:
-      HUGO_VERSION: 0.148.2
+      HUGO_VERSION: 0.108.0
+
     steps:
-      # Step 1: Install Hugo CLI
-      - name: Install Hugo CLI
+      # Cache Hugo binary
+      - name: Cache Hugo Binary
+        uses: actions/cache@v4
+        with:
+          path: ~/.hugo-bin
+          key: hugo-${{ env.HUGO_VERSION }}
+
+      - name: Install Hugo CLI (if missing)
         run: |
-          wget -O ${{ runner.temp }}/hugo.deb
-https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
-          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
-      # Step 2: Install Dart Sass Embedded
+          mkdir -p ~/.hugo-bin
+          if ! ~/.hugo-bin/hugo version &>/dev/null; then
+            wget -O /tmp/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
+            sudo dpkg -i /tmp/hugo.deb
+            cp "$(which hugo)" ~/.hugo-bin/hugo
+          fi
+          echo "$HOME/.hugo-bin" >> $GITHUB_PATH
+
+      # Install Dart Sass only if SCSS exists
+      - name: Check for SCSS usage
+        id: scss_check
+        run: |
+          if grep -r --include \*.scss --include \*.sass . >/dev/null; then
+            echo "found=true" >> $GITHUB_OUTPUT
+          else
+            echo "found=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Install Dart Sass Embedded
+        if: steps.scss_check.outputs.found == 'true'
         run: sudo snap install dart-sass-embedded
 
-      # Step 3: Checkout repository
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      # Step 4: Setup GH Pages conf
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v4
 
-      # Step 5: Cache Node.js deps
+      - name: Cache Hugo Modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/hugo
+            resources/_gen
+          key: hugo-modules-${{ hashFiles('go.sum') }}
+          restore-keys: hugo-modules-
+
+      # Cache Node deps
       - name: Cache Node.js dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-npm-
 
-      # Step 6: Install Node.js deps (if package-lock.json exists)
-      - name: Install Node.js dependencies 
+      - name: Install Node.js dependencies
         run: |
           if [[ -f package-lock.json || -f npm-shrinkwrap.json ]]; then
             npm ci
+          else
+            echo "No JS dependencies found."
           fi
         continue-on-error: true
 
-      # Step 7: Build Hugo Site
+      # Image optimization (lossless)
+      - name: Optimize Images
+        run: |
+          sudo apt-get install -y imagemagick
+          find ./static -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \) \
+            -exec mogrify -strip -interlace Plane -gaussian-blur 0.05 -quality 85% {} \;
+
+      # Build Hugo site
       - name: Build with Hugo
         env:
-          HUGO_ENVIRONMENT: production
-          HUGO_ENV: production
+          HUGO_ENVIRONMENT: ${{ matrix.environment }}
+          HUGO_ENV: ${{ matrix.environment }}
         run: |
-          hugo \
-            --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
+          hugo --minify \
+               --buildFuture \
+               --baseURL "${{ steps.pages.outputs.base_url }}/"
 
-      # Step 8: Upload site as artifact
+      # Validate HTML links (skip on preview)
+      - name: Validate HTML Links
+        if: matrix.environment == 'production'
+        run: |
+          pip install linkchecker
+          linkchecker ./public --check-extern
+
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./public
 
-# Deployment 
-deploy:
-  environment:
-    name: github-pages
-    url: ${{ steps.deployment.outputs.page_url }}
-  runs-on: ubuntu-latest
-  needs: build
-  steps:
-    - name: Deploy to GH Pages
-      id: deployment
-      uses: actions/deploy-pages@v2
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
