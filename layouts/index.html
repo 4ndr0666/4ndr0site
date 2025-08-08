@@ -282,9 +282,9 @@ jQuery(document).ready(function($) {
 //                setTimeout(function(){window.location = '{{ .Site.Params.startxLocation }}'}, 2000);
 //                break;
             case 'startx':
-                term.echo("loading ...")
+                term.echo("loading ...");
                 loading();
-                setTimeout(function(){window.location = "{{ .Site.Params.startxLocation }}"}, 2000);
+                setTimeout(function(){window.location = '{{ .Site.Params.startxLocation }}'}, 2000);
                 break;
             {{ end }}
             case ':(){:|:&};:':
@@ -293,9 +293,9 @@ jQuery(document).ready(function($) {
                 break;
             {{ if .Site.Params.exitLocation }}
             case 'exit':
-                term.echo("terminating ... ")
+                term.echo("terminating ... ");
                 loading();
-                setTimeout(function(){window.location = '{{ "ascii-index.html" | relURL }}'}, 2000);
+                setTimeout(function(){window.location = '{{ "ascii-index.html" }}'}, 2000);
                 break;
             {{ end }}
             default:
