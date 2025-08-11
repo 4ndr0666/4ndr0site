@@ -28,4 +28,62 @@
 </main>
 {{ end }}
 
-{{ define "main" }}{{ template "body" . }}{{ end }}
+{{ define "main" }}
+<main class="container" style="max-width:60rem;margin:0 auto;padding:2rem 1rem;">
+  <header style="margin-bottom:1.5rem;">
+    <h1 style="margin:0 0 .25rem 0;">{{ .Title }}</h1>
+    {{ with .Params.description }}<p style="margin:.25rem 0 0 0;opacity:.85;">{{ . }}</p>{{ end }}
+  </header>
+
+  {{ $pages := .RegularPagesRecursive }}{{ if not $pages }}{{ $pages = .Pages }}{{ end }}
+  <section aria-labelledby="scripts-list" style="margin-top:1rem;">
+    <h2 id="scripts-list" style="font-size:1.25rem;margin:0 0 .75rem 0;">Scripts</h2>
+    {{ if $pages }}
+      <ul style="list-style:none;padding:0;margin:0;">
+        {{ range $pages.ByDate.Reverse }}
+          <li style="margin:0 0 .75rem 0;">
+            <a href="{{ .Permalink }}" style="text-decoration:none;"><strong>{{ .Title }}</strong></a>
+            {{ with .Date }}<small style="opacity:.7;"> — {{ .Format "2006-01-02" }}</small>{{ end }}
+            {{ with .Summary }}<div style="opacity:.85;margin-top:.25rem;">{{ . }}</div>{{ end }}
+          </li>
+        {{ end }}
+      </ul>
+    {{ else }}<p>No published entries yet.</p>{{ end }}
+  </section>
+
+  <section style="margin-top:2rem;">
+    <h2 style="font-size:1.25rem;margin:0 0 .5rem 0;">Static Assets</h2>
+    <p style="margin:0;">Place raw files in <code>static/scripts/</code> to serve them at <code>{{ "/scripts/" | relURL }}</code>.</p>
+  </section>
+</main>
+{{ end }}
+
+{{ define "content" }}
+<main class="container" style="max-width:60rem;margin:0 auto;padding:2rem 1rem;">
+  <header style="margin-bottom:1.5rem;">
+    <h1 style="margin:0 0 .25rem 0;">{{ .Title }}</h1>
+    {{ with .Params.description }}<p style="margin:.25rem 0 0 0;opacity:.85;">{{ . }}</p>{{ end }}
+  </header>
+
+  {{ $pages := .RegularPagesRecursive }}{{ if not $pages }}{{ $pages = .Pages }}{{ end }}
+  <section aria-labelledby="scripts-list" style="margin-top:1rem;">
+    <h2 id="scripts-list" style="font-size:1.25rem;margin:0 0 .75rem 0;">Scripts</h2>
+    {{ if $pages }}
+      <ul style="list-style:none;padding:0;margin:0;">
+        {{ range $pages.ByDate.Reverse }}
+          <li style="margin:0 0 .75rem 0;">
+            <a href="{{ .Permalink }}" style="text-decoration:none;"><strong>{{ .Title }}</strong></a>
+            {{ with .Date }}<small style="opacity:.7;"> — {{ .Format "2006-01-02" }}</small>{{ end }}
+            {{ with .Summary }}<div style="opacity:.85;margin-top:.25rem;">{{ . }}</div>{{ end }}
+          </li>
+        {{ end }}
+      </ul>
+    {{ else }}<p>No published entries yet.</p>{{ end }}
+  </section>
+
+  <section style="margin-top:2rem;">
+    <h2 style="font-size:1.25rem;margin:0 0 .5rem 0;">Static Assets</h2>
+    <p style="margin:0;">Place raw files in <code>static/scripts/</code> to serve them at <code>{{ "/scripts/" | relURL }}</code>.</p>
+  </section>
+</main>
+{{ end }}
