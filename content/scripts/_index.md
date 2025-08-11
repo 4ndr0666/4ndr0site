@@ -10,3 +10,5 @@ description: "Collected scripts and notes."
 ---
 
 Below is the list of published script notes and documents.
+
+lastmod: 2025-08-11T01:13:53Z
