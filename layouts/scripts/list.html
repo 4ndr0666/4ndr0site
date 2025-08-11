@@ -14,7 +14,7 @@
       <ul style="list-style:none;padding:0;margin:0;">
         {{ range $pages.ByDate.Reverse }}
           <li style="margin:0 0 .75rem 0;">
-            <a href="{{ .RelPermalink }}" style="text-decoration:none;"><strong>{{ .Title }}</strong></a>
+            <a href="{{ .Permalink }}" style="text-decoration:none;"><strong>{{ .Title }}</strong></a>
             {{ with .Date }}<small style="opacity:.7;"> — {{ .Format "2006-01-02" }}</small>{{ end }}
             {{ with .Summary }}<div style="opacity:.85;margin-top:.25rem;">{{ . }}</div>{{ end }}
           </li>
