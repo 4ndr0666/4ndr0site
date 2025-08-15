@@ -19,7 +19,7 @@ concurrency:
 env:
   HUGO_VERSION: 0.108.0
 
-jobs:
+steps:
   build:
     runs-on: ubuntu-latest
     steps:
