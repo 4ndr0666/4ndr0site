@@ -5,13 +5,11 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
-# Permissions optimized for GitHub Pages delivery
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Concurrency management to prevent collision
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -44,7 +42,7 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Install Node.js dependencies
+      - name: Install Node.js deps
         run: |
           if [ -f package-lock.json ]; then
             npm ci
