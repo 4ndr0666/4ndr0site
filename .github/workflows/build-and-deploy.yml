@@ -17,8 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      HUGO_VERSION: 0.108.0
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,26 +27,12 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: ${{ env.HUGO_VERSION }}
-          extended: true
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
+          hugo-version: '0.108.0' # Sustaining your environment spec
+          extended: true          # Native Sass/SCSS support (Replaces Snap)
 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
-
-      - name: Install Node.js deps
-        run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          elif [ -f package.json ]; then
-            npm install
-          fi
 
       - name: Build with Hugo
         env:
