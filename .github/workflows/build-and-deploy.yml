@@ -5,18 +5,22 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+# Permissions optimized for GitHub Pages delivery
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Concurrency management to prevent collision
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.108.0
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,7 +31,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'
+          hugo-version: ${{ env.HUGO_VERSION }}
           extended: true
 
       - name: Setup Node
@@ -40,9 +44,11 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Install Dependencies
+      - name: Install Node.js dependencies
         run: |
-          if [ -f package.json ]; then
+          if [ -f package-lock.json ]; then
+            npm ci
+          elif [ -f package.json ]; then
             npm install
           fi
 
