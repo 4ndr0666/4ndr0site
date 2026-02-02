@@ -23,12 +23,9 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: '0.108.0' # Sustaining your environment spec
-          extended: true          # Native Sass/SCSS support (Replaces Snap)
+  
+      - name: Hugo setup
+        uses: peaceiris/actions-hugo@v3.0.0
 
       - name: Setup Pages
         id: pages
