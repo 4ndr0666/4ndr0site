@@ -10,7 +10,6 @@ params:
   promptSimbolsColor: LIME
   startxLocation: "https://4ndr0chat.vercel.app/"
   exitLocation: "/ascii-index.html"
-  greetingColor: "white"
   greeting: |
     # -- // LASCIATE OGNE SPERANZA, VOI CH'INTRATE.
   whois:
