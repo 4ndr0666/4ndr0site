@@ -1,1 +1,54 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Categories on 4ndr0666 | Online Archive</title><link>http://localhost:1313/categories/</link><description>Recent content in Categories on 4ndr0666 | Online Archive</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 09 Sep 2024 23:04:54 -0500</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml"/><item><title>Howtos</title><link>http://localhost:1313/categories/howtos/</link><pubDate>Mon, 09 Sep 2024 23:04:54 -0500</pubDate><guid>http://localhost:1313/categories/howtos/</guid><description/></item><item><title>Documentation</title><link>http://localhost:1313/categories/documentation/</link><pubDate>Mon, 09 Sep 2024 23:04:44 -0500</pubDate><guid>http://localhost:1313/categories/documentation/</guid><description/></item><item><title>Snippets</title><link>http://localhost:1313/categories/snippets/</link><pubDate>Mon, 09 Sep 2024 23:04:36 -0500</pubDate><guid>http://localhost:1313/categories/snippets/</guid><description/></item><item><title>Scripts</title><link>http://localhost:1313/categories/scripts/</link><pubDate>Mon, 09 Sep 2024 23:04:23 -0500</pubDate><guid>http://localhost:1313/categories/scripts/</guid><description/></item><item><title>ChatGPT</title><link>http://localhost:1313/categories/chatgpt/</link><pubDate>Mon, 09 Sep 2024 22:53:03 -0500</pubDate><guid>http://localhost:1313/categories/chatgpt/</guid><description/></item><item><title>Mds</title><link>http://localhost:1313/categories/mds/</link><pubDate>Mon, 09 Sep 2024 22:53:03 -0500</pubDate><guid>http://localhost:1313/categories/mds/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on 4ndr0666 | Online Archive</title>
+    <link>http://localhost:1313/categories/</link>
+    <description>Recent content in Categories on 4ndr0666 | Online Archive</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 09 Sep 2024 23:04:54 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Howtos</title>
+      <link>http://localhost:1313/categories/howtos/</link>
+      <pubDate>Mon, 09 Sep 2024 23:04:54 -0500</pubDate>
+      <guid>http://localhost:1313/categories/howtos/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Documentation</title>
+      <link>http://localhost:1313/categories/documentation/</link>
+      <pubDate>Mon, 09 Sep 2024 23:04:44 -0500</pubDate>
+      <guid>http://localhost:1313/categories/documentation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Snippets</title>
+      <link>http://localhost:1313/categories/snippets/</link>
+      <pubDate>Mon, 09 Sep 2024 23:04:36 -0500</pubDate>
+      <guid>http://localhost:1313/categories/snippets/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Scripts</title>
+      <link>http://localhost:1313/categories/scripts/</link>
+      <pubDate>Mon, 09 Sep 2024 23:04:23 -0500</pubDate>
+      <guid>http://localhost:1313/categories/scripts/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ChatGPT</title>
+      <link>http://localhost:1313/categories/chatgpt/</link>
+      <pubDate>Mon, 09 Sep 2024 22:53:03 -0500</pubDate>
+      <guid>http://localhost:1313/categories/chatgpt/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mds</title>
+      <link>http://localhost:1313/categories/mds/</link>
+      <pubDate>Mon, 09 Sep 2024 22:53:03 -0500</pubDate>
+      <guid>http://localhost:1313/categories/mds/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

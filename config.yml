@@ -1,4 +1,4 @@
-# Site Configuration
+---
 BaseURL: "http://localhost:1313/"
 languageCode: "en-us"
 title: "4ndr0666 | Online Archive"
@@ -10,7 +10,7 @@ params:
   promptColor: cyan
   promptSimbols: " >"
   promptSimbolsColor: LIME
-  startxLocation: "https://4ndr0debugger-git-main-4ndr0tools.vercel.app/"
+  startxLocation: "https://4ndr0chat.vercel.app"
   exitLocation: "/ascii-index.html"
   greeting: |
     # -- // LASCIATE OGNE SPERANZA, VOI CH'INTRATE.

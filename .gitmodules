@@ -1,3 +1,3 @@
-[submodule "themes/hugo-theme-shell"]
-	path = themes/hugo-theme-shell
-	url = https://github.com/4ndr0666/hugo-theme-shell.git
+[submodule "themes/4ndr0line"]
+	path = themes/4ndr0line
+	url = https://github.com/4ndr0666/4ndr0line.git
