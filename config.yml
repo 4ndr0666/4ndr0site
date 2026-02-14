@@ -3,7 +3,6 @@ languageCode: "en-us"
 title: "4ndr0666 | Online Archive"
 theme: "4ndr0line"
 
-# Enable/disable content sections
 params:
   prompt: "4ndr0666@192.168.1.1"
   promptColor: cyan
@@ -15,136 +14,41 @@ params:
     # -- // LASCIATE OGNE SPERANZA, VOI CH'INTRATE.
   whois:
     alias: "01_dolor.loftier@icloud.com"
-    id:    "genial_comrade0g@icloud.com"
+    id: "genial_comrade0g@icloud.com"
     id2: "iodine-drawls.0g@icloud.com"
-    description: Online Archive
+    description: "Online Archive"
   social:
     - name: "MaxUrl"
-      url: "     https://qsniyg.github.io/maxurl/"
+      url: "https://qsniyg.github.io/maxurl/"
     - name: "icloud+"
-      url: "     https://www.icloud.com/icloudplus/"
+      url: "https://www.icloud.com/icloudplus/"
     - name: "Links"
-      url: "     https://github.com/4ndr0666/Links/blob/main/README.md"
+      url: "https://github.com/4ndr0666/Links/blob/main/README.md"
     - name: "GSE"
-      url: "     https://cse.google.com/cse?cx=07382130c504b4ec9#gsc.tab=0"
+      url: "https://cse.google.com/cse?cx=07382130c504b4ec9#gsc.tab=0"
     - name: "Upscale"
-      url: "     https://imageupscaler.com/upscale-image-4x/#start"
-
-        #workexp:
-        #- jobTitle: Backend engineer
-        #color: green
-        #company: CIA
-        #location: M16, Eagle Nebula, NGC 6611
-        #date: August 2020 - Present
-        #description: Classified
-
-        #- jobTitle: Job with purple title
-        #color: purple
-        #company: '-'
-        #location: somewhere elese
-        #date: July 2000  - July 2010
-        #description: Some description about this purple job
-
-        #- jobTitle: Job with default color title
-        #company: '-'
-        #location: anywhere
-        #date: July 2008 - 2010
-        #description: Description about this default color job
-
-        #education:
-        #- courseName: Communication Assesment by ChatGPT
-        #color: red
-        #date: Sept 2023
-        #description: Descrption about red color trianing
-
-        #- courseName: Default color training
-        #date: Sept 2004 - Jun 2008
-     #description: There is no need for description
-
-        #skills:
-        #- name: Skill 1
-        #percentage: 90
-        #Description: you can add a description
-
-        #- name: Skill 2
-        #percentage: 30
-      #description: or you can leave it comented
-
-        #- name: Skill 3
-        #color: blue
-        #percentage: 50
-        #description: Skill names can have colors too
-
-        #softskills:
-        #- name: SoftSkill 1
-        #color: red
-        #percentage: 80
-      #description:
-
-        #- name:  SoftSkill 2
-      #color:
-      #percentage: 90
-      #description: Description
-
-        #languages:
-        #- name: Bash
-        #color: Blue
-        #percentage: 50
-      #description:
-
-        #- name: Python
-        #percentage: 100
-        #description:
-
+      url: "https://imageupscaler.com/upscale-image-4x/#start"
 
   projects:
-    - title: 4ndr0base.sh
+    - title: "4ndr0base.sh"
       color: LIME
-      description:  curl -LO https://github.com/4ndr0666/scr/4ndr0base.sh
-
-    - title: Awesome List
+      description: "curl -LO https://github.com/4ndr0666/scr/4ndr0base.sh"
+    - title: "Awesome List"
       color: LIME
-      link: https://github.com/stars/4ndr0666/lists/awesome
-      #description: nothing to describe
-
-    - title: Netboot.xyz
+      link: "https://github.com/stars/4ndr0666/lists/awesome"
+    - title: "Netboot.xyz"
       color: RED
-      link: https://github.com/4ndr0666/netboot.xyz-custom
-      #description: not there either
-
-        #certifications:
-    #- certName: CPT, NCSF, TRX1,2,3, MCT1,2
-    #company: TriggerPoint
-    #date: 2009
-    #description: severely disordered state of mind usually occurring as a specific disorder
+      link: "https://github.com/4ndr0666/netboot.xyz-custom"
 
   misc:
     commandName: scripts
     title: "Pick Your Poison:"
     titleColor: cyan
     content: |
-
-          1. Winutil - Make Windows Not Suck
-
-              Press Windows Key + R
-              Type "powershell"
-              Press Ctrl + Shift + Enter
-              Type "irm christitus.com/win | iex"
-
-          2. ChatGPT.sh - Terminal AI
-
-              wget https://gitlab.com/fenixdragao/shellchatgpt/-/raw/main/chatgpt.sh && chmod +x chatgpt.sh && ./chatgpt.sh
-
-          3. Micro - Modern Text Editor
-
-              curl https://getmic.ro | bash
-
-          4. Scrape Website Links
-
-              lynx -dump http:example.com | awk '/http/{print $2}'
-
-          5. 4ndr0update - My Update Suite
-
-              git clone https://github.com/4ndr0666/scr.git && cd scr/4ndr0tools/4ndr0update && chmod +x main.sh && ./main.sh
-
+      1. Winutil - Make Windows Not Suck
+          Type "irm christitus.com/win | iex" in Admin PowerShell
+      2. ChatGPT.sh - Terminal AI
+          wget https://gitlab.com/fenixdragao/shellchatgpt/-/raw/main/chatgpt.sh
+      3. Micro - Modern Text Editor
+          curl https://getmic.ro | bash
     contentColor: cyan
