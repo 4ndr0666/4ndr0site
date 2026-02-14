@@ -10,12 +10,18 @@ params:
   promptSimbolsColor: LIME
   startxLocation: "https://4ndr0chat.vercel.app/"
   exitLocation: "/ascii-index.html"
+  greetingColor: "white"
   greeting: |
     # -- // LASCIATE OGNE SPERANZA, VOI CH'INTRATE.
   whois:
+    name: "4ndr0666"
     alias: "01_dolor.loftier@icloud.com"
     id: "genial_comrade0g@icloud.com"
     id2: "iodine-drawls.0g@icloud.com"
+    profession: "Security Architect"
+    location: "The Void"
+    email: "01_dolor.loftier@icloud.com"
+    homelink: "https://4ndr0666.github.io/"
     description: "Online Archive"
   social:
     - name: "MaxUrl"
@@ -51,4 +57,3 @@ params:
           wget https://gitlab.com/fenixdragao/shellchatgpt/-/raw/main/chatgpt.sh
       3. Micro - Modern Text Editor
           curl https://getmic.ro | bash
-    contentColor: cyan
