@@ -29,7 +29,7 @@ jQuery(document).ready(function($) {
             {{ end }}
             {{ if .description }}
                 term.echo ("")
-                term.echo ("{{ .description }}")
+                term.echo (`{{ .description | safeJS }}`)
             {{ end }}
         {{ end }}
         term.echo ("");
@@ -40,13 +40,13 @@ jQuery(document).ready(function($) {
         {{ if .Site.Params.hideSocialName }}
             {{ with .Site.Params.social }}
                 {{ range . }}
-                    term.echo("{{ .url }}");
+                    term.echo("{{ .url | safeJS }}");
                 {{ end }}
             {{ end }}
         {{ else }}
             {{ with .Site.Params.social }}
                 {{ range . }}
-                    term.echo("{{ .name }}:" + "{{ .url }}");
+                    term.echo("{{ .name }}: " + "{{ .url | safeJS }}");
                 {{ end }}
             {{ end }}
         {{ end }}
@@ -63,7 +63,7 @@ jQuery(document).ready(function($) {
                     term.echo("{{ .company }}");
                 {{ end }}
                 {{ if .description }}
-                    term.echo("{{ .description }}");
+                    term.echo(`{{ .description | safeJS }}`);
                 {{ end }}
                 term.echo("-------------------- ");
                 term.echo("");
@@ -80,7 +80,7 @@ jQuery(document).ready(function($) {
                 term.echo("{{ .location}}");
                 term.echo("{{ .date }}");
                 term.echo ("");
-                term.echo("{{ .description }}");
+                term.echo(`{{ .description | safeJS }}`);
                 term.echo("-------------------- ");
                 term.echo("");
             {{ end }}
@@ -94,7 +94,7 @@ jQuery(document).ready(function($) {
                 term.echo("[[b;{{ .color | default "grey" }};]{{ .courseName }}]");
                 term.echo("{{ .date }}");
                 {{ if .description }}
-                    term.echo("{{ .description }}");
+                    term.echo(`{{ .description | safeJS }}`);
                 {{ end }}
                 term.echo("-------------------- ");
                 term.echo("");
@@ -113,7 +113,7 @@ jQuery(document).ready(function($) {
                         bar_filled + bar_blank +
                         {{ .percentage }} +"%");
                 {{ if .description }}
-                    term.echo("{{ .description }}");
+                    term.echo(`{{ .description | safeJS }}`);
                 {{ end }}
                 term.echo ("")
             {{ end }}
@@ -130,7 +130,7 @@ jQuery(document).ready(function($) {
                        bar_filled + bar_blank +
                        {{ .percentage }} +"%");
                 {{ if .description }}
-                    term.echo("{{ .description }}");
+                    term.echo(`{{ .description | safeJS }}`);
                 {{ end }}
                 term.echo ("")
             {{ end }}
@@ -148,7 +148,7 @@ jQuery(document).ready(function($) {
                         "" + bar_filled + bar_blank +
                         " " + {{ .percentage }} +"%");
                 {{ if .description }}
-                    term.echo("{{ .description }}");
+                    term.echo(`{{ .description | safeJS }}`);
                 {{ end }}
                 term.echo("")
             {{ end }}
@@ -162,9 +162,9 @@ jQuery(document).ready(function($) {
             {{ range .}}
                 term.echo("[[b;{{ .color | default "grey" }};]{{ .title }}]");
                 term.echo("{{ .date }}")
-                term.echo("{{ .link }}")
+                term.echo("{{ .link | safeJS }}")
                 {{ if .description }}
-                    term.echo("{{ .description }}");
+                    term.echo(`{{ .description | safeJS }}`);
                 {{ end }}
                 term.echo("-----------------------");
                 term.echo("");
@@ -175,7 +175,7 @@ jQuery(document).ready(function($) {
     function misc (){
         term.echo ("")
         term.echo("[[b;{{ .Site.Params.misc.titleColor }};]{{ .Site.Params.misc.title }}]" + "\n")
-        term.echo ("[[;{{.Site.Params.misc.contentColor }};]{{ .Site.Params.misc.content }}]")
+        term.echo (`[[;{{.Site.Params.misc.contentColor }};]{{ .Site.Params.misc.content | safeJS }}]`)
         term.echo ("")
     }
 
@@ -186,9 +186,9 @@ jQuery(document).ready(function($) {
 
       function source() {
           term.echo("");
+          term.echo("Repository: https://github.com/4ndr0666/4ndr0site");
       }
 
-    //Funciton used by StartX to draw the progressBar
     function progress(percent, width) {
         var size = Math.round(width*percent/100);
         var left = '', taken = '', i;
@@ -204,20 +204,19 @@ jQuery(document).ready(function($) {
         return '[' + taken + left + '] ' + percent + '%';
     }
 
-    function loading () {
+    function loading (callback) {
         var i = 0, size = 30;
-        prompt = term.get_prompt();
-        string = progress(0, size);
-        term.set_prompt(progress);
+        var current_prompt = term.get_prompt();
         animation = true;
         (function loop() {
-            string = progress(i++, size);
+            var string = progress(i++, size);
             term.set_prompt(string);
             if (i < 100) {
                 timer = setTimeout(loop, 10);
             } else {
-                term.echo(progress(i, size) + ' [[b;green;]OK]').set_prompt(prompt);
-                animation = false
+                term.echo(progress(i, size) + ' [[b;green;]OK]').set_prompt(current_prompt);
+                animation = false;
+                if (callback) callback();
             }
         })();
     }
@@ -261,11 +260,6 @@ jQuery(document).ready(function($) {
             case 'all':
                 whois();
                 social();
-//                work();
-//                education();
-//                skills();
-//                softskills();
-//                languages();
                 projects();
 		certifications();
                 {{ if .Site.Params.misc }}
@@ -275,42 +269,30 @@ jQuery(document).ready(function($) {
                     source();
                 {{ end }}
                 break;
-            {{ if .Site.Params.startxLocation }}
-//            case 'startx':
-//                term.echo("loading ...");
-//                loading();
-//                setTimeout(function(){window.location = '{{ .Site.Params.startxLocation }}'}, 2000);
-//                break;
             case 'startx':
                 term.echo("loading ...");
-                loading();
-                setTimeout(function(){window.location = '{{ .Site.Params.startxLocation }}'}, 2000);
+                loading(function(){ window.location = "{{ .Site.Params.startxLocation | safeJS }}"; });
                 break;
-            {{ end }}
-            case ':(){:|:&};:':
             case 'source':
                 source();
                 break;
-            {{ if .Site.Params.exitLocation }}
             case 'exit':
                 term.echo("terminating ... ");
-                loading();
-                setTimeout(function(){window.location = {{ "/scripts/" | relURL }}}, 2000);
+                loading(function(){ window.location = "{{ .Site.Params.exitLocation | relURL }}"; });
                 break;
-            {{ end }}
             default:
                 term.echo("\nunknown command: " + command + "\n" +
                           "type 'help' for a list of available commands\n");
         }
     }, {
         prompt: '[[;{{ .Site.Params.promptColor | default "grey" }};]{{ .Site.Params.prompt }}][[;{{ .Site.Params.promptSimbolsColor | default "grey" }};]{{.Site.Params.promptSimbols | default ":~$"}}]' + " ",
-        greetings: "[[b;{{ .Site.Params.greetingColor | default "white" }};]{{ .Site.Params.greeting }}]",
+        greetings: `[[b;{{ .Site.Params.greetingColor | default "white" }};]{{ .Site.Params.greeting | safeJS }}]`,
         keydown: function(e, term) {
             if (animation) {
                 if (e.which == 68 && e.ctrlKey) { // CTRL+D
                     clearTimeout(timer);
                     animation = false;
-                    term.echo(string + ' [[b;red;]FAIL]')
+                    term.echo(' [[b;red;]FAIL]')
                     .set_prompt(prompt);
                 }
                 return false;
