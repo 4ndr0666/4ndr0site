@@ -1,124 +1,118 @@
-{{ define "main" }}
-{{ partial "banner.html" . }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ .Site.Title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.33.2/js/jquery.terminal.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.33.2/css/jquery.terminal.min.css" rel="stylesheet"/>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
 
-<!-- Popular Categories 
-<div class="popular-categories">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="section-title mb-4 mb-md-3">
-          <h2 class="h4">{{ i18n "popular_categories" }}</h2>
-        </div>
-      </div>
-      <div class="col-12">
-        <ul class="list-unstyled category-list list-inline align-items-center">
-          {{ range site.Taxonomies.categories.ByCount }}
-          <li class="category-item list-inline-item text-center shadow">
-            <a class="d-block" href="{{ .Page.Permalink }}" data-text="{{ substr .Page.Title 0 1 }}">{{ .Page.Title }} <sup>({{ .Count }})</sup></a>
-          </li>
-          {{ end }}
-          <li class="category-item list-inline-item text-center shadow">
-            <a class="d-block" href="{{ `categories/` | absLangURL }}">All Categories <span class="fas fa-chevron-right"></span></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-/Popular Categories -->
-<!--Back to Top addition-->
-{{ partial "backtotop.html" . }}
-<!---->
-<!-- blog -->
-<section class="section">
-  <h1 class="visually-hidden">{{ site.Title }}</h1>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-10 mx-auto">
-        {{ $paginator := .Paginate (where site.RegularPages "Section" "in" site.Params.mainSections ) }}
-        {{ range $i, $p := $paginator.Pages }}
-        {{ if eq $i 0 }}{{ $p.Store.Set "isLCP" true }}{{ end }}
-        {{ $p.Render "article-w-image" }}
-        {{ end }}
-        <!-- pagination -->
-        <div class="mt-5 pt-4">
-          {{"<!-- pagination -->" | safeHTML }}
-          {{ $paginator := .Paginator }}
-          <!-- Number of links either side of the current page. -->
-          {{ $adjacent_links := 2 }}
-          <!-- $max_links = ($adjacent_links * 2) + 1 -->
-          {{ $max_links := (add (mul $adjacent_links 2) 1) }}
-          <!-- $lower_limit = $adjacent_links + 1 -->
-          {{ $lower_limit := (add $adjacent_links 1) }}
-          <!-- $upper_limit = $paginator.TotalPages - $adjacent_links -->
-          {{ $upper_limit := (sub $paginator.TotalPages $adjacent_links) }}
-          <!-- If there's more than one page. -->
-          {{ if gt $paginator.TotalPages 1 }}
-          <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center align-items-center">
-              <!-- Previous page. -->
-              {{ if $paginator.HasPrev }}
-              <li class="page-item">
-                <a href="{{ $paginator.Prev.URL }}" class="page-link" aria-label="See Newer Posts">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
-                </a>
-              </li>
-              {{ end }}
-              <!-- Page numbers. -->
-              {{ range $paginator.Pagers }}
-              {{ $.Scratch.Set "page_number_flag" false }}
-              <!-- Advanced page numbers. -->
-              {{ if gt $paginator.TotalPages $max_links }}
-              <!-- Lower limit pages. -->
-              <!-- If the user is on a page which is in the lower limit.  -->
-              {{ if le $paginator.PageNumber $lower_limit }}
-              <!-- If the current loop page is less than max_links. -->
-              {{ if le .PageNumber $max_links }}
-              {{ $.Scratch.Set "page_number_flag" true }}
-              {{ end }}
-              <!-- Upper limit pages. -->
-              <!-- If the user is on a page which is in the upper limit. -->
-              {{ else if ge $paginator.PageNumber $upper_limit }}
-              <!-- If the current loop page is greater than total pages minus $max_links -->
-              {{ if gt .PageNumber (sub $paginator.TotalPages $max_links) }}
-              {{ $.Scratch.Set "page_number_flag" true }}
-              {{ end }}
-              <!-- Middle pages. -->
-              {{ else }}
-              {{ if and ( ge .PageNumber (sub $paginator.PageNumber $adjacent_links) ) ( le .PageNumber (add $paginator.PageNumber $adjacent_links) ) }}
-              {{ $.Scratch.Set "page_number_flag" true }}
-              {{ end }}
-              {{ end }}
-              <!-- Simple page numbers. -->
-              {{ else }}
-              {{ $.Scratch.Set "page_number_flag" true }}
-              {{ end }}
-              <!-- Output page numbers. -->
-              {{ if eq ($.Scratch.Get "page_number_flag") true }}
-              <li class="page-item{{ if eq . $paginator }} page-item active {{ end }}">
-                <a href="{{ .URL }}" class="page-link">
-                  {{ .PageNumber }}
-                </a>
-              </li>
-              {{ end }}
-              {{ end }}
-              <!-- Next page. -->
-              {{ if $paginator.HasNext }}
-              <li class="page-item">
-                <a href="{{ $paginator.Next.URL }}" class="page-link" aria-label="See Older Posts">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
-                </a>
-              </li>
-              {{ end }}
-            </ul>
-          </nav>
-          {{ end }}
-          {{"<!-- /pagination -->" | safeHTML }}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- /blog -->
+    <style>
+        :root {
+            --bg-dark-base: #050A0F;
+            --accent-cyan: #00E5FF;
+            --text-cyan-active: #67E8F9;
+            --accent-cyan-border-idle: rgba(0, 229, 255, 0.2);
+        }
 
-{{ end }}
+        body, html {
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
+            background-color: var(--bg-dark-base);
+            color: var(--accent-cyan);
+            font-family: 'Roboto Mono', monospace;
+            overflow: hidden;
+        }
+
+        #4ndr0-terminal {
+            height: 100vh; width: 100vw;
+            --size: 1.2;
+            --color: var(--accent-cyan);
+            --background: var(--bg-dark-base);
+        }
+
+        /* SCANLINE EFFECT */
+        body::after {
+            content: " ";
+            display: block; position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 999;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .terminal { text-shadow: 0 0 8px rgba(0, 229, 255, 0.4); }
+        .terminal::-webkit-scrollbar { width: 6px; }
+        .terminal::-webkit-scrollbar-thumb { 
+            background: var(--accent-cyan-border-idle); 
+            border-radius: 3px; 
+        }
+    </style>
+</head>
+<body>
+    <div id="4ndr0-terminal"></div>
+
+    <div id="glyph-container" style="display:none;">
+        <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#00E5FF" stroke-width="3">
+            <path d="M 64,12 A 52,52 0 1 1 63.9,12 Z" stroke-dasharray="21.78 21.78" stroke-width="2" />
+            <path d="M 64,20 A 44,44 0 1 1 63.9,20 Z" stroke-dasharray="10 10" stroke-width="1.5" opacity="0.7" />
+            <path d="M64 30 L91.3 47 L91.3 81 L64 98 L36.7 81 L36.7 47 Z" />
+            <text x="64" y="75" text-anchor="middle" fill="#00E5FF" stroke="none" font-size="56" font-weight="700" font-family="serif">Ψ</text>
+        </svg>
+    </div>
+
+    <script>
+    jQuery(document).ready(function($) {
+        const greeting = `{{ .Site.Params.terminal.greeting | safeJS }}`;
+        
+        const term = $('#4ndr0-terminal').terminal({
+            help: function() {
+                this.echo("\n[[b;white;]OPERATIONAL COMMANDS:]");
+                this.echo("  [[b;cyan;]startx]\t- AUTHORIZE GUI BOOT");
+                this.echo("  [[b;cyan;]whois]\t- IDENTITY QUERY");
+                this.echo("  [[b;cyan;]clear]\t- PURGE BUFFER");
+                this.echo("  [[b;cyan;]exit]\t- DISCONNECT SESSION\n");
+            },
+            whois: function() {
+                this.echo("\n[[b;grey;]Operator:]\t{{ .Site.Params.author }}");
+                this.echo("[[b;grey;]Cortex:]\t\tOPERATIONAL");
+                this.echo("[[b;grey;]Interface:]\tv5.0.0-Ψ\n");
+            },
+            startx: function() {
+                this.echo("\n[[b;cyan;]BYPASSING CLI... INITIALIZING GUI]");
+                let i = 0;
+                const loader = setInterval(() => {
+                    this.set_prompt("[" + "#".repeat(i) + "-".repeat(20 - i) + "] " + (i * 5) + "%");
+                    if (i++ >= 20) {
+                        clearInterval(loader);
+                        window.location.href = "{{ `posts/` | relURL }}";
+                    }
+                }, 40);
+            },
+            exit: function() {
+                this.echo("TERMINATING UPLINK...");
+                setTimeout(() => { window.location.href = "{{ .Site.Params.terminal.exitLocation | relURL }}"; }, 1000);
+            }
+        }, {
+            greetings: greeting,
+            prompt: '4ndr0666@cortex > ',
+            checkArity: false
+        });
+
+        // DYNAMIC PROMPT
+        fetch('https://api.ipify.org?format=json')
+            .then(res => res.json())
+            .then(data => { term.set_prompt(`4ndr0666@${data.ip} > `); })
+            .catch(() => {});
+    });
+    </script>
+</body>
+</html>

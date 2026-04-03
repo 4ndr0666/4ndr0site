@@ -1,9 +1,134 @@
 {{ if site.Params.preloader.enable }}
-{{ "<!-- preloader start -->" | safeHTML }}
-<div class="preloader">
-  {{ if ne site.Params.preloader.preloader "" }}
-  <img src="{{ site.Params.preloader.preloader | absURL }} " alt="preloader">
-  {{ end }}
+<div class="preloader 4ndr0-boot-env">
+  <div class="boot-container">
+    <div class="boot-logs" id="boot-logs">
+      </div>
+    
+    {{ if ne site.Params.preloader.preloader "" }}
+    <div class="boot-logo-wrapper mt-4">
+      <img src="{{ site.Params.preloader.preloader | absURL }}" alt="SYSTEM_LOGO" class="boot-logo">
+    </div>
+    {{ end }}
+    
+    <div class="boot-status mt-3">
+      <span class="status-blink">_</span> INITIALIZING_CORTEX...
+    </div>
+  </div>
 </div>
-{{ "<!-- preloader end -->" | safeHTML }}
+
+<style>
+  .4ndr0-boot-env {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #050A0F; /* Deep Void */
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-cyan);
+    font-family: var(--primary_font);
+    overflow: hidden;
+  }
+
+  /* Scanline Overlay Persistence */
+  .4ndr0-boot-env::after {
+    content: " ";
+    display: block; position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+    z-index: 10001;
+    background-size: 100% 4px;
+    pointer-events: none;
+    opacity: 0.2;
+  }
+
+  .boot-container {
+    width: 80%;
+    max-width: 600px;
+    text-align: left;
+  }
+
+  .boot-logs {
+    font-size: 0.8rem;
+    height: 150px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    opacity: 0.8;
+  }
+
+  .log-line {
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid transparent;
+  }
+
+  .boot-logo {
+    max-width: 150px;
+    filter: drop-shadow(0 0 10px var(--glow-cyan-active)) grayscale(1) brightness(1.5);
+    opacity: 0.6;
+  }
+
+  .boot-status {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--glow-cyan-active);
+  }
+
+  .status-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    from, to { color: transparent; }
+    50% { color: var(--accent-cyan); }
+  }
+
+  .preloader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s;
+  }
+</style>
+
+<script>
+  (function() {
+    const logs = [
+      "4NDR0666OS KERNEL v5.0.0-Ψ INITIALIZED",
+      "CPU: CORTEX-A666 @ AKASHA_CORE",
+      "MOUNTING /dev/akasha/root...",
+      "AUTHORIZING PROXY ACCESS...",
+      "LOADING 3LECTRIC_GLASS ENGINE...",
+      "ESTABLISHING SECURE UPLINK...",
+      "DECRYPTING SECTOR 0x0... SUCCESS",
+      "CHECKING SYSTEM INTEGRITY... 100%",
+      "BOOT_SUCCESSFUL."
+    ];
+
+    const logContainer = document.getElementById('boot-logs');
+    let lineIndex = 0;
+
+    function addLog() {
+      if (lineIndex < logs.length) {
+        const div = document.createElement('div');
+        div.className = 'log-line';
+        div.innerHTML = `[ <span style="color:var(--text-cyan-active)">OK</span> ] ${logs[lineIndex]}`;
+        logContainer.appendChild(div);
+        lineIndex++;
+        setTimeout(addLog, Math.random() * 150 + 50);
+      } else {
+        setTimeout(() => {
+          document.querySelector('.preloader').classList.add('fade-out');
+        }, 500);
+      }
+    }
+
+    window.addEventListener('load', () => {
+      addLog();
+    });
+  })();
+</script>
 {{ end }}

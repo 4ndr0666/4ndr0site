@@ -1,9 +1,16 @@
-<!-- cookie -->
 {{ if site.Params.cookies.enable }}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.5/js.cookie.min.js" integrity="sha512-nlp9/l96/EpjYBx7EP7pGASVXNe80hGhYAUrjeXnu/fyF5Py0/RXav4BBNs7n5Hx1WFhOEOWSAVjGeC3oKxDVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<div id="js-cookie-box" class="cookie-box cookie-box-hide">
-  This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary rounded ms-2">I Accept</span>
+
+<div id="js-cookie-box" class="cookie-box cookie-box-hide glass-panel">
+  <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center gap-3">
+    <span class="auth-text">
+      <span class="text-cyan-glitch">[!] NOTICE:</span> CORTEX DATA TRACKING AUTHORIZATION REQUIRED. 
+      <small class="d-block d-md-inline opacity-75">CONTINUED SESSION CONSTITUTES CONSENT.</small>
+    </span>
+    <span id="js-cookie-button" class="hud-button btn-sm">I ACCEPT</span>
+  </div>
 </div>
+
 <script>
   (function () {
     const cookieBox = document.getElementById('js-cookie-box');
@@ -20,23 +27,52 @@
   })();
 </script>
 
-<!-- cookie style -->
 <style>
-.cookie-box {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  text-align: center;
-  z-index: 9999;
-  padding: 1rem 2rem;
-  background: #152035;
-  transition: all .75s cubic-bezier(.19, 1, .22, 1);
-  color: #fdfdfd;
-}
+  .cookie-box {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    padding: 1.5rem 2rem;
+    /* 3LECTRIC_GLASS Specification */
+    background: var(--bg-glass-panel) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-top: 1px solid var(--accent-cyan-border-idle);
+    transition: all .75s cubic-bezier(.19, 1, .22, 1);
+    color: var(--accent-cyan);
+    font-family: var(--primary_font);
+  }
 
-.cookie-box-hide {
-  display: none;
-}
+  .auth-text {
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+  }
+
+  .text-cyan-glitch {
+    color: var(--text-cyan-active);
+    font-weight: bold;
+    text-shadow: 0 0 8px var(--glow-cyan-active);
+  }
+
+  .cookie-box-hide {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* HUD Button Override for Script Context */
+  #js-cookie-button {
+    min-width: 120px;
+    justify-content: center;
+    border-color: var(--accent-cyan);
+    font-weight: 700;
+  }
+  
+  #js-cookie-button:hover {
+    box-shadow: 0 0 15px var(--glow-cyan-active);
+    background: var(--accent-cyan-bg-active);
+  }
 </style>
 {{ end }}

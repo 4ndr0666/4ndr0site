@@ -1,3 +1,63 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
 
-<div class="notices {{ .Get 0 }}" {{ if len .Params | eq 2 }} id="{{ .Get 1 }}" {{ end }}><p>{{ .Inner | markdownify }}</p></div>
+<div class="notices hud-alert glass-panel {{ .Get 0 }}" {{ if len .Params | eq 2 }} id="{{ .Get 1 }}" {{ end }}>
+  <div class="hud-alert-inner">
+    <div class="alert-type-tag">[ {{ .Get 0 | upper | default "LOG" }} ]</div>
+    <div class="alert-content">
+      <p>{{ .Inner | markdownify }}</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hud-alert {
+    position: relative;
+    margin: 2rem 0;
+    padding: 1.25rem;
+    border-left: 4px solid var(--accent-cyan);
+    background: var(--bg-glass-panel);
+    font-family: var(--primary_font);
+  }
+
+  .hud-alert-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .alert-type-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--accent-cyan);
+    text-shadow: 0 0 8px var(--glow-cyan-active);
+  }
+
+  .alert-content p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: var(--text-cyan-active);
+    line-height: 1.6;
+  }
+
+  /* Notice Type Overrides */
+  .hud-alert.warning {
+    border-left-color: #FF003C; /* Sector Warning Red */
+  }
+  .hud-alert.warning .alert-type-tag {
+    color: #FF003C;
+    text-shadow: 0 0 8px rgba(255, 0, 60, 0.5);
+  }
+
+  .hud-alert.tip {
+    border-left-color: #00FF41; /* Matrix Green */
+  }
+  .hud-alert.tip .alert-type-tag {
+    color: #00FF41;
+    text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+  }
+
+  .hud-alert.info {
+    border-left-color: var(--accent-cyan);
+  }
+</style>

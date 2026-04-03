@@ -1,6 +1,59 @@
-<div class="widget widget-about">
-    <h5 class="widget-title">Table of Contents</h5>
-    <aside>
-        {{.TableOfContents}}
-    </aside>
-</div>
+<h5 class="widget-title">NAV_LOG</h5>
+<aside class="hud-toc-container">
+  {{ .TableOfContents }}
+</aside>
+
+<style>
+  /* Targeting Hugo's Auto-Generated Markup */
+  .hud-toc-container nav {
+    position: relative;
+  }
+
+  .hud-toc-container nav ul {
+    list-style: none;
+    padding-left: 15px;
+    margin-bottom: 0;
+    border-left: 1px solid var(--accent-cyan-border-idle);
+  }
+
+  .hud-toc-container nav ul li {
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  /* Connection Lines Aesthetic */
+  .hud-toc-container nav ul li::before {
+    content: "";
+    position: absolute;
+    left: -15px;
+    top: 12px;
+    width: 10px;
+    height: 1px;
+    background: var(--accent-cyan-border-idle);
+  }
+
+  .hud-toc-container nav ul li a {
+    color: var(--accent-cyan);
+    font-size: 0.75rem;
+    font-family: var(--primary_font);
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+    opacity: 0.8;
+  }
+
+  .hud-toc-container nav ul li a:hover {
+    color: var(--text-cyan-active);
+    opacity: 1;
+    transform: translateX(3px);
+    text-shadow: 0 0 8px var(--glow-cyan-active);
+  }
+
+  /* Active Node Logic (Assumes ScrollSpy or Hugo active classes) */
+  .hud-toc-container nav ul li a.active {
+    color: var(--text-cyan-active);
+    opacity: 1;
+    font-weight: 700;
+  }
+</style>

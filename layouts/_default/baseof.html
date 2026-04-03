@@ -5,23 +5,66 @@
   {{ partial "head.html" . }}
   {{ partialCached "style.html" . }}
   {{ partial "structured-data.html" . }}
+  
+  <style>
+    /* 3LECTRIC_GLASS GLOBAL IMMERSION */
+    :root {
+      background-color: var(--bg-dark-base) !important;
+    }
+
+    body {
+      background-color: var(--bg-dark-base);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* CRT/SCANLINE OVERLAY PERSISTENCE */
+    body::before {
+      content: " ";
+      display: block;
+      position: fixed;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                  linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+      z-index: 9999;
+      background-size: 100% 2px, 3px 100%;
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    main {
+      flex: 1 0 auto;
+    }
+
+    /* Selection Glow */
+    ::selection {
+      background: var(--accent-cyan);
+      color: var(--bg-dark-base);
+      text-shadow: none;
+    }
+  </style>
 </head>
 
-<body>
-  <!-- WCAG 2.4.1: Skip navigation link - visually hidden until focused -->
-  <a class="visually-hidden-focusable position-absolute" href="#main-content">Skip to main content</a>
-  {{- partial "header.html" . -}}
-  <main id="main-content">
-  {{- block "main" . }}
-  {{- end }}
-  </main>
-  <!-- Copy Code Button -->
-  {{ if and (findRE "pre.*?" .Content 1) (.Site.Params.code_copy_button) }}
-  <script defer src="/js/code-copy.js"></script>
-  {{ end  }}
-  <!-- END Copy Code Button -->
-  {{ partial "footer.html" . }}
-  {{ partial "script.html" . }}
-</body>
+<body class="4ndr0-gui-environment">
+  <a class="visually-hidden-focusable position-absolute" href="#main-content" style="z-index: 10001; top: 1rem; left: 1rem; background: var(--accent-cyan); color: var(--bg-dark-base); padding: 0.5rem;">Skip to main content</a>
 
+  {{- partial "header.html" . -}}
+
+  <main id="main-content">
+    {{- block "main" . }}
+    {{- end }}
+  </main>
+
+  {{ partial "footer.html" . }}
+
+  {{ partial "script.html" . }}
+
+  {{ if and (findRE "pre.*? " .Content 1) (.Site.Params.code_copy_button) }}
+  <script defer src="/js/code-copy.js"></script>
+  {{ end }}
+
+</body>
 </html>

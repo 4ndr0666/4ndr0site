@@ -1,39 +1,109 @@
-<!-- TWITCH Embed
-<section>
-  <div class="container bannerpad">
-    <script src="https://player.twitch.tv/js/embed/v1.js"></script>
-    <div class="twitch-container">
-      <div id="twitchplayer"></div>
-    </div>
-    <script type="text/javascript">
-      var options = {
-        width: "100%",
-        height: "100%",
-        channel: "christitustech",
-        parent: ["christitus.com"],
-        muted: true
-      };
-      var player = new Twitch.Player("twitchplayer", options);
-      player.setVolume(0.0);
-    </script>
-
-  </div>
-</section>
--->
-
-<!-- original banner 
-<section class="banner-creative" style="background-image:url('{{ site.Params.banner.bg_image | absURL }}')">
+<section class="4ndr0-banner-hud" style="background-image: linear-gradient(rgba(5, 10, 15, 0.8), rgba(5, 10, 15, 0.8)), url('{{ site.Params.banner.bg_image | absURL }}')">
   <div class="container">
     <div class="row align-items-center justify-content-between">
       <div class="col-lg-8 mb-4 mb-lg-0 order-1 order-lg-0">
-        <h1 class="title">{{ site.Params.banner.title | markdownify }}</h1>
+        <div class="hud-status-line mb-3">
+          <span class="status-bracket">[</span> 
+          <span class="status-text">STATUS: CORTEX_UPLINK_ESTABLISHED</span> 
+          <span class="status-bracket">]</span>
+        </div>
+        <h1 class="hud-title">
+          {{ site.Params.banner.title | markdownify }}
+        </h1>
+        <div class="hud-sub-line mt-3">
+          <span class="glitch-text" data-text="OS.VERSION.5.0.0-Ψ">OS.VERSION.5.0.0-Ψ</span>
+        </div>
       </div>
+
       {{ with site.Params.banner.image }}
       <div class="col-lg-4 col-md-4 col-sm-6 order-0 order-lg-1 mb-5 mb-lg-0">
-        <img class="w-100" src="{{ . | absURL }}" alt="{{ site.Title }}">
+        <div class="glass-frame p-3">
+          <img class="img-fluid hud-asset-render" src="{{ . | absURL }}" alt="{{ site.Title }}">
+        </div>
       </div>
       {{ end }}
     </div>
   </div>
 </section>
-/banner -->
+
+<style>
+  .4ndr0-banner-hud {
+    position: relative;
+    padding: 100px 0;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* 3LECTRIC_GLASS Border */
+    border-bottom: 1px solid var(--accent-cyan-border-idle);
+    overflow: hidden;
+  }
+
+  /* Scanline Overlay for Banner Depth */
+  .4ndr0-banner-hud::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 229, 255, 0.03) 0px,
+      rgba(0, 229, 255, 0.03) 1px,
+      transparent 2px,
+      transparent 4px
+    );
+    pointer-events: none;
+  }
+
+  .hud-status-line {
+    font-family: var(--primary_font);
+    font-size: 0.85rem;
+    color: var(--accent-cyan);
+    letter-spacing: 2px;
+  }
+
+  .hud-title {
+    font-family: var(--primary_font);
+    font-weight: 700;
+    color: var(--text-cyan-active);
+    text-transform: uppercase;
+    line-height: 1.2;
+    text-shadow: 0 0 15px var(--glow-cyan-active);
+  }
+
+  .hud-sub-line {
+    font-family: var(--primary_font);
+    font-size: 0.75rem;
+    color: var(--accent-cyan);
+    opacity: 0.6;
+  }
+
+  .glass-frame {
+    background: var(--bg-glass-panel);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--accent-cyan-border-idle);
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease;
+  }
+
+  .glass-frame:hover {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 25px var(--glow-cyan-active);
+    transform: scale(1.02);
+  }
+
+  .hud-asset-render {
+    filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.2));
+  }
+
+  /* Glitch Aesthetic */
+  .glitch-text {
+    position: relative;
+    display: inline-block;
+  }
+
+  @media (max-width: 991px) {
+    .4ndr0-banner-hud { padding: 60px 0; }
+    .hud-title { font-size: 2rem; }
+  }
+</style>

@@ -1,29 +1,45 @@
 <meta charset="utf-8">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
 
-<!-- Preload critical fonts to eliminate HTML→CSS→font critical chain -->
-<link rel="preload" href="/fonts/pt-sans-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-<link rel="preload" href="/fonts/pt-sans-700.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-<link rel="preload" href="/fonts/pt-sans-400-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
 
-<!-- Critical CSS -->
+<style>
+  :root {
+    /* Foundations */
+    --bg-dark-base: #050A0F;
+    --bg-glass-panel: rgba(10, 19, 26, 0.25);
+    
+    /* The Cyan Matrix */
+    --accent-cyan: #00E5FF;
+    --text-cyan-active: #67E8F9;
+    --accent-cyan-border-idle: rgba(0, 229, 255, 0.2);
+    --accent-cyan-border-hover: rgba(0, 229, 255, 0.5);
+    --accent-cyan-bg-hover: rgba(0, 229, 255, 0.05);
+    --accent-cyan-bg-active: rgba(0, 229, 255, 0.2);
+    --glow-cyan-active: rgba(0, 229, 255, 0.4);
+    
+    /* Typography */
+    --primary_font: 'Roboto Mono', monospace;
+  }
+</style>
+
 {{ partial "critical-css.html" . }}
 
-<!-- Third-party preconnect hints -->
 <link rel="preconnect" href="https://utteranc.es" crossorigin>
 <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
 <link rel="dns-prefetch" href="https://i.ytimg.com">
 
 {{ if .Params.Image }}<link rel="preload" as="image" href="{{ .Params.Image | absURL }}">{{ end }}
 
-<!-- Bootstrap CSS -->
 {{ $styles := resources.Get "css/vendor/bootstrap.min.css" }}
 {{ if $styles }}
   {{ $styles = $styles | resources.Fingerprint }}
   <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
 {{ end }}
 
-<!-- SEO: canonical, Open Graph, Twitter Card -->
 <link rel="canonical" href="{{ .Permalink }}">
 {{ if .Sitemap.Disable }}<meta name="robots" content="noindex, follow">{{ end }}
 {{- if .IsPage | not }}
@@ -37,9 +53,11 @@
 
 {{ $ogImage := "" }}
 {{ if .Params.image }}{{ $ogImage = .Params.image | absURL }}{{ else if site.Params.og_image }}{{ $ogImage = site.Params.og_image | absURL }}{{ end }}
+
 {{ $ogDescription := "" }}
 {{ $contentPlain := .Plain | truncate 160 }}
 {{ if .Params.description }}{{ $ogDescription = .Params.description }}{{ else if .Summary }}{{ $ogDescription = .Summary | plainify | truncate 160 }}{{ else if $contentPlain }}{{ $ogDescription = $contentPlain }}{{ else }}{{ $ogDescription = site.Params.description }}{{ end }}
+
 {{ $ogType := "website" }}
 {{ if in (slice "post" "posts" "blog" "blogs") .Section }}{{ $ogType = "article" }}{{ end }}
 
@@ -67,16 +85,11 @@
 
 <link rel="icon" href="{{ site.Params.favicon | absURL }}" type="image/x-icon">
 
-<!-- RSS Feed -->
 {{ range .AlternativeOutputFormats -}}
     {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
 {{ end -}}
 
-<!-- Cloudflare Web Analytics -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "48e9040046c743328a1abd6b87ec22fd"}'></script>
-<!-- End Cloudflare Web Analytics -->
-
-<!-- Google Ads — lazy loaded after first scroll/interaction -->
 <script>
 (function() {
   var loaded = false;
@@ -93,5 +106,3 @@
   window.addEventListener('pointerdown', loadAds, {once: true, passive: true});
 })();
 </script>
-
-

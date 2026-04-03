@@ -1,33 +1,25 @@
-<!-- main footer -->
-<footer class="py-4 border-top">
+<footer class="4ndr0-footer py-4">
   <div class="container">
     <div class="row justify-content-between align-items-center">
       <div class="col-lg-4 text-center text-lg-start mb-4 mb-lg-0">
-        <a href="{{ site.BaseURL | absLangURL }}" class="d-block">
-          <picture>
-            <source srcset="{{ site.Params.logo | absURL }}" type="image/webp">
-            <img loading="lazy"
-                 src="{{ "images/navlogo.png" | absURL }}"
-                 class="img-fluid"
-                 alt="{{ site.Title }}"
-                 width="{{ site.Params.logoWidth }}"
-                 height="{{ site.Params.logoHeight }}"
-                 style="aspect-ratio: {{ site.Params.logoWidth }}/{{ site.Params.logoHeight }}">
-          </picture>
-        </a>
+        {{ partial "logo.html" . }}
       </div>
+
       <div class="col-lg-4 text-center mb-4 mb-lg-0">
         <ul class="list-inline mb-0">
           {{ range site.Menus.footer }}
-          <li class="nav-item"><a class="nav-link d-block p-2" href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
+          <li class="list-inline-item">
+            <a class="hud-footer-link p-2" href="{{ .URL | absLangURL }}">{{ .Name }}</a>
+          </li>
           {{ end }}
         </ul>
       </div>
+
       <div class="col-lg-4 text-lg-end text-center mb-4 mb-lg-0">
         <ul class="list-inline social-icon mb-0">
           {{ range site.Params.social }}
           <li class="list-inline-item">
-            <a href="{{ .link | safeURL }}" aria-label="{{ .name }}" rel="me noopener noreferrer" target="_blank">
+            <a class="social-hud-icon" href="{{ .link | safeURL }}" aria-label="{{ .name }}" rel="me noopener noreferrer" target="_blank">
               {{ partial "icon.html" .name }}
             </a>
           </li>
@@ -35,12 +27,59 @@
         </ul>
       </div>
     </div>
+
     <div class="text-center mt-4">
-      <span>{{ site.Params.copyright | markdownify }}</span>
+      <span class="copyright-hud">{{ site.Params.copyright | markdownify }}</span>
     </div>
   </div>
 </footer>
-<!-- /footer -->
+
+<style>
+  .4ndr0-footer {
+    /* 3LECTRIC_GLASS Spec */
+    background: var(--bg-glass-panel) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--accent-cyan-border-idle);
+    margin-top: 3rem;
+  }
+
+  .hud-footer-link {
+    color: var(--accent-cyan) !important;
+    font-family: var(--primary_font);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .hud-footer-link:hover {
+    color: var(--text-cyan-active) !important;
+    text-shadow: 0 0 8px var(--glow-cyan-active);
+  }
+
+  .social-hud-icon {
+    color: var(--accent-cyan);
+    font-size: 1.2rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: inline-block;
+  }
+
+  .social-hud-icon:hover {
+    color: var(--text-cyan-active);
+    transform: translateY(-3px);
+    filter: drop-shadow(0 0 5px var(--glow-cyan-active));
+  }
+
+  .copyright-hud {
+    font-family: var(--primary_font);
+    font-size: 0.7rem;
+    color: var(--accent-cyan);
+    opacity: 0.6;
+    letter-spacing: 0.5px;
+  }
+</style>
 
 {{ $bootstrap := resources.Get "js/vendor/bootstrap.min.js" }}
 {{ $theme := resources.Get "js/theme.js" }}

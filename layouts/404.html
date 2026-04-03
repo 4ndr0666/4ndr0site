@@ -1,8 +1,93 @@
 {{ define "main" }}
 
-<div class="text-center section">
-  <h1 class="display-1">404</h1>
-  <h2>Page Not Found!</h2>
-</div>
+<section class="4ndr0-error-env d-flex align-items-center justify-content-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="glass-panel p-5 text-center hud-error-node">
+          <div class="hud-status-line mb-4">
+            <span class="status-label">CRITICAL_ERROR:</span> 
+            <span class="status-code">0x404</span>
+          </div>
+
+          <h1 class="hud-glitch-header display-1 mb-0" data-text="404">404</h1>
+          <h2 class="hud-error-sub mb-4">DATA_FRAGMENT_MISSING</h2>
+          
+          <p class="node-warning mb-5">
+            THE REQUESTED SECTOR DOES NOT EXIST WITHIN THE CURRENT DIRECTORY TREE. 
+            COULD NOT ESTABLISH UPLINK TO SPECIFIED FRAGMENT.
+          </p>
+
+          <div class="hud-controls">
+            <a href="{{ site.BaseURL | relLangURL }}" class="hud-button active">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="me-2" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 3m4 8a4 4 0 0 1-8 0 3 3 0 0 1 3-3h2a3 3 0 0 1 3 3m-1-5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 11 6M5 6a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 5 6"/>
+                <path d="M11 5.333V4a2 2 0 1 0-4 0v1.333A3.001 3.001 0 0 0 4 8v4a3 3 0 1 0 6 0V8a3.001 3.001 0 0 0-3-2.667V4a1 1 0 1 1 2 0v1.333z"/>
+              </svg>
+              INITIALIZE_REBOOT
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .4ndr0-error-env {
+    min-height: 70vh;
+    font-family: var(--primary_font);
+  }
+
+  .hud-error-node {
+    border-color: #FF003C !important; /* Error Red */
+    box-shadow: 0 0 20px rgba(255, 0, 60, 0.2);
+    position: relative;
+  }
+
+  .hud-status-line {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    color: #FF003C;
+  }
+
+  .status-code { font-weight: bold; text-shadow: 0 0 8px rgba(255, 0, 60, 0.5); }
+
+  .hud-glitch-header {
+    color: var(--text-cyan-active);
+    font-weight: 900;
+    position: relative;
+    text-shadow: 0.05em 0 0 rgba(255, 0, 60, 0.75),
+                -0.025em -0.05em 0 rgba(0, 229, 255, 0.75),
+                0.025em 0.05em 0 rgba(103, 232, 249, 0.75);
+    animation: glitch 500ms infinite;
+  }
+
+  .hud-error-sub {
+    color: var(--accent-cyan);
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    opacity: 0.8;
+  }
+
+  .node-warning {
+    font-size: 0.85rem;
+    color: var(--accent-cyan);
+    line-height: 1.6;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @keyframes glitch {
+    0% { text-shadow: 0.05em 0 0 rgba(255, 0, 60, 0.75), -0.05em -0.025em 0 rgba(0, 229, 255, 0.75); }
+    14% { text-shadow: 0.05em 0 0 rgba(255, 0, 60, 0.75), -0.05em -0.025em 0 rgba(0, 229, 255, 0.75); }
+    15% { text-shadow: -0.05em -0.025em 0 rgba(255, 0, 60, 0.75), 0.025em 0.025em 0 rgba(0, 229, 255, 0.75); }
+    49% { text-shadow: -0.05em -0.025em 0 rgba(255, 0, 60, 0.75), 0.025em 0.025em 0 rgba(0, 229, 255, 0.75); }
+    50% { text-shadow: 0.025em 0.05em 0 rgba(255, 0, 60, 0.75), 0.05em 0 0 rgba(0, 229, 255, 0.75); }
+    99% { text-shadow: 0.025em 0.05em 0 rgba(255, 0, 60, 0.75), 0.05em 0 0 rgba(0, 229, 255, 0.75); }
+    100% { text-shadow: -0.025em 0 0 rgba(255, 0, 60, 0.75), -0.025em -0.025em 0 rgba(0, 229, 255, 0.75); }
+  }
+</style>
 
 {{ end }}

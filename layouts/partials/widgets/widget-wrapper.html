@@ -1,3 +1,67 @@
 {{- range .Widgets -}}
-{{- partial ( print "widgets/" . ) $.Scope -}}
+<div class="glass-panel hud-widget mb-4">
+  {{- partial ( print "widgets/" . ) $.Scope -}}
+</div>
 {{- end -}}
+
+<style>
+  .hud-widget {
+    padding: 1.5rem;
+    border-radius: 2px; /* Sharper OS aesthetic */
+    transition: all 0.3s ease;
+    font-family: var(--primary_font);
+  }
+  
+  .hud-widget:hover {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 15px var(--glow-cyan-active);
+  }
+  
+  /* Widget Header Global Refactor */
+  .hud-widget h1, 
+  .hud-widget h2, 
+  .hud-widget h3, 
+  .hud-widget h4,
+  .widget-title {
+    font-family: var(--primary_font) !important;
+    color: var(--text-cyan-active) !important;
+    font-size: 0.85rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    border-bottom: 1px solid var(--accent-cyan-border-idle);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .hud-widget h2::before, 
+  .hud-widget h3::before,
+  .widget-title::before {
+    content: "> ";
+    margin-right: 10px;
+    color: var(--accent-cyan);
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--glow-cyan-active);
+  }
+
+  /* Widget Content Interactivity */
+  .hud-widget ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .hud-widget a {
+    color: var(--accent-cyan);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+  }
+
+  .hud-widget a:hover {
+    color: var(--text-cyan-active);
+    padding-left: 5px;
+    text-shadow: 0 0 8px var(--glow-cyan-active);
+  }
+</style>

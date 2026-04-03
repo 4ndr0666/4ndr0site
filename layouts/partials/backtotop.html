@@ -1,14 +1,67 @@
-<button id="back-to-top" class="btn btn-primary rounded-circle p-1" title="Go to top" aria-label="Back to top">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+<button id="back-to-top" class="4ndr0-uplink-btn glass-panel p-2" title="RETURN TO HEADER" aria-label="Back to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="uplink-icon">
     <path d="M12 4l8 8h-6v8h-4v-8H4z" fill="currentColor"/>
   </svg>
+  <span class="uplink-label">UP</span>
 </button>
+
+<style>
+  .4ndr0-uplink-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--accent-cyan-border-idle);
+    color: var(--accent-cyan);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    transform: translateY(20px);
+    width: 50px;
+    height: 60px;
+  }
+
+  .4ndr0-uplink-btn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .4ndr0-uplink-btn:hover {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 15px var(--glow-cyan-active);
+    color: var(--text-cyan-active);
+  }
+
+  .uplink-icon {
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 5px var(--glow-cyan-active));
+  }
+
+  .4ndr0-uplink-btn:hover .uplink-icon {
+    transform: translateY(-3px);
+  }
+
+  .uplink-label {
+    font-family: var(--primary_font);
+    font-size: 0.6rem;
+    font-weight: 700;
+    margin-top: 2px;
+    letter-spacing: 1px;
+  }
+</style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const backToTop = document.getElementById('back-to-top');
   
   window.onscroll = function() {
+    /* Verbatim Logic Preservation */
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
       backToTop.classList.add('show');
     } else {
@@ -17,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   backToTop.onclick = function() {
+    /* Verbatim Smooth Scroll */
     window.scrollTo({
       top: 0,
       behavior: 'smooth'

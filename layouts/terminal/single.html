@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>4NDR0666OS | Terminal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.33.2/js/jquery.terminal.min.js"></script>
+    <script src="https://unpkg.com/jquery.terminal/js/autocomplete_menu.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.33.2/css/jquery.terminal.min.css" rel="stylesheet"/>
+    <style>
+        body, html { width: 100%; height: 100%; margin: 0; background: black; color: #00FF00; font-family: monospace; font-size: 18px; }
+    </style>
+</head>
+<body>
+<script>
+{{ $t := .Site.Params.terminal }}
+jQuery(document).ready(function($) {
+    var animation = false;
+    var availableCommands = ["all", "whois", "social", "projects", "startx", "gui", "exit", '{{ $t.misc.commandName | default "scripts" }}'];
+
+    $('body').terminal(function(command, term) {
+        function whois () {
+            term.echo("");
+            {{ with $t.whois }}
+            term.echo("[[b;grey;]Name:]\t\t\t{{ .name }}");
+            term.echo("[[b;grey;]Profession:]\t\t{{ .profession }}");
+            term.echo("[[b;grey;]Location:]\t\t{{ .location }}");
+            term.echo(`\n{{ .description | safeJS }}\n`);
+            {{ end }}
+        }
+
+        function social () {
+            term.echo("");
+            {{ range $t.social }}
+            term.echo(" [[b;cyan;]{{ .name }}]: {{ .url | safeJS }}");
+            {{ end }}
+            term.echo("");
+        }
+
+        function projects () {
+            term.echo("");
+            {{ range $t.projects }}
+            term.echo(" [[b;{{ .color | default "LIME" }};]{{ .title }}]");
+            {{ if .link }}term.echo("  Link: {{ .link | safeJS }}");{{ end }}
+            {{ if .description }}term.echo(`  {{ .description | safeJS }}`);{{ end }}
+            {{ end }}
+            term.echo("");
+        }
+
+        function scripts (){
+            term.echo("");
+            term.echo("[[b;{{ $t.misc.titleColor }};]{{ $t.misc.title }}]\n");
+            term.echo(`[[;{{ $t.misc.contentColor }};]{{ $t.misc.content | safeJS }}]`);
+            term.echo("");
+        }
+
+        function progress(percent, width) {
+            var size = Math.round(width*percent/100);
+            var left = '', taken = '', i;
+            for (i=size; i--;) { taken += '='; }
+            if (taken.length > 0) { taken = taken.replace(/=$/, '>'); }
+            for (i=width-size; i--;) { left += ' '; }
+            return '[' + taken + left + '] ' + percent + '%';
+        }
+
+        function loading (callback) {
+            var i = 0, size = 30;
+            var current_prompt = term.get_prompt();
+            animation = true;
+            (function loop() {
+                term.set_prompt(progress(i++, size));
+                if (i <= 100) {
+                    setTimeout(loop, 10);
+                } else {
+                    term.echo(progress(100, size) + ' [[b;green;]OK]').set_prompt(current_prompt);
+                    animation = false;
+                    if (callback) callback();
+                }
+            })();
+        }
+
+        var commands = command.split(/[ ]+/);
+        switch(commands[0]) {
+            case 'whois': whois(); break;
+            case 'social': social(); break;
+            case 'projects': projects(); break;
+            case '{{ $t.misc.commandName | default "scripts" }}': scripts(); break;
+            case 'all': whois(); social(); projects(); scripts(); break;
+            case 'startx':
+            case 'gui':
+                term.echo("Loading graphical interface...");
+                loading(function(){ window.location = "{{ $t.startxLocation | relURL }}"; });
+                break;
+            case 'exit':
+                term.echo("Terminating... ");
+                loading(function(){ window.location = "{{ $t.exitLocation | relURL }}"; });
+                break;
+            case 'help':
+                term.echo("\n[[b;white;]Available commands:]\n\n" + availableCommands.join(' ') + '\n');
+                break;
+            default:
+                term.echo("\nUnknown command: " + command + "\nType 'help' for a list of available commands\n");
+        }
+    }, {
+        prompt: '[[;{{ $t.promptColor | default "cyan" }};]{{ $t.prompt }}][[;{{ $t.promptSimbolsColor | default "LIME" }};]{{ $t.promptSimbols | default " >" }}] ',
+        greetings: `[[b;{{ $t.greetingColor | default "white" }};]{{ $t.greeting | safeJS }}]`,
+        autocompleteMenu: true,
+        completion: availableCommands
+    });
+});
+</script>
+</body>
+</html>

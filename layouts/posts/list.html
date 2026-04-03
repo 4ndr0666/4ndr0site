@@ -1,0 +1,75 @@
+{{ define "main" }}
+{{ partial "banner.html" . }}
+
+{{ partial "backtotop.html" . }}
+<section class="section">
+  <h1 class="visually-hidden">{{ site.Title }}</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        {{ $paginator := .Paginate (where site.RegularPages "Section" "in" site.Params.mainSections ) }}
+        {{ range $i, $p := $paginator.Pages }}
+        {{ if eq $i 0 }}{{ $p.Store.Set "isLCP" true }}{{ end }}
+        {{ $p.Render "article-w-image" }}
+        {{ end }}
+        <div class="mt-5 pt-4">
+          {{"" | safeHTML }}
+          {{ $paginator := .Paginator }}
+          {{ $adjacent_links := 2 }}
+          {{ $max_links := (add (mul $adjacent_links 2) 1) }}
+          {{ $lower_limit := (add $adjacent_links 1) }}
+          {{ $upper_limit := (sub $paginator.TotalPages $adjacent_links) }}
+          {{ if gt $paginator.TotalPages 1 }}
+          <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center align-items-center">
+              {{ if $paginator.HasPrev }}
+              <li class="page-item">
+                <a href="{{ $paginator.Prev.URL }}" class="page-link" aria-label="See Newer Posts">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
+                </a>
+              </li>
+              {{ end }}
+              {{ range $paginator.Pagers }}
+              {{ $.Scratch.Set "page_number_flag" false }}
+              {{ if gt $paginator.TotalPages $max_links }}
+              {{ if le $paginator.PageNumber $lower_limit }}
+              {{ if le .PageNumber $max_links }}
+              {{ $.Scratch.Set "page_number_flag" true }}
+              {{ end }}
+              {{ else if ge $paginator.PageNumber $upper_limit }}
+              {{ if gt .PageNumber (sub $paginator.TotalPages $max_links) }}
+              {{ $.Scratch.Set "page_number_flag" true }}
+              {{ end }}
+              {{ else }}
+              {{ if and ( ge .PageNumber (sub $paginator.PageNumber $adjacent_links) ) ( le .PageNumber (add $paginator.PageNumber $adjacent_links) ) }}
+              {{ $.Scratch.Set "page_number_flag" true }}
+              {{ end }}
+              {{ end }}
+              {{ else }}
+              {{ $.Scratch.Set "page_number_flag" true }}
+              {{ end }}
+              {{ if eq ($.Scratch.Get "page_number_flag") true }}
+              <li class="page-item{{ if eq . $paginator }} page-item active {{ end }}">
+                <a href="{{ .URL }}" class="page-link">
+                  {{ .PageNumber }}
+                </a>
+              </li>
+              {{ end }}
+              {{ end }}
+              {{ if $paginator.HasNext }}
+              <li class="page-item">
+                <a href="{{ $paginator.Next.URL }}" class="page-link" aria-label="See Older Posts">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+                </a>
+              </li>
+              {{ end }}
+            </ul>
+          </nav>
+          {{ end }}
+          {{"" | safeHTML }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
