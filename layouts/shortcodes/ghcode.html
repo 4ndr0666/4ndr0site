@@ -1,7 +1,96 @@
 {{ $file := .Get 0 }}
-{{ with resources.GetRemote $file }}
-  {{ $lang := path.Ext $file | strings.TrimPrefix "." }}
-  {{ highlight .Content $lang }}
-{{ else }}
-  {{ errorf "Unable to get remote resource: %s" $file }}
-{{ end }}
+
+<div class="gh-code-uplink glass-panel mb-4">
+  <div class="uplink-header d-flex justify-content-between align-items-center p-2">
+    <div class="uplink-title">
+      <span class="status-dot"></span> [ REMOTE_SOURCE_STREAM ]
+    </div>
+    <div class="uplink-path text-truncate ms-3">
+      SRC: <span class="path-text">{{ $file }}</span>
+    </div>
+  </div>
+
+  {{ with resources.GetRemote $file }}
+    {{ $lang := path.Ext $file | strings.TrimPrefix "." }}
+    <div class="hud-terminal-frame">
+      <div class="terminal-status-bar p-1">
+        STATUS: DECRYPT_SUCCESS // LANG: {{ $lang | upper }}
+      </div>
+      <div class="code-content">
+        {{ highlight .Content $lang "" }}
+      </div>
+    </div>
+  {{ else }}
+    <div class="uplink-error p-4 text-center">
+      <div class="error-icon mb-2">⚠️</div>
+      <div class="error-msg">CRITICAL_UPLINK_FAILURE</div>
+      <small class="opacity-50">UNABLE TO REACH REMOTE RESOURCE: {{ $file }}</small>
+    </div>
+  {{ end }}
+</div>
+
+<style>
+  .gh-code-uplink {
+    border: 1px solid var(--accent-cyan-border-idle);
+    overflow: hidden;
+    font-family: var(--primary_font);
+  }
+
+  .uplink-header {
+    background: rgba(0, 229, 255, 0.1);
+    border-bottom: 1px solid var(--accent-cyan-border-idle);
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: var(--accent-cyan);
+  }
+
+  .status-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #00FF41;
+    border-radius: 50%;
+    margin-right: 5px;
+    box-shadow: 0 0 5px #00FF41;
+  }
+
+  .path-text { color: var(--text-cyan-active); }
+
+  .terminal-status-bar {
+    background: rgba(0, 0, 0, 0.4);
+    font-size: 0.65rem;
+    color: var(--accent-cyan);
+    opacity: 0.6;
+    padding-left: 1rem !important;
+  }
+
+  /* 3LECTRIC_GLASS Code Overrides */
+  .hud-terminal-frame .highlight {
+    margin: 0 !important;
+    background: transparent !important;
+  }
+
+  .hud-terminal-frame pre {
+    background: transparent !important;
+    padding: 1.5rem !important;
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  /* Syntax Highlighting Integration */
+  .hud-terminal-frame code {
+    color: var(--text-cyan-active);
+    text-shadow: 0 0 2px rgba(0, 229, 255, 0.2);
+  }
+
+  .uplink-error {
+    color: #FF003C;
+    background: rgba(255, 0, 60, 0.05);
+  }
+
+  .error-msg {
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+</style>

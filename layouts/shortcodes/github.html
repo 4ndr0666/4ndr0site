@@ -1,13 +1,99 @@
 {{ $url := printf "https://api.github.com/repos/%s/contents/%s" (.Get "repo") (.Get "file") }}
-{{ with try (resources.GetRemote $url) }}
-	{{ with .Err }}
-		{{ errorf "Unable to fetch GitHub content from %q: %v" $url . }}
-	{{ else with .Value }}
-		{{ $data := .Content | transform.Unmarshal }}
-		{{ $con := base64Decode $data.content }}
 
-		{{ highlight $con ($.Get "lang") ($.Get "options") }}
-	{{ else }}
-		{{ errorf "Unable to fetch GitHub content from %q" $url }}
-	{{ end }}
-{{ end }}
+<div class="github-api-uplink glass-panel mb-4">
+  <div class="api-header d-flex justify-content-between align-items-center p-2">
+    <div class="api-title">
+      <span class="status-pulse"></span> [ GITHUB_REST_API_STREAM ]
+    </div>
+    <div class="api-coord text-truncate ms-3">
+      REPO: <span class="path-text">{{ .Get "repo" }}</span> // FILE: <span class="path-text">{{ .Get "file" }}</span>
+    </div>
+  </div>
+
+  {{ with try (resources.GetRemote $url) }}
+    {{ with .Err }}
+      <div class="api-error p-4 text-center">
+        <div class="error-msg">API_FETCH_DENIED</div>
+        <small class="opacity-50">{{ . }}</small>
+      </div>
+    {{ else with .Value }}
+      {{ $data := .Content | transform.Unmarshal }}
+      {{ $con := base64Decode $data.content }}
+      
+      <div class="hud-api-frame">
+        <div class="api-status-bar p-1">
+          X-RATE-LIMIT: NOMINAL // CHARSET: UTF-8 // DECODE: BASE64_SUCCESS
+        </div>
+        <div class="code-content">
+          {{ highlight $con ($.Get "lang") ($.Get "options") }}
+        </div>
+      </div>
+    {{ else }}
+      <div class="api-error p-4 text-center">
+        <div class="error-msg">EMPTY_RESPONSE_ERROR</div>
+      </div>
+    {{ end }}
+  {{ end }}
+</div>
+
+<style>
+  .github-api-uplink {
+    border: 1px solid var(--accent-cyan-border-idle);
+    font-family: var(--primary_font);
+    overflow: hidden;
+  }
+
+  .api-header {
+    background: rgba(0, 229, 255, 0.08);
+    border-bottom: 1px solid var(--accent-cyan-border-idle);
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: var(--accent-cyan);
+  }
+
+  .status-pulse {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #00E5FF;
+    border-radius: 50%;
+    margin-right: 8px;
+    box-shadow: 0 0 8px var(--glow-cyan-active);
+    animation: api-blink 2s infinite;
+  }
+
+  @keyframes api-blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.9); }
+  }
+
+  .path-text { color: var(--text-cyan-active); font-weight: bold; }
+
+  .api-status-bar {
+    background: rgba(0, 0, 0, 0.3);
+    font-size: 0.6rem;
+    color: var(--accent-cyan);
+    opacity: 0.5;
+    padding-left: 1.5rem !important;
+    letter-spacing: 1px;
+  }
+
+  .hud-api-frame .highlight {
+    margin: 0 !important;
+    background: transparent !important;
+  }
+
+  .hud-api-frame pre {
+    background: transparent !important;
+    padding: 1.5rem !important;
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .api-error {
+    color: #FF003C;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+</style>
