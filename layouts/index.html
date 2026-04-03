@@ -3,9 +3,19 @@
 <head>
     <meta charset="utf-8">
     <title>{{ .Site.Title }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <script>
+        // Manually restore deprecated function removed in jQuery 3.x
+        if (!jQuery.isFunction) {
+            jQuery.isFunction = function(obj) {
+                return typeof obj === "function";
+            };
+        }
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.33.2/js/jquery.terminal.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.33.2/css/jquery.terminal.min.css" rel="stylesheet"/>
     
@@ -18,7 +28,6 @@
             --bg-dark-base: #050A0F;
             --accent-cyan: #00E5FF;
             --text-cyan-active: #67E8F9;
-            --accent-cyan-border-idle: rgba(0, 229, 255, 0.2);
         }
 
         body, html {
@@ -28,63 +37,54 @@
             color: var(--accent-cyan);
             font-family: 'Roboto Mono', monospace;
             overflow: hidden;
+            touch-action: manipulation;
         }
 
-        #4ndr0-terminal {
-            height: 100vh; width: 100vw;
+        #cortex-terminal {
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%; width: 100%;
+            z-index: 1000;
+            pointer-events: all;
             --size: 1.2;
             --color: var(--accent-cyan);
             --background: var(--bg-dark-base);
         }
 
-        /* SCANLINE EFFECT */
         body::after {
             content: " ";
             display: block; position: absolute;
             top: 0; left: 0; bottom: 0; right: 0;
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), 
                         linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            z-index: 999;
+            z-index: 10;
             background-size: 100% 2px, 3px 100%;
             pointer-events: none;
         }
 
-        .terminal { text-shadow: 0 0 8px rgba(0, 229, 255, 0.4); }
-        .terminal::-webkit-scrollbar { width: 6px; }
-        .terminal::-webkit-scrollbar-thumb { 
-            background: var(--accent-cyan-border-idle); 
-            border-radius: 3px; 
+        .terminal, .cmd { 
+            text-shadow: 0 0 8px rgba(0, 229, 255, 0.4); 
+            background-color: transparent !important;
         }
     </style>
 </head>
 <body>
-    <div id="4ndr0-terminal"></div>
-
-    <div id="glyph-container" style="display:none;">
-        <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#00E5FF" stroke-width="3">
-            <path d="M 64,12 A 52,52 0 1 1 63.9,12 Z" stroke-dasharray="21.78 21.78" stroke-width="2" />
-            <path d="M 64,20 A 44,44 0 1 1 63.9,20 Z" stroke-dasharray="10 10" stroke-width="1.5" opacity="0.7" />
-            <path d="M64 30 L91.3 47 L91.3 81 L64 98 L36.7 81 L36.7 47 Z" />
-            <text x="64" y="75" text-anchor="middle" fill="#00E5FF" stroke="none" font-size="56" font-weight="700" font-family="serif">Ψ</text>
-        </svg>
-    </div>
+    <div id="cortex-terminal"></div>
 
     <script>
     jQuery(document).ready(function($) {
-        const greeting = `{{ .Site.Params.terminal.greeting | safeJS }}`;
+        const greeting = `{{ .Site.Params.terminal.greeting | safeJS }}` || "4NDR0666OS v5.0.0-Ψ :: SYSTEM_STABILIZED";
         
-        const term = $('#4ndr0-terminal').terminal({
+        const term = $('#cortex-terminal').terminal({
             help: function() {
                 this.echo("\n[[b;white;]OPERATIONAL COMMANDS:]");
                 this.echo("  [[b;cyan;]startx]\t- AUTHORIZE GUI BOOT");
                 this.echo("  [[b;cyan;]whois]\t- IDENTITY QUERY");
-                this.echo("  [[b;cyan;]clear]\t- PURGE BUFFER");
-                this.echo("  [[b;cyan;]exit]\t- DISCONNECT SESSION\n");
+                this.echo("  [[b;cyan;]clear]\t- PURGE BUFFER\n");
             },
             whois: function() {
                 this.echo("\n[[b;grey;]Operator:]\t{{ .Site.Params.author }}");
-                this.echo("[[b;grey;]Cortex:]\t\tOPERATIONAL");
-                this.echo("[[b;grey;]Interface:]\tv5.0.0-Ψ\n");
+                this.echo("[[b;grey;]Cortex:]\t\tOPERATIONAL\n");
             },
             startx: function() {
                 this.echo("\n[[b;cyan;]BYPASSING CLI... INITIALIZING GUI]");
@@ -97,14 +97,22 @@
                     }
                 }, 40);
             },
-            exit: function() {
-                this.echo("TERMINATING UPLINK...");
-                setTimeout(() => { window.location.href = "{{ .Site.Params.terminal.exitLocation | relURL }}"; }, 1000);
-            }
+            clear: function() { this.clear(); }
         }, {
             greetings: greeting,
             prompt: '4ndr0666@cortex > ',
-            checkArity: false
+            checkArity: false,
+            enabled: true,
+            focus: true,
+            touch: true,
+            onInit: function(t) {
+                t.focus();
+            }
+        });
+
+        // Forced focus on click
+        $(window).on('click', function() {
+            term.focus();
         });
 
         // DYNAMIC PROMPT
