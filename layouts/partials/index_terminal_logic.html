@@ -1,0 +1,52 @@
+<div id="cortex-terminal"></div>
+
+<script>
+jQuery(document).ready(function($) {
+    // Restore deprecated function for jQuery 3.x compatibility
+    if (!jQuery.isFunction) {
+        jQuery.isFunction = function(obj) { return typeof obj === "function"; };
+    }
+
+    const greeting = `{{ .Site.Params.terminal.greeting | safeJS }}` || "4NDR0666OS v5.0.0-Ψ :: SYSTEM_STABILIZED";
+    
+    const term = $('#cortex-terminal').terminal({
+        help: function() {
+            this.echo("\n[[b;white;]OPERATIONAL COMMANDS:]");
+            this.echo("  [[b;cyan;]startx]\t- AUTHORIZE GUI BOOT");
+            this.echo("  [[b;cyan;]whois]\t- IDENTITY QUERY");
+            this.echo("  [[b;cyan;]clear]\t- PURGE BUFFER\n");
+        },
+        whois: function() {
+            this.echo("\n[[b;grey;]Operator:]\t{{ .Site.Params.author }}");
+            this.echo("[[b;grey;]Cortex:]\t\tOPERATIONAL\n");
+        },
+        startx: function() {
+            this.echo("\n[[b;cyan;]BYPASSING CLI... INITIALIZING GUI]");
+            let i = 0;
+            const loader = setInterval(() => {
+                this.set_prompt("[" + "#".repeat(i) + "-".repeat(20 - i) + "] " + (i * 5) + "%");
+                if (i++ >= 20) {
+                    clearInterval(loader);
+                    window.location.href = "{{ `posts/` | relURL }}";
+                }
+            }, 40);
+        },
+        clear: function() { this.clear(); }
+    }, {
+        greetings: greeting,
+        prompt: '4ndr0666@cortex > ',
+        checkArity: false,
+        enabled: true,
+        focus: true,
+        touch: true,
+        onInit: function(t) { t.focus(); }
+    });
+
+    $(window).on('click', function() { term.focus(); });
+
+    fetch('https://api.ipify.org?format=json')
+        .then(res => res.json())
+        .then(data => { term.set_prompt(`4ndr0666@${data.ip} > `); })
+        .catch(() => {});
+});
+</script>

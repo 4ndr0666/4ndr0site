@@ -69,6 +69,61 @@
   }
   ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
 
+  /* PAGINATION_FIX */
+  .pagination .page-item .page-link {
+      background: var(--bg-glass-panel);
+      border: 1px solid var(--accent-cyan-border-idle);
+      color: var(--accent-cyan);
+      font-family: var(--primary_font);
+  }
+  
+  .pagination .page-item.active .page-link {
+      background: var(--accent-cyan-bg-active);
+      border-color: var(--accent-cyan);
+      color: var(--text-cyan-active);
+      box-shadow: 0 0 10px var(--glow-cyan-active);
+  }
+  
+  .pagination .page-link:hover {
+      background: var(--accent-cyan-bg-hover);
+      color: var(--text-cyan-active);
+  }
+  
+  /* UP_BUTTON_FIX */
+  #back-to-top {
+      background: var(--bg-glass-panel) !important;
+      border: 1px solid var(--accent-cyan) !important;
+      color: var(--accent-cyan) !important;
+  }
+  
+  #back-to-top:hover {
+      box-shadow: 0 0 15px var(--glow-cyan-active) !important;
+      color: var(--text-cyan-active) !important;
+  }
+
+  /* KILL BOOTSTRAP BLUE */
+  .page-link {
+      background-color: transparent !important;
+      border-color: var(--accent-cyan-border-idle) !important;
+      color: var(--accent-cyan) !important;
+  }
+  .page-item.active .page-link {
+      background-color: var(--accent-cyan-bg-active) !important;
+      border-color: var(--accent-cyan) !important;
+      color: var(--text-cyan-active) !important;
+      box-shadow: 0 0 10px var(--glow-cyan-active) !important;
+  }
+  .page-link:hover {
+      background-color: var(--accent-cyan-bg-hover) !important;
+      color: var(--text-cyan-active) !important;
+  }
+  .btn-primary, .btn-link {
+      --bs-btn-bg: transparent;
+      --bs-btn-border-color: var(--accent-cyan);
+      --bs-btn-hover-bg: var(--accent-cyan-bg-hover);
+      color: var(--accent-cyan);
+  }
+
   /* -------------------------------------------------------------------------- */
   /* CANONICAL LIST LOGIC [REFACTORED FOR CORTEX]                             */
   /* -------------------------------------------------------------------------- */

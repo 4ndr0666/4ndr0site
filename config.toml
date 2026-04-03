@@ -4,6 +4,10 @@ languageCode = "en-us"
 summaryLength = 70
 enableGitInfo = true
 
+[author]
+  name = "4ndr0666"
+  email = "4ndr0666@duck.com"
+
 [outputs]
 home = ["HTML", "RSS", "JSON"]
 
@@ -36,14 +40,19 @@ logoHeight = 50
 favicon = "favicon.ico"
 author = "4ndr0666"
 description = "Weaponized Static Interface"
+copyright = "Copyright © 2026 4ndr0666"
 og_image = "images/bannerbackground.webp"
 mainSections = ["posts"]
 search = true
-header_search_layout = "expanded"
-menu_align = "center"
+header_search_layout = "popupable"
+menu_align = "right"
 sidebar = "right"
 code_copy_button = true
 
+[[params.social]]
+  icon = "ti-github"
+  link = "https://github.com/4ndr0666"
+  
 [params.variables]
 primary_color = "#00E5FF" # --accent-cyan
 secondary_color = "#67E8F9" # --text-cyan-active
@@ -58,11 +67,8 @@ primary_font = "'Roboto Mono', monospace"
 icon_font = "Font Awesome 6 Free"
 
 [params.terminal]
-greeting = """
-# -- // 4NDR0666OS :: CORTEX UPLINK ESTABLISHED.
-# -- // TYPE 'startx' TO INITIALIZE GUI.
-"""
-exitLocation = "/ascii-index.html"
+greeting = "[[b;cyan;]4NDR0666OS v5.0.0-Ψ INITIALIZED... ACCESS_GRANTED]"
+exitLocation = "/"
 
 [params.widgets]
 sidebar = ["toc"]

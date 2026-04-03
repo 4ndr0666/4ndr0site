@@ -4,123 +4,19 @@
     <meta charset="utf-8">
     <title>{{ .Site.Title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    
-    <script>
-        // Manually restore deprecated function removed in jQuery 3.x
-        if (!jQuery.isFunction) {
-            jQuery.isFunction = function(obj) {
-                return typeof obj === "function";
-            };
-        }
-    </script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.33.2/js/jquery.terminal.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.33.2/css/jquery.terminal.min.css" rel="stylesheet"/>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
-
     <style>
-        :root {
-            --bg-dark-base: #050A0F;
-            --accent-cyan: #00E5FF;
-            --text-cyan-active: #67E8F9;
-        }
-
-        body, html {
-            margin: 0; padding: 0;
-            width: 100%; height: 100%;
-            background-color: var(--bg-dark-base);
-            color: var(--accent-cyan);
-            font-family: 'Roboto Mono', monospace;
-            overflow: hidden;
-            touch-action: manipulation;
-        }
-
-        #cortex-terminal {
-            position: absolute;
-            top: 0; left: 0;
-            height: 100%; width: 100%;
-            z-index: 1000;
-            pointer-events: all;
-            --size: 1.2;
-            --color: var(--accent-cyan);
-            --background: var(--bg-dark-base);
-        }
-
-        body::after {
-            content: " ";
-            display: block; position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            z-index: 10;
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
-        }
-
-        .terminal, .cmd { 
-            text-shadow: 0 0 8px rgba(0, 229, 255, 0.4); 
-            background-color: transparent !important;
-        }
+        :root { --bg-dark-base: #050A0F; --accent-cyan: #00E5FF; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #050A0F; color: #00E5FF; font-family: 'Roboto Mono', monospace; overflow: hidden; }
+        #cortex-terminal { position: absolute; top: 0; left: 0; height: 100%; width: 100%; z-index: 1000; }
+        body::after { content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03)); z-index: 10; background-size: 100% 2px, 3px 100%; pointer-events: none; }
+        .terminal, .cmd { text-shadow: 0 0 8px rgba(0, 229, 255, 0.4); background-color: transparent !important; }
     </style>
 </head>
 <body>
-    <div id="cortex-terminal"></div>
-
-    <script>
-    jQuery(document).ready(function($) {
-        const greeting = `{{ .Site.Params.terminal.greeting | safeJS }}` || "4NDR0666OS v5.0.0-Ψ :: SYSTEM_STABILIZED";
-        
-        const term = $('#cortex-terminal').terminal({
-            help: function() {
-                this.echo("\n[[b;white;]OPERATIONAL COMMANDS:]");
-                this.echo("  [[b;cyan;]startx]\t- AUTHORIZE GUI BOOT");
-                this.echo("  [[b;cyan;]whois]\t- IDENTITY QUERY");
-                this.echo("  [[b;cyan;]clear]\t- PURGE BUFFER\n");
-            },
-            whois: function() {
-                this.echo("\n[[b;grey;]Operator:]\t{{ .Site.Params.author }}");
-                this.echo("[[b;grey;]Cortex:]\t\tOPERATIONAL\n");
-            },
-            startx: function() {
-                this.echo("\n[[b;cyan;]BYPASSING CLI... INITIALIZING GUI]");
-                let i = 0;
-                const loader = setInterval(() => {
-                    this.set_prompt("[" + "#".repeat(i) + "-".repeat(20 - i) + "] " + (i * 5) + "%");
-                    if (i++ >= 20) {
-                        clearInterval(loader);
-                        window.location.href = "{{ `posts/` | relURL }}";
-                    }
-                }, 40);
-            },
-            clear: function() { this.clear(); }
-        }, {
-            greetings: greeting,
-            prompt: '4ndr0666@cortex > ',
-            checkArity: false,
-            enabled: true,
-            focus: true,
-            touch: true,
-            onInit: function(t) {
-                t.focus();
-            }
-        });
-
-        // Forced focus on click
-        $(window).on('click', function() {
-            term.focus();
-        });
-
-        // DYNAMIC PROMPT
-        fetch('https://api.ipify.org?format=json')
-            .then(res => res.json())
-            .then(data => { term.set_prompt(`4ndr0666@${data.ip} > `); })
-            .catch(() => {});
-    });
-    </script>
+    {{ partial "index_terminal_logic.html" . }}
 </body>
 </html>

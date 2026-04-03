@@ -1,7 +1,6 @@
 ---
 title: "Terminal"
-type: "terminal"
-layout: "single"
+layout: "terminal_standalone"
 url: "/terminal/"
 menu:
   main:
