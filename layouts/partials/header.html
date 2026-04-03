@@ -6,60 +6,61 @@
         {{ partial "logo.html" . }}
       </div>
 
-      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--accent-cyan)" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/></svg>
+      <button class="navbar-toggler border-0 hud-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle system navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--accent-cyan)" viewBox="0 0 16 16" aria-hidden="true">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+        </svg>
       </button>
 
       <div class="collapse navbar-collapse text-center align-items-center" id="navigation">
         {{ $menu_align:= site.Params.menu_align }}
 
         {{ if site.Params.search }}
-        {{ if eq $menu_align "right" }}
-        <ul class="navbar-nav ms-auto me-auto me-lg-0 align-items-center">
-        {{ else if eq $menu_align "left" }}
-        <ul class="navbar-nav me-auto ms-auto ms-lg-0 ps-0 ps-lg-3 align-items-center">
+          {{ if eq $menu_align "right" }}
+          <ul class="navbar-nav ms-auto me-auto me-lg-0 align-items-center">
+          {{ else if eq $menu_align "left" }}
+          <ul class="navbar-nav me-auto ms-auto ms-lg-0 ps-0 ps-lg-3 align-items-center">
+          {{ else }}
+          <ul class="navbar-nav mx-auto align-items-center">
+          {{ end }}
         {{ else }}
-        <ul class="navbar-nav mx-auto align-items-center">
-        {{ end }}
-        {{ else }}
-        <ul class="navbar-nav ms-auto me-auto me-lg-0 align-items-center">
+          <ul class="navbar-nav ms-auto me-auto me-lg-0 align-items-center">
         {{ end }}
 
           {{ range site.Menus.main }}
-          {{ if .HasChildren }}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle hud-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false">
-              {{ .Name }}
-            </a>
-            <div class="dropdown-menu rounded-0 border-0 glass-dropdown">
-              {{ range .Children }}
-              <a class="dropdown-item hud-link" href="{{ .URL | absLangURL }}">{{ .Name }}</a>
-              {{ end }}
-            </div>
-          </li>
-          {{ else }}
-          <li class="nav-item">
-            <a class="nav-link hud-link" href="{{ .URL | absLangURL }}">{{ .Name }}</a>
-          </li>
-          {{ end }}
+            {{ if .HasChildren }}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle hud-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ .Name }}
+              </a>
+              <div class="dropdown-menu rounded-0 border-0 glass-dropdown">
+                {{ range .Children }}
+                <a class="dropdown-item hud-link sub-link" href="{{ .URL | absLangURL }}">{{ .Name }}</a>
+                {{ end }}
+              </div>
+            </li>
+            {{ else }}
+            <li class="nav-item">
+              <a class="nav-link hud-link" href="{{ .URL | absLangURL }}">{{ .Name }}</a>
+            </li>
+            {{ end }}
           {{ end }}
 
           {{ if .IsTranslated }}
           <li class="nav-item">
             <span class="nav-link pe-lg-0">
-              <select class="border-0 lang-selector" id="select-language" aria-label="Select language" onchange="location = this.value;">
+              <select class="border-0 lang-selector glass-panel" id="select-language" aria-label="Select language" onchange="location = this.value;">
                 {{ $siteLanguages := site.Languages}}
                 {{ $pageLang := .Page.Lang}}
                 {{ range .Page.AllTranslations }}
-                {{ $translation := .}}
-                {{ range $siteLanguages }}
-                {{ if eq $translation.Lang .Lang }}
-                <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" {{ if eq $pageLang .Lang}}selected{{ end }}>
-                  {{ .LanguageName }}
-                </option>
-                {{ end }}
-                {{ end }}
+                  {{ $translation := .}}
+                  {{ range $siteLanguages }}
+                    {{ if eq $translation.Lang .Lang }}
+                    <option id="{{ $translation.Language }}" value="{{ $translation.Permalink }}" {{ if eq $pageLang .Lang}}selected{{ end }}>
+                      {{ .LanguageName | upper }}
+                    </option>
+                    {{ end }}
+                  {{ end }}
                 {{ end }}
               </select>
             </span>
@@ -67,37 +68,41 @@
           {{ end }}
         </ul>
 
-        <div class="d-flex align-items-center justify-content-center flex-shrink-0 gap-2 ms-lg-3 py-2 py-lg-0">
-          <button id="theme-toggle" onclick="this.blur();window.toggleTheme&&window.toggleTheme()" class="btn btn-link border-0 p-0 theme-btn" aria-label="Toggle theme">
+        <div class="d-flex align-items-center justify-content-center flex-shrink-0 gap-3 ms-lg-3 py-2 py-lg-0">
+          
+          <button id="theme-toggle" onclick="this.blur();window.toggleTheme&&window.toggleTheme()" class="btn btn-link border-0 p-0 theme-btn hud-control" aria-label="Toggle operational mode">
             {{- if eq (default "dark" site.Params.defaultTheme) "dark" -}}
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M1 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zM1 9a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1z"/></svg>
             {{- else -}}
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm0 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm6-4a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5"/></svg>
             {{- end -}}
           </button>
 
-        {{ if site.Params.search }}
-        {{ $search_layout := site.Params.header_search_layout }}
-        {{ "" | safeHTML }}
-        {{ if eq $search_layout "expanded" }}
-          <div class="d-flex border-hud rounded-2 search-container">
-            <form action="{{ `search` | absLangURL }}" class="d-flex">
-              <input class="form-control form-control-sm border-0 shadow-none search-input" id="search-query" name="s" type="search" placeholder="{{ i18n `search_placeholder` }}" required>
-              <button type="submit" class="btn btn-sm btn-link border-0 px-2 search-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
+          {{ if site.Params.search }}
+            {{ $search_layout := site.Params.header_search_layout }}
+            {{ if eq $search_layout "expanded" }}
+              <div class="d-flex border-hud search-container glass-panel">
+                <form action="{{ `search` | absLangURL }}" class="d-flex align-items-center">
+                  <input class="form-control form-control-sm border-0 shadow-none search-input" id="search-query" name="s" type="search" placeholder="QUERY_SYSTEM..." required>
+                  <button type="submit" class="btn btn-sm btn-link border-0 px-2 search-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
+                  </button>
+                </form>
+              </div>
+            {{ else if eq $search_layout "popupable" }}
+              <button id="searchOpen" class="btn btn-link border-0 p-0 search-btn-toggle hud-control" aria-label="Open database search">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
               </button>
-            </form>
-          </div>
-        {{ else if eq $search_layout "popupable" }}
-          <button id="searchOpen" class="btn btn-link border-0 p-0 search-btn-toggle" aria-label="Open search"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></button>
-          <div class="position-absolute top-0 start-0 end-0 h-100 search-popup">
-            <form action="{{ `search` | absLangURL }}" class="h-100">
-              <input class="form-control border-0 shadow-none h-100 px-4 popup-input" id="search-query" name="s" type="search" placeholder="{{ i18n `search_placeholder` }}" required>
-              <button type="button" id="searchClose" class="btn btn-link border-0 p-0 position-absolute end-0 top-50 translate-middle-y close-btn"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg></button>
-            </form>
-          </div>
-        {{ end }}
-        {{ end }}
+              <div class="position-absolute top-0 start-0 end-0 h-100 search-popup glass-panel">
+                <form action="{{ `search` | absLangURL }}" class="h-100 d-flex align-items-center">
+                  <input class="form-control border-0 shadow-none h-100 px-4 popup-input" id="search-query" name="s" type="search" placeholder="ENTER_SYSTEM_QUERY..." required>
+                  <button type="button" id="searchClose" class="btn btn-link border-0 p-0 position-absolute end-0 top-50 translate-middle-y close-btn px-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>
+                  </button>
+                </form>
+              </div>
+            {{ end }}
+          {{ end }}
         </div>
       </div>
     </nav>
@@ -105,50 +110,111 @@
 </header>
 
 <style>
+  /* 4NDR0666OS COMMANDER HEADER */
   .4ndr0-header {
     background: var(--bg-glass-panel) !important;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid var(--accent-cyan-border-idle);
-    transition: all 0.3s ease;
+    z-index: 1050;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
   }
+
   .hud-link {
     color: var(--accent-cyan) !important;
     font-family: var(--primary_font);
     text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.3s ease;
   }
-  .hud-link:hover, .nav-link.show {
+
+  .hud-link:hover, .nav-link.show, .dropdown-item:hover {
     color: var(--text-cyan-active) !important;
-    text-shadow: 0 0 8px var(--glow-cyan-active);
+    text-shadow: 0 0 12px var(--glow-cyan-active);
+    background: transparent !important;
   }
+
   .glass-dropdown {
-    background: rgba(10, 19, 26, 0.95) !important;
+    background: rgba(5, 10, 15, 0.95) !important;
     border: 1px solid var(--accent-cyan-border-idle) !important;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    margin-top: 5px;
   }
+
+  .sub-link {
+    font-size: 0.7rem;
+    border-left: 2px solid transparent;
+  }
+
+  .sub-link:hover {
+    border-left-color: var(--accent-cyan);
+    padding-left: 1.2rem;
+  }
+
   .lang-selector {
-    cursor: pointer;
-    background: transparent;
+    background: var(--accent-cyan-bg-hover) !important;
     color: var(--accent-cyan);
     font-family: var(--primary_font);
-    font-size: 0.8rem;
-  }
-  .theme-btn, .search-btn, .search-btn-toggle {
-    color: var(--accent-cyan) !important;
-  }
-  .border-hud {
+    font-size: 0.7rem;
+    padding: 2px 10px;
+    border-radius: 2px;
     border: 1px solid var(--accent-cyan-border-idle) !important;
   }
+
+  /* HUD Controls */
+  .hud-control {
+    color: var(--accent-cyan) !important;
+    transition: all 0.3s ease;
+  }
+
+  .hud-control:hover {
+    color: var(--text-cyan-active) !important;
+    filter: drop-shadow(0 0 5px var(--glow-cyan-active));
+  }
+
+  .border-hud {
+    border: 1px solid var(--accent-cyan-border-idle) !important;
+    border-radius: 2px;
+  }
+
   .search-input {
     background: transparent !important;
     color: var(--text-cyan-active) !important;
     font-family: var(--primary_font);
+    font-size: 0.8rem;
+    min-width: 150px;
   }
-  .search-input::placeholder { color: rgba(0, 229, 255, 0.4); }
-  .search-popup { background: var(--bg-dark-base) !important; z-index: 1001; }
-  .popup-input { background: transparent !important; color: var(--accent-cyan); }
-  .close-btn { color: var(--accent-cyan) !important; }
+
+  .search-input::placeholder { color: rgba(0, 229, 255, 0.3); }
+
+  .search-popup {
+    background: rgba(5, 10, 15, 0.98) !important;
+    z-index: 1100;
+    backdrop-filter: blur(20px);
+  }
+
+  .popup-input {
+    background: transparent !important;
+    color: var(--text-cyan-active) !important;
+    font-family: var(--primary_font);
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+
+  .close-btn { color: var(--accent-cyan) !important; opacity: 0.7; }
+  .close-btn:hover { opacity: 1; }
+
+  @media (max-width: 991px) {
+    .navbar-collapse {
+      background: var(--bg-dark-base);
+      padding: 2rem 0;
+      margin-top: 1rem;
+      border: 1px solid var(--accent-cyan-border-idle);
+    }
+  }
 </style>
 {{ "" | safeHTML }}

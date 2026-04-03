@@ -1,12 +1,27 @@
 {{ define "main" }}
 
-<section class="section">
+<section class="section 4ndr0-query-env">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-lg-8">
+      <div class="col-lg-10">
+        
+        <div class="glass-panel hud-query-results p-4 mb-5">
+          <div class="query-status-header d-flex justify-content-between align-items-center mb-4 pb-2">
+            <div class="status-indicator">
+              <span class="status-pulse"></span> [ SYSTEM_SCAN_RESULTS ]
+            </div>
+            <div class="status-metadata">
+              ENGINE: <span class="text-cyan">FUSE_V3</span> // 
+              UPLINK: <span class="text-cyan">LOCAL_INDEX</span>
+            </div>
+          </div>
 
-        <!-- Results rendered here by search.js -->
-        <div id="search-results"></div>
+          <div id="search-results" class="hud-results-stream">
+            <div class="empty-query-msg text-center opacity-50 py-5">
+              <span class="glitch-text" data-text="AWAITING_INPUT...">AWAITING_INPUT...</span>
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -18,11 +33,83 @@
 {{ $fuse := resources.Get "js/vendor/fuse.min.js" }}
 {{ $mark := resources.Get "js/vendor/mark.js" }}
 {{ $search := resources.Get "js/vendor/search.js" }}
+
+{{/* JS Pipeline Preservation */}}
 {{ $searchBundle := slice $fuse $mark $search | resources.Concat "js/search-bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
+
 {{ if hugo.IsProduction }}
 <script defer src="{{ $searchBundle.RelPermalink }}" integrity="{{ $searchBundle.Data.Integrity }}"></script>
 {{ else }}
 <script defer src="{{ $searchBundle.RelPermalink }}"></script>
 {{ end }}
+
+<style>
+  .4ndr0-query-env {
+    min-height: 60vh;
+    font-family: var(--primary_font);
+  }
+
+  .hud-query-results {
+    border: 1px solid var(--accent-cyan-border-idle);
+    transition: border 0.3s ease;
+  }
+
+  .query-status-header {
+    border-bottom: 1px solid var(--accent-cyan-border-idle);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--accent-cyan);
+  }
+
+  .status-pulse {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--accent-cyan);
+    border-radius: 1px;
+    margin-right: 10px;
+    box-shadow: 0 0 10px var(--glow-cyan-active);
+    animation: pulse 2s infinite;
+  }
+
+  /* Targeting Dynamically Injected Elements from search.js */
+  #search-results .search-result-item {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  #search-results .search-result-item:hover {
+    transform: translateX(10px);
+  }
+
+  #search-results h2 a {
+    color: var(--text-cyan-active) !important;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    text-shadow: 0 0 5px var(--glow-cyan-active);
+  }
+
+  #search-results p {
+    color: var(--accent-cyan);
+    opacity: 0.8;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  #search-results mark {
+    background: var(--accent-cyan-bg-active);
+    color: #fff;
+    padding: 0 2px;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .text-cyan { color: var(--accent-cyan); }
+</style>
 
 {{ end }}

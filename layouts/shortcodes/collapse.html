@@ -1,8 +1,105 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
 
-<div class="border border-default collapse-wrapper">
-  <a class="d-flex p-2 collapse-head" data-toggle="collapse" href="#{{ .Get 0 | urlize }}" role="button">
-    {{ .Get 0 | markdownify }} <i class="las la-plus ml-auto"></i>
-  </a>
-  <div class="collapse" id="{{ .Get 0 | urlize }}"><div class="p-2">{{ .Inner | markdownify }}</div></div>
+<div class="4ndr0-envelope glass-panel mb-3" id="env-{{ .Get 0 | urlize }}">
+  <div class="hud-auth-bar d-flex align-items-center p-2" 
+       onclick="document.getElementById('content-{{ .Get 0 | urlize }}').classList.toggle('expanded'); this.classList.toggle('active')">
+    <span class="auth-status-icon mr-2"></span>
+    <span class="auth-label">[ DECRYPT_FRAGMENT ]:</span>
+    <span class="auth-title ml-2">{{ .Get 0 | markdownify }}</span>
+    <span class="hud-toggle-icon ml-auto">[ + ]</span>
+  </div>
+  
+  <div class="hud-envelope-content" id="content-{{ .Get 0 | urlize }}">
+    <div class="p-3 content-inner">
+      <div class="buffer-metadata mb-2">
+        <small>ACCESS_LEVEL: RESTRICTED // FRAGMENT_ID: {{ .Get 0 | urlize | upper }}</small>
+      </div>
+      {{ .Inner | markdownify }}
+    </div>
+  </div>
 </div>
+
+<style>
+  .4ndr0-envelope {
+    border: 1px solid var(--accent-cyan-border-idle);
+    font-family: var(--primary_font);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .hud-auth-bar {
+    background: rgba(0, 229, 255, 0.05);
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .hud-auth-bar:hover {
+    background: rgba(0, 229, 255, 0.15);
+    color: var(--text-cyan-active);
+  }
+
+  .hud-auth-bar.active {
+    border-bottom-color: var(--accent-cyan-border-idle);
+    background: var(--accent-cyan-bg-active);
+  }
+
+  .auth-status-icon {
+    width: 8px;
+    height: 8px;
+    background: var(--accent-cyan);
+    display: inline-block;
+    box-shadow: 0 0 5px var(--glow-cyan-active);
+    border-radius: 1px;
+  }
+
+  .auth-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    letter-spacing: 1px;
+  }
+
+  .auth-title {
+    font-size: 0.85rem;
+    color: var(--text-cyan-active);
+    text-transform: uppercase;
+  }
+
+  .hud-toggle-icon {
+    font-size: 0.8rem;
+    color: var(--accent-cyan);
+    font-weight: bold;
+  }
+
+  .hud-envelope-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0, 1, 0, 1); /* Slide effect */
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .hud-envelope-content.expanded {
+    max-height: 2000px; /* Large enough for content */
+    transition: max-height 0.4s cubic-bezier(1, 0, 1, 0);
+  }
+
+  .hud-auth-bar.active .hud-toggle-icon {
+    content: "[ - ]";
+  }
+
+  .buffer-metadata {
+    font-size: 0.65rem;
+    color: var(--accent-cyan);
+    opacity: 0.5;
+    border-bottom: 1px solid var(--accent-cyan-border-idle);
+    padding-bottom: 5px;
+    letter-spacing: 1px;
+  }
+
+  .content-inner {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+</style>

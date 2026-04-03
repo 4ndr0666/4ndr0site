@@ -1,11 +1,84 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
 
-<div class="quote">
-  <i class="ti-quote-left"></i>
-  <div>
-    <p>{{ .Inner | markdownify }}</p>
+<div class="cortex-insight glass-panel my-5 p-4">
+  <div class="insight-header d-flex align-items-center mb-3">
+    <div class="insight-glitch-bar"></div>
+    <span class="insight-label">[ SYSTEM_INSIGHT_DECRYPTED ]</span>
+  </div>
+  
+  <div class="insight-body">
+    <div class="content-stream">
+      {{ .Inner | markdownify }}
+    </div>
+    
     {{ with .Get "by"}}
-    <span class="quote-by"> -{{ . }}</span>
+    <div class="source-origin mt-3">
+      <span class="origin-prefix">SOURCE_ORIGIN:</span>
+      <span class="origin-id">// {{ . | upper }}</span>
+    </div>
     {{ end }}
   </div>
 </div>
+
+<style>
+  .cortex-insight {
+    position: relative;
+    border-left: 2px solid var(--accent-cyan);
+    background: var(--bg-glass-panel);
+    font-family: var(--primary_font);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cortex-insight:hover {
+    border-left-width: 5px;
+    box-shadow: -10px 0 20px var(--glow-cyan-active);
+    transform: translateX(5px);
+  }
+
+  .insight-glitch-bar {
+    width: 20px;
+    height: 4px;
+    background: var(--accent-cyan);
+    margin-right: 15px;
+    box-shadow: 0 0 10px var(--glow-cyan-active);
+  }
+
+  .insight-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--accent-cyan);
+    opacity: 0.8;
+  }
+
+  .content-stream {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-cyan-active);
+    font-style: italic;
+  }
+
+  .content-stream p {
+    margin-bottom: 0;
+  }
+
+  .source-origin {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    border-top: 1px solid var(--accent-cyan-border-idle);
+    padding-top: 0.75rem;
+    display: inline-block;
+  }
+
+  .origin-prefix {
+    color: var(--accent-cyan);
+    opacity: 0.5;
+    margin-right: 5px;
+  }
+
+  .origin-id {
+    color: var(--accent-cyan);
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--glow-cyan-active);
+  }
+</style>

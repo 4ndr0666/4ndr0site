@@ -1,69 +1,98 @@
-// SVG icons for theme toggle (inline, no FA dependency)
+/**
+ * 4NDR0666OS :: NEURAL_LINK_ENGINE v5.0.0-Ψ
+ * Manages transition between CLI_TERMINAL and MATRIX_GUI environments.
+ */
+
+// OS Glyphs for Mode Toggle
 const ICONS = {
-  moon: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/></svg>',
-  sun: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/></svg>',
+  // GUI_GLYPH (Replaces Sun/Matrix Mode)
+  gui: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M1 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zM1 9a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1z"/></svg>',
+  // CLI_GLYPH (Replaces Moon/Terminal Mode)
+  cli: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm0 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm6-4a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5"/></svg>',
 };
 
-// Get theme from localStorage, system preference, or Hugo's default
-const getTheme = () => {
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) return savedTheme;
-  const hugoTheme = document.documentElement.getAttribute('data-bs-theme');
-  if (hugoTheme) return hugoTheme;
+/**
+ * Determine the current environment state.
+ * Priority: LocalCache > DOM_Attribute > System_Hardware_Preference
+ */
+const getOSMode = () => {
+  const savedMode = localStorage.getItem('4ndr0_mode');
+  if (savedMode) return savedMode;
+  
+  const currentAttr = document.documentElement.getAttribute('data-bs-theme');
+  if (currentAttr) return currentAttr;
+
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 };
 
-// Update icon based on current theme
-const updateIcon = () => {
+/**
+ * Update the HUD toggle icon to reflect the transition-ready state.
+ */
+const updateModeIcon = () => {
   const button = document.querySelector('#theme-toggle');
   if (!button) return;
   const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
-  button.innerHTML = isDark ? ICONS.sun : ICONS.moon;
+  // If we are dark (Matrix), show the CLI icon to switch back, and vice-versa
+  button.innerHTML = isDark ? ICONS.cli : ICONS.gui;
 };
 
-// Sync the utterances iframe theme with the site theme
-const syncUtterancesTheme = (theme) => {
+/**
+ * Sync the Utterances data-stream with the current CORTEX mode.
+ */
+const syncUtterancesMode = (mode) => {
   const frame = document.querySelector('.utterances-frame');
   if (!frame) return;
   frame.contentWindow.postMessage(
-    { type: 'set-theme', theme: theme === 'dark' ? 'github-dark' : 'github-light' },
+    { type: 'set-theme', theme: mode === 'dark' ? 'github-dark' : 'github-light' },
     'https://utteranc.es'
   );
 };
 
-// Toggle theme
+/**
+ * Execute Atomic Transition between CLI and GUI.
+ */
 window.toggleTheme = () => {
-  const currentTheme = document.documentElement.getAttribute('data-bs-theme') || getTheme();
-  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-  localStorage.setItem('theme', newTheme);
-  document.documentElement.setAttribute('data-bs-theme', newTheme);
-  updateIcon();
-  syncUtterancesTheme(newTheme);
+  const currentMode = document.documentElement.getAttribute('data-bs-theme') || getOSMode();
+  const nextMode = currentMode === 'light' ? 'dark' : 'light';
+  
+  localStorage.setItem('4ndr0_mode', nextMode);
+  document.documentElement.setAttribute('data-bs-theme', nextMode);
+  
+  console.log(`[CORTEX] Transitioning to operational_mode: ${nextMode.toUpperCase()}`);
+  
+  updateModeIcon();
+  syncUtterancesMode(nextMode);
 };
 
-// Set initial theme immediately (before DOMContentLoaded to avoid flash)
+/**
+ * IMMEDIATE_EXECUTION: Lock theme before asset render to prevent hardware flicker.
+ */
 (function() {
-  document.documentElement.setAttribute('data-bs-theme', getTheme());
+  document.documentElement.setAttribute('data-bs-theme', getOSMode());
 })();
 
-// Initialize theme
+/**
+ * POST_BOOT: Initialize observers and HUD elements.
+ */
 document.addEventListener('DOMContentLoaded', () => {
-  const currentTheme = getTheme();
-  document.documentElement.setAttribute('data-bs-theme', currentTheme);
-  localStorage.setItem('theme', currentTheme);
-  updateIcon();
+  const currentMode = getOSMode();
+  document.documentElement.setAttribute('data-bs-theme', currentMode);
+  updateModeIcon();
 
-  // Watch for the utterances iframe being injected (it loads lazily via IntersectionObserver)
-  // and immediately sync it to the current theme.
+  // Observer for lazy-loaded Utterances frames
   const utterancesObserver = new MutationObserver(() => {
     const frame = document.querySelector('.utterances-frame');
     if (!frame) return;
     utterancesObserver.disconnect();
-    // The iframe needs a moment to finish initialising before it can receive postMessage
-    frame.addEventListener('load', () => syncUtterancesTheme(getTheme()), { once: true });
+    
+    frame.addEventListener('load', () => {
+      console.log('[CORTEX] Utterances uplink synchronized.');
+      syncUtterancesMode(getOSMode());
+    }, { once: true });
   });
-  const commentsDiv = document.getElementById('comments');
-  if (commentsDiv) {
-    utterancesObserver.observe(commentsDiv, { childList: true, subtree: true });
+
+  const commentsNode = document.getElementById('comments');
+  if (commentsNode) {
+    utterancesObserver.observe(commentsNode, { childList: true, subtree: true });
   }
 });
