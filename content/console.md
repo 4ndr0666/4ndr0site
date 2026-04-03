@@ -4,6 +4,7 @@ layout: "single"
 type: "terminal"
 menu:
   main:
-    name: "Terminal"
+    identifier: "cortex-console"
+    name: "Console"
     weight: 5
 ---
