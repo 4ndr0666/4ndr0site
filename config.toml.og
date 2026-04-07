@@ -84,7 +84,6 @@ sidebar = ["toc"]
     isPlainText = false
     isHTML = false
 
-# CSS and JS plugins are managed directly in layouts/partials/head.html and layouts/partials/footer.html
 [[params.social]]
 name = "GitHub"
 link = "https://github.com/4ndr0666"
@@ -94,6 +93,8 @@ bg_image = "images/bannerbackground.png"
 title = "<strong>4NDR0666OS</strong><br>CORTEX UPLINK<br> SYSTEM NOMINAL."
 image = "images/4ndr0arch.png"
 
+# --- NAVIGATION MENU STRUCUTRE ---
+# To fix the duplicate terminal issue, we ONLY define it here.
 [[menu.main]]
 identifier = "terminal"
 weight = 1
