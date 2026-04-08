@@ -14,6 +14,10 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+# 4NDR0666OS :: FORCE NODE 24 ENVIRONMENT
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
