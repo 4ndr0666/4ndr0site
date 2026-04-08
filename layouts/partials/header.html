@@ -93,11 +93,11 @@
               <button id="searchOpen" class="btn btn-link border-0 p-0 search-btn-toggle hud-control" aria-label="Open database search">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
               </button>
-              <div class="position-absolute top-0 start-0 end-0 h-100 search-popup glass-panel">
+              <div class="position-absolute top-0 start-0 end-0 h-100 search-popup glass-panel" style="display: none;">
                 <form action="{{ `search` | absLangURL }}" class="h-100 d-flex align-items-center">
                   <input class="form-control border-0 shadow-none h-100 px-4 popup-input" id="search-query" name="s" type="search" placeholder="ENTER_SYSTEM_QUERY..." required>
                   <button type="button" id="searchClose" class="btn btn-link border-0 p-0 position-absolute end-0 top-50 translate-middle-y close-btn px-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>
                   </button>
                 </form>
               </div>
@@ -108,6 +108,35 @@
     </nav>
   </div>
 </header>
+
+<script>
+  /* 4NDR0666OS :: SEARCH_TOGGLE_ENGINE */
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchOpen = document.getElementById('searchOpen');
+    const searchClose = document.getElementById('searchClose');
+    const searchPopup = document.querySelector('.search-popup');
+    const searchInput = document.querySelector('.popup-input');
+
+    if (searchOpen && searchClose && searchPopup) {
+      searchOpen.addEventListener('click', function(e) {
+        e.preventDefault();
+        searchPopup.style.display = 'block';
+        setTimeout(() => { if(searchInput) searchInput.focus(); }, 100);
+      });
+
+      searchClose.addEventListener('click', function(e) {
+        e.preventDefault();
+        searchPopup.style.display = 'none';
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && searchPopup.style.display === 'block') {
+          searchPopup.style.display = 'none';
+        }
+      });
+    }
+  });
+</script>
 
 <style>
   /* 4NDR0666OS COMMANDER HEADER */
@@ -131,7 +160,7 @@
     transition: all 0.3s ease;
   }
 
-  .hud-link:hover, .nav-link.show, .dropdown-item:hover {
+  .hud-link:hover, .nav-link.show {
     color: var(--text-cyan-active) !important;
     text-shadow: 0 0 12px var(--glow-cyan-active);
     background: transparent !important;
@@ -145,14 +174,20 @@
     margin-top: 5px;
   }
 
-  .sub-link {
+  .dropdown-item {
+    color: var(--accent-cyan) !important;
+    font-family: var(--primary_font);
     font-size: 0.7rem;
-    border-left: 2px solid transparent;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    background: transparent !important;
   }
 
-  .sub-link:hover {
-    border-left-color: var(--accent-cyan);
-    padding-left: 1.2rem;
+  .dropdown-item:hover {
+    color: var(--text-cyan-active) !important;
+    background: var(--accent-cyan-bg-hover) !important;
+    padding-left: 1.5rem !important;
+    border-left: 2px solid var(--accent-cyan);
   }
 
   .lang-selector {
@@ -195,6 +230,7 @@
     background: rgba(5, 10, 15, 0.98) !important;
     z-index: 1100;
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
 
   .popup-input {
