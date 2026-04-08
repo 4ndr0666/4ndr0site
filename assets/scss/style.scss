@@ -168,63 +168,87 @@ $icon-font: '{{.icon_font}}';
 }
 
 // Dark theme — Bootstrap 5.3 CSS variable overrides
+// INTEGRATED WITH 4NDR0666OS 3LECTRIC_GLASS SPEC
 [data-bs-theme="dark"] {
-  // Bootstrap component variables — no !important needed; components read these
-  --bs-body-bg: #212529;
-  --bs-body-bg-rgb: 33, 37, 41;
-  --bs-card-bg: #2c3034;
-  --bs-card-border-color: #373b3e;
-  --bs-secondary-bg: #343a40;
-  --bs-tertiary-bg: #2b3035;
-  --bs-border-color: #495057;
-  --bs-dropdown-bg: #212529;
-  --bs-dropdown-link-color: #dee2e6;
-  --bs-dropdown-link-hover-color: #47c4f1;
-  --bs-dropdown-link-hover-bg: #343a40;
-  --bs-navbar-color: #dee2e6;
-  --bs-navbar-hover-color: #47c4f1;
-  --bs-navbar-active-color: #47c4f1;
+  // Bootstrap component variables — Native SCSS hook into Glass Spec
+  --bs-body-bg: var(--bg-dark-base, #050A0F);
+  --bs-body-bg-rgb: 5, 10, 15;
+  --bs-card-bg: var(--bg-glass-panel, rgba(10, 19, 26, 0.25));
+  --bs-card-border-color: var(--accent-cyan-border-idle, rgba(0, 229, 255, 0.2));
+  --bs-secondary-bg: var(--bg-glass-panel, rgba(10, 19, 26, 0.25));
+  --bs-tertiary-bg: var(--bg-glass-dense, rgba(10, 19, 26, 0.85));
+  --bs-border-color: var(--accent-cyan-border-idle, rgba(0, 229, 255, 0.2));
+  --bs-dropdown-bg: var(--bg-glass-dense, rgba(10, 19, 26, 0.85));
+  --bs-dropdown-link-color: var(--accent-cyan, #00E5FF);
+  --bs-dropdown-link-hover-color: var(--text-cyan-active, #67E8F9);
+  --bs-dropdown-link-hover-bg: var(--accent-cyan-bg-hover, rgba(0, 229, 255, 0.1));
+  --bs-navbar-color: var(--accent-cyan, #00E5FF);
+  --bs-navbar-hover-color: var(--text-cyan-active, #67E8F9);
+  --bs-navbar-active-color: var(--text-cyan-active, #67E8F9);
 
   // Search highlight in dark
-  --search-highlight-bg: rgba(71, 196, 241, 0.1);
-  --search-highlight-start: rgba(71, 196, 241, 0.25);
+  --search-highlight-bg: var(--accent-cyan-bg-hover, rgba(0, 229, 255, 0.1));
+  --search-highlight-start: var(--accent-cyan-bg-active, rgba(0, 229, 255, 0.25));
 
   // Override hard-coded SCSS values from _typography.scss / _common.scss
   body {
-    background-color: #212529;
-    color: #dee2e6;
+    background-color: var(--bg-dark-base, #050A0F) !important;
+    color: var(--text-cyan-active, #67E8F9);
   }
 
   p, .paragraph {
-    color: #dee2e6;
+    color: var(--text-cyan-active, #67E8F9);
   }
 
   h1, h2, h3, h4, h5, h6 {
-    color: #dee2e6;
+    color: var(--text-cyan-active, #67E8F9);
+    text-shadow: 0 0 5px var(--glow-cyan-active, rgba(0, 229, 255, 0.5));
   }
 
   a {
-    color: #dee2e6;
+    color: var(--accent-cyan, #00E5FF);
     &:hover {
-      color: $secondary-color;
+      color: var(--text-cyan-active, #67E8F9);
       text-decoration: none;
+      text-shadow: 0 0 8px var(--glow-cyan-active, rgba(0, 229, 255, 0.5));
     }
   }
 
-
   table {
-    background: rgb(205, 205, 205);
-    color: #333;
+    background: var(--bg-glass-panel, rgba(10, 19, 26, 0.25));
+    color: var(--text-cyan-active, #67E8F9);
+    border-color: var(--accent-cyan-border-idle, rgba(0, 229, 255, 0.2));
   }
 
   // Bootstrap utility overrides — !important matches Bootstrap utility specificity
   .shadow    { box-shadow: none !important; }
 
-  // Site-specific elements
-  header.sticky-top  { background-color: #212529; }
-  .block             { background-color: #343a40; }
-  .bannerpad         { background-color: #212529; }
-  div.widget         { background-color: #343a40; }
+  // ----------------------------------------------------------------------
+  // COHESIVE ADJUSTMENT: 3LECTRIC_GLASS ASSIMILATION (PURGED GREY BACKGROUNDS)
+  // ----------------------------------------------------------------------
+  header.sticky-top  { 
+    background-color: transparent !important;
+    background: var(--bg-glass-panel, rgba(10, 19, 26, 0.25)) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border-bottom: 1px solid var(--accent-cyan-border-idle, rgba(0, 229, 255, 0.2)) !important;
+  }
+  
+  .block { 
+    background-color: transparent !important;
+    background: var(--bg-glass-panel, rgba(10, 19, 26, 0.25)) !important;
+    border: 1px solid var(--accent-cyan-border-idle, rgba(0, 229, 255, 0.2));
+  }
+  
+  .bannerpad { 
+    background-color: transparent !important; 
+  }
+  
+  div.widget { 
+    background-color: transparent !important;
+    background: var(--bg-glass-panel, rgba(10, 19, 26, 0.25)) !important;
+    border: 1px solid var(--accent-cyan-border-idle, rgba(0, 229, 255, 0.2));
+  }
 
   h2.article-center {
     display: block;
@@ -234,44 +258,46 @@ $icon-font: '{{.icon_font}}';
   }
 
   .theme-toggle .btn-link {
-    color: $text-color-dark;
-    &:hover { color: $secondary-color; }
+    color: var(--accent-cyan, #00E5FF);
+    &:hover { color: var(--text-cyan-active, #67E8F9); text-shadow: 0 0 8px var(--glow-cyan-active, rgba(0, 229, 255, 0.5)); }
   }
 
   // Utterances util overrides — dark theme
   .text-link {
-    color: $secondary-color;
-    &:hover { color: lighten($secondary-color, 12%); text-decoration: underline; }
+    color: var(--accent-cyan, #00E5FF);
+    &:hover { color: var(--text-cyan-active, #67E8F9); text-decoration: underline; text-shadow: 0 0 8px var(--glow-cyan-active, rgba(0, 229, 255, 0.5)); }
   }
 
   .btn-outline {
-    border-color: #495057;
-    color: #dee2e6;
+    border-color: var(--accent-cyan-border-idle, rgba(0, 229, 255, 0.2));
+    color: var(--accent-cyan, #00E5FF);
     background-color: transparent;
     &:hover {
-      background-color: $secondary-color;
-      border-color: $secondary-color;
-      color: #212529;
+      background-color: var(--accent-cyan-bg-hover, rgba(0, 229, 255, 0.1));
+      border-color: var(--accent-cyan, #00E5FF);
+      color: var(--text-cyan-active, #67E8F9);
+      box-shadow: 0 0 10px var(--glow-cyan-active, rgba(0, 229, 255, 0.5));
     }
   }
 
   .markdown-body-scrollable {
-    scrollbar-color: #495057 #2c3034;
+    scrollbar-color: var(--accent-cyan-border-idle, rgba(0, 229, 255, 0.2)) var(--bg-dark-base, #050A0F);
   }
 
-  // WCAG 2.2 AA 1.4.3 — #666 on #212529 is only 2.69:1; #999 gives 4.87:1
+  // WCAG 2.2 AA 1.4.3
   .post-meta {
-    color: #999;
+    color: rgba(0, 229, 255, 0.6);
   }
 
-  // #333 on dark widget bg #343a40 is ~1.1:1; override to light text
   .widget-categories-list li a {
-    color: #dee2e6;
-    border-bottom-color: #495057;
-    &:hover { color: $secondary-color; }
+    color: var(--accent-cyan, #00E5FF);
+    border-bottom-color: var(--accent-cyan-border-idle, rgba(0, 229, 255, 0.2));
+    &:hover { 
+      color: var(--text-cyan-active, #67E8F9); 
+      text-shadow: 0 0 8px var(--glow-cyan-active, rgba(0, 229, 255, 0.5));
+    }
   }
 
-  ::selection    { background: $secondary-color; color: $white; }
-  ::-moz-selection { background: $secondary-color; color: $white; }
+  ::selection      { background: var(--accent-cyan-bg-active, rgba(0, 229, 255, 0.2)); color: var(--text-cyan-active, #67E8F9); }
+  ::-moz-selection { background: var(--accent-cyan-bg-active, rgba(0, 229, 255, 0.2)); color: var(--text-cyan-active, #67E8F9); }
 }
-
