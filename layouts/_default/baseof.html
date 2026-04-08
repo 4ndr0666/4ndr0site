@@ -3,7 +3,7 @@
 
 <head>
   {{ partial "head.html" . }}
-  {{ partialCached "style.html" . }}
+  {{ partial "style.html" . }}
   {{ partial "structured-data.html" . }}
   
   <style>
@@ -13,7 +13,7 @@
     }
 
     body {
-      background-color: var(--bg-dark-base);
+      background-color: var(--bg-dark-base) !important;
       color: var(--text-color);
       min-height: 100vh;
       display: flex;
@@ -48,7 +48,7 @@
   </style>
 </head>
 
-<body class="4ndr0-gui-environment">
+<body class="4ndr0-gui-environment" id="4ndr0-kernel">
   <a class="visually-hidden-focusable position-absolute" href="#main-content" style="z-index: 10001; top: 1rem; left: 1rem; background: var(--accent-cyan); color: var(--bg-dark-base); padding: 0.5rem;">Skip to main content</a>
 
   {{- partial "header.html" . -}}

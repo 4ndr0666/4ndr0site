@@ -1,18 +1,18 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
 
-<div class="4ndr0-envelope glass-panel mb-3" id="env-{{ .Get 0 | urlize }}">
-  <div class="hud-auth-bar d-flex align-items-center p-2" 
+<div class="4ndr0-envelope glass-panel mb-4 transition-base" id="env-{{ .Get 0 | urlize }}">
+  <div class="hud-auth-bar d-flex align-items-center p-3" 
        onclick="document.getElementById('content-{{ .Get 0 | urlize }}').classList.toggle('expanded'); this.classList.toggle('active')">
-    <span class="auth-status-icon mr-2"></span>
-    <span class="auth-label">[ DECRYPT_FRAGMENT ]:</span>
-    <span class="auth-title ml-2">{{ .Get 0 | markdownify }}</span>
-    <span class="hud-toggle-icon ml-auto">[ + ]</span>
+    <span class="auth-status-icon mr-3 me-3"></span>
+    <span class="auth-label text-uppercase me-2">[ DECRYPT_FRAGMENT ]:</span>
+    <span class="auth-title ml-2 ms-2">{{ .Get 0 | markdownify }}</span>
+    <span class="hud-toggle-icon ml-auto ms-auto">[ + ]</span>
   </div>
   
   <div class="hud-envelope-content" id="content-{{ .Get 0 | urlize }}">
-    <div class="p-3 content-inner">
-      <div class="buffer-metadata mb-2">
-        <small>ACCESS_LEVEL: RESTRICTED // FRAGMENT_ID: {{ .Get 0 | urlize | upper }}</small>
+    <div class="p-4 content-inner border-top border-hud">
+      <div class="buffer-metadata mb-3 pb-2">
+        ACCESS_LEVEL: <span class="text-cyan-active">RESTRICTED</span> // FRAGMENT_ID: <span class="text-cyan-active">{{ .Get 0 | urlize | upper }}</span>
       </div>
       {{ .Inner | markdownify }}
     </div>
@@ -21,40 +21,35 @@
 
 <style>
   .4ndr0-envelope {
-    border: 1px solid var(--accent-cyan-border-idle);
+    border: 1px solid var(--accent-cyan-border-idle) !important;
+    background: var(--bg-glass-panel) !important;
     font-family: var(--primary_font);
     overflow: hidden;
-    transition: all 0.3s ease;
   }
 
   .hud-auth-bar {
     background: rgba(0, 229, 255, 0.05);
     cursor: pointer;
-    border-bottom: 1px solid transparent;
     transition: all 0.3s ease;
   }
 
   .hud-auth-bar:hover {
     background: rgba(0, 229, 255, 0.15);
-    color: var(--text-cyan-active);
   }
 
   .hud-auth-bar.active {
-    border-bottom-color: var(--accent-cyan-border-idle);
     background: var(--accent-cyan-bg-active);
   }
 
   .auth-status-icon {
-    width: 8px;
-    height: 8px;
+    width: 8px; height: 8px;
     background: var(--accent-cyan);
     display: inline-block;
     box-shadow: 0 0 5px var(--glow-cyan-active);
-    border-radius: 1px;
   }
 
   .auth-label {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 700;
     color: var(--accent-cyan);
     letter-spacing: 1px;
@@ -70,36 +65,38 @@
     font-size: 0.8rem;
     color: var(--accent-cyan);
     font-weight: bold;
+    transition: transform 0.3s ease;
   }
 
   .hud-envelope-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0, 1, 0, 1); /* Slide effect */
+    transition: max-height 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
     background: rgba(0, 0, 0, 0.2);
   }
 
   .hud-envelope-content.expanded {
-    max-height: 2000px; /* Large enough for content */
-    transition: max-height 0.4s cubic-bezier(1, 0, 1, 0);
+    max-height: 2500px; /* Force-open boundary */
   }
 
   .hud-auth-bar.active .hud-toggle-icon {
-    content: "[ - ]";
+    color: var(--text-cyan-active);
+    text-shadow: 0 0 8px var(--glow-cyan-active);
   }
+
+  .border-hud { border-color: var(--accent-cyan-border-idle) !important; }
 
   .buffer-metadata {
     font-size: 0.65rem;
     color: var(--accent-cyan);
-    opacity: 0.5;
-    border-bottom: 1px solid var(--accent-cyan-border-idle);
-    padding-bottom: 5px;
+    opacity: 0.6;
+    border-bottom: 1px dashed var(--accent-cyan-border-idle);
     letter-spacing: 1px;
   }
 
   .content-inner {
-    color: var(--text-color);
-    font-size: 0.9rem;
-    line-height: 1.6;
+    color: var(--text-cyan-active);
+    font-size: 0.95rem;
+    line-height: 1.7;
   }
 </style>

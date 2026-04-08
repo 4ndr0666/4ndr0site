@@ -1,3 +1,46 @@
 {{ define "main" }}
+  <div id="cortex-terminal"></div>
+
   {{ partial "index_terminal_logic.html" . }}
+
+  <style>
+    /* FORCE_STANDALONE_MODE: 
+       Suppresses GUI elements inherited from baseof.html 
+    */
+    .4ndr0-header, 
+    .4ndr0-footer, 
+    .4ndr0-banner-hud,
+    .4ndr0-banner-interface { 
+        display: none !important; 
+    }
+
+    body { 
+        overflow: hidden !important; 
+        background-color: #050A0F !important; 
+    }
+
+    #cortex-terminal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 9999;
+        background-color: #050A0F !important;
+    }
+
+    /* CRT_SCANLINE_OVERLAY_REINFORCEMENT */
+    body::after {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0; left: 0; bottom: 0; right: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), 
+                    linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+        z-index: 10000;
+        background-size: 100% 2px, 3px 100%;
+        pointer-events: none;
+        opacity: 0.4;
+    }
+  </style>
 {{ end }}

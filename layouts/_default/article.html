@@ -1,15 +1,84 @@
-<article class="mb-4 pb-2">
-  <h2 class="h4"><a class="post-title" href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h2>
-  <div class="mb-3 post-meta">
-    {{ .PublishDate.Format "Jan 2, 2006" }}
-    {{ if .Params.Categories }}
-      <span class="mx-1">|</span>
-      {{ range .Params.Categories }}
-      <span class="post-category"><a href="{{ `categories/` | absLangURL }}{{ . | urlize | lower }}">{{ . | title }}</a></span>
-      {{ end }}
+<article class="glass-panel hud-card mb-4 transition-base">
+  <div class="row align-items-center p-3">
+    {{ if .Params.Image }}
+    <div class="col-md-4 mb-3 mb-md-0">
+      <div class="node-asset-frame" style="overflow: hidden; border: 1px solid var(--accent-cyan-border-idle);">
+        <a href="{{ .RelPermalink }}" aria-label="{{ .Title }}">
+          <img 
+            src="{{ .Params.Image | relURL }}" 
+            class="img-fluid node-render" 
+            alt="UPLINK_IMAGE: {{ .Title }}"
+            style="filter: brightness(0.8) contrast(1.1); transition: all 0.5s ease;"
+          >
+        </a>
+      </div>
+    </div>
+    <div class="col-md-8">
+    {{ else }}
+    <div class="col-12">
     {{ end }}
+      
+      <div class="hud-card-header mb-2 d-flex justify-content-between align-items-center">
+        <span class="text-cyan opacity-50 small text-uppercase" style="letter-spacing: 1px; font-family: var(--primary_font);">
+          TIMESTAMP: {{ .PublishDate.Format "2006.01.02" }}
+        </span>
+        <span class="hud-status-tag small" style="color: var(--accent-cyan); font-family: var(--primary_font);">
+          [ ONLINE ]
+        </span>
+      </div>
+
+      <h3 class="h4 mb-3">
+        <a href="{{ .RelPermalink }}" class="text-cyan-active text-decoration-none hud-card-title transition-base" style="font-family: var(--primary_font); letter-spacing: 1px;">
+          {{ .Title }}
+        </a>
+      </h3>
+
+      <div class="text-cyan-muted small mb-3 opacity-75" style="line-height: 1.6; font-family: var(--primary_font);">
+        {{ .Summary | truncate 180 }}
+      </div>
+
+      <div class="hud-card-footer d-flex justify-content-between align-items-center">
+        <div class="hud-tags">
+          {{ range .Params.categories }}
+          <span class="badge bg-transparent border-hud text-cyan-muted me-2" style="font-size: 0.65rem; border: 1px solid var(--accent-cyan-border-idle); text-transform: uppercase;">
+            {{ . }}
+          </span>
+          {{ end }}
+        </div>
+        <a href="{{ .RelPermalink }}" class="hud-link-btn text-decoration-none" style="color: var(--accent-cyan); font-weight: 700; font-size: 0.8rem; letter-spacing: 1px; font-family: var(--primary_font);">
+          DECRYPT_DATA &gt;
+        </a>
+      </div>
+    </div>
   </div>
-  <p>{{.Summary}}</p>
-  <a href="{{ .Permalink }}" class="btn btn-sm btn-transparent pl-0" aria-label="Read more about {{ .Title | plainify }}">read more</a>
-  <div style="border: 1px #eee solid; margin-top:40px"></div>
 </article>
+
+<style>
+  /* HARDENED SPECIFICITY NODE */
+  .hud-card { 
+    border: 1px solid var(--accent-cyan-border-idle) !important; 
+    background: var(--bg-glass-panel) !important;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  
+  .hud-card:hover { 
+    border-color: var(--accent-cyan) !important; 
+    transform: translateX(8px); 
+    box-shadow: 0 0 25px var(--glow-cyan-active) !important;
+  }
+  
+  .hud-card:hover .node-render {
+    filter: brightness(1.1) contrast(1.1) !important;
+    transform: scale(1.05);
+  }
+
+  .hud-card-title:hover { 
+    color: var(--accent-cyan) !important; 
+    text-shadow: 0 0 10px var(--glow-cyan-active); 
+  }
+
+  .hud-link-btn:hover { 
+    color: var(--text-cyan-active) !important; 
+    text-shadow: 0 0 8px var(--glow-cyan-active);
+  }
+</style>

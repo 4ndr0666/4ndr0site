@@ -1,15 +1,50 @@
-{{ "<!-- Search -->" | safeHTML }}
 {{ if site.Params.subscription.enable }}
 {{ with site.Params.subscription }}
-<div class="widget">
-  <h5 class="widget-title"><span>Newsletter</span></h5>
-  <form action="https://www.cttstore.com/email_lists/103855/subscriptions" accept-charset="UTF-8" method="post" target="_blank"
-  class="widget-search">
-    <label for="newsletter-email" class="visually-hidden">Email address</label>
-    <input class="mb-3 form-control rounded-0" id="newsletter-email" type="email" name="email" required="required" placeholder="Email" autocomplete="email" />
-    <button type="submit" class="btn btn-primary btn-block rounded-0" name="subscribe">Subscribe</button>
-    <!--input type="submit" value="Sign me up!" /-->
-    </form>
+<div class="hud-comm-link-inner">
+  <h5 class="widget-title">
+    <span class="status-pulse me-2"></span>{{ .title | upper | default "COMM_UPLINK" }}
+  </h5>
+  
+  <div class="subscription-bio text-cyan-muted opacity-75 small mb-3" style="line-height: 1.6; font-family: var(--primary_font);">
+    {{ .description | markdownify | default "INITIALIZE_DIRECT_DATA_STREAM." }}
+  </div>
+
+  <form action="{{ .action | safeURL | default '#' }}" accept-charset="UTF-8" method="post" target="_blank" class="hud-subscription-form mt-3">
+    <label for="newsletter-email" class="visually-hidden">UPLINK_COORD</label>
+    
+    <div class="input-group-hud mb-3 position-relative">
+      <span class="input-prefix position-absolute text-cyan opacity-50" style="left: 10px; top: 10px; z-index: 5; font-size: 0.8rem;">></span>
+      <input class="hud-input w-100" id="newsletter-email" type="email" name="email" required="required" placeholder="TARGET_EMAIL..." autocomplete="email" style="padding-left: 25px;" />
+    </div>
+    
+    <button type="submit" class="hud-btn w-100 py-2 text-uppercase" name="subscribe" style="letter-spacing: 2px; font-weight: 700; font-size: 0.8rem;">
+      ESTABLISH_CONNECTION
+    </button>
+  </form>
 </div>
+
+<style>
+  .hud-subscription-form .hud-input {
+    background: rgba(0, 229, 255, 0.05) !important;
+    border: 1px solid var(--accent-cyan-border-idle) !important;
+    color: var(--text-cyan-active) !important;
+    font-family: var(--primary_font);
+    padding: 10px;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .hud-subscription-form .hud-input:focus {
+    background: rgba(0, 229, 255, 0.12) !important;
+    border-color: var(--accent-cyan) !important;
+    box-shadow: 0 0 15px var(--glow-cyan-active) !important;
+    outline: none;
+  }
+
+  .hud-subscription-form .hud-input::placeholder {
+    color: var(--accent-cyan);
+    opacity: 0.3;
+    letter-spacing: 1px;
+  }
+</style>
 {{ end }}
 {{ end }}

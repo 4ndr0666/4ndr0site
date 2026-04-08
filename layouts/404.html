@@ -1,12 +1,15 @@
 {{ define "main" }}
 
-<section class="4ndr0-error-env d-flex align-items-center justify-content-center">
+<section class="4ndr0-error-env d-flex align-items-center justify-content-center py-5">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="glass-panel p-5 text-center hud-error-node">
+          
+          <div class="header-scanline mb-4" style="width: 100%; height: 2px; background: #FF003C; box-shadow: 0 0 15px rgba(255, 0, 60, 0.6);"></div>
+
           <div class="hud-status-line mb-4">
-            <span class="status-label">CRITICAL_ERROR:</span> 
+            <span class="status-label" style="opacity: 0.6;">CRITICAL_ERROR:</span> 
             <span class="status-code">0x404</span>
           </div>
 
@@ -19,10 +22,10 @@
           </p>
 
           <div class="hud-controls">
-            <a href="{{ site.BaseURL | relLangURL }}" class="hud-button active">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="me-2" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M8 3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 3m4 8a4 4 0 0 1-8 0 3 3 0 0 1 3-3h2a3 3 0 0 1 3 3m-1-5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 11 6M5 6a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 5 6"/>
-                <path d="M11 5.333V4a2 2 0 1 0-4 0v1.333A3.001 3.001 0 0 0 4 8v4a3 3 0 1 0 6 0V8a3.001 3.001 0 0 0-3-2.667V4a1 1 0 1 1 2 0v1.333z"/>
+            <a href="{{ site.BaseURL | relLangURL }}" class="page-link hud-btn d-inline-block px-5 py-3 text-decoration-none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="me-2 mb-1" viewBox="0 0 16 16">
+                <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9a5.002 5.002 0 0 0-9.457-2.023L2.393 3.536A.5.5 0 0 1 2.5 3h1zM.083 9H1.09a5.002 5.002 0 0 0 9.457 2.023l1.05 1.441a.5.5 0 0 1-.866.536l-1.05-1.441A6.002 6.002 0 0 1 2.083 9z"/>
               </svg>
               INITIALIZE_REBOOT
             </a>
@@ -35,14 +38,16 @@
 
 <style>
   .4ndr0-error-env {
-    min-height: 70vh;
+    min-height: 80vh;
     font-family: var(--primary_font);
   }
 
   .hud-error-node {
-    border-color: #FF003C !important; /* Error Red */
-    box-shadow: 0 0 20px rgba(255, 0, 60, 0.2);
+    border: 1px solid #FF003C !important;
+    background: rgba(10, 19, 26, 0.8) !important;
+    box-shadow: 0 0 30px rgba(255, 0, 60, 0.2) !important;
     position: relative;
+    backdrop-filter: blur(15px);
   }
 
   .hud-status-line {
@@ -51,30 +56,32 @@
     color: #FF003C;
   }
 
-  .status-code { font-weight: bold; text-shadow: 0 0 8px rgba(255, 0, 60, 0.5); }
+  .status-code { font-weight: bold; text-shadow: 0 0 8px rgba(255, 0, 60, 0.8); }
 
   .hud-glitch-header {
-    color: var(--text-cyan-active);
+    color: #fff;
     font-weight: 900;
     position: relative;
     text-shadow: 0.05em 0 0 rgba(255, 0, 60, 0.75),
-                -0.025em -0.05em 0 rgba(0, 229, 255, 0.75),
-                0.025em 0.05em 0 rgba(103, 232, 249, 0.75);
+                 -0.025em -0.05em 0 rgba(0, 229, 255, 0.75),
+                 0.025em 0.05em 0 rgba(103, 232, 249, 0.75);
     animation: glitch 500ms infinite;
   }
 
   .hud-error-sub {
-    color: var(--accent-cyan);
+    color: #FF003C;
     font-size: 1.2rem;
     letter-spacing: 4px;
-    opacity: 0.8;
+    text-transform: uppercase;
+    font-weight: 700;
   }
 
   .node-warning {
     font-size: 0.85rem;
     color: var(--accent-cyan);
+    opacity: 0.7;
     line-height: 1.6;
-    max-width: 400px;
+    max-width: 450px;
     margin-left: auto;
     margin-right: auto;
   }

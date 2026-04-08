@@ -1,10 +1,5 @@
----
-title: "Terminal"
-layout: "terminal_standalone"
-url: "/terminal/"
-menu:
-  main:
-    identifier: "terminal-gateway"
-    name: "Terminal"
-    weight: 2
----
+# REMOVE ONE OF THESE IF THEY POINT TO THE SAME LOCATION
+[[menu.main]]
+  name = "Terminal"
+  url = "/"
+  weight = 1

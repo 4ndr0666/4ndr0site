@@ -1,36 +1,37 @@
 {{ $url := printf "https://api.github.com/repos/%s/contents/%s" (.Get "repo") (.Get "file") }}
 
-<div class="github-api-uplink glass-panel mb-4">
-  <div class="api-header d-flex justify-content-between align-items-center p-2">
-    <div class="api-title">
-      <span class="status-pulse"></span> [ GITHUB_REST_API_STREAM ]
+<div class="github-api-uplink glass-panel mb-5 transition-base">
+  <div class="api-header d-flex justify-content-between align-items-center p-2 px-3">
+    <div class="api-title d-flex align-items-center">
+      <span class="status-pulse me-2"></span> 
+      <span class="text-uppercase" style="letter-spacing: 2px; font-size: 0.7rem;">[ GITHUB_API_STREAM ]</span>
     </div>
-    <div class="api-coord text-truncate ms-3">
-      REPO: <span class="path-text">{{ .Get "repo" }}</span> // FILE: <span class="path-text">{{ .Get "file" }}</span>
+    <div class="api-coord text-truncate ms-3 opacity-50" style="font-size: 0.65rem;">
+      REPO: <span class="text-cyan-active">{{ .Get "repo" }}</span> // FILE: <span class="text-cyan-active">{{ .Get "file" }}</span>
     </div>
   </div>
 
   {{ with try (resources.GetRemote $url) }}
     {{ with .Err }}
-      <div class="api-error p-4 text-center">
-        <div class="error-msg">API_FETCH_DENIED</div>
-        <small class="opacity-50">{{ . }}</small>
+      <div class="api-error p-5 text-center">
+        <div class="error-msg mb-2" style="color: #FF003C; font-weight: 700; letter-spacing: 3px;">UPLINK_DENIED</div>
+        <code class="small opacity-50" style="color: #FF003C;">ERR_CODE: {{ . }}</code>
       </div>
     {{ else with .Value }}
       {{ $data := .Content | transform.Unmarshal }}
       {{ $con := base64Decode $data.content }}
       
       <div class="hud-api-frame">
-        <div class="api-status-bar p-1">
-          X-RATE-LIMIT: NOMINAL // CHARSET: UTF-8 // DECODE: BASE64_SUCCESS
+        <div class="api-status-bar py-1 px-3 border-bottom border-hud">
+          STATUS: <span class="text-cyan-active">ENCRYPT_NOMINAL</span> // TYPE: <span class="text-cyan-active">REST_V3</span> // DECODE: <span class="text-cyan-active">BASE64_OK</span>
         </div>
-        <div class="code-content">
+        <div class="code-content-wrapper">
           {{ highlight $con ($.Get "lang") ($.Get "options") }}
         </div>
       </div>
     {{ else }}
-      <div class="api-error p-4 text-center">
-        <div class="error-msg">EMPTY_RESPONSE_ERROR</div>
+      <div class="api-error p-5 text-center">
+        <div class="error-msg" style="color: #FF003C; font-weight: 700; letter-spacing: 3px;">EMPTY_PAYLOAD_ERROR</div>
       </div>
     {{ end }}
   {{ end }}
@@ -38,62 +39,56 @@
 
 <style>
   .github-api-uplink {
-    border: 1px solid var(--accent-cyan-border-idle);
+    border: 1px solid var(--accent-cyan-border-idle) !important;
+    background: var(--bg-glass-panel) !important;
     font-family: var(--primary_font);
-    overflow: hidden;
   }
 
   .api-header {
-    background: rgba(0, 229, 255, 0.08);
+    background: rgba(0, 229, 255, 0.1);
     border-bottom: 1px solid var(--accent-cyan-border-idle);
-    font-size: 0.7rem;
-    letter-spacing: 1px;
     color: var(--accent-cyan);
   }
 
   .status-pulse {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: #00E5FF;
+    width: 8px; height: 8px;
+    background: var(--accent-cyan);
     border-radius: 50%;
-    margin-right: 8px;
     box-shadow: 0 0 8px var(--glow-cyan-active);
-    animation: api-blink 2s infinite;
+    animation: api-pulse 2s infinite ease-in-out;
   }
 
-  @keyframes api-blink {
+  @keyframes api-pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.9); }
+    50% { opacity: 0.3; transform: scale(0.8); }
   }
-
-  .path-text { color: var(--text-cyan-active); font-weight: bold; }
 
   .api-status-bar {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.4);
     font-size: 0.6rem;
     color: var(--accent-cyan);
-    opacity: 0.5;
-    padding-left: 1.5rem !important;
+    opacity: 0.6;
     letter-spacing: 1px;
   }
 
-  .hud-api-frame .highlight {
+  .code-content-wrapper .highlight {
     margin: 0 !important;
     background: transparent !important;
   }
 
-  .hud-api-frame pre {
+  .code-content-wrapper pre {
     background: transparent !important;
     padding: 1.5rem !important;
     margin: 0;
     font-size: 0.85rem;
-    line-height: 1.5;
+    line-height: 1.6;
+    overflow-x: auto;
   }
 
-  .api-error {
-    color: #FF003C;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
+  .border-hud { border-color: var(--accent-cyan-border-idle) !important; }
+
+  .github-api-uplink:hover {
+    border-color: var(--accent-cyan) !important;
+    box-shadow: 0 0 15px var(--glow-cyan-active) !important;
   }
 </style>

@@ -1,23 +1,36 @@
-<h5 class="widget-title">NAV_LOG</h5>
+<h5 class="widget-title">
+  <span class="status-pulse me-2"></span> NAV_LOG
+</h5>
+
 <aside class="hud-toc-container">
   {{ .TableOfContents }}
 </aside>
 
 <style>
-  /* Targeting Hugo's Auto-Generated Markup */
-  .hud-toc-container nav {
-    position: relative;
+  .status-pulse {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: #00FF41; /* Matrix Green to indicate active tracking */
+    border-radius: 50%;
+    box-shadow: 0 0 6px #00FF41;
+    animation: pulse-tracking 2s infinite;
   }
 
+  @keyframes pulse-tracking {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* Targeting Hugo's Auto-Generated Markup Brutally */
   .hud-toc-container nav ul {
-    list-style: none;
-    padding-left: 15px;
-    margin-bottom: 0;
-    border-left: 1px solid var(--accent-cyan-border-idle);
+    list-style: none !important;
+    padding-left: 15px !important;
+    margin-bottom: 0 !important;
+    border-left: 1px dashed var(--accent-cyan-border-idle) !important;
   }
 
   .hud-toc-container nav ul li {
-    margin-bottom: 10px;
+    margin-bottom: 8px !important;
     position: relative;
   }
 
@@ -26,34 +39,29 @@
     content: "";
     position: absolute;
     left: -15px;
-    top: 12px;
+    top: 10px;
     width: 10px;
     height: 1px;
     background: var(--accent-cyan-border-idle);
   }
 
   .hud-toc-container nav ul li a {
-    color: var(--accent-cyan);
-    font-size: 0.75rem;
-    font-family: var(--primary_font);
+    color: var(--accent-cyan) !important;
+    font-size: 0.75rem !important;
+    font-family: var(--primary_font) !important;
     text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    opacity: 0.7;
     display: inline-block;
-    opacity: 0.8;
+    padding: 2px 0;
   }
 
-  .hud-toc-container nav ul li a:hover {
-    color: var(--text-cyan-active);
-    opacity: 1;
-    transform: translateX(3px);
-    text-shadow: 0 0 8px var(--glow-cyan-active);
-  }
-
-  /* Active Node Logic (Assumes ScrollSpy or Hugo active classes) */
+  .hud-toc-container nav ul li a:hover,
   .hud-toc-container nav ul li a.active {
-    color: var(--text-cyan-active);
+    color: var(--text-cyan-active) !important;
     opacity: 1;
-    font-weight: 700;
+    transform: translateX(4px);
+    text-shadow: 0 0 8px var(--glow-cyan-active);
   }
 </style>

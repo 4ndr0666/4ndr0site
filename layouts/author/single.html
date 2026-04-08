@@ -1,37 +1,73 @@
 {{ define "main" }}
 
-<section class="section pb-0">
+<section class="section 4ndr0-author-env py-5">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 mx-auto text-center block shadow">
-        {{ with .Params.Image }}
-        <img loading="lazy" src="{{ . | absURL }}" alt="{{ $.Title }}" class="img-fluid d-block mx-auto rounded-circle mb-4 author-thumb">
-        {{ end }}
-        <h4>{{ .Title | markdownify }}</h4>
-        <div class="content">
-          {{ .Content }}
+      <div class="col-lg-10 mx-auto">
+        
+        <div class="glass-panel p-4 p-md-5 text-center hud-author-node mb-5">
+          {{ with .Params.Image }}
+          <div class="node-asset-frame mx-auto mb-4" style="width: 150px; height: 150px; overflow: hidden; border: 2px solid var(--accent-cyan-border-idle); position: relative;">
+            <img loading="lazy" src="{{ . | absURL }}" alt="{{ $.Title }}" class="img-fluid node-render" style="filter: brightness(0.9) contrast(1.1); transition: all 0.5s ease;">
+            <div class="frame-corner-tl" style="position: absolute; top: 0; left: 0; width: 10px; height: 10px; border-top: 2px solid var(--accent-cyan); border-left: 2px solid var(--accent-cyan);"></div>
+          </div>
+          {{ end }}
+          
+          <h1 class="h3 text-cyan-active text-uppercase mb-3" style="font-family: var(--primary_font); letter-spacing: 2px;">{{ .Title | markdownify }}</h1>
+          
+          <div class="content 4ndr0-content text-cyan-muted opacity-75 mx-auto" style="max-width: 700px; font-family: var(--primary_font);">
+            {{ .Content }}
+          </div>
         </div>
+
+        <div class="hud-index-header mb-5">
+          <h2 class="h4 mb-0 text-cyan-active text-uppercase" style="font-family: var(--primary_font); letter-spacing: 2px;">
+            <span class="opacity-50">NODE_CONTRIBUTIONS:</span> {{ .Title }}
+          </h2>
+          <div class="header-scanline" style="width: 100%; height: 2px; background: var(--accent-cyan); margin-top: 15px; box-shadow: 0 0 10px var(--glow-cyan-active);"></div>
+        </div>
+
+        <div class="glass-panel p-4 p-md-5">
+          <div class="node-stream">
+            {{ $name:= .Title }}
+            {{ range where site.RegularPages "Params.author" $name }}
+              <div class="node-entry mb-4">
+                {{ .Render "article" }}
+              </div>
+            {{ end }}
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 </section>
 
-<!-- blog -->
-<section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 mx-auto px-0">
-        <h2 class="mb-4">Posts by {{ .Title }}</h2>
-        <div class="bg-body shadow block">
-          {{ $name:= .Title }}
-          {{ range where site.RegularPages "Params.author" $name }}
-          {{ .Render "article" }}
-          {{ end }}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- /blog -->
+<style>
+  .4ndr0-author-env { font-family: var(--primary_font); }
+  
+  .hud-author-node {
+    border: 1px solid var(--accent-cyan-border-idle) !important;
+    background: var(--bg-glass-panel) !important;
+  }
+
+  .node-render:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1) contrast(1.2) !important;
+  }
+
+  .node-entry {
+    border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+    padding-bottom: 1.5rem;
+  }
+  .node-entry:last-child { border-bottom: none; }
+
+  /* PURGE LEGACY UI ELEMENTS */
+  .rounded-circle, .shadow, .bg-body, .block { 
+    border-radius: 0 !important; 
+    box-shadow: none !important; 
+    background: transparent !important;
+  }
+</style>
 
 {{ end }}

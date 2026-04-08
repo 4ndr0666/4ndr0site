@@ -1,23 +1,25 @@
 {{- range .Widgets -}}
-<div class="glass-panel hud-widget mb-4">
+<div class="glass-panel hud-widget mb-5 transition-base">
   {{- partial ( print "widgets/" . ) $.Scope -}}
 </div>
 {{- end -}}
 
 <style>
   .hud-widget {
-    padding: 1.5rem;
-    border-radius: 2px; /* Sharper OS aesthetic */
-    transition: all 0.3s ease;
+    padding: 1.5rem !important;
+    border: 1px solid var(--accent-cyan-border-idle) !important;
+    background: var(--bg-glass-panel) !important;
     font-family: var(--primary_font);
+    position: relative;
+    overflow: hidden;
   }
   
   .hud-widget:hover {
-    border-color: var(--accent-cyan);
-    box-shadow: 0 0 15px var(--glow-cyan-active);
+    border-color: var(--accent-cyan) !important;
+    box-shadow: 0 0 15px var(--glow-cyan-active) !important;
   }
   
-  /* Widget Header Global Refactor */
+  /* Widget Header Global Refactor (Overrides Bootstrap Typography) */
   .hud-widget h1, 
   .hud-widget h2, 
   .hud-widget h3, 
@@ -28,9 +30,9 @@
     font-size: 0.85rem !important;
     text-transform: uppercase !important;
     letter-spacing: 2px !important;
-    border-bottom: 1px solid var(--accent-cyan-border-idle);
-    padding-bottom: 0.75rem;
-    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--accent-cyan-border-idle) !important;
+    padding-bottom: 0.75rem !important;
+    margin-bottom: 1.25rem !important;
     display: flex;
     align-items: center;
   }
@@ -38,30 +40,32 @@
   .hud-widget h2::before, 
   .hud-widget h3::before,
   .widget-title::before {
-    content: "> ";
+    content: ">>";
     margin-right: 10px;
     color: var(--accent-cyan);
-    font-weight: bold;
+    font-weight: 700;
+    letter-spacing: -1px;
     text-shadow: 0 0 5px var(--glow-cyan-active);
   }
 
-  /* Widget Content Interactivity */
+  /* Widget Content Interactivity Hardening */
   .hud-widget ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
   .hud-widget a {
     color: var(--accent-cyan);
-    text-decoration: none;
+    text-decoration: none !important;
     font-size: 0.8rem;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: inline-block;
   }
 
   .hud-widget a:hover {
     color: var(--text-cyan-active);
-    padding-left: 5px;
+    transform: translateX(5px);
     text-shadow: 0 0 8px var(--glow-cyan-active);
   }
 </style>

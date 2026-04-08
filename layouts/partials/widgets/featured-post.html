@@ -1,21 +1,49 @@
-{{ "<!-- recent post -->" | safeHTML }}
-<div class="widget">
-  <h5 class="widget-title">{{ i18n "featured_post" }}</h5>
-  {{ "<!-- post-item -->" | safeHTML }}
-  {{ range first 3 ( where site.RegularPages ".Params.featured" "=" true )}}
+<h5 class="widget-title">
+  <span class="status-pulse me-2"></span>{{ i18n "featured_post" | upper | default "FEATURED_NODES" }}
+</h5>
+
+{{ range first 3 ( where site.RegularPages ".Params.featured" "=" true )}}
   {{- $post := . -}}
-  <article class="widget-card mt-4">
-    <div class="d-flex">
+  <article class="hud-featured-card mt-4 transition-base">
+    <div class="d-flex align-items-center">
       {{ with .Params.image }}
-      <img loading="lazy" src="{{ . | absURL }}" class="rounded-circle" alt="{{ $post.Title | plainify }}" style="height:70px;width:70px;object-fit:cover;">
+      <div class="node-asset-frame me-3" style="border: 1px solid var(--accent-cyan-border-idle); overflow: hidden; width: 60px; height: 60px; flex-shrink: 0;">
+        <img loading="lazy" src="{{ . | absURL }}" alt="[ASSET_REF: {{ $post.Title | plainify }}]" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8) contrast(1.1); transition: all 0.3s ease;" class="node-render">
+      </div>
       {{ end }}
-      <div class="ml-3">
-        <h6 class="mb-1"><a class="post-title" href="{{.Permalink}}">{{ .Title }}</a></h6>
-        <div class="post-meta small">
-          {{ .PublishDate.Format "Jan 2, 2006" }}
+      <div class="featured-info">
+        <h6 class="mb-1" style="font-size: 0.8rem; line-height: 1.4;">
+          <a class="post-title text-cyan-active text-decoration-none" href="{{.Permalink}}" style="font-family: var(--primary_font); letter-spacing: 0.5px;">
+            {{ .Title | upper | truncate 40 }}
+          </a>
+        </h6>
+        <div class="post-meta small text-cyan opacity-50" style="font-family: var(--primary_font); font-size: 0.65rem; letter-spacing: 1px;">
+          TS: {{ .PublishDate.Format "06.01.02" }}
         </div>
       </div>
     </div>
   </article>
-  {{ end }}
-</div>
+{{ end }}
+
+<style>
+  .hud-featured-card {
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed var(--accent-cyan-border-idle);
+  }
+  
+  .hud-featured-card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .hud-featured-card:hover .node-render {
+    filter: brightness(1.1) contrast(1.1) !important;
+    transform: scale(1.05);
+  }
+
+  .hud-featured-card .post-title { transition: all 0.2s ease; }
+  .hud-featured-card .post-title:hover {
+    color: var(--accent-cyan) !important;
+    text-shadow: 0 0 8px var(--glow-cyan-active);
+  }
+</style>

@@ -1,16 +1,16 @@
-<div class="hud-hazard-node glass-panel mb-4 {{ with .Get `theme` }}alert-{{ . }}{{ end }}" 
+<div class="hud-hazard-node glass-panel mb-5 transition-base {{ with .Get `theme` }}hazard-{{ . }}{{ end }}" 
      role="alert" 
      data-dir="{{ with .Get `dir` }}{{ . }}{{ else }}ltr{{ end }}">
   
-  <div class="hazard-header d-flex align-items-center p-2">
+  <div class="hazard-header d-flex align-items-center p-2 px-3">
     <div class="hazard-blink"></div>
-    <span class="hazard-label">[ 
+    <span class="hazard-label text-uppercase" style="letter-spacing: 2px;">[ 
       {{ if eq (.Get "theme") "danger" }}CRITICAL_HAZARD{{ else if eq (.Get "theme") "warning" }}SYSTEM_WARNING{{ else }}DATA_INTERCEPT{{ end }} 
     ]</span>
-    <span class="hazard-code ml-auto">0x{{ with .Get "theme" }}{{ . | upper }}{{ else }}NULL{{ end }}</span>
+    <span class="hazard-code ms-auto" style="opacity: 0.5; font-size: 0.6rem;">0x{{ with .Get "theme" }}{{ . | upper }}{{ else }}NULL{{ end }}</span>
   </div>
 
-  <div class="hazard-body p-3">
+  <div class="hazard-body p-4">
     <div class="hazard-content">
       {{ .Inner | markdownify }}
     </div>
@@ -23,32 +23,32 @@
 
 <style>
   .hud-hazard-node {
-    border: 1px solid var(--accent-cyan-border-idle);
+    border: 1px solid var(--accent-cyan-border-idle) !important;
     font-family: var(--primary_font);
     overflow: hidden;
     position: relative;
-    background: var(--bg-glass-panel);
-    transition: all 0.3s ease;
+    background: var(--bg-glass-panel) !important;
+  }
+
+  .hud-hazard-node:hover {
+    transform: translateX(8px);
+    box-shadow: 0 0 15px var(--glow-cyan-active);
   }
 
   .hazard-header {
     background: rgba(0, 229, 255, 0.1);
     border-bottom: 1px solid var(--accent-cyan-border-idle);
-    font-size: 0.7rem;
-    letter-spacing: 2px;
+    font-size: 0.75rem;
     color: var(--accent-cyan);
   }
 
   .hazard-blink {
-    width: 10px;
-    height: 10px;
+    width: 8px; height: 8px;
     background: var(--accent-cyan);
-    margin-right: 10px;
+    margin-right: 12px;
     box-shadow: 0 0 8px var(--glow-cyan-active);
     animation: hazard-pulse 1.5s infinite;
   }
-
-  .hazard-code { opacity: 0.5; font-size: 0.6rem; }
 
   .hazard-content {
     font-size: 0.95rem;
@@ -56,36 +56,40 @@
     color: var(--text-cyan-active);
   }
 
-  /* --- THEME OVERRIDES --- */
+  /* --- THEME OVERRIDES (Bypassing Bootstrap) --- */
 
   /* DANGER / CRITICAL */
-  .hud-hazard-node.alert-danger {
+  .hud-hazard-node.hazard-danger {
     border-color: #FF003C !important;
-    box-shadow: 0 0 15px rgba(255, 0, 60, 0.3);
   }
-  .hud-hazard-node.alert-danger .hazard-header {
+  .hud-hazard-node.hazard-danger:hover {
+    box-shadow: 0 0 20px rgba(255, 0, 60, 0.4) !important;
+  }
+  .hud-hazard-node.hazard-danger .hazard-header {
     background: rgba(255, 0, 60, 0.2);
     color: #FF003C;
+    border-color: #FF003C;
   }
-  .hud-hazard-node.alert-danger .hazard-blink {
+  .hud-hazard-node.hazard-danger .hazard-blink {
     background: #FF003C;
     box-shadow: 0 0 10px rgba(255, 0, 60, 0.8);
   }
-  .hud-hazard-node.alert-danger .hazard-content {
-    color: #FFB3C1;
-  }
 
   /* WARNING */
-  .hud-hazard-node.alert-warning {
-    border-color: #FFD700;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+  .hud-hazard-node.hazard-warning {
+    border-color: #FFD700 !important;
   }
-  .hud-hazard-node.alert-warning .hazard-header {
+  .hud-hazard-node.hazard-warning:hover {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3) !important;
+  }
+  .hud-hazard-node.hazard-warning .hazard-header {
     background: rgba(255, 215, 0, 0.15);
     color: #FFD700;
+    border-color: #FFD700;
   }
-  .hud-hazard-node.alert-warning .hazard-blink {
+  .hud-hazard-node.hazard-warning .hazard-blink {
     background: #FFD700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
   }
 
   @keyframes hazard-pulse {
@@ -94,11 +98,10 @@
   }
 
   .scanline-minimal {
-    height: 1px;
-    width: 100%;
-    background: rgba(0, 229, 255, 0.1);
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    height: 2px; width: 100%;
+    background: rgba(0, 229, 255, 0.15);
+    position: absolute; bottom: 0; left: 0;
   }
+  .hud-hazard-node.hazard-danger .scanline-minimal { background: rgba(255, 0, 60, 0.15); }
+  .hud-hazard-node.hazard-warning .scanline-minimal { background: rgba(255, 215, 0, 0.15); }
 </style>

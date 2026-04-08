@@ -1,24 +1,27 @@
 {{ define "main" }}
 
-<section class="section 4ndr0-query-env">
+<section class="section 4ndr0-query-env py-5">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-lg-10">
+      <div class="col-lg-12">
         
-        <div class="glass-panel hud-query-results p-4 mb-5">
-          <div class="query-status-header d-flex justify-content-between align-items-center mb-4 pb-2">
-            <div class="status-indicator">
-              <span class="status-pulse"></span> [ SYSTEM_SCAN_RESULTS ]
-            </div>
-            <div class="status-metadata">
-              ENGINE: <span class="text-cyan">FUSE_V3</span> // 
-              UPLINK: <span class="text-cyan">LOCAL_INDEX</span>
+        <div class="hud-index-header mb-5">
+          <div class="d-flex align-items-center justify-content-between">
+            <h1 class="h2 mb-0">
+              <span class="opacity-50">SYSTEM_SCAN:</span> 
+              <span class="text-cyan text-uppercase">QUERY_RESULTS</span>
+            </h1>
+            <div class="status-metadata d-none d-md-block" style="font-size: 0.7rem; font-family: var(--primary_font); color: var(--accent-cyan); opacity: 0.6;">
+              ENGINE: <span class="text-cyan-active">FUSE_V3</span> // UPLINK: <span class="text-cyan-active">LOCAL_INDEX</span>
             </div>
           </div>
+          <div class="header-scanline" style="width: 100%; height: 2px; background: var(--accent-cyan); margin-top: 15px; box-shadow: 0 0 10px var(--glow-cyan-active);"></div>
+        </div>
 
+        <div class="glass-panel hud-query-results p-4 p-md-5">
           <div id="search-results" class="hud-results-stream">
             <div class="empty-query-msg text-center opacity-50 py-5">
-              <span class="glitch-text" data-text="AWAITING_INPUT...">AWAITING_INPUT...</span>
+              <span class="glitch-text" data-text="INITIALIZING_SCANNER..." style="font-family: var(--primary_font); color: var(--accent-cyan);">INITIALIZING_SCANNER...</span>
             </div>
           </div>
         </div>
@@ -34,7 +37,6 @@
 {{ $mark := resources.Get "js/vendor/mark.js" }}
 {{ $search := resources.Get "js/vendor/search.js" }}
 
-{{/* JS Pipeline Preservation */}}
 {{ $searchBundle := slice $fuse $mark $search | resources.Concat "js/search-bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
 
 {{ if hugo.IsProduction }}
@@ -45,42 +47,35 @@
 
 <style>
   .4ndr0-query-env {
-    min-height: 60vh;
+    min-height: 70vh;
     font-family: var(--primary_font);
   }
 
   .hud-query-results {
-    border: 1px solid var(--accent-cyan-border-idle);
-    transition: border 0.3s ease;
+    border: 1px solid var(--accent-cyan-border-idle) !important;
+    background: var(--bg-glass-panel) !important;
   }
 
-  .query-status-header {
-    border-bottom: 1px solid var(--accent-cyan-border-idle);
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    color: var(--accent-cyan);
-  }
-
-  .status-pulse {
-    display: inline-block;
-    width: 8px; height: 8px;
-    background: var(--accent-cyan);
-    border-radius: 1px;
-    margin-right: 10px;
-    box-shadow: 0 0 10px var(--glow-cyan-active);
-    animation: pulse 2s infinite;
-  }
-
-  /* Targeting Dynamically Injected Elements from search.js */
+  /* Target dynamically generated search result items */
   #search-results .search-result-item {
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
     border-bottom: 1px solid rgba(0, 229, 255, 0.1);
-    transition: transform 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  #search-results .search-result-item:last-child {
+    border-bottom: none;
   }
 
   #search-results .search-result-item:hover {
     transform: translateX(10px);
+    border-bottom-color: var(--accent-cyan);
+  }
+
+  #search-results h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
   }
 
   #search-results h2 a {
@@ -88,28 +83,35 @@
     text-transform: uppercase;
     font-weight: 700;
     text-decoration: none;
-    text-shadow: 0 0 5px var(--glow-cyan-active);
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+  }
+
+  #search-results h2 a:hover {
+    color: var(--accent-cyan) !important;
+    text-shadow: 0 0 10px var(--glow-cyan-active);
   }
 
   #search-results p {
-    color: var(--accent-cyan);
-    opacity: 0.8;
+    color: var(--text-cyan-active);
+    opacity: 0.7;
     font-size: 0.9rem;
-    margin-top: 0.5rem;
+    line-height: 1.6;
+    max-width: 800px;
   }
 
+  /* Custom Highlight Color */
   #search-results mark {
-    background: var(--accent-cyan-bg-active);
-    color: #fff;
-    padding: 0 2px;
+    background: rgba(0, 229, 255, 0.25) !important;
+    color: #fff !important;
+    padding: 2px 4px;
+    border-radius: 2px;
+    box-shadow: 0 0 5px rgba(0, 229, 255, 0.2);
   }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
+  /* HARD_PURGE: Chris Titus elision leftovers */
+  .showing-all-posts, .search-count-junk {
+    display: none !important;
   }
-
-  .text-cyan { color: var(--accent-cyan); }
 </style>
-
 {{ end }}

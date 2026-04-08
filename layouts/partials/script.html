@@ -35,7 +35,6 @@
     bottom: 0;
     z-index: 9999;
     padding: 1.5rem 2rem;
-    /* 3LECTRIC_GLASS Specification */
     background: var(--bg-glass-panel) !important;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -62,17 +61,23 @@
     pointer-events: none;
   }
 
-  /* HUD Button Override for Script Context */
   #js-cookie-button {
     min-width: 120px;
     justify-content: center;
     border-color: var(--accent-cyan);
     font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--accent-cyan);
+    transition: all 0.3s ease;
   }
   
   #js-cookie-button:hover {
     box-shadow: 0 0 15px var(--glow-cyan-active);
     background: var(--accent-cyan-bg-active);
+    color: var(--text-cyan-active);
   }
 </style>
 {{ end }}

@@ -1,4 +1,4 @@
-<footer class="4ndr0-footer py-4">
+<footer class="4ndr0-footer py-4 mt-auto">
   <div class="container">
     <div class="row justify-content-between align-items-center">
       <div class="col-lg-4 text-center text-lg-start mb-4 mb-lg-0">
@@ -40,8 +40,7 @@
     background: var(--bg-glass-panel) !important;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-top: 1px solid var(--accent-cyan-border-idle);
-    margin-top: 3rem;
+    border-top: 1px solid var(--accent-cyan-border-idle) !important;
   }
 
   .hud-footer-link {
@@ -60,14 +59,19 @@
   }
 
   .social-hud-icon {
-    color: var(--accent-cyan);
+    color: var(--accent-cyan) !important;
+    background: transparent !important;
+    background-color: transparent !important;
     font-size: 1.2rem;
     transition: transform 0.3s ease, color 0.3s ease;
     display: inline-block;
+    padding: 5px;
+    border: none !important;
+    box-shadow: none !important;
   }
 
   .social-hud-icon:hover {
-    color: var(--text-cyan-active);
+    color: var(--text-cyan-active) !important;
     transform: translateY(-3px);
     filter: drop-shadow(0 0 5px var(--glow-cyan-active));
   }

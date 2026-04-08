@@ -1,27 +1,28 @@
-<div id="cortex-terminal"></div>
-
 <script>
 jQuery(document).ready(function($) {
-    // Restore deprecated function for jQuery 3.x compatibility
+    /* 4NDR0666OS :: COMPATIBILITY_LAYER */
     if (!jQuery.isFunction) {
         jQuery.isFunction = function(obj) { return typeof obj === "function"; };
     }
 
     const greeting = `{{ .Site.Params.terminal.greeting | safeJS }}` || "4NDR0666OS v5.0.0-Ψ :: SYSTEM_STABILIZED";
     
+    /* TERMINAL_ENGINE_INIT */
     const term = $('#cortex-terminal').terminal({
         help: function() {
-            this.echo("\n[[b;white;]OPERATIONAL COMMANDS:]");
-            this.echo("  [[b;cyan;]startx]\t- AUTHORIZE GUI BOOT");
-            this.echo("  [[b;cyan;]whois]\t- IDENTITY QUERY");
-            this.echo("  [[b;cyan;]clear]\t- PURGE BUFFER\n");
+            this.echo("\n[[b;white;]-- OPERATIONAL_COMMANDS --]");
+            this.echo("  [[b;cyan;]startx]\t- AUTHORIZE_GUI_BOOT");
+            this.echo("  [[b;cyan;]whois]\t- IDENTITY_QUERY");
+            this.echo("  [[b;cyan;]clear]\t- PURGE_BUFFER");
+            this.echo("  [[b;cyan;]help]\t- DISPLAY_PROTOCOLS\n");
         },
         whois: function() {
             this.echo("\n[[b;grey;]Operator:]\t{{ .Site.Params.author }}");
-            this.echo("[[b;grey;]Cortex:]\t\tOPERATIONAL\n");
+            this.echo("[[b;grey;]Cortex:]\t\tONLINE");
+            this.echo("[[b;grey;]Status:]\t\tLEVEL_6_ENCRYPTION_ACTIVE\n");
         },
         startx: function() {
-            this.echo("\n[[b;cyan;]BYPASSING CLI... INITIALIZING GUI]");
+            this.echo("\n[[b;cyan;]>> BYPASSING_CLI... INITIALIZING_GUI_LAYER]");
             let i = 0;
             const loader = setInterval(() => {
                 this.set_prompt("[" + "#".repeat(i) + "-".repeat(20 - i) + "] " + (i * 5) + "%");
@@ -29,7 +30,7 @@ jQuery(document).ready(function($) {
                     clearInterval(loader);
                     window.location.href = "{{ `posts/` | relURL }}";
                 }
-            }, 40);
+            }, 35);
         },
         clear: function() { this.clear(); }
     }, {
@@ -42,11 +43,20 @@ jQuery(document).ready(function($) {
         onInit: function(t) { t.focus(); }
     });
 
+    /* AUTO_FOCUS_LOCK */
     $(window).on('click', function() { term.focus(); });
 
+    /* IP_SCAN_HANDSHAKE */
     fetch('https://api.ipify.org?format=json')
         .then(res => res.json())
-        .then(data => { term.set_prompt(`4ndr0666@${data.ip} > `); })
-        .catch(() => {});
+        .then(data => { 
+            if(data.ip) {
+                term.set_prompt(`4ndr0666@${data.ip} > `); 
+            }
+        })
+        .catch(() => {
+            /* Fallback on network timeout */
+            term.set_prompt('4ndr0666@offline > ');
+        });
 });
 </script>

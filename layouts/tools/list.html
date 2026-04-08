@@ -1,67 +1,98 @@
 {{ define "main" }}
 
-<section class="section">
+{{ partial "banner.html" . }}
+
+<section class="section 4ndr0-tools-env">
   <div class="container">
     <div class="row">
-      <div class="col-md-3 mb-4 mb-md-0">
-        <div class="position-sticky" style="top:110px">
-          <div class="tools-filter-btn btn-group btn-group-toggle justify-content-center d-flex flex-column" data-toggle="buttons">
-            <label class="btn active mb-2 text-left">
-              <input type="radio" name="shuffle-filter" value="all" checked="checked" />All Tools
-            </label>
-            {{ $categories := slice }}
-            {{ range .Data.Pages }}
-            {{ range .Params.categories }}
-            {{ $categories = $categories | append . }}
-            {{ end }}
-            {{ end }}
-            {{ range ( $categories | uniq ) }}
-            <label class="btn mb-2 text-left">
-              <input type="radio" name="shuffle-filter" value="{{ . | urlize }}" />{{ . }}
-            </label>
-            {{ end }}
+      <div class="col-lg-12">
+        
+        <div class="hud-index-header mb-5">
+          <div class="d-flex align-items-center">
+            <h2 class="h4 mb-0 text-cyan-active">
+              <span class="opacity-50">SECTOR_INDEX:</span> {{ .Title | upper }}
+            </h2>
           </div>
+          <div class="header-scanline" style="width: 100%; height: 2px; background: var(--accent-cyan); margin-top: 10px; box-shadow: 0 0 10px var(--glow-cyan-active);"></div>
         </div>
 
-      </div>
-      <div class="col-md-9">
-        <div class="row shuffle-wrapper">
-          {{ range .Data.Pages }}
-          <div class="col-lg-6 mb-4 pb-2 shuffle-item" data-groups="[{{range $index, $element:= .Params.categories }}{{if ne $index 0}},{{end}}&quot;{{. | urlize}}&quot;{{ end }}]">
-            <div class="card border-0 shadow">
-              <a href="{{ .Permalink }}" aria-label="{{ .Params.description }}"><img loading="lazy" src="{{.Params.thumbnail | absURL }}" alt="{{ .Params.title }}" class="card-img-top"></a>
-              <div class="card-body">
-                <h4 class="mb-3"><a href="{{ .Permalink }}" aria-label="{{ .Params.description }}">{{ .Params.title }}</a></h4>
-                <p class="mb-2">{{ .Params.description | truncate 90 }}</p>
-                <a href="{{ .Permalink }}" class="btn btn-transparent" aria-label="{{ .Params.description }}">Read More</a>
+        <div class="glass-panel p-4 p-md-5">
+          {{ $paginator := .Paginate .Data.Pages }}
+          
+          <div class="node-stream">
+            {{ if (gt (len $paginator.Pages) 0) }}
+              <div class="row g-4">
+                {{ range $paginator.Pages }}
+                  <div class="col-12">
+                    {{ .Render "article" }}
+                  </div>
+                {{ end }}
               </div>
-            </div>
+            {{ else }}
+              <div class="text-center py-5">
+                <p class="text-cyan opacity-50">[ NO_TOOLS_DETECTED_IN_SECTOR ]</p>
+              </div>
+            {{ end }}
           </div>
+
+          {{ if gt $paginator.TotalPages 1 }}
+          <nav aria-label="Page navigation" class="mt-5">
+            <ul class="pagination justify-content-center align-items-center gap-2">
+              {{ if $paginator.HasPrev }}
+              <li class="page-item">
+                <a href="{{ $paginator.Prev.URL }}" class="page-link hud-btn" aria-label="PREV">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
+                </a>
+              </li>
+              {{ end }}
+
+              {{ range $paginator.Pagers }}
+              <li class="page-item {{ if eq . $paginator }}active{{ end }}">
+                <a href="{{ .URL }}" class="page-link hud-btn">{{ .PageNumber }}</a>
+              </li>
+              {{ end }}
+
+              {{ if $paginator.HasNext }}
+              <li class="page-item">
+                <a href="{{ $paginator.Next.URL }}" class="page-link hud-btn" aria-label="NEXT">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+                </a>
+              </li>
+              {{ end }}
+            </ul>
+          </nav>
           {{ end }}
         </div>
+
       </div>
     </div>
   </div>
 </section>
 
-{{ $shuffle := resources.Get "js/vendor/shuffle.min.js" }}
-{{ $shuffleJs := $shuffle | resources.Fingerprint "sha512" }}
-{{ if hugo.IsProduction }}
-<script defer src="{{ $shuffleJs.RelPermalink }}" integrity="{{ $shuffleJs.Data.Integrity }}"></script>
-{{ else }}
-<script defer src="{{ $shuffleJs.RelPermalink }}"></script>
-{{ end }}
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  var wrapper = document.querySelector('.shuffle-wrapper');
-  if (!wrapper) return;
-  var shuffleInstance = new Shuffle(wrapper, { item: '.shuffle-item' });
-  document.querySelectorAll('[name="shuffle-filter"]').forEach(function (radio) {
-    radio.addEventListener('change', function () {
-      shuffleInstance.filter(this.value === 'all' ? Shuffle.ALL_ITEMS : this.value);
-    });
-  });
-});
-</script>
+<style>
+  .4ndr0-tools-env { font-family: var(--primary_font); }
+  .hud-index-header { position: relative; }
+  
+  /* HARD_PURGE: Legacy CTT UI Bloat
+     Targeting .nav-pills and .filter-menu which are the source of 'Junk Tabs' 
+  */
+  .tools-filter-btn, 
+  .shuffle-wrapper, 
+  .shuffle-item, 
+  .btn-group-toggle, 
+  .nav-pills, 
+  .nav-tabs, 
+  .filter-menu, 
+  .category-filter,
+  .showing-posts-count { 
+    display: none !important; 
+  }
+
+  .node-entry { 
+    border-bottom: 1px solid rgba(0, 229, 255, 0.1); 
+    padding-bottom: 1.5rem; 
+  }
+  .node-entry:last-child { border-bottom: none; }
+</style>
 
 {{ end }}

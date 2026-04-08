@@ -31,21 +31,43 @@
   }
 
   /* -------------------------------------------------------------------------- */
+  /* GLOBAL DOMINANCE OVERRIDE (FIXES GRAY COLOR SCHEME ISSUE)                  */
+  /* -------------------------------------------------------------------------- */
+  html, body {
+    background-color: var(--bg-dark-base) !important;
+    color: var(--text-cyan-active) !important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /* HEADER & FOOTER GLASSMORPHISM OVERRIDE                                     */
+  /* -------------------------------------------------------------------------- */
+  .4ndr0-header, .4ndr0-footer, header, footer, .navbar {
+    background: var(--bg-glass-panel) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-color: var(--accent-cyan-border-idle) !important;
+  }
+
+  /* -------------------------------------------------------------------------- */
   /* 3LECTRIC_GLASS COMPONENT LIBRARY [UI DIRECTIVE v1.5.0-Ψ]                   */
   /* -------------------------------------------------------------------------- */
 
   /* Global Glass Panels */
   .glass-panel {
-    background: var(--bg-glass-panel);
+    background: var(--bg-glass-panel) !important;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--accent-cyan-border-idle);
+    border: 1px solid var(--accent-cyan-border-idle) !important;
     transition: border 0.3s ease, box-shadow 0.3s ease;
   }
 
   .glass-panel:hover {
-    border-color: var(--accent-cyan-border-hover);
-    box-shadow: 0 0 15px var(--glow-cyan-active);
+    border-color: var(--accent-cyan-border-hover) !important;
+    box-shadow: 0 0 15px var(--glow-cyan-active) !important;
   }
 
   /* HUD Buttons */
@@ -71,21 +93,31 @@
     box-shadow: 0 0 10px var(--glow-cyan-active);
   }
 
-  /* SOCIAL_ICON_GLOW_FIX (FIXES ISSUE 3) */
-  .footer-social a, .banner-social a {
+  /* SOCIAL_ICON_GLOW_FIX (ERADICATES BLOWOUT ISSUE 20) */
+  .footer-social a, 
+  .footer-social-icons a, 
+  .banner-social a, 
+  .social-icons a,
+  .social-hud-icon,
+  .social-icon a {
     color: var(--accent-cyan) !important;
-    background: transparent !important; /* Force background transparency */
+    background: transparent !important; 
+    background-color: transparent !important;
     transition: all 0.3s ease;
     display: inline-flex;
     padding: 10px;
     border-radius: 4px;
-    border: 1px solid transparent;
+    border: none !important;
+    box-shadow: none !important;
   }
 
-  .footer-social a:hover, .banner-social a:hover {
+  .footer-social a:hover, 
+  .footer-social-icons a:hover, 
+  .banner-social a:hover,
+  .social-icons a:hover,
+  .social-hud-icon:hover {
     color: var(--text-cyan-active) !important;
-    background: var(--accent-cyan-bg-hover) !important; /* Soft HUD glow background only */
-    border-color: var(--accent-cyan-border-idle);
+    background: var(--accent-cyan-bg-hover) !important; 
     text-shadow: 0 0 12px var(--glow-cyan-active);
     box-shadow: 0 0 10px var(--glow-cyan-active);
   }
@@ -101,10 +133,10 @@
   ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
 
   /* -------------------------------------------------------------------------- */
-  /* SEARCH_BUFFER_ENFORCEMENT (FIXES 11 & 38)                                  */
+  /* SEARCH_BUFFER_ENFORCEMENT                                                  */
   /* -------------------------------------------------------------------------- */
   .search-popup {
-    display: none; /* Forced hidden state on initialization */
+    display: none; 
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
@@ -115,7 +147,7 @@
   }
 
   /* -------------------------------------------------------------------------- */
-  /* DROPDOWN_HUD_REFINEMENT (FIXES 48)                                         */
+  /* DROPDOWN_HUD_REFINEMENT                                                    */
   /* -------------------------------------------------------------------------- */
   .dropdown-item:hover, .dropdown-item:focus {
       background-color: var(--accent-cyan-bg-hover) !important;
@@ -133,10 +165,9 @@
   }
 
   /* -------------------------------------------------------------------------- */
-  /* BOOTSTRAP OVERRIDES (CONSOLIDATED)                                         */
+  /* BOOTSTRAP OVERRIDES                                                        */
   /* -------------------------------------------------------------------------- */
 
-  /* Pagination System */
   .page-link, .pagination .page-item .page-link {
       background-color: var(--bg-glass-panel) !important;
       border: 1px solid var(--accent-cyan-border-idle) !important;
@@ -156,7 +187,6 @@
       color: var(--text-cyan-active) !important;
   }
 
-  /* Buttons & Back-to-Top */
   .btn-primary, .btn-link {
       --bs-btn-bg: transparent;
       --bs-btn-border-color: var(--accent-cyan);
@@ -176,10 +206,9 @@
   }
 
   /* -------------------------------------------------------------------------- */
-  /* CANONICAL LIST LOGIC [REFACTORED FOR CORTEX]                               */
+  /* CANONICAL LIST LOGIC                                                       */
   /* -------------------------------------------------------------------------- */
 
-  /* Unordered Lists */
   .content ul li:not(.nav-item) {
     position: relative;
     margin-bottom: 5px;
@@ -220,7 +249,6 @@
     border-radius: 50%;
   }
 
-  /* Ordered Lists */
   .content ol li {
     list-style-type: none;
     counter-increment: item;
@@ -239,25 +267,6 @@
     padding: 2px 8px;
     border-radius: 2px;
     border: 1px solid var(--accent-cyan);
-  }
-
-  /* Notices Logic */
-  .notices p::before {
-    position: absolute;
-    top: 2px;
-    font-family: "{{ with site.Params.variables }}{{.icon_font}}{{ end }}";
-    font-weight: 900;
-    content: "\f05a";
-    left: 10px;
-    display: none;
-  }
-
-  .notices p svg {
-    position: absolute;
-    top: 7px;
-    left: 10px;
-    color: var(--accent-cyan);
-    filter: drop-shadow(0 0 3px var(--glow-cyan-active));
   }
 
   /* Fallback for Backdrop-Filter */

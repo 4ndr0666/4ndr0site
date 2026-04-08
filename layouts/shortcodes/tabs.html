@@ -1,98 +1,113 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
 
-<div class="4ndr0-interface-switch glass-panel mb-5">
+<div class="4ndr0-interface-switch glass-panel mb-5 transition-base">
   <div class="hud-selector-bar d-flex flex-wrap p-1">
     </div>
-  <div class="hud-buffer-content p-4">
+  <div class="hud-buffer-content p-4 border-top border-hud">
     {{ .Inner }}
   </div>
 </div>
 
 <style>
   .4ndr0-interface-switch {
-    border: 1px solid var(--accent-cyan-border-idle);
+    border: 1px solid var(--accent-cyan-border-idle) !important;
+    background: var(--bg-glass-panel) !important;
     overflow: hidden;
     font-family: var(--primary_font);
   }
 
   .hud-selector-bar {
-    background: rgba(0, 229, 255, 0.08);
-    border-bottom: 1px solid var(--accent-cyan-border-idle);
+    background: rgba(0, 229, 255, 0.05);
     gap: 5px;
+    border-bottom: 1px solid var(--accent-cyan-border-idle);
   }
 
   .hud-tab-trigger {
     background: transparent;
-    border: 1px solid transparent;
+    border: 1px solid transparent !important;
     color: var(--accent-cyan);
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 0.5rem 1.25rem;
+    letter-spacing: 2px;
+    padding: 0.6rem 1.5rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     position: relative;
+    opacity: 0.6;
   }
 
   .hud-tab-trigger:hover {
     color: var(--text-cyan-active);
-    background: rgba(0, 229, 255, 0.05);
+    background: var(--accent-cyan-bg-hover);
+    opacity: 1;
   }
 
   .hud-tab-trigger.active {
-    background: var(--accent-cyan-bg-active);
-    color: var(--text-cyan-active);
-    border: 1px solid var(--accent-cyan);
-    box-shadow: 0 0 10px var(--glow-cyan-active);
+    background: var(--accent-cyan-bg-active) !important;
+    color: var(--text-cyan-active) !important;
+    border: 1px solid var(--accent-cyan-border-idle) !important;
+    box-shadow: inset 0 0 10px rgba(0, 229, 255, 0.1);
     font-weight: 700;
+    opacity: 1;
   }
 
-  .hud-tab-trigger.active::before {
-    content: ">";
+  .hud-tab-trigger.active::after {
+    content: "";
     position: absolute;
-    left: 8px;
-    font-size: 0.8rem;
+    bottom: 0; left: 0; width: 100%; height: 2px;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 8px var(--glow-cyan-active);
   }
 
   .hud-buffer-content .tab-pane {
     display: none;
-    animation: fadeInNode 0.4s ease-out forwards;
+    animation: nodeFlickerFade 0.5s ease-out forwards;
   }
 
   .hud-buffer-content .tab-pane.active {
     display: block;
   }
 
-  @keyframes fadeInNode {
-    from { opacity: 0; transform: translateY(5px); }
-    to { opacity: 1; transform: translateY(0); }
+  .border-hud { border-color: var(--accent-cyan-border-idle) !important; }
+
+  @keyframes nodeFlickerFade {
+    0% { opacity: 0; transform: translateY(10px); filter: brightness(2); }
+    10% { opacity: 0.5; }
+    20% { opacity: 0.3; }
+    100% { opacity: 1; transform: translateY(0); filter: brightness(1); }
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const containers = document.querySelectorAll('.4ndr0-interface-switch');
-    
-    containers.forEach((container, idx) => {
-      const nav = container.querySelector('.hud-selector-bar');
-      const panes = container.querySelectorAll('.tab-pane');
+  (function() {
+    document.addEventListener('DOMContentLoaded', function() {
+      const containers = document.querySelectorAll('.4ndr0-interface-switch');
       
-      panes.forEach((pane, pIdx) => {
-        const title = pane.getAttribute('title') || `NODE_${pIdx}`;
-        const btn = document.createElement('button');
-        btn.className = `hud-tab-trigger ${pIdx === 0 ? 'active' : ''}`;
-        btn.innerHTML = title;
+      containers.forEach((container) => {
+        const nav = container.querySelector('.hud-selector-bar');
+        const panes = container.querySelectorAll('.tab-pane');
         
-        btn.onclick = () => {
-          container.querySelectorAll('.hud-tab-trigger').forEach(b => b.classList.remove('active'));
-          panes.forEach(p => p.classList.remove('active'));
-          btn.classList.add('active');
-          pane.classList.add('active');
-        };
-        
-        nav.appendChild(btn);
-        if(pIdx === 0) pane.classList.add('active');
+        // Clean dynamic generation
+        nav.innerHTML = ''; 
+
+        panes.forEach((pane, pIdx) => {
+          const title = pane.getAttribute('title') || `NODE_${pIdx}`;
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `hud-tab-trigger ${pIdx === 0 ? 'active' : ''}`;
+          btn.innerHTML = `<span class="opacity-50 me-1">></span>${title}`;
+          
+          btn.onclick = () => {
+            container.querySelectorAll('.hud-tab-trigger').forEach(b => b.classList.remove('active'));
+            panes.forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            pane.classList.add('active');
+          };
+          
+          nav.appendChild(btn);
+          if(pIdx === 0) pane.classList.add('active');
+        });
       });
     });
-  });
+  })();
 </script>

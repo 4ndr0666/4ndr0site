@@ -1,3 +1,56 @@
-<div id='product-component-1711256048474'></div>
+<div class="hud-ecommerce-node glass-panel mb-5 transition-base">
+  <div class="ecommerce-header d-flex justify-content-between align-items-center p-2 px-3">
+    <div class="ecommerce-title d-flex align-items-center">
+      <span class="status-pulse-secure me-2"></span> 
+      <span class="text-uppercase" style="letter-spacing: 2px; font-size: 0.7rem; color: var(--accent-cyan);">[ SECURE_COMMERCE_UPLINK ]</span>
+    </div>
+    <div class="ecommerce-host text-truncate ms-3 opacity-50" style="font-size: 0.6rem; color: var(--accent-cyan);">
+      PROTOCOL: <span class="text-cyan-active">ENCRYPTED_TLS</span> // VENDOR: <span class="text-cyan-active">SHOPIFY</span>
+    </div>
+  </div>
+
+  <div class="ecommerce-payload p-4 text-center" style="background: rgba(0, 0, 0, 0.2);">
+    <div id='product-component-1711256048474'></div>
+  </div>
+</div>
+
 {{ $js := resources.Get "js/shopify-button.js" | js.Build (dict "minify" true) | fingerprint }}
 <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" crossorigin="anonymous"></script>
+
+<style>
+  .hud-ecommerce-node {
+    border: 1px solid var(--accent-cyan-border-idle) !important;
+    background: var(--bg-glass-panel) !important;
+    font-family: var(--primary_font);
+    overflow: hidden;
+  }
+  
+  .hud-ecommerce-node:hover {
+    border-color: #00FF41 !important; /* Matrix Green for commerce trust */
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.2) !important;
+  }
+
+  .ecommerce-header {
+    background: rgba(0, 255, 65, 0.05); /* Subtle green tint */
+    border-bottom: 1px solid var(--accent-cyan-border-idle);
+  }
+
+  .status-pulse-secure {
+    width: 6px; height: 6px;
+    background: #00FF41;
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(0, 255, 65, 0.8);
+    animation: pulse-secure 2s infinite;
+  }
+
+  @keyframes pulse-secure {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  
+  /* Fallback overrides to attempt styling the shadow DOM / injected iframe if it bleeds */
+  .ecommerce-payload iframe {
+    max-width: 100% !important;
+    border-radius: 2px !important;
+  }
+</style>

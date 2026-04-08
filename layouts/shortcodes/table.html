@@ -1,6 +1,5 @@
-{{/* 4NDR0666OS :: DATA_GRID_TERMINAL v5.0.0-Ψ */}}
+{{/* 4NDR0666OS :: DATA_GRID_TERMINAL v5.1.0-Ψ */}}
 
-{{/* set default config - Refactored for 3LECTRIC_GLASS */}}
 {{- $config := (dict "data_prefix" "" "table_class" "hud-data-grid" "align_left" "text-start" "align_center" "text-center" "align_justify" "text-justify" "align_right" "text-end") -}}
 {{- if index $.Page.Params "table_config" -}}
   {{- $config = $.Page.Params.table_config -}}
@@ -25,141 +24,113 @@
   {{- $config = $table.config -}}
 {{- end -}}
 
-<div class="4ndr0-table-wrapper glass-panel mb-5">
-  <div class="table-hud-status p-2 d-flex justify-content-between">
-    <span class="status-text">[ GRID_UPLINK_READY ]</span>
-    <span class="status-id">REF: {{ .Get 0 | upper }}</span>
+<div class="4ndr0-table-wrapper glass-panel mb-5 transition-base">
+  <div class="table-hud-status p-2 d-flex justify-content-between align-items-center">
+    <div class="status-indicator">
+      <span class="status-pulse me-2"></span>
+      <span class="status-text">[ GRID_UPLINK_READY ]</span>
+    </div>
+    <span class="status-id opacity-50 small">REF_ID: {{ .Get 0 | upper }}</span>
   </div>
 
-  <table
-    {{ if $table.id }}id='{{- $table.id -}}'{{ end }}
-    class='table {{ $config.table_class }} {{ default "" $table.css -}}'
-    title='{{- default $table.name $table.tip -}}'
-    aria-label='{{- default $table.name $table.tip -}}'
-  >
-    {{ if $table.caption }}
-      <caption class="hud-caption">{{- $table.caption -}}</caption>
-    {{ end }}
+  <div class="table-responsive">
+    <table
+      {{ if $table.id }}id='{{- $table.id -}}'{{ end }}
+      class='table {{ $config.table_class }} {{ default "" $table.css -}}'
+      title='{{- default $table.name $table.tip -}}'
+      aria-label='{{- default $table.name $table.tip -}}'
+    >
+      {{ if $table.caption }}
+        <caption class="hud-caption">{{- $table.caption -}}</caption>
+      {{ end }}
 
-    <thead>
-      <tr>
-        {{ range $x, $col := $table.cols }}
-          {{ $is_map := reflect.IsMap $col }}
-          {{ if $is_map }}
+      <thead>
+        <tr class="header-scanline-row">
+          {{ range $x, $col := $table.cols }}
+            {{ $is_map := reflect.IsMap $col }}
             {{ $css := "" }}
-            {{ $align := default "" $col.align }}
-            {{ if eq $align "left" }}{{ $css = $config.align_left }}
-            {{ else if eq $align "center" }}{{ $css = $config.align_center }}
-            {{ else if eq $align "justified" }}{{ $css = $config.align_justify }}
-            {{ else if eq $align "right" }}{{ $css = $config.align_right }}{{ end }}
+            {{ $name := "" }}
+            {{ $tip := "" }}
+            {{ $id := "" }}
+
+            {{ if $is_map }}
+              {{ $align := default "" $col.align }}
+              {{ if eq $align "left" }}{{ $css = $config.align_left }}
+              {{ else if eq $align "center" }}{{ $css = $config.align_center }}
+              {{ else if eq $align "justified" }}{{ $css = $config.align_justify }}
+              {{ else if eq $align "right" }}{{ $css = $config.align_right }}{{ end }}
+              {{ $name = $col.name }}{{ $tip = default $col.name $col.tip }}{{ $id = $col.id }}
+            {{ else }}
+              {{ $name = $col }}{{ $tip = $col }}{{ $id = $x }}
+            {{ end }}
 
             <th
               {{ if $css }} class='{{- $css -}}'{{ end }}
-              title='{{- default $col.name $col.tip -}}'
-              aria-label='{{- default $col.name $col.tip -}}'
+              title='{{- $tip -}}'
+              aria-label='{{- $tip -}}'
               data-{{- $dp -}}th_x='{{- $x -}}'
-              data-{{- $dp -}}th_id='{{- $col.id -}}'
+              {{ if $id }}data-{{- $dp -}}th_id='{{- $id -}}'{{ end }}
             >
-              <span class="th-inner">{{- $col.name -}}</span>
-            </th>
-          {{ else }}
-            <th
-              title='{{- $col -}}'
-              aria-label='{{- $col -}}'
-              data-{{- $dp -}}th_x='{{- $x -}}'
-              data-{{- $dp -}}id='{{- $x -}}'
-            >
-              <span class="th-inner">{{- $col -}}</span>
+              <span class="th-inner">{{- $name -}}</span>
             </th>
           {{ end }}
-        {{ end }}
-      </tr>
-    </thead>
+        </tr>
+      </thead>
 
-    {{ if $table.rows }}
-      <tbody>
-        {{ $first_col_is_map := reflect.IsMap (index $table.cols 0) }}
-        {{ range $y, $row := $table.rows }}
-          {{ if $first_col_is_map }}
-            <tr
-              {{ if $row._id }}id='{{- $row._id -}}'{{ end }}
-              {{ if $row._tip }}
-                title='{{- $row._tip -}}'
-                aria-label='{{- $row._tip -}}'
-              {{ end }}
-              {{ if $row._css }}class='{{- $row._css -}}'{{ end }}
-              data-{{- $dp -}}tr_y='{{- $y -}}'
-            >
-              {{ range $x, $col := $table.cols }}
-                {{ $cell := index $row $col.id }}
-                {{ $is_map := reflect.IsMap $cell }}
-                {{ $val := "" }}
-                {{ if $is_map }}{{ $val = index $cell.val }}
-                {{ else }}{{ $val = $cell }}{{ end }}
-
-                {{ $cell_id := "" }}{{ if $is_map }}{{ if index $cell "id" }}{{ $cell_id = $cell.id }}{{ end }}{{ end }}
-                {{ $tip := (default $col.name $col.tip) }}{{ if $is_map }}{{ if index $cell "tip" }}{{ $tip = $cell.tip }}{{ end }}{{ end }}
-
-                {{ $align := $col.align }}
-                {{ if and $is_map (index $cell "align") }}{{ $align = index $cell "align" }}{{ end }}
-
-                {{ $css := "" }}
-                {{ if eq $align "left" }}{{ $css = $config.align_left }}
-                {{ else if eq $align "center" }}{{ $css = $config.align_center }}
-                {{ else if eq $align "justified" }}{{ $css = $config.align_justify }}
-                {{ else if eq $align "right" }}{{ $css = $config.align_right }}{{ end }}
-
-                {{ if $is_map }}{{ if index $cell "css" }}{{ $css = $cell.css }}{{ end }}{{ end }}
-                {{ $colspan := 1 }}{{ if and $is_map (index $cell "colspan") }}{{ $colspan = $cell.colspan }}{{ end }}
-                {{ $rowspan := 1 }}{{ if and $is_map (index $cell "rowspan") }}{{ $rowspan = $cell.rowspan }}{{ end }}
-
-                <td
-                  {{ if $cell_id }}id='{{- $cell_id -}}'{{ end }}
-                  title='{{- $tip -}}'
-                  aria-label='{{- $tip -}}'
-                  class='{{- $css -}}'
-                  data-{{- $dp -}}td_x='{{- $x -}}'
-                  data-{{- $dp -}}td_id='{{- $col.id -}}'
-                  {{ if gt $colspan 1 }}colspan='{{- $colspan -}}'{{ end }}
-                  {{ if gt $rowspan 1 }}rowspan='{{- $rowspan -}}'{{ end }}
-                >
-                  {{ if $is_map }}
-                    {{ if $cell.html }}{{ $val | safeHTML }}
-                    {{ else }}{{ $val | $.Page.RenderString }}{{ end }}
-                  {{ else }}
-                    {{ $val | $.Page.RenderString }}
-                  {{ end }}
-                </td>
-              {{ end }}
-            </tr>
-          {{ else }}
-            <tr data-{{- $dp -}}tr_y='{{- $y -}}'>
-              {{ range $x, $col := $table.cols }}
-                <td title='{{- $col -}}' aria-label='{{- $col -}}' data-{{- $dp -}}td_x='{{- $x -}}'>
-                  {{ index $row $x | $.Page.RenderString }}
-                </td>
-              {{ end }}
-            </tr>
+      {{ if $table.rows }}
+        <tbody>
+          {{ $first_col_is_map := reflect.IsMap (index $table.cols 0) }}
+          {{ range $y, $row := $table.rows }}
+            {{ if $first_col_is_map }}
+              <tr {{ if $row._id }}id='{{- $row._id -}}'{{ end }} {{ if $row._tip }}title='{{- $row._tip -}}' aria-label='{{- $row._tip -}}'{{ end }} {{ if $row._css }}class='{{- $row._css -}}'{{ end }} data-{{- $dp -}}tr_y='{{- $y -}}'>
+                {{ range $x, $col := $table.cols }}
+                  {{ $cell := index $row $col.id }}
+                  {{ $is_map := reflect.IsMap $cell }}
+                  {{ $val := "" }}{{ if $is_map }}{{ $val = index $cell.val }}{{ else }}{{ $val = $cell }}{{ end }}
+                  {{ $align := $col.align }}{{ if and $is_map (index $cell "align") }}{{ $align = index $cell "align" }}{{ end }}
+                  {{ $css := "" }}
+                  {{ if eq $align "left" }}{{ $css = $config.align_left }}{{ else if eq $align "center" }}{{ $css = $config.align_center }}{{ else if eq $align "justified" }}{{ $css = $config.align_justify }}{{ else if eq $align "right" }}{{ $css = $config.align_right }}{{ end }}
+                  {{ if $is_map }}{{ if index $cell "css" }}{{ $css = $cell.css }}{{ end }}{{ end }}
+                  <td class='{{- $css -}}' data-{{- $dp -}}td_x='{{- $x -}}' {{ if and $is_map (index $cell "colspan") }}colspan='{{- $cell.colspan -}}'{{ end }} {{ if and $is_map (index $cell "rowspan") }}rowspan='{{- $cell.rowspan -}}'{{ end }}>
+                    {{ if and $is_map $cell.html }}{{ $val | safeHTML }}{{ else }}{{ $val | $.Page.RenderString }}{{ end }}
+                  </td>
+                {{ end }}
+              </tr>
+            {{ else }}
+              <tr data-{{- $dp -}}tr_y='{{- $y -}}'>
+                {{ range $x, $col := $table.cols }}
+                  <td data-{{- $dp -}}td_x='{{- $x -}}'>{{ index $row $x | $.Page.RenderString }}</td>
+                {{ end }}
+              </tr>
+            {{ end }}
           {{ end }}
-        {{ end }}
-      </tbody>
-    {{ end }}
-  </table>
+        </tbody>
+      {{ end }}
+    </table>
+  </div>
 </div>
 
 <style>
   .4ndr0-table-wrapper {
     overflow: hidden;
-    border: 1px solid var(--accent-cyan-border-idle);
+    border: 1px solid var(--accent-cyan-border-idle) !important;
+    background: var(--bg-glass-panel) !important;
     font-family: var(--primary_font);
   }
 
   .table-hud-status {
-    background: rgba(0, 229, 255, 0.1);
+    background: rgba(0, 229, 255, 0.08);
     font-size: 0.7rem;
     letter-spacing: 2px;
     color: var(--accent-cyan);
     border-bottom: 1px solid var(--accent-cyan-border-idle);
+  }
+
+  .status-pulse {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 5px var(--glow-cyan-active);
   }
 
   .hud-data-grid {
@@ -176,43 +147,44 @@
   }
 
   .hud-data-grid th {
-    padding: 1rem;
-    font-size: 0.8rem;
+    padding: 1.25rem 1rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     color: var(--accent-cyan);
     text-shadow: 0 0 5px var(--glow-cyan-active);
     border: 1px solid var(--accent-cyan-border-idle);
   }
 
   .hud-data-grid td {
-    padding: 0.75rem 1rem;
+    padding: 0.85rem 1rem;
     font-size: 0.85rem;
     border: 1px solid var(--accent-cyan-border-idle);
-    transition: background 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease;
   }
 
   .hud-data-grid tbody tr:hover {
-    background: rgba(0, 229, 255, 0.03);
+    background: rgba(0, 229, 255, 0.04) !important;
   }
 
   .hud-data-grid tbody tr:hover td {
-    color: var(--text-cyan-active);
-    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+    border-color: var(--accent-cyan-border-hover);
   }
 
   .hud-caption {
-    padding: 0.5rem;
-    font-size: 0.75rem;
+    padding: 0.75rem;
+    font-size: 0.65rem;
     color: var(--accent-cyan);
-    text-align: right;
-    caption-side: bottom;
-    opacity: 0.6;
+    opacity: 0.5;
+    font-style: italic;
   }
 
-  /* Alignment Utility Overrides for HUD Grid */
-  .text-start { text-align: left; }
-  .text-center { text-align: center; }
-  .text-end { text-align: right; }
-  .text-justify { text-align: justify; }
+  /* HARD_PURGE: Bootstrap legacy table colors */
+  .table-striped>tbody>tr:nth-of-type(odd)>*, 
+  .table-active, .table-hover>tbody>tr:hover>* {
+    background-color: transparent !important;
+    color: inherit !important;
+    box-shadow: none !important;
+  }
 </style>

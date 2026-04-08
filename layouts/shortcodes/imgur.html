@@ -1,5 +1,59 @@
-<div>
-    <img data-previewer='https://i.imgur.com/{{.Get "id"}}.{{.Get "ext"}}' src='https://i.imgur.com/{{.Get "id"}}h.{{.Get "ext"}}' class='preview-image {{.Get "class"}}'>
-    <br>
-    <span style="font-style: italic;">{{.Get "title"}}</span>
+<div class="hud-imgur-node glass-panel mb-5 transition-base">
+  <div class="imgur-header d-flex justify-content-between align-items-center p-2 px-3">
+    <div class="imgur-title d-flex align-items-center">
+      <span class="status-pulse me-2"></span> 
+      <span class="text-uppercase" style="letter-spacing: 2px; font-size: 0.7rem; color: var(--accent-cyan);">[ EXTERNAL_ASSET_STREAM ]</span>
+    </div>
+    <div class="imgur-host text-truncate ms-3 opacity-50" style="font-size: 0.65rem; color: var(--accent-cyan);">
+      HOST: <span class="text-cyan-active">IMGUR.COM</span>
+    </div>
+  </div>
+
+  <div class="imgur-content p-3 text-center">
+    <div class="node-asset-frame d-inline-block" style="border: 1px solid var(--accent-cyan-border-idle); position: relative; overflow: hidden;">
+      <div class="scanline-minimal" style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--accent-cyan); opacity: 0.3; z-index: 10;"></div>
+      
+      <img data-previewer='https://i.imgur.com/{{.Get "id"}}.{{.Get "ext"}}' 
+           src='https://i.imgur.com/{{.Get "id"}}h.{{.Get "ext"}}' 
+           class='preview-image img-fluid node-render {{.Get "class"}}'
+           style="filter: brightness(0.9) contrast(1.1); transition: all 0.5s ease; max-height: 600px;">
+    </div>
+    
+    {{ if .Get "title" }}
+    <div class="imgur-caption mt-3 opacity-75 small text-cyan-active text-uppercase" style="font-family: var(--primary_font); letter-spacing: 1px;">
+      {{.Get "title"}}
+    </div>
+    {{ end }}
+  </div>
 </div>
+
+<style>
+  .hud-imgur-node {
+    border: 1px solid var(--accent-cyan-border-idle) !important;
+    background: var(--bg-glass-panel) !important;
+    font-family: var(--primary_font);
+  }
+  
+  .hud-imgur-node:hover {
+    border-color: var(--accent-cyan) !important;
+    box-shadow: 0 0 15px var(--glow-cyan-active) !important;
+  }
+
+  .imgur-header {
+    background: rgba(0, 229, 255, 0.08);
+    border-bottom: 1px solid var(--accent-cyan-border-idle);
+  }
+
+  .status-pulse {
+    width: 6px; height: 6px;
+    background: var(--accent-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--glow-cyan-active);
+    animation: pulse-tracking 2s infinite;
+  }
+
+  .hud-imgur-node:hover .node-render {
+    filter: brightness(1) contrast(1.15) !important;
+    transform: scale(1.02);
+  }
+</style>

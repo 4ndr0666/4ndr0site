@@ -7,38 +7,48 @@
 {{ $has_sidebar := or (eq $sidebar `left`) (eq $sidebar `right`)}}
 {{ $widget:= site.Params.widgets.sidebar }}
 
-<section class="section 4ndr0-single-node">
+<section class="section 4ndr0-single-node py-5">
   <div class="container">
     <div class="row justify-content-center">
       {{ if eq $sidebar "left" }}
-      <aside class="col-lg-4 order-2 order-lg-1">
-        <div class="{{ if eq $sidebar `left` }}ps-lg-4{{ end }}{{ if eq $sidebar `right` }}pe-lg-4{{ end }} glass-sidebar">
+      <aside class="col-lg-3 order-2 order-lg-1">
+        <div class="glass-sidebar ps-lg-4 sticky-top" style="top: 100px;">
           {{- partial "widgets/widget-wrapper" ( dict "Widgets" $widget "Scope" . ) -}}
         </div>
       </aside>
       {{ end }}
+
       <div class="{{ if $has_sidebar }}col-lg-9{{ else }}col-lg-10{{ end }} {{ if eq $sidebar `left` }}order-1 order-lg-2{{ else if eq $sidebar `right` }}order-1 order-lg-0{{ end }}">
         <div class="glass-panel hud-article mb-4">
-          <div class="hud-meta-header mb-3">
-            <span class="meta-label">TIMESTAMP:</span> 
-            <span class="meta-value">{{ .PublishDate.Format "2006.01.02" }}</span>
-            <span class="meta-divider">//</span>
-            <span class="meta-label">READ_TIME:</span>
-            <span class="meta-value">{{ .ReadingTime }} MIN</span>
-            
-            {{ if .Params.Categories }}
-              <span class="meta-divider">|</span>
-              {{ range .Params.Categories }}
-              <span class="post-category"><a href="{{ `categories/` | absLangURL }}{{ . | urlize | lower }}" class="hud-link">{{ . | title }}</a></span>
+          <div class="hud-meta-header mb-4">
+            <div class="d-flex flex-wrap align-items-center gap-3">
+              <div class="meta-item">
+                <span class="meta-label">TIMESTAMP:</span> 
+                <span class="meta-value">{{ .PublishDate.Format "2006.01.02" }}</span>
+              </div>
+              <div class="meta-divider d-none d-md-block">|</div>
+              <div class="meta-item">
+                <span class="meta-label">READ_TIME:</span>
+                <span class="meta-value">{{ .ReadingTime }} MIN</span>
+              </div>
+              {{ if .Params.Categories }}
+                <div class="meta-divider d-none d-md-block">|</div>
+                <div class="meta-item">
+                  <span class="meta-label">SECTOR:</span>
+                  {{ range .Params.Categories }}
+                  <a href="{{ `categories/` | absLangURL }}{{ . | urlize | lower }}" class="hud-link text-uppercase">{{ . }}</a>
+                  {{ end }}
+                </div>
               {{ end }}
-            {{ end }}
+            </div>
+            <div class="header-scanline mt-3" style="height: 1px; background: var(--accent-cyan-border-idle);"></div>
           </div>
 
           <h1 class="hud-node-title mb-4">{{ .Title | markdownify }}</h1>
 
           {{ if .Params.Image }}
-          <div class="node-asset-frame mb-4">
-            <img loading="eager" fetchpriority="high" src="{{ .Params.Image | absURL }}" class="img-fluid w-100 node-render" alt="{{ .Title | plainify }}" width="800" height="418">
+          <div class="node-asset-frame mb-5">
+            <img loading="eager" fetchpriority="high" src="{{ .Params.Image | absURL }}" class="img-fluid w-100 node-render" alt="{{ .Title | plainify }}" style="border: 1px solid var(--accent-cyan-border-idle);">
           </div>
           {{ end }}
 
@@ -46,88 +56,49 @@
             {{ .Content }}
           </div>
 
-          <div class="mb-3 node-tags">
-            {{range .Params.Tags }}
-              <a class="hud-tag-node text-decoration-none me-2" href="{{ `tags/` | absLangURL}}{{ . | urlize | lower }}">#{{ . | title }}</a>
-            {{ end }}
+          <div class="node-footer-meta pt-4 border-top border-hud" style="border-color: var(--accent-cyan-border-idle) !important;">
+            <div class="node-tags">
+              {{range .Params.Tags }}
+                <a class="hud-tag-node text-decoration-none me-2" href="{{ `tags/` | absLangURL}}{{ . | urlize | lower }}">#{{ . | upper }}</a>
+              {{ end }}
+            </div>
           </div>
         </div>
 
         {{ $related := site.RegularPages.Related . | first 5 }}
         {{ if $related }}
-        <div class="glass-panel hud-related mb-4">
-          {{ with $related }}
-          <h3 class="hud-section-title mb-3">CROSS_REFERENCE_NODES</h3>
-          <ul class="list-unstyled related-post-list">
-            {{ range . }}
-            <li class="mb-2">
-              <a class="hud-related-link d-inline-flex align-items-center" href="{{ .RelPermalink }}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="0.85em" height="0.85em" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" class="me-2"><path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+        <div class="glass-panel hud-related mb-4 p-4">
+          <h3 class="hud-section-title mb-4">CROSS_REFERENCE_NODES</h3>
+          <ul class="list-unstyled related-post-list mb-0">
+            {{ range $related }}
+            <li class="mb-3">
+              <a class="hud-related-link d-inline-flex align-items-center transition-base" href="{{ .RelPermalink }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="var(--accent-cyan)" viewBox="0 0 16 16" class="me-3"><path d="M8 0 6.676 1.324 11.405 6.054H0v1.892h11.405l-4.729 4.73L8 14l8-7z"/></svg>
                 {{.Title}}
               </a>
             </li>
             {{ end }}
           </ul>
-          {{ end }}
         </div>
         {{ end }}
-
-        <div id="comments" class="comments glass-panel p-4" aria-live="polite">
-          <noscript>Please enable JavaScript to view the comments.</noscript>
-        </div>
-        
-        <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            const observer = new IntersectionObserver((entries) => {
-              entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                  try {
-                    const script = document.createElement('script');
-                    script.src = 'https://utteranc.es/client.js';
-                    script.setAttribute('repo', 'ChrisTitusTech/website');
-                    script.setAttribute('issue-term', 'pathname');
-                    script.setAttribute('theme', 'preferred-color-scheme');
-                    script.setAttribute('crossorigin', 'anonymous');
-                    script.async = true;
-                    const commentsDiv = document.getElementById('comments');
-                    script.onerror = () => {
-                      commentsDiv.innerHTML = '<p class="text-cyan">Error loading uplink comments. Please retry session.</p>';
-                    };
-                    commentsDiv.appendChild(script);
-                    observer.disconnect();
-                  } catch (error) {
-                    console.error('Error loading comments:', error);
-                  }
-                }
-              });
-            });
-            observer.observe(document.getElementById('comments'));
-          });
-        </script>
 
         {{ partial "backtotop.html" . }}
-
-        {{ if eq $sidebar "right" }}
-        <div class="mt-4 d-none d-lg-block glass-ad-wrapper">
-          {{- partial "widgets/google-ad" . -}}
-        </div>
-        {{ end }}
       </div>
 
       {{ if eq $sidebar "right" }}
-      <aside class="col-lg-3 order-0 order-lg-1 mb-4 mb-lg-0">
-        <div class="stickyside ps-lg-4 glass-sidebar">
+      <aside class="col-lg-3 order-0 order-lg-1">
+        <div class="glass-sidebar sticky-top" style="top: 100px;">
           {{- partial "widgets/widget-wrapper" ( dict "Widgets" (slice "toc") "Scope" . ) -}}
         </div>
       </aside>
       {{ end }}
-      </div>
+    </div>
   </div>
 </section>
 
 {{ else }}
 
-<section class="section 4ndr0-generic-node">
+<section class="section 4ndr0-generic-node py-5">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
@@ -146,44 +117,40 @@
 
 <style>
   .hud-article {
-    padding: 2.5rem;
-    border-radius: 4px;
+    padding: 3rem;
+    background: var(--bg-glass-panel) !important;
+    border: 1px solid var(--accent-cyan-border-idle) !important;
     font-family: var(--primary_font);
   }
 
   .hud-meta-header {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--accent-cyan);
     letter-spacing: 1px;
-    border-bottom: 1px solid var(--accent-cyan-border-idle);
-    padding-bottom: 1rem;
+    font-family: var(--primary_font);
   }
 
-  .meta-label { opacity: 0.5; margin-right: 5px; }
-  .meta-divider { margin: 0 15px; color: var(--accent-cyan); opacity: 0.8; }
-  .hud-link { color: var(--text-cyan-active); text-decoration: none; }
-  .hud-link:hover { text-shadow: 0 0 8px var(--glow-cyan-active); }
+  .meta-label { opacity: 0.5; }
+  .meta-value { color: var(--text-cyan-active); font-weight: 700; }
+  .hud-link { color: var(--accent-cyan); text-decoration: none; margin-left: 5px; }
+  .hud-link:hover { color: var(--text-cyan-active); text-shadow: 0 0 8px var(--glow-cyan-active); }
 
   .hud-node-title {
     color: var(--text-cyan-active);
     text-transform: uppercase;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     text-shadow: 0 0 15px var(--glow-cyan-active);
-  }
-
-  .node-render {
-    border: 1px solid var(--accent-cyan-border-idle);
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
   }
 
   .hud-tag-node {
     display: inline-block;
-    padding: 0.2rem 0.6rem;
-    background: var(--accent-cyan-bg-active);
+    padding: 0.3rem 0.8rem;
+    background: var(--accent-cyan-bg-hover);
     color: var(--accent-cyan);
     border: 1px solid var(--accent-cyan-border-idle);
-    font-size: 0.75rem;
+    font-size: 0.65rem;
+    font-weight: 700;
     transition: all 0.3s ease;
   }
 
@@ -194,30 +161,40 @@
   }
 
   .hud-section-title {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--accent-cyan);
-    letter-spacing: 2px;
-    border-left: 3px solid var(--accent-cyan);
+    letter-spacing: 3px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-left: 4px solid var(--accent-cyan);
     padding-left: 15px;
   }
 
   .hud-related-link {
     color: var(--text-cyan-active);
     text-decoration: none;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    font-weight: 500;
   }
 
   .hud-related-link:hover {
-    transform: translateX(5px);
+    transform: translateX(10px);
+    color: var(--accent-cyan);
     text-shadow: 0 0 8px var(--glow-cyan-active);
   }
 
+  /* SIDEBAR WIDGET DOMINANCE */
   .glass-sidebar .widget {
-    background: var(--bg-glass-panel);
-    border: 1px solid var(--accent-cyan-border-idle);
+    background: var(--bg-glass-panel) !important;
+    border: 1px solid var(--accent-cyan-border-idle) !important;
     padding: 1.5rem;
     margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+  }
+
+  /* HARD PURGE: Suppress any elided Chris Titus artifacts */
+  .post-navigation, .breadcrumb-item::before, .social-share-junk {
+    display: none !important;
   }
 </style>
 

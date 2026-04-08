@@ -1,79 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.LanguageCode | default "en-us" }}">
 <head>
     <meta charset="utf-8" />
-    <title>4NDR0666OS | Terminal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
+    <title>{{ .Title }} | 4NDR0666OS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.33.2/js/jquery.terminal.min.js"></script>
     <script src="https://unpkg.com/jquery.terminal/js/autocomplete_menu.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.33.2/css/jquery.terminal.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
     <style>
-        body, html { width: 100%; height: 100%; margin: 0; background: black; color: white; font-size: 18px; }
+        :root { 
+            --bg-dark-base: #050A0F; 
+            --accent-cyan: #00E5FF; 
+            --accent-lime: #32FF00;
+            --glow-cyan: rgba(0, 229, 255, 0.4);
+        }
+
+        body, html { 
+            width: 100%; height: 100%; margin: 0; 
+            background: var(--bg-dark-base); 
+            color: var(--accent-cyan); 
+            font-family: 'Roboto Mono', monospace; 
+            overflow: hidden; 
+        }
+
+        /* CRT_SCANLINE_EMULATION */
+        body::after { 
+            content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0; 
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03)); 
+            z-index: 10001; background-size: 100% 2px, 3px 100%; pointer-events: none; opacity: 0.3;
+        }
+
+        .terminal, .cmd, .terminal .cursor { 
+            text-shadow: 0 0 8px var(--glow-cyan); 
+            background-color: transparent !important; 
+        }
+
+        .terminal { --size: 1.1; }
+        
+        @media (max-width: 768px) {
+            .terminal { --size: 0.9; }
+        }
     </style>
 </head>
 <body>
+
 <script>
 {{ $t := .Site.Params.terminal }}
 jQuery(document).ready(function($) {
+    /* COMPATIBILITY_LAYER */
+    if (!jQuery.isFunction) {
+        jQuery.isFunction = function(obj) { return typeof obj === "function"; };
+    }
+
     var animation = false;
-    var availableCommands = ["all", "whois", "social", "projects", "startx", "exit", '{{ $t.misc.commandName | default "scripts" }}'];
+    var availableCommands = ["all", "whois", "social", "projects", "startx", "exit", "clear", '{{ $t.misc.commandName | default "scripts" }}'];
 
     $('body').terminal(function(command, term) {
         function whois () {
-            term.echo("");
+            term.echo("\n[[b;white;]-- IDENTITY_QUERY --]");
             {{ with $t.whois }}
-            term.echo("[[b;grey;]Name:]\t\t\t{{ .name }}");
-            term.echo("[[b;grey;]Profession:]\t\t{{ .profession }}");
-            term.echo("[[b;grey;]Location:]\t\t{{ .location }}");
-            term.echo(`\n{{ .description | safeJS }}\n`);
+            term.echo("[[b;grey;]NAME:]\t\t\t{{ .name }}");
+            term.echo("[[b;grey;]ROLE:]\t\t{{ .profession }}");
+            term.echo("[[b;grey;]LOC:]\t\t\t{{ .location }}");
+            term.echo(`\n[[;var(--accent-cyan);]{{ .description | safeJS }}]\n`);
             {{ end }}
         }
 
         function social () {
-            term.echo("");
+            term.echo("\n[[b;white;]-- UPLINK_CHANNELS --]");
             {{ range $t.social }}
-            term.echo(" [[b;cyan;]{{ .name }}]: {{ .url | safeJS }}");
+            term.echo(" [[b;cyan;]{{ .name }}]: [[;white;]{{ .url | safeJS }}]");
             {{ end }}
             term.echo("");
         }
 
         function projects () {
-            term.echo("");
+            term.echo("\n[[b;white;]-- PROJECT_ARCHIVE --]");
             {{ range $t.projects }}
-            term.echo(" [[b;{{ .color | default "LIME" }};]{{ .title }}]");
-            {{ if .link }}term.echo("  Link: {{ .link | safeJS }}");{{ end }}
-            {{ if .description }}term.echo(`  {{ .description | safeJS }}`);{{ end }}
+            term.echo(" [[b;{{ .color | default "var(--accent-lime)" }};]{{ .title }}]");
+            {{ if .link }}term.echo("  LINK: [[;grey;]{{ .link | safeJS }}]");{{ end }}
+            {{ if .description }}term.echo(`  DESC: {{ .description | safeJS }}`);{{ end }}
+            term.echo("  -----------------------------------");
             {{ end }}
             term.echo("");
         }
 
         function scripts (){
-            term.echo("");
-            term.echo("[[b;{{ $t.misc.titleColor }};]{{ $t.misc.title }}]\n");
-            term.echo(`[[;{{ $t.misc.contentColor }};]{{ $t.misc.content | safeJS }}]`);
-            term.echo("");
+            term.echo("\n[[b;{{ $t.misc.titleColor | default "var(--accent-cyan)" }};]{{ $t.misc.title }}]");
+            term.echo(`[[;{{ $t.misc.contentColor | default "white" }};]{{ $t.misc.content | safeJS }}]\n`);
         }
 
         function progress(percent, width) {
             var size = Math.round(width*percent/100);
             var left = '', taken = '', i;
-            for (i=size; i--;) { taken += '='; }
-            if (taken.length > 0) { taken = taken.replace(/=$/, '>'); }
-            for (i=width-size; i--;) { left += ' '; }
+            for (i=size; i--;) { taken += '#'; }
+            for (i=width-size; i--;) { left += '-'; }
             return '[' + taken + left + '] ' + percent + '%';
         }
 
         function loading (callback) {
-            var i = 0, size = 30;
+            var i = 0, size = 20;
             var current_prompt = term.get_prompt();
             animation = true;
             (function loop() {
-                term.set_prompt(progress(i++, size));
+                term.set_prompt(progress(i++, size) + " ");
                 if (i <= 100) {
-                    setTimeout(loop, 10);
+                    setTimeout(loop, 15);
                 } else {
-                    term.echo(progress(100, size) + ' [[b;green;]OK]').set_prompt(current_prompt);
+                    term.echo(progress(100, size) + ' [[b;var(--accent-lime);]OK]').set_prompt(current_prompt);
                     animation = false;
                     if (callback) callback();
                 }
@@ -87,25 +126,31 @@ jQuery(document).ready(function($) {
             case 'projects': projects(); break;
             case '{{ $t.misc.commandName | default "scripts" }}': scripts(); break;
             case 'all': whois(); social(); projects(); scripts(); break;
+            case 'clear': term.clear(); break;
             case 'startx':
-                term.echo("Loading graphical interface...");
+                term.echo("\n[[b;cyan;]>> INITIALIZING_GUI_BOOT_SEQUENCE]");
                 loading(function(){ window.location = "{{ $t.startxLocation | relURL }}"; });
                 break;
             case 'exit':
-                term.echo("Terminating... ");
+                term.echo("\n[[b;red;]>> TERMINATING_SESSION]");
                 loading(function(){ window.location = "{{ $t.exitLocation | relURL }}"; });
                 break;
             case 'help':
-                term.echo("\n[[b;white;]Available commands:]\n\n" + availableCommands.join(' ') + '\n');
+                term.echo("\n[[b;white;]AVAILABLE_PROTOCOLS:]\n" + availableCommands.join('  ') + '\n');
                 break;
             default:
-                term.echo("\nUnknown command: " + command + "\nType 'help' for a list of available commands\n");
+                if (command !== '') {
+                    term.echo("\n[[b;red;]ERROR:] Unknown command: " + command);
+                    term.echo("Type 'help' for operational protocols.\n");
+                }
         }
     }, {
-        prompt: '[[;{{ $t.promptColor | default "cyan" }};]{{ $t.prompt }}][[;{{ $t.promptSimbolsColor | default "LIME" }};]{{ $t.promptSimbols | default " >" }}] ',
+        prompt: '[[;{{ $t.promptColor | default "var(--accent-cyan)" }};]{{ $t.prompt }}][[;{{ $t.promptSimbolsColor | default "var(--accent-lime)" }};]{{ $t.promptSimbols | default " >" }}] ',
         greetings: `[[b;{{ $t.greetingColor | default "white" }};]{{ $t.greeting | safeJS }}]`,
         autocompleteMenu: true,
-        completion: availableCommands
+        completion: availableCommands,
+        checkArity: false,
+        onInit: function(t) { t.focus(); }
     });
 });
 </script>

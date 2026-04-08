@@ -1,41 +1,91 @@
 {{ define "main" }}
 
-<section class="section">
+<section class="section 4ndr0-contact-env py-5">
   <div class="container">
-    <div class="row justify-content-between">
-      <div class="col-lg-5">
-        <h2 class="mb-4">{{ .Title | markdownify }}</h2>
-        <div class="content">{{ .Content }}</div>
-        <form method="POST" action="{{ site.Params.contact_form_action | safeURL}}" class="row">
-          <div class="col-md-6">
-            <label for="name" class="visually-hidden">Name</label>
-            <input type="text" class="form-control mb-4" placeholder="Name" name="name" id="name">
+    <div class="row justify-content-between align-items-start">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        
+        <div class="hud-index-header mb-4">
+          <h1 class="h2 text-cyan-active text-uppercase" style="letter-spacing: 2px; font-family: var(--primary_font);">{{ .Title }}</h1>
+          <div class="header-scanline" style="width: 100%; height: 2px; background: var(--accent-cyan); margin-top: 10px; box-shadow: 0 0 10px var(--glow-cyan-active);"></div>
+        </div>
+
+        <div class="glass-panel p-4 p-md-5 hud-form-block">
+          <div class="content 4ndr0-content text-cyan-muted mb-4" style="font-family: var(--primary_font); opacity: 0.8;">
+            {{ .Content }}
           </div>
-          <div class="col-md-6">
-            <label for="email" class="visually-hidden">Email address</label>
-            <input type="email" class="form-control mb-4" placeholder="Email" name="email" id="email">
-          </div>
-          <div class="col-12">
-            <label for="subject" class="visually-hidden">Subject</label>
-            <input type="text" class="form-control mb-4" placeholder="Subject" name="subject" id="subject">
-          </div>
-          <div class="col-12">
-            <label for="message" class="visually-hidden">Message</label>
-            <textarea name="message" id="message" class="form-control mb-4" placeholder="Type Your Message Here"
-              rows="5"></textarea>
-          </div>
-          <div class="col-12">
-            <button class="btn btn-primary btn-block" type="submit">Send</button>
-          </div>
-        </form>
+          
+          <form method="POST" action="{{ site.Params.contact_form_action | safeURL}}" class="row g-3">
+            <div class="col-md-6">
+              <label for="name" class="visually-hidden">Name</label>
+              <input type="text" class="form-control hud-input" placeholder="[ IDENTITY_NAME ]" name="name" id="name" required>
+            </div>
+            <div class="col-md-6">
+              <label for="email" class="visually-hidden">Email address</label>
+              <input type="email" class="form-control hud-input" placeholder="[ UPLINK_EMAIL ]" name="email" id="email" required>
+            </div>
+            <div class="col-12">
+              <label for="subject" class="visually-hidden">Subject</label>
+              <input type="text" class="form-control hud-input" placeholder="[ QUERY_SUBJECT ]" name="subject" id="subject" required>
+            </div>
+            <div class="col-12">
+              <label for="message" class="visually-hidden">Message</label>
+              <textarea name="message" id="message" class="form-control hud-input" placeholder="[ ENTER_PAYLOAD_MESSAGE... ]" rows="5" required></textarea>
+            </div>
+            <div class="col-12 mt-4">
+              <button class="hud-btn w-100 py-3 text-uppercase" type="submit" style="letter-spacing: 2px; font-weight: 700;">TRANSMIT_DATA</button>
+            </div>
+          </form>
+        </div>
       </div>
+
       {{ if .Params.Image }}
-      <div class="col-lg-6 text-md-right">
-        <img loading="lazy" class="img-fluid" src="{{ .Params.Image | absURL }}" alt="{{ .Title }}">
+      <div class="col-lg-5 text-center">
+        <div class="node-asset-frame d-inline-block p-2" style="border: 1px solid var(--accent-cyan-border-idle); background: var(--bg-glass-panel);">
+          <img loading="lazy" class="img-fluid node-render" src="{{ .Params.Image | absURL }}" alt="{{ .Title }}" style="filter: grayscale(1) brightness(0.7) contrast(1.2); border: 1px solid var(--accent-cyan-border-idle);">
+        </div>
+        <div class="mt-3 text-cyan opacity-50 small" style="font-family: var(--primary_font);">[ CONTACT_SECURE_NODE ]</div>
       </div>
       {{ end }}
     </div>
   </div>
 </section>
+
+<style>
+  .4ndr0-contact-env { font-family: var(--primary_font); }
+
+  .hud-form-block {
+    border: 1px solid var(--accent-cyan-border-idle) !important;
+    background: var(--bg-glass-panel) !important;
+  }
+
+  /* HUD_INPUT_ARCHITECTURE */
+  .hud-input {
+    background: rgba(0, 229, 255, 0.05) !important;
+    border: 1px solid var(--accent-cyan-border-idle) !important;
+    color: var(--text-cyan-active) !important;
+    font-family: var(--primary_font);
+    border-radius: 2px;
+    padding: 12px;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .hud-input:focus {
+    background: rgba(0, 229, 255, 0.12) !important;
+    border-color: var(--accent-cyan) !important;
+    box-shadow: 0 0 15px var(--glow-cyan-active) !important;
+    outline: none;
+  }
+
+  .hud-input::placeholder {
+    color: var(--accent-cyan);
+    opacity: 0.3;
+  }
+
+  /* PURGE_LEGACY_STYLE */
+  .btn-primary, .btn-block, .form-control:not(.hud-input) {
+    display: none !important;
+  }
+</style>
 
 {{ end }}

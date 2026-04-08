@@ -1,20 +1,24 @@
-{{define "main"}}
+{{ define "main" }}
 
-<section class="section about-banner overflow-hidden">
-  {{ with .Params.background_shape}}
-  <img class="background_shape" src="{{ . | absURL }}" alt="background shape">
-  {{ end }}
-  
+<section class="section 4ndr0-about-env py-5">
   <div class="container">
-    <div class="row justify-content-center align-items-center text-center text-lg-left">
+    <div class="row justify-content-center align-items-center">
       {{ with .Params.image }}
-      <div class="col-lg-4">
-        <img loading="lazy" class="img-fluid" src="{{ . | absURL }}" alt="{{ $.Title }}">
+      <div class="col-lg-4 mb-5 mb-lg-0 text-center">
+        <div class="node-asset-frame d-inline-block p-3">
+          <img loading="lazy" class="img-fluid node-render" src="{{ . | absURL }}" alt="{{ $.Title }}" style="max-height: 400px; filter: grayscale(1) brightness(0.8) contrast(1.2);">
+        </div>
       </div>
       {{ end }}
       <div class="col-lg-7">
-        <div class="block content">
-          {{ .Content | markdownify }}
+        <div class="glass-panel p-4 p-md-5 hud-content-block">
+          <div class="hud-index-header mb-4">
+            <h1 class="h2 text-cyan-active text-uppercase" style="letter-spacing: 2px;">{{ .Title }}</h1>
+            <div class="header-scanline" style="width: 100px; height: 2px; background: var(--accent-cyan); margin-top: 10px;"></div>
+          </div>
+          <div class="content 4ndr0-content text-cyan-muted" style="font-family: var(--primary_font); line-height: 1.8;">
+            {{ .Content | markdownify }}
+          </div>
         </div>
       </div>
     </div>
@@ -23,28 +27,32 @@
 
 {{ if .Params.my_experiences.enable }}
 {{ with .Params.my_experiences }}
-<section class="experiences">
-  <div class="container bg-light">
+<section class="section experiences-sector">
+  <div class="container">
     <div class="row justify-content-center">
-      <div class="col-lg-6 text-center mb-5 pb-5">
-        <h2>{{ .title | markdownify }}</h2>
-        <p>{{ .description | markdownify }}</p>
+      <div class="col-lg-8 text-center mb-5">
+        <h2 class="text-cyan-active text-uppercase hud-section-title d-inline-block px-3">{{ .title | markdownify }}</h2>
+        <p class="text-cyan opacity-50 mt-3" style="font-family: var(--primary_font);">{{ .description | markdownify }}</p>
       </div>
     </div>
-    <div class="row experiences-items justify-content-between">
+    <div class="row g-4 justify-content-between">
       {{ $counter := 0 }}
       {{ range .experiences_item }}
       {{ $counter = add $counter 1 }}
-      <div class="col-lg-5 experiences-item">
-        <div class="card border-0 rounded-0 bg-body" data-item="{{if lt $counter 9}}0{{$counter}}{{else}}{{$counter}}{{end}}">
-          <div class="card-header bg-transparent border-0">
-            <h5 class="border-bottom pb-3">{{ .title | markdownify }}</h5>
+      <div class="col-lg-5">
+        <div class="glass-panel experience-tile p-4 h-100" data-node-id="{{if lt $counter 10}}0{{$counter}}{{else}}{{$counter}}{{end}}">
+          <div class="tile-header mb-3 border-bottom border-hud pb-2">
+            <h5 class="text-cyan-active mb-0" style="font-family: var(--primary_font); font-weight: 700;">{{ .title | markdownify }}</h5>
           </div>
-          <div class="card-body py-0 pr-5">
-            <ul class="list-unstyled mb-1">
-              <li class="d-flex mb-2"><span class="text-primary font-weight-bold mr-3">{{ i18n `requisition` }}:</span>{{ .requisition | markdownify }}</li>
-              <li class="d-flex mb-2"><span class="text-primary font-weight-bold mr-3">{{ i18n `time_period` }}:</span>{{ .time_period | markdownify }}</li>
-            </ul>
+          <div class="tile-body" style="font-family: var(--primary_font); font-size: 0.85rem;">
+            <div class="d-flex mb-2">
+              <span class="text-cyan opacity-50 me-2">REQUISITION:</span>
+              <span class="text-cyan">{{ .requisition | markdownify }}</span>
+            </div>
+            <div class="d-flex">
+              <span class="text-cyan opacity-50 me-2">TIMESTAMP:</span>
+              <span class="text-cyan">{{ .time_period | markdownify }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -55,18 +63,19 @@
 {{ end }}
 {{ end }}
 
-
 {{ if .Params.about_info.enable }}
 {{ with .Params.about_info }}
 <section class="section pb-0">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <div class="row">
+        <div class="row g-4">
           {{ range .item }}
-          <div class="col-lg-6 mb-4 pb-2">
-            <h3 class="mb-3">{{ .name }}</h3>
-            <div class="content">{{ .content }}</div>
+          <div class="col-lg-6">
+            <div class="glass-panel p-4 h-100 hud-info-tile">
+              <h3 class="h5 text-cyan-active text-uppercase mb-3" style="letter-spacing: 1px;">{{ .name }}</h3>
+              <div class="content 4ndr0-content small text-cyan-muted" style="font-family: var(--primary_font);">{{ .content | markdownify }}</div>
+            </div>
           </div>
           {{ end }}
         </div>
@@ -77,21 +86,25 @@
 {{ end }}
 {{ end }}
 
-
 {{ if .Params.compatibility.enable }}
 {{ with .Params.compatibility }}
 <section class="section">
-  <div class="container bg-light py-5">
-    <div class="row justify-content-center mt-5">
-      <div class="col-lg-6 text-center mb-5">
-        <h3>{{ .title | markdownify }}</h3>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center mb-5">
+        <div class="header-scanline mx-auto mb-4" style="width: 200px; height: 1px; background: var(--accent-cyan-border-idle);"></div>
+        <h3 class="text-cyan-active text-uppercase" style="letter-spacing: 3px;">{{ .title | markdownify }}</h3>
       </div>
     </div>
-    <div class="row justify-content-center mb-2">
+    <div class="row justify-content-center">
       <div class="col-lg-10 text-center">
-      {{ range .item }}
-      <div class="m-4 d-inline-block"><img loading="lazy" src="{{ .image | absURL }}" alt="compatibility-image"></div>
-      {{ end }}
+        <div class="glass-panel p-4 d-flex flex-wrap justify-content-center gap-4">
+          {{ range .item }}
+          <div class="compatibility-asset">
+            <img loading="lazy" src="{{ .image | absURL }}" alt="compatibility-image" style="height: 40px; filter: grayscale(1) invert(1) brightness(1.5); opacity: 0.6; transition: all 0.3s ease;">
+          </div>
+          {{ end }}
+        </div>
       </div>
     </div>
   </div>
@@ -99,6 +112,50 @@
 {{ end }}
 {{ end }}
 
+<style>
+  .4ndr0-about-env { font-family: var(--primary_font); }
+  
+  .node-asset-frame {
+    border: 1px solid var(--accent-cyan-border-idle);
+    background: var(--bg-glass-panel);
+    position: relative;
+  }
 
+  .experience-tile {
+    position: relative;
+    border-left: 3px solid var(--accent-cyan-border-idle) !important;
+    transition: all 0.4s ease;
+  }
 
-{{end}}
+  .experience-tile::before {
+    content: attr(data-node-id);
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 0.7rem;
+    color: var(--accent-cyan);
+    opacity: 0.3;
+  }
+
+  .experience-tile:hover {
+    border-left-color: var(--accent-cyan) !important;
+    transform: translateX(5px);
+    box-shadow: 0 0 20px var(--glow-cyan-active) !important;
+  }
+
+  .hud-info-tile { border: 1px solid var(--accent-cyan-border-idle) !important; }
+
+  .compatibility-asset img:hover {
+    opacity: 1;
+    filter: grayscale(0) invert(0) brightness(1) !important;
+    transform: scale(1.1);
+  }
+
+  /* PURGE_LEGACY */
+  .bg-light, .background_shape, .card, .bg-body { 
+    background: transparent !important; 
+    border: none !important;
+    box-shadow: none !important;
+  }
+</style>
+
+{{ end }}

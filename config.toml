@@ -1,4 +1,4 @@
-baseURL = "https://4ndr0666.github.io/4ndr0site"
+baseURL = "https://4ndr0666.github.io/4ndr0site/"
 title = "4ndr0666 | Cortex"
 languageCode = "en-us"
 summaryLength = 70
@@ -94,27 +94,23 @@ bg_image = "images/bannerbackground.png"
 title = "<strong>4NDR0666OS</strong><br>CORTEX UPLINK<br> SYSTEM NOMINAL."
 image = "images/4ndr0arch.png"
 
-[[menu.main]]
-identifier = "terminal"
-weight = 1
-url = "/"
-name = "Terminal"
-
+# --- NAVIGATION MENU ---
+# Redundant Terminal tab excised. 
 [[menu.main]]
 identifier = "gui"
-weight = 2
+weight = 1
 url = "/posts/"
 name = "GUI Home"
 
 [[menu.main]]
 identifier = "payloads"
-weight = 3
+weight = 2
 url = "/payloads/"
 name = "Payloads"
 
 [[menu.main]]
 identifier = "sections"
-weight = 6
+weight = 3
 url = "#"
 name = "Sections"
 hasChildren = true
@@ -145,12 +141,12 @@ name = "Windows"
 url = "/categories/windows"
 
 [[menu.footer]]
-weight = 3
+weight = 1
 url = "privacy/"
 name = "Privacy"
 
 [[menu.footer]]
-weight = 4
+weight = 2
 url = "terms-conditions/"
 name = "Terms & Conditions"
 

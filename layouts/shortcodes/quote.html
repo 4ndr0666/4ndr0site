@@ -1,9 +1,9 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
 
-<div class="cortex-insight glass-panel my-5 p-4">
-  <div class="insight-header d-flex align-items-center mb-3">
+<div class="cortex-insight glass-panel my-5 p-4 transition-base">
+  <div class="insight-header d-flex align-items-center mb-4">
     <div class="insight-glitch-bar"></div>
-    <span class="insight-label">[ SYSTEM_INSIGHT_DECRYPTED ]</span>
+    <span class="insight-label text-uppercase">[ SYSTEM_INSIGHT_DECRYPTED ]</span>
   </div>
   
   <div class="insight-body">
@@ -12,7 +12,7 @@
     </div>
     
     {{ with .Get "by"}}
-    <div class="source-origin mt-3">
+    <div class="source-origin mt-4">
       <span class="origin-prefix">SOURCE_ORIGIN:</span>
       <span class="origin-id">// {{ . | upper }}</span>
     </div>
@@ -23,61 +23,57 @@
 <style>
   .cortex-insight {
     position: relative;
-    border-left: 2px solid var(--accent-cyan);
-    background: var(--bg-glass-panel);
+    border: 1px solid var(--accent-cyan-border-idle) !important;
+    border-left: 4px solid var(--accent-cyan) !important;
+    background: var(--bg-glass-panel) !important;
     font-family: var(--primary_font);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .cortex-insight:hover {
-    border-left-width: 5px;
-    box-shadow: -10px 0 20px var(--glow-cyan-active);
-    transform: translateX(5px);
+    border-left-width: 6px !important;
+    box-shadow: -5px 0 20px rgba(0, 229, 255, 0.15) !important;
+    transform: translateX(6px);
   }
 
   .insight-glitch-bar {
-    width: 20px;
-    height: 4px;
+    width: 25px; height: 4px;
     background: var(--accent-cyan);
     margin-right: 15px;
     box-shadow: 0 0 10px var(--glow-cyan-active);
   }
 
   .insight-label {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 2px;
     color: var(--accent-cyan);
-    opacity: 0.8;
   }
 
   .content-stream {
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: 1.05rem;
+    line-height: 1.7;
     color: var(--text-cyan-active);
     font-style: italic;
   }
 
-  .content-stream p {
-    margin-bottom: 0;
-  }
+  .content-stream p:last-child { margin-bottom: 0; }
 
   .source-origin {
     font-size: 0.75rem;
     letter-spacing: 1px;
-    border-top: 1px solid var(--accent-cyan-border-idle);
-    padding-top: 0.75rem;
+    border-top: 1px dashed var(--accent-cyan-border-idle);
+    padding-top: 1rem;
     display: inline-block;
   }
 
   .origin-prefix {
     color: var(--accent-cyan);
     opacity: 0.5;
-    margin-right: 5px;
+    margin-right: 8px;
   }
 
   .origin-id {
-    color: var(--accent-cyan);
+    color: var(--text-cyan-active);
     font-weight: bold;
     text-shadow: 0 0 5px var(--glow-cyan-active);
   }

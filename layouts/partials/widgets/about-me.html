@@ -1,14 +1,44 @@
-{{ "<!-- about me -->" | safeHTML }}
-<div class="widget widget-about">
+<div class="hud-about-inner">
   {{ with site.Params.about_me }}
-  <h5 class="widget-title">{{ .Title }}</h5>
-  <p>{{ .bio | markdownify }}</p>
+  <h5 class="widget-title">
+    <span class="status-pulse me-2"></span>{{ .Title | upper | default "SYS_ADMIN" }}
+  </h5>
+  <div class="about-bio text-cyan-muted opacity-75 small mb-4" style="line-height: 1.7; font-family: var(--primary_font);">
+    {{ .bio | markdownify }}
+  </div>
   {{ end }}
+  
   {{ with site.Params.social_profile }}
-  <ul class="list-unstyled list-inline">
+  <div class="hud-social-grid d-flex flex-wrap gap-2 pt-3 border-top border-hud">
     {{ range . }}
-    <li class="list-inline-item mr-3"><a href="{{ .link }}" aria-label="Social Profile"><i class="{{ .icon }}"></i></a></li>
+    <a href="{{ .link }}" aria-label="External Uplink" class="social-hud-icon transition-base" target="_blank" rel="noopener noreferrer">
+      <i class="{{ .icon }}"></i>
+    </a>
     {{ end }}
-  </ul>
+  </div>
+  {{ end }}
 </div>
-{{ end }}
+
+<style>
+  .border-hud { border-color: var(--accent-cyan-border-idle) !important; }
+  
+  .social-hud-icon {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    width: 36px; 
+    height: 36px;
+    border: 1px solid var(--accent-cyan-border-idle) !important;
+    color: var(--accent-cyan) !important;
+    background: rgba(0, 229, 255, 0.03);
+    text-decoration: none;
+  }
+  
+  .social-hud-icon:hover {
+    border-color: var(--accent-cyan) !important;
+    color: var(--text-cyan-active) !important;
+    background: var(--accent-cyan-bg-hover) !important;
+    box-shadow: 0 0 12px var(--glow-cyan-active);
+    transform: translateY(-3px);
+  }
+</style>
