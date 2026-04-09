@@ -224,13 +224,14 @@ $icon-font: '{{.icon_font}}';
   .shadow    { box-shadow: none !important; }
 
   // ----------------------------------------------------------------------
-  // COHESIVE ADJUSTMENT: 3LECTRIC_GLASS ASSIMILATION (PURGED GREY BACKGROUNDS)
+  // COHESIVE ADJUSTMENT: 3LECTRIC_GLASS ASSIMILATION 
   // ----------------------------------------------------------------------
   header.sticky-top  { 
     background-color: transparent !important;
-    background: var(--bg-glass-panel, rgba(10, 19, 26, 0.25)) !important;
-    backdrop-filter: blur(15px) !important;
-    -webkit-backdrop-filter: blur(15px) !important;
+    /* FIX: Increase density to 0.85 to act as a frost-shield masking the text underneath */
+    background: var(--bg-glass-dense, rgba(10, 19, 26, 0.85)) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
     border-bottom: 1px solid var(--accent-cyan-border-idle, rgba(0, 229, 255, 0.2)) !important;
   }
   
@@ -300,4 +301,15 @@ $icon-font: '{{.icon_font}}';
 
   ::selection      { background: var(--accent-cyan-bg-active, rgba(0, 229, 255, 0.2)); color: var(--text-cyan-active, #67E8F9); }
   ::-moz-selection { background: var(--accent-cyan-bg-active, rgba(0, 229, 255, 0.2)); color: var(--text-cyan-active, #67E8F9); }
+}
+
+// ----------------------------------------------------------------------
+// SPATIAL CLEARANCE MATRIX (CORRECTED)
+// ----------------------------------------------------------------------
+
+// 1. Utilize native sticky positioning to maintain natural document flow
+header.sticky-top, .4ndr0-header {
+  position: sticky !important;
+  top: 0;
+  z-index: 9999 !important;
 }

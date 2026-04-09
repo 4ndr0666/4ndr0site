@@ -10,15 +10,25 @@
 <section class="section 4ndr0-single-node py-5">
   <div class="container">
     <div class="row justify-content-center">
+      
+      {{/* 4NDR0666OS OVERRIDE: ALL SIDEBARS FORCED TO LEFT TO PREVENT GRID COLLISION */}}
       {{ if eq $sidebar "left" }}
       <aside class="col-lg-3 order-2 order-lg-1">
-        <div class="glass-sidebar ps-lg-4 sticky-top" style="top: 100px;">
+        <div class="glass-sidebar pe-lg-4 sticky-top" style="top: 100px;">
           {{- partial "widgets/widget-wrapper" ( dict "Widgets" $widget "Scope" . ) -}}
         </div>
       </aside>
       {{ end }}
 
-      <div class="{{ if $has_sidebar }}col-lg-9{{ else }}col-lg-10{{ end }} {{ if eq $sidebar `left` }}order-1 order-lg-2{{ else if eq $sidebar `right` }}order-1 order-lg-0{{ end }}">
+      {{ if eq $sidebar "right" }}
+      <aside class="col-lg-3 order-2 order-lg-1">
+        <div class="glass-sidebar pe-lg-4 sticky-top" style="top: 100px;">
+          {{- partial "widgets/widget-wrapper" ( dict "Widgets" (slice "toc") "Scope" . ) -}}
+        </div>
+      </aside>
+      {{ end }}
+
+      <div class="{{ if $has_sidebar }}col-lg-9{{ else }}col-lg-10{{ end }} order-1 order-lg-2">
         <div class="glass-panel hud-article mb-4">
           <div class="hud-meta-header mb-4">
             <div class="d-flex flex-wrap align-items-center gap-3">
@@ -85,13 +95,6 @@
         {{ partial "backtotop.html" . }}
       </div>
 
-      {{ if eq $sidebar "right" }}
-      <aside class="col-lg-3 order-0 order-lg-1">
-        <div class="glass-sidebar sticky-top" style="top: 100px;">
-          {{- partial "widgets/widget-wrapper" ( dict "Widgets" (slice "toc") "Scope" . ) -}}
-        </div>
-      </aside>
-      {{ end }}
     </div>
   </div>
 </section>

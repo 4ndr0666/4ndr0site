@@ -1,46 +1,74 @@
-{{ define "main" }}
-  <div id="cortex-terminal"></div>
+<!DOCTYPE html>
+<html lang="{{ site.LanguageCode | default "en-us" }}">
+<head>
+    <meta charset="utf-8">
+    <title>{{ .Site.Title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.33.2/js/jquery.terminal.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.33.2/css/jquery.terminal.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
 
-  {{ partial "index_terminal_logic.html" . }}
+    <style>
+        :root { 
+            --bg-dark-base: #050A0F; 
+            --accent-cyan: #00E5FF; 
+            --glow-cyan: rgba(0, 229, 255, 0.4);
+        }
 
-  <style>
-    /* FORCE_STANDALONE_MODE: 
-       Suppresses GUI elements inherited from baseof.html 
-    */
-    .4ndr0-header, 
-    .4ndr0-footer, 
-    .4ndr0-banner-hud,
-    .4ndr0-banner-interface { 
-        display: none !important; 
-    }
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: var(--bg-dark-base); 
+            color: var(--accent-cyan); 
+            font-family: 'Roboto Mono', monospace; 
+            overflow: hidden; 
+        }
 
-    body { 
-        overflow: hidden !important; 
-        background-color: #050A0F !important; 
-    }
+        /* TERMINAL_MOUNT_POINT */
+        #cortex-terminal { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            height: 100%; 
+            width: 100%; 
+            z-index: 1000; 
+        }
 
-    #cortex-terminal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: 9999;
-        background-color: #050A0F !important;
-    }
+        /* CRT_SCANLINE_EMULATION_V2 */
+        body::after { 
+            content: " "; 
+            display: block; 
+            position: absolute; 
+            top: 0; left: 0; bottom: 0; right: 0; 
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03)); 
+            z-index: 1001; 
+            background-size: 100% 2px, 3px 100%; 
+            pointer-events: none; 
+            opacity: 0.4;
+        }
 
-    /* CRT_SCANLINE_OVERLAY_REINFORCEMENT */
-    body::after {
-        content: " ";
-        display: block;
-        position: absolute;
-        top: 0; left: 0; bottom: 0; right: 0;
-        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), 
-                    linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-        z-index: 10000;
-        background-size: 100% 2px, 3px 100%;
-        pointer-events: none;
-        opacity: 0.4;
-    }
-  </style>
-{{ end }}
+        /* HUD_TEXT_GLOW_ENFORCEMENT */
+        .terminal, .cmd, .terminal .cursor { 
+            text-shadow: 0 0 8px var(--glow-cyan); 
+            background-color: transparent !important; 
+        }
+
+        /* CUSTOM_SCROLLBAR */
+        .terminal-scroller::-webkit-scrollbar { width: 6px; }
+        .terminal-scroller::-webkit-scrollbar-track { background: var(--bg-dark-base); }
+        .terminal-scroller::-webkit-scrollbar-thumb { background: var(--accent-cyan); opacity: 0.3; }
+    </style>
+</head>
+<body class="4ndr0-terminal-env">
+    
+    <div id="cortex-terminal"></div>
+
+    {{ partial "index_terminal_logic.html" . }}
+    
+</body>
+</html>
