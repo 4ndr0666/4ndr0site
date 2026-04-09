@@ -344,4 +344,6 @@ Assuming standard Hugo Pages integration, pushing to the `main` branch automatic
 * **Cause:** You have a syntax error (missing semicolon, unclosed bracket) in `style.scss` or `_variables.scss`.
 * **Fix:** Read the terminal output. Hugo will tell you the exact line number where the compilation broke. 
 
+---
+
 Copyright © 2026 4ndr0666
