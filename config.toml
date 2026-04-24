@@ -42,7 +42,7 @@ mainSections = ["posts"]
 search = true
 header_search_layout = "popupable"
 menu_align = "right"
-sidebar = "right"
+sidebar = "left"
 code_copy_button = true
 
 [params.variables]
@@ -53,7 +53,7 @@ text_color_dark = "#050A0F" # --bg-dark-base
 body_color = "#050A0F"
 border_color = "rgba(0, 229, 255, 0.2)" # --accent-cyan-border-idle
 black = "#050A0F"
-white = "#ffffff"
+white = "#00E5FF"
 light = "rgba(10, 19, 26, 0.25)" # --bg-glass-panel
 primary_font = "'Roboto Mono', monospace"
 icon_font = "Font Awesome 6 Free"
@@ -67,11 +67,11 @@ Please enter your credentials:"""
 exitLocation = "/"
 
 [params.widgets]
-sidebar = ["toc"]
+sidebar = ["toc", "categories", "tags"]
 
 [params.images]
   featured = true
-  share = true
+  share = false
   formats = ["webp", "jpg", "png"]
 
 [mediaTypes]
@@ -84,7 +84,6 @@ sidebar = ["toc"]
     isPlainText = false
     isHTML = false
 
-# CSS and JS plugins are managed directly in layouts/partials/head.html and layouts/partials/footer.html
 [[params.social]]
 name = "GitHub"
 link = "https://github.com/4ndr0666"
@@ -95,7 +94,6 @@ title = "<strong>4NDR0666OS</strong><br>CORTEX UPLINK<br> SYSTEM NOMINAL."
 image = "images/4ndr0arch.png"
 
 # --- NAVIGATION MENU ---
-# Redundant Terminal tab excised. 
 [[menu.main]]
 identifier = "gui"
 weight = 1
@@ -105,7 +103,7 @@ name = "GUI Home"
 [[menu.main]]
 identifier = "payloads"
 weight = 2
-url = "/payloads/"
+url = "/downloads/"
 name = "Payloads"
 
 [[menu.main]]
