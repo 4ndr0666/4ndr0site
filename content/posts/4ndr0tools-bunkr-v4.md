@@ -6,22 +6,26 @@ categories: ["PAYLOADS", "USERSCRIPTS"]
 tags: ["javascript", "tampermonkey", "red-team", "bypass"]
 ---
 
-{{< box >}}
-**CLASSIFICATION:** RED TEAM USE ONLY.
-**CAPABILITIES:** Canonical routing, auto-sort, hide visited, dl bypass, multi-tier m3u8 stream extract, and native XOR decryption matrix.
-{{< /box >}}
+<div class="glass-panel p-4 mb-4 border-hud" style="border-left: 4px solid var(--accent-cyan) !important;">
+<strong>CLASSIFICATION:</strong> RED TEAM USE ONLY.<br>
+<strong>CAPABILITIES:</strong> Canonical routing, auto-sort, hide visited, dl bypass, multi-tier m3u8 stream extract, and native XOR decryption matrix.
+</div>
 
 This payload is engineered to surgically bypass gateway endpoints and extract obfuscated `.m3u8` video streams via native XHR decryption cloning. It hooks directly into the browser runtime via Tampermonkey.
 
 ## ACQUISITION VECTOR
 
-[<button class="hud-button active">INSTALL PAYLOAD</button>](/payloads/4ndr0tools-bunkr.user.js)
+<a href="/payloads/4ndr0tools-bunkr.user.js" class="hud-button active text-decoration-none">INSTALL PAYLOAD</a>
 
 ## SOURCE CODE MATRIX
 
 If you wish to audit the execution logic before injection, the complete JavaScript payload is decrypted below.
 
-{{< collapse "EXPAND SOURCE CODE" >}}
+<details class="glass-panel p-3 mt-4 border-hud">
+<summary class="text-cyan fw-bold" style="cursor: pointer; font-family: var(--primary_font); list-style: none;">[ EXPAND SOURCE CODE ]</summary>
+
+<br>
+
 ```javascript
 // ==UserScript==
 // @name         4ndr0tools - Bunkr++ v4.3
@@ -996,5 +1000,3 @@ If you wish to audit the execution logic before injection, the complete JavaScri
     }
 
 })();
-
-{{< /collapse >}}

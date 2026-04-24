@@ -42,7 +42,7 @@ mainSections = ["posts"]
 search = true
 header_search_layout = "popupable"
 menu_align = "right"
-sidebar = "left"
+sidebar = "right"
 code_copy_button = true
 
 [params.variables]
@@ -53,7 +53,7 @@ text_color_dark = "#050A0F" # --bg-dark-base
 body_color = "#050A0F"
 border_color = "rgba(0, 229, 255, 0.2)" # --accent-cyan-border-idle
 black = "#050A0F"
-white = "#00E5FF"
+white = "#ffffff"
 light = "rgba(10, 19, 26, 0.25)" # --bg-glass-panel
 primary_font = "'Roboto Mono', monospace"
 icon_font = "Font Awesome 6 Free"
@@ -67,11 +67,11 @@ Please enter your credentials:"""
 exitLocation = "/"
 
 [params.widgets]
-sidebar = ["toc", "categories", "tags"]
+sidebar = ["toc"]
 
 [params.images]
   featured = true
-  share = false
+  share = true
   formats = ["webp", "jpg", "png"]
 
 [mediaTypes]
@@ -103,7 +103,7 @@ name = "GUI Home"
 [[menu.main]]
 identifier = "payloads"
 weight = 2
-url = "/downloads/"
+url = "/payloads/"
 name = "Payloads"
 
 [[menu.main]]
