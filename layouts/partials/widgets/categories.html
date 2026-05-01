@@ -7,7 +7,7 @@
   <ul class="hud-category-list mb-0">
     {{- range $name, $items := site.Taxonomies.categories }}
     <li class="mb-2">
-      <a href="{{ `categories/` | absLangURL }}{{ $name | urlize | lower }}" class="d-flex justify-content-between align-items-center transition-base">
+      <a href="{{ `categories/` | absLangURL }}{{ $name | urlize | lower }}" class="d-flex justify-content-between align-items-center transition-base w-100">
         <span class="cat-name opacity-75">> {{ $name | humanize | upper }}</span>
         <span class="cat-count small text-cyan-active">[ {{ len $items }} ]</span>
       </a>
@@ -18,17 +18,19 @@
 {{- end }}
 
 <style>
+  /* 4NDR0666OS Synchronized Category Logic */
   .hud-category-list a {
     border-bottom: 1px dashed var(--accent-cyan-border-idle) !important;
-    padding: 6px 0;
+    padding: 8px 0 !important;
     color: var(--accent-cyan);
     text-decoration: none;
+    display: flex !important; /* Force flex override from wrapper */
   }
   
   .hud-category-list a:hover {
     border-bottom-color: var(--accent-cyan) !important;
-    padding-left: 8px !important;
-    background: linear-gradient(90deg, rgba(0, 229, 255, 0.05), transparent);
+    background: linear-gradient(90deg, rgba(0, 229, 255, 0.08), transparent) !important;
+    /* Aligned with widget-wrapper translateX(5px) */
   }
   
   .hud-category-list a:hover .cat-name {
@@ -36,4 +38,17 @@
     color: var(--text-cyan-active);
     text-shadow: 0 0 8px var(--glow-cyan-active);
   }
+
+  .hud-category-list a:hover .cat-count {
+    color: var(--accent-cyan);
+    text-shadow: 0 0 5px var(--glow-cyan-active);
+  }
+
+  /* Shared Animation Guard (Prevents re-declaration if TOC is present) */
+  {{ if not (isset . "TOC_ANIM_LOADED") }}
+  @keyframes pulse-tracking {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  {{ end }}
 </style>
