@@ -18,7 +18,11 @@ draft: true
 <strong>OBJECTIVE:</strong> [ PAYLOAD_DESCRIPTION ]
 </div>
 
-## Execution Matrix
+## VISUAL TELEMETRY
+
+{{< youtube "REPLACE_WITH_VIDEO_ID" >}}
+
+## EXECUTION MATRIX
 
 [ BEGIN_TEXT_STREAM ]
 
