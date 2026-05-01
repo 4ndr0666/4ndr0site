@@ -9,6 +9,7 @@
             class="img-fluid node-render" 
             alt="UPLINK_IMAGE: {{ .Title }}"
             style="filter: brightness(0.8) contrast(1.1); transition: all 0.5s ease;"
+            onerror="this.onerror=null; this.src='{{ `images/4ndr0arch.png` | relURL }}'; this.style.objectFit='contain'; this.style.padding='1rem';"
           >
         </a>
       </div>
@@ -34,7 +35,11 @@
       </h3>
 
       <div class="text-cyan-muted small mb-3 opacity-75" style="line-height: 1.6; font-family: var(--primary_font);">
-        {{ .Summary | truncate 180 }}
+        {{ if .Params.description }}
+          {{ .Params.description }}
+        {{ else }}
+          {{ .Plain | truncate 180 }}
+        {{ end }}
       </div>
 
       <div class="hud-card-footer d-flex justify-content-between align-items-center">
