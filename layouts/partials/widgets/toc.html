@@ -24,9 +24,19 @@
   /* Targeting Hugo's Auto-Generated Markup Brutally */
   .hud-toc-container nav ul {
     list-style: none !important;
-    padding-left: 15px !important;
     margin-bottom: 0 !important;
+  }
+
+  /* 4NDR0666OS PATCH: Strip border from root UL, enforce on nested */
+  .hud-toc-container #TableOfContents > ul {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+
+  .hud-toc-container #TableOfContents ul ul {
     border-left: 1px dashed var(--accent-cyan-border-idle) !important;
+    padding-left: 15px !important;
+    margin-top: 5px;
   }
 
   .hud-toc-container nav ul li {
@@ -34,8 +44,8 @@
     position: relative;
   }
 
-  /* Connection Lines Aesthetic */
-  .hud-toc-container nav ul li::before {
+  /* Connection Lines Aesthetic (Only for nested items to prevent overflow) */
+  .hud-toc-container #TableOfContents ul ul > li::before {
     content: "";
     position: absolute;
     left: -15px;
