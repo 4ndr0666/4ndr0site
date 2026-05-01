@@ -87,8 +87,10 @@
 
 {{ $bootstrap := resources.Get "js/vendor/bootstrap.min.js" }}
 {{ $theme := resources.Get "js/theme.js" }}
+{{/* 4NDR0666OS ASSET PIPELINE INJECTION */}}
+{{ $codeCopy := resources.Get "js/code-copy.js" }}
 
-{{ $coreScripts := slice $bootstrap $theme }}
+{{ $coreScripts := slice $bootstrap $theme $codeCopy }}
 {{ $js := $coreScripts | resources.Concat "js/vendor.js" | resources.Minify | resources.Fingerprint "sha512" }}
 {{ if hugo.IsProduction }}
 <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
