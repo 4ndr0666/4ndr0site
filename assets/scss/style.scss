@@ -1,23 +1,34 @@
 // ----------------------------------------------------------------------
-// 4NDR0666OS :: MASTER COMPILATION UNIT
+// 4NDR0666OS :: MASTER COMPILATION UNIT (STABILIZED BRIDGE)
 // ----------------------------------------------------------------------
 
 {{ with site.Params.variables }}
-// Map Hugo Params to SCSS variables for legacy sub-module support
+// MANDATORY BRIDGE: Map Hugo Params to SCSS variables for legacy support
+$primary-color: {{.primary_color}};
+$secondary-color: {{.secondary_color}};
+$text-color: {{.text_color}};
+$text-color-dark: {{.text_color_dark}};
+$body-color: {{.body_color}};
+$border-color: {{.border_color}};
+$black: {{.black}};
+$white: {{.white}};
+$light: {{.light}};
+
 $primary-font: '{{ replaceRE ":wght@[0-9;]+" "" .primary_font }}', sans-serif;
 $secondary-font: '{{ replaceRE ":wght@[0-9;]+" "" .secondary_font }}', sans-serif;
+$icon-font: '{{.icon_font}}';
 {{ end }}
 
 // CORE COMPONENT IMPORTS
 @import 'mixins';
-@import 'typography'; // Now secured with CSS variables
-@import 'buttons';    // Now secured with CSS variables
+@import 'typography'; 
+@import 'buttons';    
 @import 'common';
 @import 'templates/main.scss';
 @import 'performance';
 
 // ----------------------------------------------------------------------
-// HUD COMPONENT OVERRIDES (Refactored for 3LECTRIC_GLASS)
+// HUD COMPONENT OVERRIDES (3LECTRIC_GLASS)
 // ----------------------------------------------------------------------
 
 .widget-banner { text-align: center; }
@@ -119,7 +130,6 @@ $secondary-font: '{{ replaceRE ":wght@[0-9;]+" "" .secondary_font }}', sans-seri
   --bs-border-color: var(--accent-cyan-border-idle);
   --bs-dropdown-bg: var(--bg-glass-dense);
   
-  // Nuke lingering Bootstrap shadows
   .shadow { box-shadow: none !important; }
 
   header.sticky-top, .4ndr0-header { 
@@ -129,7 +139,6 @@ $secondary-font: '{{ replaceRE ":wght@[0-9;]+" "" .secondary_font }}', sans-seri
     border-bottom: 1px solid var(--accent-cyan-border-idle) !important;
   }
 
-  // Generic Block Assimilation
   .block, div.widget { 
     background: var(--bg-glass-panel) !important;
     border: 1px solid var(--accent-cyan-border-idle) !important;
@@ -138,7 +147,6 @@ $secondary-font: '{{ replaceRE ":wght@[0-9;]+" "" .secondary_font }}', sans-seri
   ::selection { background: var(--accent-cyan-bg-active); color: #000; }
 }
 
-// SPATIAL CLEARANCE PROTOCOL
 header.sticky-top, .4ndr0-header {
   position: sticky !important;
   top: 0;
