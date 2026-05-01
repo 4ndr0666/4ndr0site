@@ -57,8 +57,8 @@
           <h1 class="hud-node-title mb-4">{{ .Title | markdownify }}</h1>
 
           {{ if .Params.Image }}
-          <div class="node-asset-frame mb-5">
-            <img loading="eager" fetchpriority="high" src="{{ .Params.Image | absURL }}" class="img-fluid w-100 node-render" alt="{{ .Title | plainify }}" style="border: 1px solid var(--accent-cyan-border-idle);">
+          <div class="node-asset-frame mb-5" style="overflow: hidden; background: var(--bg-dark-base);">
+            <img loading="eager" fetchpriority="high" src="{{ .Params.Image | absURL }}" class="img-fluid w-100 node-render" alt="{{ .Title | plainify }}" style="border: 1px solid var(--accent-cyan-border-idle); filter: brightness(0.85) contrast(1.1); transition: all 0.5s ease;" onerror="this.onerror=null; this.src='{{ `images/4ndr0arch.png` | absURL }}'; this.style.objectFit='contain'; this.style.padding='3rem';">
           </div>
           {{ end }}
 
