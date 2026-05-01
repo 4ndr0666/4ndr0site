@@ -7,7 +7,7 @@
   <div class="hud-tag-cloud d-flex flex-wrap gap-2 mt-3">
     {{- range $name, $items := site.Taxonomies.tags }}
     <a class="hud-tag-node transition-base" href="{{ `tags/` | absLangURL }}{{ $name | urlize | lower }}">
-      {{ $name | humanize | upper }}
+      #{{ $name | humanize | upper }}
     </a>
     {{- end }}
   </div>
@@ -15,22 +15,34 @@
 {{- end }}
 
 <style>
+  /* 4NDR0666OS Synchronized Tag Logic */
   .hud-tag-node {
     display: inline-block;
-    font-size: 0.7rem;
+    font-size: 0.65rem !important;
+    font-weight: 700;
     padding: 4px 10px;
     border: 1px solid var(--accent-cyan-border-idle) !important;
     color: var(--accent-cyan) !important;
-    background: rgba(0, 229, 255, 0.03);
+    background: rgba(0, 229, 255, 0.03) !important;
     letter-spacing: 1px;
-    text-decoration: none;
+    text-decoration: none !important;
+    border-radius: 2px;
   }
   
   .hud-tag-node:hover {
-    background: var(--accent-cyan-bg-hover);
+    background: var(--accent-cyan-bg-hover) !important;
     border-color: var(--accent-cyan) !important;
     color: var(--text-cyan-active) !important;
-    box-shadow: 0 0 10px var(--glow-cyan-active);
-    transform: translateY(-2px);
+    box-shadow: 0 0 12px var(--glow-cyan-active) !important;
+    transform: translateY(-3px) !important;
+    text-shadow: 0 0 5px var(--glow-cyan-active);
+  }
+
+  /* Shared Animation Guard (Prevents re-declaration across multiple widgets) */
+  @unless-defined pulse-tracking {
+    @keyframes pulse-tracking {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
   }
 </style>
