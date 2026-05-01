@@ -36,7 +36,6 @@
 
 <style>
   .4ndr0-footer {
-    /* 3LECTRIC_GLASS Spec */
     background: var(--bg-glass-panel) !important;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -61,13 +60,10 @@
   .social-hud-icon {
     color: var(--accent-cyan) !important;
     background: transparent !important;
-    background-color: transparent !important;
     font-size: 1.2rem;
     transition: transform 0.3s ease, color 0.3s ease;
     display: inline-block;
     padding: 5px;
-    border: none !important;
-    box-shadow: none !important;
   }
 
   .social-hud-icon:hover {
@@ -85,15 +81,19 @@
   }
 </style>
 
+{{/* 4NDR0666OS HARDENED ASSET PIPELINE */}}
 {{ $bootstrap := resources.Get "js/vendor/bootstrap.min.js" }}
 {{ $theme := resources.Get "js/theme.js" }}
-{{/* 4NDR0666OS ASSET PIPELINE INJECTION */}}
 {{ $codeCopy := resources.Get "js/code-copy.js" }}
 
-{{ $coreScripts := slice $bootstrap $theme $codeCopy }}
-{{ $js := $coreScripts | resources.Concat "js/vendor.js" | resources.Minify | resources.Fingerprint "sha512" }}
-{{ if hugo.IsProduction }}
-<script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
-{{ else }}
-<script defer src="{{ $js.RelPermalink }}"></script>
+{{/* Create slice and filter out nil values to prevent Concat panic */}}
+{{ $coreScripts := slice $bootstrap $theme $codeCopy | complement (slice nil) }}
+
+{{ if $coreScripts }}
+  {{ $js := $coreScripts | resources.Concat "js/vendor.js" | resources.Minify | resources.Fingerprint "sha512" }}
+  {{ if hugo.IsProduction }}
+  <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+  {{ else }}
+  <script defer src="{{ $js.RelPermalink }}"></script>
+  {{ end }}
 {{ end }}
