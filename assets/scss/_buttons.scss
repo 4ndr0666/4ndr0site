@@ -1,51 +1,64 @@
-// Bootstrap 5.3 button customization via CSS variables — no !important needed
+// 4NDR0666OS :: TACTICAL TRIGGER UI (BUTTONS)
+// Bootstrap 5.3 mapping to HUD CSS Variables
+
 .btn {
-  font-family: $primary-font;
-  text-transform: capitalize;
-  // Suppress focus ring only for mouse/touch; keyboard users retain it (WCAG 2.4.7)
+  font-family: var(--primary_font);
+  text-transform: uppercase !important; // Enforce HUD protocol
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  border-radius: 2px; // Sharp HUD edges
+
+  // Suppress focus ring for mouse; retain for keyboard (WCAG compliance)
   &:focus:not(:focus-visible) {
     box-shadow: none;
     outline: none;
   }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--glow-cyan-active);
+  }
 }
 
 .btn-sm {
-  font-size: 15px;
-  padding: 6px 10px;
+  font-size: 0.7rem;
+  padding: 5px 12px;
 }
 
+// PRIMARY: THE "HOT" CYAN ACTION
 .btn-primary {
-  --bs-btn-color: #{$text-color-dark};
-  --bs-btn-bg: #{$primary-color};
-  --bs-btn-border-color: #{$primary-color};
-  --bs-btn-hover-color: #{$text-color-dark};
-  --bs-btn-hover-bg: #{darken($primary-color, 8%)};
-  --bs-btn-hover-border-color: #{darken($primary-color, 8%)};
-  --bs-btn-active-color: #{$text-color-dark};
-  --bs-btn-active-bg: #{darken($primary-color, 12%)};
-  --bs-btn-active-border-color: #{darken($primary-color, 12%)};
+  --bs-btn-color: #000; // High contrast text for HUD buttons
+  --bs-btn-bg: var(--accent-cyan);
+  --bs-btn-border-color: var(--accent-cyan);
+  --bs-btn-hover-color: #000;
+  --bs-btn-hover-bg: var(--text-cyan-active);
+  --bs-btn-hover-border-color: var(--text-cyan-active);
+  --bs-btn-active-bg: var(--accent-cyan);
+  --bs-btn-active-border-color: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
 }
 
+// OUTLINE: THE NEON BORDER ACTION
 .btn-outline-primary {
-  --bs-btn-color: #{$primary-color};
-  --bs-btn-border-color: #{$primary-color};
-  --bs-btn-hover-color: #{$text-color-dark};
-  --bs-btn-hover-bg: #{$primary-color};
-  --bs-btn-hover-border-color: #{$primary-color};
-  --bs-btn-active-color: #{$text-color-dark};
-  --bs-btn-active-bg: #{$primary-color};
-  --bs-btn-active-border-color: #{$primary-color};
+  --bs-btn-color: var(--accent-cyan);
+  --bs-btn-border-color: var(--accent-cyan-border-idle);
+  --bs-btn-hover-color: #000;
+  --bs-btn-hover-bg: var(--accent-cyan);
+  --bs-btn-hover-border-color: var(--accent-cyan);
+  --bs-btn-active-color: #000;
+  --bs-btn-active-bg: var(--accent-cyan);
+  --bs-btn-active-border-color: var(--accent-cyan);
 }
 
+// TRANSPARENT: THE STEALTH ACTION
 .btn-transparent {
   --bs-btn-bg: transparent;
-  --bs-btn-color: #{$secondary-color};
-  --bs-btn-border-color: #{$secondary-color};
-  --bs-btn-hover-bg: transparent;
-  --bs-btn-hover-color: #{darken($secondary-color, 10%)};
-  --bs-btn-hover-border-color: #{darken($secondary-color, 10%)};
-  --bs-btn-active-bg: transparent;
-  --bs-btn-active-color: #{darken($secondary-color, 10%)};
+  --bs-btn-color: var(--accent-cyan);
+  --bs-btn-border-color: var(--accent-cyan-border-idle);
+  --bs-btn-hover-bg: rgba(0, 229, 255, 0.1);
+  --bs-btn-hover-color: var(--text-cyan-active);
+  --bs-btn-hover-border-color: var(--accent-cyan);
   border-radius: 0;
-  padding: 2px 8px;
+  padding: 4px 12px;
 }
