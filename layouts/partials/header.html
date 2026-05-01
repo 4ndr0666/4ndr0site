@@ -167,9 +167,10 @@
   }
 
   .glass-dropdown {
-    background: #0A131A !important;
+    background: rgba(10, 19, 26, 0.95) !important;
     border: 1px solid var(--accent-cyan-border-idle) !important;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     margin-top: 5px;
   }
@@ -246,10 +247,14 @@
 
   @media (max-width: 991px) {
     .navbar-collapse {
-      background: var(--bg-dark-base);
+      background: rgba(5, 10, 15, 0.95) !important;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
       padding: 2rem 0;
       margin-top: 1rem;
       border: 1px solid var(--accent-cyan-border-idle);
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
     }
   }
 </style>
