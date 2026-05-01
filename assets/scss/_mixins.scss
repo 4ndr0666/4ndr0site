@@ -1,65 +1,61 @@
-@mixin mobile-xs{
-  @media(max-width:400px){
-    @content;
-  }
-}
-@mixin mobile{
-  @media(max-width:575px){
-    @content;
-  }
-}
-@mixin tablet{
-  @media(max-width:767px){
-    @content;
-  }
-}
-@mixin desktop{
-  @media(max-width:991px){
-    @content;
-  }
-}
-@mixin desktop-lg{
-  @media(max-width:1200px){
-    @content;
-  }
-}
-@mixin desktop-xl{
-  @media(max-width:1600px){
-    @content;
-  }
-}
+/* ----------------------------------------------------------------------
+   4NDR0666OS :: HUD LOGIC ENGINE (MIXINS)
+   Superset Protocol: Centralized HUD DNA & Simplified Breakpoints
+   ---------------------------------------------------------------------- */
 
-// https://stackoverflow.com/a/67297049
+// 1. RESPONSIVE BREAKPOINT GENERATOR
+$breakpoints: (
+  "mobile-xs": 400px,
+  "mobile":    575px,
+  "tablet":    767px,
+  "desktop":   991px,
+  "desktop-lg": 1200px,
+  "desktop-xl": 1600px
+);
+
 @mixin media($keys...) {
   @each $key in $keys {
-    @if ($key == mobile-xs) {
-      @include mobile-xs {
-        @content
-      }
-    } @else if ($key == mobile) {
-      @include mobile {
-        @content
-      }
-    } @else if ($key == tablet) {
-      @include tablet {
-        @content
-      }
-    } @else if ($key == desktop) {
-      @include desktop {
-        @content
-      }
-    } @else if ($key == desktop-lg) {
-      @include desktop-lg {
-        @content
-      }
-    } @else if ($key == desktop-xl) {
-      @include desktop-xl {
-        @content
+    @if map-has-key($breakpoints, $key) {
+      @media (max-width: map-get($breakpoints, $key)) {
+        @content;
       }
     }
   }
 }
 
-@mixin size($size){
-  width: $size; height: $size;
+// Legacy shorthand support for existing styles
+@mixin mobile-xs { @include media("mobile-xs") { @content; } }
+@mixin mobile    { @include media("mobile")    { @content; } }
+@mixin tablet    { @include media("tablet")    { @content; } }
+@mixin desktop   { @include media("desktop")   { @content; } }
+@mixin desktop-lg { @include media("desktop-lg") { @content; } }
+@mixin desktop-xl { @include media("desktop-xl") { @content; } }
+
+// 2. HUD DNA: 3LECTRIC_GLASS
+@mixin glass($opacity: 0.25, $blur: 12px) {
+  background: rgba(10, 19, 26, $opacity) !important;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid var(--accent-cyan-border-idle);
+}
+
+// 3. HUD DNA: NEON GLOW
+@mixin glow($color: var(--glow-cyan-active), $strength: 15px) {
+  text-shadow: 0 0 $strength $color;
+}
+
+@mixin box-glow($color: var(--glow-cyan-active), $strength: 15px) {
+  box-shadow: 0 0 $strength $color !important;
+}
+
+// 4. UTILITY HELPERS
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
