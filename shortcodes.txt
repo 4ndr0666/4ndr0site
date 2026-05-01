@@ -1,17 +1,37 @@
-<!--
-    Wrap it in shortcodes
+# ==========================================
+# 4NDR0666OS :: CANONICAL SHORTCODE REGISTRY
+# ==========================================
 
-{{<table “table table-striped table-bordered">}}
-|———-|———-|———-|
-| Item 1   | Item 2   | Item 3   |
-| Item 1a  | Item 2a  | Item 3a  |
-{{</table>}}
--->imgur
+[ VISUAL_TELEMETRY ]
+youtube
+{{< youtube "VIDEO_ID" >}}
 
-{{<imgur id="Imgur Image ID" ext="Image Extension" title="Image Title">}}
+[ DOM_WEAPONIZATION ]
+box (Highlighted System Warnings)
+{{< box >}}
+Text goes here.
+{{< /box >}}
 
-github
+collapse (Expandable Data Matrices/Logs)
+{{< collapse "EXPAND LOG" >}}
+Text goes here.
+{{< /collapse >}}
 
-{{<github repo="christitustech/repo-name" file="/path/to/file" lang="language" options="highlight-options">}}
+quote (System Callouts)
+{{< quote by="4NDR0666" >}}
+Text goes here.
+{{< /quote >}}
 
-obsolete
+[ EXTERNAL_INTEGRATION ]
+github (Remote File Fetching)
+{{< github repo="4ndr0666/repo-name" file="/path/to/file" lang="language" options="highlight-options" >}}
+
+imgur (External Image Mount)
+{{< imgur id="IMAGE_ID" ext="png" title="Image Title" >}}
+
+table (Structured Data Matrix)
+{{< table "table table-striped table-bordered" >}}
+| Header 1 | Header 2 |
+| -------- | -------- |
+| Data 1   | Data 2   |
+{{< /table >}}
