@@ -135,6 +135,10 @@ url = "/categories/networking"
 
 [[menu.main]]
 parent = "sections"
+name = "Synthetic Visuals"
+url = "/categories/synthetic_visuals"
+[[menu.main]]
+parent = "sections"
 name = "Windows"
 url = "/categories/windows"
 
