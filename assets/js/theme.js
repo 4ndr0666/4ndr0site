@@ -1,6 +1,7 @@
 /**
  * 4NDR0666OS :: NEURAL_LINK_ENGINE v5.0.0-Ψ
  * Manages transition between CLI_TERMINAL and MATRIX_GUI environments.
+ * INCLUDES: Dynamic Scroll Observers for Header Morphism
  */
 
 // OS Glyphs for Mode Toggle
@@ -94,5 +95,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const commentsNode = document.getElementById('comments');
   if (commentsNode) {
     utterancesObserver.observe(commentsNode, { childList: true, subtree: true });
+  }
+
+  // 4NDR0666OS :: DYNAMIC HEADER MORPHISM SCROLL LISTENER
+  const header = document.querySelector("header.sticky-top");
+  if (header) {
+    window.addEventListener("scroll", () => {
+      // Engage maximum glass density when scrolled past 60px
+      if (window.scrollY > 60) {
+        header.classList.add("glass-scrolled");
+      } else {
+        header.classList.remove("glass-scrolled");
+      }
+    });
   }
 });

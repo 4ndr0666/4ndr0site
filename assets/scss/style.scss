@@ -152,3 +152,58 @@ header.sticky-top, .4ndr0-header {
   top: 0;
   z-index: 9999 !important;
 }
+
+/* ----------------------------------------------------------------------
+   4NDR0666OS :: DYNAMIC UX OVERRIDES (HEADER & NAV LOG)
+   ---------------------------------------------------------------------- */
+
+// 1. DYNAMIC HEADER SCROLL STATE
+header.sticky-top {
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  &.glass-scrolled {
+    background: rgba(5, 10, 15, 0.98) !important; /* Maximum density */
+    border-bottom: 1px solid var(--accent-cyan) !important;
+    box-shadow: 0 10px 30px rgba(0, 229, 255, 0.15) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+  }
+}
+
+// 2. NAV LOG (TABLE OF CONTENTS) WIDGET
+#TableOfContents {
+  max-height: 65vh;       /* Confine to viewport */
+  overflow-y: auto;       /* Enable vertical scroll */
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-cyan-border-hover) transparent;
+  padding-right: 15px;
+  
+  ul { 
+    list-style: none; 
+    padding-left: 0; 
+  }
+  
+  /* Nested Children Hierarchy */
+  ul ul { 
+    padding-left: 15px; 
+    border-left: 1px dashed var(--accent-cyan-border-idle);
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  
+  li { margin-bottom: 10px; }
+  
+  a { 
+    color: var(--text-cyan-active); 
+    font-size: 0.85rem; 
+    text-decoration: none; 
+    display: block;
+    line-height: 1.4;
+    transition: all 0.2s ease;
+  }
+  
+  a:hover { 
+    color: var(--accent-cyan); 
+    text-shadow: 0 0 8px var(--glow-cyan-active); 
+    transform: translateX(3px);
+  }
+}

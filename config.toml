@@ -135,8 +135,8 @@ url = "/categories/networking"
 
 [[menu.main]]
 parent = "sections"
-name = "Synthetic Visuals"
-url = "/categories/synthetic_visuals"
+name = "Synthetics"
+url = "/categories/synthetics"
 [[menu.main]]
 parent = "sections"
 name = "Windows"

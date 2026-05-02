@@ -1,5 +1,5 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
+title: "{{ replace .Name "-" " " | title | upper }}"
 date: {{ now.Format "2006-01-02" }}
 url: /{{ .Name }}/
 image: images/2026-thumbs/{{ .Name }}.webp
@@ -7,12 +7,13 @@ categories:
   - Linux
   - Windows
   - Networking
+  - Synthetics
 tags:
   - Cortex
   - Payload
+  - Prompts
 draft: true
 ---
-
 <div class="glass-panel p-4 mb-4 border-hud" style="border-left: 4px solid var(--accent-cyan) !important;">
 <strong>CLASSIFICATION:</strong> [ CLEARANCE_LEVEL ]<br>
 <strong>OBJECTIVE:</strong> [ PAYLOAD_DESCRIPTION ]
@@ -33,3 +34,24 @@ draft: true
 > Inject_Target_Code_Here
 </code></pre>
 </details>
+
+---
+
+## NEURAL_PROMPT_STASH
+
+Execute the [ COPY ] trigger on any fenced code block below to acquire the raw neural string for immediate deployment.
+
+{{< collapse "EXECUTION_STRING_01: [ ENTER SPECIFIC PROMPT NAME ]" >}}
+```text
+[ PASTE RAW PROMPT HERE ]
+```
+{{< /collapse >}}
+
+{{< collapse "EXECUTION_STRING_02: [ ENTER SPECIFIC PROMPT NAME ]" >}}
+```text
+[ PASTE RAW PROMPT HERE ]
+```
+{{< /collapse >}}
+```
+
+---
