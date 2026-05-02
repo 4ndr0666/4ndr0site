@@ -33,20 +33,20 @@ The codebase is structured around a highly optimized Hugo directory tree. Unders
 ```text
 /dev/akasha/
 ├── archetypes/         # Templates for new markdown payloads (default.md)
-├── assets/             # Raw SCSS, JS, and compiled asset pipelines
+├── assets/             # THE KERNEL: Raw SCSS, JS, and compiled pipelines
 │   ├── css/            # Vendor CSS (Bootstrap)
-│   ├── js/             # Interactive logic (search, terminal, shopify)
-│   └── scss/           # The beating heart of the 3LECTRIC_GLASS styling
-├── content/            # The database: Raw Markdown payloads categorized by sector
-│   ├── blog/           # Standard entry streams
-│   ├── categories/     # Taxonomy nodes
-│   └── tags/           # Sub-taxonomy nodes
-├── data/               # YAML/JSON data files (if applicable)
+│   ├── js/             # Interactive logic: code-copy.js (Moved from static), theme.js
+│   └── scss/           # THE BEATING HEART: Compressed 3LECTRIC_GLASS styling
+├── content/            # THE DATABASE: Raw Markdown payloads categorized by sector
+│   ├── posts/          # Primary entry streams (Refactored from /blog/)
+│   ├── categories/     # SECTOR taxonomy nodes
+│   └── tags/           # DATA_TAG sub-taxonomy nodes
+├── data/               # YAML/JSON data files
 ├── layouts/            # HTML templates dictating the structural DOM grid
 │   ├── _default/       # Primary templates (single.html, list.html)
-│   ├── partials/       # Reusable DOM fragments (header, footer, style, widgets)
-│   └── shortcodes/     # Custom inline markdown components (box, quote, collapse)
-├── static/             # Static assets served directly (images, fonts, glyphs)
+│   ├── partials/       # HUD Fragments (header, footer, widgets)
+│   └── shortcodes/     # Inline markdown components (box, quote, collapse)
+├── static/             # Binary assets served directly (images, fonts, bypass-regs)
 │   └── images/         # High-priority visual assets
 ├── config.toml         # Primary Hugo configuration and global variables
 └── README.md           # You are here.
@@ -67,7 +67,7 @@ To operate on this environment locally, your workstation must meet the following
 
 1. **Clone the Matrix:**
    ```bash
-   git clone [https://github.com/4ndr0666/4ndr0site.git](https://github.com/4ndr0666/4ndr0site.git)
+   git clone https://github.com/4ndr0666/4ndr0site.git
    cd 4ndr0site
    ```
 
@@ -117,8 +117,8 @@ The entire visual identity of this project is governed by the `3LECTRIC_GLASS_SP
 
 ### Core Design Philosophies
 1. **No Opaque Blocks:** Never use solid backgrounds for content cards. Always utilize `var(--bg-glass-panel)` coupled with `backdrop-filter: blur(12px)`.
-2. **Glowing Interactive States:** All hover, focus, and active states must trigger a cyan `box-shadow` glow to provide immediate operator feedback.
-3. **Monospace Dominance:** The layout relies heavily on `Roboto Mono` to simulate a terminal interface. Use uppercase text for HUD labels and metadata to maintain the OS illusion.
+2. **Glowing Interactive States:** All hover, focus, and active states must trigger a cyan `box-shadow` glow via the `@include glow` or `@include box-glow` mixins.
+3. **Monospace Dominance:** The layout relies on fluid typography via `clamp()` to maintain a terminal interface aesthetic across all viewports.
 
 ---
 
@@ -130,7 +130,7 @@ Writing content in Hugo relies on Markdown (`.md`) files injected into the `/con
 To create a new blog post or data payload, use the Hugo CLI. This ensures the file is created with the correct timestamp and frontmatter based on `/archetypes/default.md`.
 
 ```bash
-hugo new blog/my-new-payload.md
+hugo new posts/my-new-payload.md
 ```
 
 ### Structuring Your Payload
@@ -150,13 +150,8 @@ tags: ["nmap", "proxychains", "opsec"]
 
 Begin the standard deployment sequence. The text here will automatically be parsed by Hugo, wrapped in the `.4ndr0-content` container, and rendered with the proper cyan fonts and spacing.
 
-You can use standard markdown:
-* **Bold text**
-* *Italic text*
-* `Inline code`
-
 ### Code Blocks
-Fenced code blocks are natively supported and will inherit the SCSS performance rendering updates we applied.
+Fenced code blocks are natively supported and include a floating [ COPY ] HUD trigger powered by the `code-copy.js` pipeline.
 
 ```bash
 sudo nmap -sS -p- 192.168.1.1
@@ -171,178 +166,96 @@ The metadata defined in your payload's frontmatter directly controls how the `si
 
 | Variable | Type | Description |
 | :--- | :--- | :--- |
-| `title` | String | The main H1 title. Rendered as uppercase with a cyan text-shadow in the UI. |
-| `date` | Datetime | Used to sort payloads in `list.html`. Rendered in the UI as the `TIMESTAMP`. |
-| `draft` | Boolean | If `true`, the post will not compile in the production build. Set to `false` when ready to deploy. |
-| `image` | String | URL to the banner image. If provided, it renders inside the `.node-asset-frame` with a cyan border. |
-| `categories` | Array | High-level grouping (e.g., `["TUTORIAL"]`). Displayed in the top HUD meta-header as `SECTOR`. |
-| `tags` | Array | Micro-grouping (e.g., `["linux", "bash"]`). Displayed at the bottom of the payload with the `#` prefix. |
+| `title` | String | The main H1 title. Rendered uppercase with a cyan text-shadow. |
+| `date` | Datetime | Rendered in the UI as the `TIMESTAMP`. |
+| `draft` | Boolean | If `true`, the post will not compile in production. |
+| `image` | String | URL to banner. Rendered with a cyan border and **Autonomous Fallback** to `4ndr0arch.png` if missing. |
+| `categories` | Array | Taxonomy nodes displayed in the HUD as **SECTORS**. |
+| `tags` | Array | Taxonomy nodes displayed in the HUD as **DATA_TAGS**. |
 
 ---
 
 ## 6. CUSTOM HUD COMPONENTS (SHORTCODES)
 
-To break out of standard Markdown limitations and inject advanced 3LECTRIC_GLASS UI components into your payloads, use Hugo Shortcodes. These map directly to the HTML files located in `layouts/shortcodes/`.
+To inject advanced UI components into payloads, use Hugo Shortcodes located in `layouts/shortcodes/`.
 
 ### A. The System Box (`box.html`)
-Used to display restricted or highlighted system data in a bordered glass panel.
-
-**Usage:**
-```go
-{{< box >}}
-**CRITICAL WARNING:**
-Do not bypass the firewall proxy without engaging a VPN node first. Your IP will be logged by the target server.
-{{< /box >}}
-```
-**Rendering Behavior:** Creates a `.4ndr0-sys-box` with a custom header `[ DATA_CONTAINER_V1 ]` and an interactive hover glow.
+**Usage:** `{{< box >}} Content {{< /box >}}`
+**Behavior:** Creates a `.4ndr0-sys-box` glass container with an interactive hover glow.
 
 ### B. The Decrypt Envelope (`collapse.html`)
-An interactive accordion used to hide long output, logs, or secondary information.
-
-**Usage:**
-```go
-{{< collapse "View Nmap Scan Results" >}}
-Port 22/tcp open  ssh
-Port 80/tcp open  http
-Port 443/tcp open https
-{{< /collapse >}}
-```
-**Rendering Behavior:** Generates an expandable `4ndr0-envelope`. Clicking the header triggers a cubic-bezier slide effect to reveal the inner content.
+**Usage:** `{{< collapse "Title" >}} Secret Data {{< /collapse >}}`
+**Behavior:** Generates an expandable `4ndr0-envelope` with a cubic-bezier slide reveal.
 
 ### C. System Insight Quote (`quote.html`)
-Used for pulling specific blockquotes or "System Insights" with a high-visibility glitch bar.
+**Usage:** `{{< quote by="4NDR0666" >}} Text {{< /quote >}}`
+**Behavior:** Renders a heavy left-bordered `.cortex-insight` panel that translates `5px` on hover.
 
-**Usage:**
-```go
-{{< quote by="4NDR0666" >}}
-The difference between a script kiddie and a master operator is understanding the underlying protocol, not just the tool.
-{{< /quote >}}
-```
-**Rendering Behavior:** Renders a heavy left-bordered `.cortex-insight` panel that physically shifts to the right (`translateX(5px)`) on hover.
-
-### D. Imgur Integration (`imgur.html`)
-For embedding remote images hosted on Imgur cleanly.
-
-**Usage:**
-```go
-{{< imgur id="xyz123" ext="jpg" title="Server Architecture Diagram" class="w-100" >}}
-```
-
-### E. Shopify Button (`shopify.html`)
-Injects the asynchronous Shopify Buy Button logic for digital downloads.
-
-**Usage:**
-```go
-{{< shopify >}}
-```
+### D. Youtube Telemetry (`youtube.html`)
+**Usage:** `{{< youtube id="ID" >}}`
+**Behavior:** Injects a sanitized 16:9 iframe wrapped in a HUD border with no external branding.
 
 ---
 
 ## 7. SYSTEM LAYOUTS & GRID TOPOLOGY
 
-The structure of the website is determined by the `/layouts/` directory. If you need to change where the sidebar goes, or how the title is formatted, you modify these files.
+### `layouts/_default/single.html` (Payload Renderer)
+* **Sidebar Dominance:** Regardless of configuration, sidebars are forced to `order-lg-1` (left) to eliminate viewport collisions.
+* **Asset Resilience:** Images utilize an `onerror` protocol to autonomously revert to the canonical site logo if a visual asset is unreachable.
 
-### `layouts/_default/single.html`
-This is the **Payload Renderer**. Whenever a user clicks on a blog post, this template is used.
-* **Key Feature:** We recently re-architected this grid. Regardless of whether the configuration requests a "left" or "right" sidebar, this layout forces the sidebar into `order-lg-1` (the left side) and the main content into `order-lg-2` (the right side) to completely eradicate Z-axis viewport collisions on mobile and desktop.
-* **HUD Logic:** The post metadata (date, read time, categories) is grouped into a flex-box row known as `.hud-meta-header`.
-
-### `layouts/_default/list.html`
-This is the **Stream Renderer**. Used for the homepage, category pages, and tag lists.
-* **Key Feature:** It iterates through `$paginator.Pages` and renders a preview of each post using the `.Render "article"` method.
-* **Pagination:** Contains custom SVG logic for the "PREV" and "NEXT" buttons, specifically overridden to match the glowing cyan aesthetic.
-
-### `layouts/partials/header.html`
-The **Global Navigation Bar**. 
-* **Key Feature:** Utilizes Bootstrap 5's `.sticky-top` class. In our SCSS overrides, we mapped this to `position: sticky; top: 0; z-index: 9999;` to ensure it floats perfectly above the content.
+### `layouts/_default/list.html` (Stream Renderer)
+* **HUD Sanitization:** Article previews utilize `.Plain` sanitization to prevent shortcode bleed and DOM hijacking.
 
 ---
 
 ## 8. SCSS COMPILATION & STYLE OVERRIDES
 
-The site styling is not handled by static CSS files. It is compiled dynamically from the `assets/scss/` directory.
+Styles are compiled from `assets/scss/`. The **Superset Protocol** refactor (Step 163-172) collapsed the legacy code-base into a high-performance variable-mapped unit.
 
-### The Override Strategy (`assets/scss/style.scss`)
-Because we inherited a theme that previously relied on hardcoded Bootstrap colors (like `#212529` for dark mode), we had to surgically inject our CSS variables at the highest specificity level.
-
-Inside `style.scss`, you will find the `[data-bs-theme="dark"]` block. This is the master control node. 
-
-**Important Rules for Editing SCSS:**
-1. **Never use `#hex` codes directly in the layout classes.** If you add a new class, map it to a variable: `color: var(--accent-cyan);`.
-2. **The Frost-Shield:** The header utilizes `--bg-glass-dense` (`0.85` alpha) and `blur(20px)`. This is mathematically calculated to allow *some* background light through, but completely obscure the shapes of text scrolling underneath it to prevent reading collisions. Do not lower this alpha below `0.75`.
+### The Override Strategy
+* **The Bridge Block:** `style.scss` contains a mandatory bridge mapping Hugo Params to SCSS variables (`$primary-color`, etc.) to maintain backward compatibility with legacy modules.
+* **Component-First Logic:** Typography and buttons are mapped directly to CSS variables to enable real-time theme switching and glow-states.
 
 ---
 
 ## 9. PERFORMANCE & MOBILE CONTINGENCIES
 
-The 4NDR0666OS is designed to look heavy with visual effects, but run incredibly light. 
-
-### `_performance.scss` Matrix
-We implemented critical CSS fallbacks to ensure mobile devices do not overheat rendering the glassmorphism.
-
-* **Content Visibility:** `.content pre`, `.content table`, and lists utilize `content-visibility: auto; contain-intrinsic-size: auto 1px 420px;`. This tells the browser engine to *not* render off-screen elements until the user scrolls to them, drastically reducing Time To Interactive (TTI).
-* **Mobile Downgrades (`max-width: 768px`):** Shadows are globally disabled (`box-shadow: none !important;`). Transitions are skipped. Complex decorative pseudo-elements are simplified to raw currentColor blocks. 
-* **Reduced Motion:** If a user's OS is set to "prefers-reduced-motion", all animations and smooth-scrolling behaviors are instantly zeroed out.
+* **Content Visibility:** Tables and code blocks utilize `content-visibility: auto` to reduce TTI.
+* **Mobile Glassmorphism:** Mobile viewports include specific `backdrop-filter` overrides in `header.html` to ensure menu legibility on low-powered devices.
+* **Asset Pipeline:** All JS logic (`bootstrap`, `theme`, `code-copy`) is concatenated, minified, and fingerprinted in the footer.
 
 ---
 
 ## 10. VERSION CONTROL & DEPLOYMENT PIPELINE
 
-Deployment of payloads and code updates is managed via Git and GitHub Pages / Actions.
-
 ### The Standard Deployment Sequence
-
-1. **Verify your local build:**
-   Always run `hugo server` locally to ensure you haven't broken the SCSS compiler with a typo.
-   
-2. **Undraft your payload:**
-   Change `draft: true` to `draft: false` in the markdown frontmatter of your new post.
-
-3. **Stage all changes:**
+1. **Verify local build:** `hugo server`
+2. **Undraft payload:** `draft: false`
+3. **Stage & Commit:**
    ```bash
    git add -A
+   git commit -m "content(payload): deploy advanced telemetry log"
    ```
+4. **Push to Matrix:** `git push origin main`
 
-4. **Commit with standard semantic prefixes:**
-   * `feat(ui):` for visual changes
-   * `fix(grid):` for layout corrections
-   * `content(payload):` for new blog posts
-   ```bash
-   git commit -m "content(payload): deploy advanced nmap tutorial sequence"
-   ```
-
-5. **Push to the Remote Matrix:**
-   ```bash
-   git push origin main
-   ```
-
-### GitHub Actions (CI/CD)
-Assuming standard Hugo Pages integration, pushing to the `main` branch automatically triggers a GitHub Action runner. The runner will:
-1. Checkout the repository.
-2. Install the extended version of Hugo.
-3. Execute the `hugo --minify` command.
-4. Push the compiled static HTML, CSS, and JS to the `gh-pages` branch or directly to the GitHub Pages environment.
-5. In roughly 30-60 seconds, your updates will be live at `https://4ndr0666.github.io/4ndr0site/`.
+### GitHub Actions
+Pushing to `main` triggers a GitHub Action that executes `hugo --minify` and deploys the static matrix to `https://4ndr0666.github.io/4ndr0site/`.
 
 ---
 
 ## 11. TROUBLESHOOTING & ANOMALY RESOLUTION
 
-**Anomaly 1: The header turned solid gray again.**
-* **Cause:** Bootstrap utility classes (`bg-dark`) were accidentally reapplied to the `<nav>` element in `header.html`, or the SCSS compiler failed.
-* **Fix:** Ensure `header.sticky-top` maintains `background-color: transparent !important;` in `style.scss` to force the glass variables to override Bootstrap.
+**Anomaly 1: SCSS Fails to Compile.**
+* **Cause:** Missing bridge variables in `style.scss` or syntax errors in `_common.scss`.
+* **Fix:** Verify the bridge block in `style.scss` is correctly mapping all mandatory $variables.
 
-**Anomaly 2: The sidebar is pushing the main content off the screen.**
-* **Cause:** A broken `</div>` tag in a markdown file, or a collision of Bootstrap `.col-lg-*` classes.
-* **Fix:** Check `layouts/_default/single.html`. Ensure the math adds up to 12. If the sidebar is `col-lg-3`, the main content must be `col-lg-9`.
+**Anomaly 2: Code Copy Button Invisible.**
+* **Cause:** `code-copy.js` missing from the footer asset pipeline or located in `static/`.
+* **Fix:** Ensure the file is in `assets/js/` and the footer slice includes `$codeCopy`.
 
-**Anomaly 3: Custom Shortcode renders as raw text (e.g., `{{< box >}}`)**
-* **Cause:** You typed the shortcode incorrectly, or Hugo is parsing the markdown inside the HTML block incorrectly. 
-* **Fix:** Ensure you are using the precise syntax. If markdown inside the shortcode isn't rendering, ensure the shortcode HTML template uses `{{ .Inner | markdownify }}`.
-
-**Anomaly 4: SCSS fails to compile on `hugo server`.**
-* **Cause:** You have a syntax error (missing semicolon, unclosed bracket) in `style.scss` or `_variables.scss`.
-* **Fix:** Read the terminal output. Hugo will tell you the exact line number where the compilation broke. 
+**Anomaly 3: Taxonomy Node Missing.**
+* **Cause:** Labels "Categories" or "Tags" were used instead of "Sectors" or "Data_Tags".
+* **Fix:** Check `widget-wrapper.html` and individual widget partials for naming consistency.
 
 ---
 
