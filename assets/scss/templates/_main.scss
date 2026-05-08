@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------
    4NDR0666OS :: MAIN TEMPLATE COMPONENTS (SUPERSET REFACTOR)
-   Consolidated from 659 lines to HUD-Core v2
+   Consolidated from 659 lines to HUD-Core v2.1 (Readability Patch)
    ---------------------------------------------------------------------- */
 
 // 1. INTERFACE DEFAULTS
@@ -15,7 +15,7 @@ a:hover { color: var(--text-cyan-active); @include glow; text-decoration: none !
   overflow: hidden;
 
   @include media("desktop") { padding: 80px 0; }
-  
+
   .title {
     font-weight: 700;
     color: var(--text-cyan-active);
@@ -62,16 +62,25 @@ a:hover { color: var(--text-cyan-active); @include glow; text-decoration: none !
       @include box-glow; border-radius: 50%;
     }
   }
-  .card { 
-    @include glass; 
+  .card {
+    @include glass;
     &::before { background: var(--accent-cyan); color: #000; font-size: 0.8rem; }
   }
 }
 
 // 5. SYSTEM CONTENT NODES (Markdown & Notices)
 .content {
-  color: var(--accent-cyan);
-  
+  color: rgba(220, 245, 255, 0.85); // Inherit the off-white readability override
+
+  // FORCE HEADERS BACK TO TERMINAL MONOSPACE
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--primary_font) !important;
+    color: var(--text-cyan-active) !important;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
   blockquote {
     @include glass(0.1); border-left: 3px solid var(--accent-cyan);
     p { color: var(--text-cyan-active); font-style: italic; }
@@ -83,8 +92,33 @@ a:hover { color: var(--text-cyan-active); @include glow; text-decoration: none !
     thead { background: var(--accent-cyan-bg-hover); color: var(--text-cyan-active); }
   }
 
-  pre { background: var(--bg-dark-base) !important; border: 1px solid var(--accent-cyan-border-idle); }
-  code { background: var(--accent-cyan-bg-hover); color: var(--text-cyan-active); padding: 2px 5px; }
+  // TERMINAL READABILITY PATCH: BLOCK CODE
+  pre {
+    background: rgba(5, 10, 15, 0.85) !important; // Solidify the dark background
+    border: 1px solid var(--accent-cyan-border-idle) !important;
+    padding: 1.25rem !important;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+
+    code {
+      background: transparent !important; // Nuke the inline cyan tint
+      color: rgba(220, 245, 255, 0.95) !important; // High-contrast ice white for long reading
+      font-family: var(--primary_font);
+      font-size: 0.9rem;
+      padding: 0 !important;
+      white-space: pre-wrap; // Force long neural strings to wrap naturally
+      word-break: break-word;
+    }
+  }
+
+  // TERMINAL READABILITY PATCH: INLINE CODE
+  code {
+    background: var(--accent-cyan-bg-hover);
+    color: var(--text-cyan-active);
+    padding: 2px 5px;
+    border-radius: 2px;
+    font-family: var(--primary_font);
+  }
 
   .notices {
     margin: 2rem 0; @include glass(0.1); border-left: 4px solid var(--accent-cyan);
