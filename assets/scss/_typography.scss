@@ -1,21 +1,23 @@
-/* 4NDR0666OS :: CORE TYPOGRAPHY HUD STACK
+/* 4NDR0666OS :: CORE TYPOGRAPHY HUD STACK (READABILITY OVERRIDE)
    Note: @font-face remains inlined in critical-css.html per protocol. */
 
 body {
   line-height: 1.65;
-  font-family: var(--primary_font);
+  // Shift base font to a highly legible system sans-serif for overall reading comfort
+  font-family: var(--secondary_font, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 15px;
-  color: var(--accent-cyan); // Default body text is now the ambient cyan
+  font-size: 16px;
+  color: rgba(220, 245, 255, 0.85); // Desaturated "ice-white" for optical comfort
   background-color: var(--bg-dark-base);
 }
 
 p, .paragraph {
   font-weight: 400;
-  color: rgba(0, 229, 255, 0.85); // Sub-peak luminosity for readability
+  color: rgba(220, 245, 255, 0.85); // High legibility, low eye-strain for long payloads
   font-size: 1rem;
   margin-bottom: 1.5rem;
+  line-height: 1.75; // Increased line-height for better horizontal tracking
 }
 
 // LINK PROTOCOL: GLOW OVER UNDERLINE
@@ -31,11 +33,11 @@ a {
   }
 }
 
-// HEADER MATRIX
+// HEADER MATRIX: STRICT HUD MONOSPACE
 h1, h2, h3, h4, h5, h6, 
 .h1, .h2, .h3, .h4, .h5, .h6 {
   color: var(--text-cyan-active);
-  font-family: var(--primary_font);
+  font-family: var(--primary_font); // Enforce monospace for terminal aesthetic
   font-weight: 700; // Hardened weight for HUD headers
   line-height: 1.2;
   text-transform: uppercase;
@@ -68,4 +70,10 @@ hr {
   border-top: 1px solid var(--accent-cyan-border-idle);
   opacity: 0.3;
   margin: 2rem 0;
+}
+
+// HUD UI EXCEPTIONS (Force Monospace on Interface Elements)
+.meta-item, .meta-value, .meta-label, .hud-link, .hud-tag-node, 
+.widget-title, .nav-link, button, .btn {
+  font-family: var(--primary_font) !important;
 }
