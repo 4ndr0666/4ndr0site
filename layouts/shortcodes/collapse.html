@@ -1,24 +1,26 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
+{{ $uniqueID := printf "%s-%d" (.Get 0 | urlize) .Ordinal }}
 
-<div class="4ndr0-envelope glass-panel mb-4 transition-base" id="env-{{ .Get 0 | urlize }}">
+<div class="4ndr0-envelope glass-panel mb-4 transition-base" id="env-{{ $uniqueID }}">
   <div class="hud-auth-bar d-flex align-items-center p-3" 
-       onclick="document.getElementById('content-{{ .Get 0 | urlize }}').classList.toggle('expanded'); this.classList.toggle('active')">
+       onclick="document.getElementById('content-{{ $uniqueID }}').classList.toggle('expanded'); this.classList.toggle('active')">
     <span class="auth-status-icon mr-3 me-3"></span>
     <span class="auth-label text-uppercase me-2">[ DECRYPT_FRAGMENT ]:</span>
     <span class="auth-title ml-2 ms-2">{{ .Get 0 | markdownify }}</span>
     <span class="hud-toggle-icon ml-auto ms-auto">[ + ]</span>
   </div>
   
-  <div class="hud-envelope-content" id="content-{{ .Get 0 | urlize }}">
+  <div class="hud-envelope-content" id="content-{{ $uniqueID }}">
     <div class="p-4 content-inner border-top border-hud">
       <div class="buffer-metadata mb-3 pb-2">
-        ACCESS_LEVEL: <span class="text-cyan-active">RESTRICTED</span> // FRAGMENT_ID: <span class="text-cyan-active">{{ .Get 0 | urlize | upper }}</span>
+        ACCESS_LEVEL: <span class="text-cyan-active">RESTRICTED</span> // FRAGMENT_ID: <span class="text-cyan-active">{{ $uniqueID | upper }}</span>
       </div>
       {{ .Inner | markdownify }}
     </div>
   </div>
 </div>
 
+{{ if not (.Page.Scratch.Get "collapseStyleLoaded") }}
 <style>
   .4ndr0-envelope {
     border: 1px solid var(--accent-cyan-border-idle) !important;
@@ -47,7 +49,7 @@
     background: var(--accent-cyan);
     display: inline-block;
     box-shadow: 0 0 5px var(--glow-cyan-active);
-    border-radius: 50%; /* Rounded to match NAV_LOG indicator */
+    border-radius: 50%;
     transition: all 0.3s ease;
   }
 
@@ -92,7 +94,7 @@
   }
 
   .hud-envelope-content.expanded {
-    max-height: 2500px; /* Force-open boundary */
+    max-height: 25000px; /* Greatly expanded boundary for massive JSON payloads */
   }
 
   .hud-auth-bar.active .hud-toggle-icon {
@@ -116,3 +118,5 @@
     line-height: 1.7;
   }
 </style>
+{{ .Page.Scratch.Set "collapseStyleLoaded" true }}
+{{ end }}
