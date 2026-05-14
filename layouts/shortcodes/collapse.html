@@ -41,11 +41,27 @@
     background: var(--accent-cyan-bg-active);
   }
 
+  /* DEFAULT IDLE STATE: Cyan Circle */
   .auth-status-icon {
     width: 8px; height: 8px;
     background: var(--accent-cyan);
     display: inline-block;
     box-shadow: 0 0 5px var(--glow-cyan-active);
+    border-radius: 50%; /* Rounded to match NAV_LOG indicator */
+    transition: all 0.3s ease;
+  }
+
+  /* ACTIVE STATE PULSE ANIMATION */
+  @keyframes auth-pulse-green {
+    0%, 100% { opacity: 1; box-shadow: 0 0 8px #00FF41; background: #00FF41; }
+    50% { opacity: 0.4; box-shadow: 0 0 2px #00FF41; background: #00FF41; }
+  }
+
+  /* ACTIVE STATE ENFORCEMENT: Matrix Green Pulse */
+  .hud-auth-bar.active .auth-status-icon {
+    background: #00FF41 !important;
+    box-shadow: 0 0 8px #00FF41 !important;
+    animation: auth-pulse-green 2s infinite;
   }
 
   .auth-label {
