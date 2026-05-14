@@ -12,12 +12,9 @@ tags:
   - Cortex
   - Payload
   - Prompts
+description: "[ ENTER PAYLOAD OBJECTIVE HERE ]"
 draft: true
 ---
-<div class="glass-panel p-4 mb-4 border-hud" style="border-left: 4px solid var(--accent-cyan) !important;">
-<strong>CLASSIFICATION:</strong> [ CLEARANCE_LEVEL ]<br>
-<strong>OBJECTIVE:</strong> [ PAYLOAD_DESCRIPTION ]
-</div>
 
 ## VISUAL TELEMETRY
 
@@ -44,14 +41,16 @@ Execute the [ COPY ] trigger on any fenced code block below to acquire the raw n
 {{< collapse "EXECUTION_STRING_01: [ ENTER SPECIFIC PROMPT NAME ]" >}}
 ```text
 [ PASTE RAW PROMPT HERE ]
+
 ```
+
 {{< /collapse >}}
 
 {{< collapse "EXECUTION_STRING_02: [ ENTER SPECIFIC PROMPT NAME ]" >}}
+
 ```text
 [ PASTE RAW PROMPT HERE ]
-```
-{{< /collapse >}}
+
 ```
 
----
+{{< /collapse >}}
