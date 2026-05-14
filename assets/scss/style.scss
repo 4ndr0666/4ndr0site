@@ -236,7 +236,7 @@ details[open] > summary::after {
   vertical-align: middle;
 }
 
-// 2. Target Bootstrap collapse elements (Used in {{< collapse >}} shortcode)
+// 2. Target Bootstrap collapse elements (Used in collapse shortcode)
 a.collapse-head[aria-expanded="true"] {
   color: var(--text-cyan-active) !important;
   text-shadow: 0 0 8px var(--glow-cyan-active);
