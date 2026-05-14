@@ -63,11 +63,6 @@
             <div class="header-scanline mt-3" style="height: 1px; background: var(--accent-cyan-border-idle);"></div>
           </div>
 
-          {{/* REPURPOSED TITLE GLASS PANEL */}}
-          <div class="glass-panel p-4 mb-5 border-hud" style="border-left: 4px solid var(--accent-cyan) !important; background: rgba(0, 229, 255, 0.05) !important;">
-            <h1 class="hud-node-title m-0" style="text-shadow: 0 0 15px var(--glow-cyan-active);">{{ .Title | markdownify }}</h1>
-          </div>
-
           {{/* CONDITIONAL ASSET RENDER: ONLY TRIGGERS IF IMAGE PARAM EXISTS */}}
           {{ if .Params.Image }}
           <div class="node-asset-frame mb-5" style="overflow: hidden; background: var(--bg-dark-base);">

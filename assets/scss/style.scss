@@ -207,3 +207,49 @@ header.sticky-top {
     transform: translateX(3px);
   }
 }
+
+// ----------------------------------------------------------------------
+// 4NDR0666OS :: ACCORDION STATUS TELEMETRY
+// Dynamically injects Matrix Green pulse into expanded data nodes
+// ----------------------------------------------------------------------
+
+@keyframes pulse-tracking-accordion {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px #00FF41; }
+  50% { opacity: 0.4; box-shadow: 0 0 2px #00FF41; }
+}
+
+// 1. Target native HTML <details> elements (Used in Nested Matrices)
+details[open] > summary {
+  color: var(--text-cyan-active) !important;
+  text-shadow: 0 0 8px var(--glow-cyan-active);
+}
+
+details[open] > summary::after {
+  content: "";
+  display: inline-block;
+  margin-left: 12px;
+  width: 8px;
+  height: 8px;
+  background: #00FF41;
+  border-radius: 50%;
+  animation: pulse-tracking-accordion 2s infinite;
+  vertical-align: middle;
+}
+
+// 2. Target Bootstrap collapse elements (Used in {{< collapse >}} shortcode)
+a.collapse-head[aria-expanded="true"] {
+  color: var(--text-cyan-active) !important;
+  text-shadow: 0 0 8px var(--glow-cyan-active);
+}
+
+a.collapse-head[aria-expanded="true"]::after {
+  content: "";
+  display: inline-block;
+  margin-left: 12px;
+  width: 8px;
+  height: 8px;
+  background: #00FF41;
+  border-radius: 50%;
+  animation: pulse-tracking-accordion 2s infinite;
+  vertical-align: middle;
+}
