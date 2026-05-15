@@ -5,7 +5,6 @@
   <div class="hud-auth-bar d-flex align-items-center p-3" 
        onclick="document.getElementById('content-{{ $uniqueID }}').classList.toggle('expanded'); this.classList.toggle('active')">
     <span class="auth-status-icon mr-3 me-3"></span>
-    <span class="auth-label text-uppercase me-2">[ DECRYPT_FRAGMENT ]:</span>
     <span class="auth-title ml-2 ms-2">{{ .Get 0 | markdownify }}</span>
     <span class="hud-toggle-icon ml-auto ms-auto">[ + ]</span>
   </div>
@@ -66,15 +65,10 @@
     animation: auth-pulse-green 2s infinite;
   }
 
-  .auth-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--accent-cyan);
-    letter-spacing: 1px;
-  }
-
   .auth-title {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
     color: var(--text-cyan-active);
     text-transform: uppercase;
   }

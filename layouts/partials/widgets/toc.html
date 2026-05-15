@@ -1,4 +1,4 @@
-<h5 class="widget-title" style="color: var(--text-cyan-active) !important;">
+<h5 class="widget-title toc-title" style="color: var(--text-cyan-active) !important;">
   <span class="status-pulse me-2"></span> {{ .Title | upper | default "NAV_LOG" }}
 </h5>
 
@@ -7,18 +7,26 @@
 </aside>
 
 <style>
+  /* NUKE GLOBAL '>>' INJECTION FOR THIS WIDGET */
+  .toc-title::before {
+    display: none !important;
+    content: none !important;
+  }
+
   .status-pulse {
     display: inline-block;
-    width: 6px; height: 6px;
+    width: 8px; height: 8px; /* Matched 8px to align perfectly with collapse icons */
     background: #00FF41; /* Matrix Green to indicate active tracking */
     border-radius: 50%;
-    box-shadow: 0 0 6px #00FF41;
+    box-shadow: 0 0 8px #00FF41;
     animation: pulse-tracking 2s infinite;
+    vertical-align: middle;
+    margin-top: -2px; /* Optical alignment tweak */
   }
 
   @keyframes pulse-tracking {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    0%, 100% { opacity: 1; box-shadow: 0 0 8px #00FF41; }
+    50% { opacity: 0.3; box-shadow: 0 0 2px #00FF41; }
   }
 
   /* Targeting Hugo's Auto-Generated Markup Brutally */
