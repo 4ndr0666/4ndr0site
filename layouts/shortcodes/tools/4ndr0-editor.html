@@ -1,0 +1,102 @@
+<div class="4ndr0-editor-wrapper">
+  <div class="editor-header">
+    <div class="editor-title">
+      <span class="glyph">Ψ</span>
+      <span class="title-text">4NDR0-Editor</span>
+    </div>
+    <div class="editor-subtitle">
+      Tri-mode • Live Sync • DOCX • Cleanup
+    </div>
+  </div>
+
+  <div class="editor-frame">
+    <iframe 
+      src="/tools/4ndr0-editor/" 
+      width="100%" 
+      height="920" 
+      frameborder="0"
+      style="background: #050A0F; border-radius: 6px;"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <div class="editor-footer">
+    <small>
+      Fully client-side. 
+      <a href="/tools/4ndr0-editor/" target="_blank" rel="noopener">Open standalone</a>
+    </small>
+  </div>
+</div>
+
+<style>
+.4ndr0-editor-wrapper {
+  margin: 2rem 0;
+  border: 1px solid var(--accent-cyan-border-idle);
+  border-radius: 8px;
+  background: var(--bg-glass-panel);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  box-shadow: var(--shadow-glass-base);
+}
+
+.editor-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--accent-cyan-border-idle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(5, 10, 15, 0.6);
+}
+
+.editor-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.editor-title .glyph {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.5rem;
+  color: var(--accent-cyan);
+}
+
+.editor-title .title-text {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.35rem;
+  color: var(--accent-cyan);
+  letter-spacing: 0.5px;
+}
+
+.editor-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  opacity: 0.85;
+}
+
+.editor-frame {
+  padding: 12px;
+  background: #050A0F;
+}
+
+.editor-frame iframe {
+  display: block;
+  border: 1px solid var(--accent-cyan-border-idle);
+  border-radius: 6px;
+}
+
+.editor-footer {
+  padding: 0.75rem 1.25rem;
+  background: rgba(5, 10, 15, 0.5);
+  text-align: right;
+  font-size: 0.8rem;
+}
+
+.editor-footer a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+}
+
+.editor-footer a:hover {
+  text-decoration: underline;
+}
+</style>

@@ -1,6 +1,6 @@
 baseURL = "https://4ndr0666.github.io/4ndr0site/"
 title = "4ndr0666 | Cortex"
-languageCode = "en-us"
+defaultContentLanguage = "en"
 summaryLength = 70
 enableGitInfo = true
 
@@ -46,15 +46,15 @@ sidebar = "right"
 code_copy_button = true
 
 [params.variables]
-primary_color = "#00E5FF" # --accent-cyan
-secondary_color = "#67E8F9" # --text-cyan-active
+primary_color = "#00E5FF"
+secondary_color = "#67E8F9"
 text_color = "#67E8F9"
-text_color_dark = "#050A0F" # --bg-dark-base
+text_color_dark = "#050A0F"
 body_color = "#050A0F"
-border_color = "rgba(0, 229, 255, 0.2)" # --accent-cyan-border-idle
+border_color = "rgba(0, 229, 255, 0.2)"
 black = "#050A0F"
-white = "#A5F3FC" 
-light = "rgba(10, 19, 26, 0.25)" # --bg-glass-panel
+white = "#A5F3FC"
+light = "rgba(10, 19, 26, 0.25)"
 primary_font = "'Roboto Mono', monospace"
 icon_font = "Font Awesome 6 Free"
 
@@ -137,6 +137,7 @@ url = "/categories/networking"
 parent = "sections"
 name = "Synthetics"
 url = "/categories/synthetics"
+
 [[menu.main]]
 parent = "sections"
 name = "Windows"

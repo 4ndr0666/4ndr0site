@@ -8,21 +8,16 @@
 
 <style>
   :root {
-    /* Foundations */
     --bg-dark-base: #050A0F;
-    --bg-glass-panel: rgba(10, 19, 26, 0.85); /* CORRECTED: Matched to style.html */
-    
-    /* The Cyan Matrix */
+    --bg-glass-panel: rgba(10, 19, 26, 0.85);
     --accent-cyan: #00E5FF;
     --text-cyan-active: #67E8F9;
     --accent-cyan-border-idle: rgba(0, 229, 255, 0.2);
-    --accent-cyan-border-hover: rgba(0, 229, 255, 0.6); /* CORRECTED: Matched to style.html */
-    --accent-cyan-bg-hover: rgba(0, 229, 255, 0.1); /* CORRECTED */
+    --accent-cyan-border-hover: rgba(0, 229, 255, 0.6);
+    --accent-cyan-bg-hover: rgba(0, 229, 255, 0.1);
     --accent-cyan-bg-active: rgba(0, 229, 255, 0.2);
-    --glow-cyan-active: rgba(0, 229, 255, 0.5); /* CORRECTED */
+    --glow-cyan-active: rgba(0, 229, 255, 0.5);
     --text-color: #67E8F9;
-    
-    /* Typography */
     --primary_font: 'Roboto Mono', monospace;
   }
 </style>
@@ -42,7 +37,8 @@
 <link rel="canonical" href="{{ .Permalink }}">
 {{ if .Sitemap.Disable }}<meta name="robots" content="noindex, follow">{{ end }}
 
-{{- if .IsPage | not }}
+<!-- Pagination links - safely guarded against 404 and other non-paginated pages -->
+{{- if and (not .IsPage) (not .IsHome) (ne .Kind "404") }}
   {{- with .Paginator }}
     {{- if gt .TotalPages 1 }}
       {{- if .HasPrev }}<link rel="prev" href="{{ .Prev.URL | absURL }}">{{ end }}
@@ -90,6 +86,7 @@
 {{ end -}}
 
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "48e9040046c743328a1abd6b87ec22fd"}'></script>
+
 <script>
 (function() {
   var loaded = false;
